@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brand-deep: #3B214F;
+    --brand-primary: #6E3A82;
+    --brand-lilac: #A987C2;
+    --brand-soft-lilac: #E8DDF0;
+    --brand-ivory: #FAF8F5;
+    --brand-charcoal: #242024;
+    --brand-muted: #716A73;
+    --brand-light-bg: #F7F3F8;
+    
+    --background: #FAF8F5;
+    --foreground: #242024;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--brand-ivory);
+    color: var(--brand-charcoal);
+    font-family: var(--font-body), sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-serif-title {
+    font-family: var(--font-serif), serif;
+    line-height: 1.2;
+  }
+}
+
+/* Reduced motion — accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@theme inline {
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-lilac: var(--brand-lilac);
+  --color-brand-soft-lilac: var(--brand-soft-lilac);
+  --color-brand-ivory: var(--brand-ivory);
+  --color-brand-charcoal: var(--brand-charcoal);
+  --color-brand-muted: var(--brand-muted);
+  --color-brand-light-bg: var(--brand-light-bg);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-body);
+}
+
+/* Custom Scrollbar & Animations */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #A987C2;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6E3A82;
+}
+
+/* Focus Ring for WCAG Accessibility */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid #6E3A82;
+  outline-offset: 2px;
+}
