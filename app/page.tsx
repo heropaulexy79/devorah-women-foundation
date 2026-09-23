@@ -11,8 +11,8 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <ImpactStrip />
       <WhoWeAre />
+      <ImpactStrip />
       <MissionVision />
       <ProgramsGrid />
       <FeaturedStory />
