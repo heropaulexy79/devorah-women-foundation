@@ -18,32 +18,47 @@ export default function ImpactStrip() {
           </h2>
         </div>
 
-        {/* Stats — no card containers, separated by dividers */}
+        {/* Stats — evenly spaced with dynamic borders and paddings */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-0">
-          {IMPACT_METRICS.map((metric, idx) => (
-            <motion.div
-              key={metric.id}
-              className={`py-8 pr-8 lg:pr-12 ${
-                idx < IMPACT_METRICS.length - 1
-                  ? 'border-b lg:border-b-0 lg:border-r border-white/10'
-                  : ''
-              } ${idx % 2 === 0 && idx !== IMPACT_METRICS.length - 2 ? 'border-r border-white/10 lg:border-r-0' : ''}`}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.08 }}
-            >
-              <div className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-[#C5A8D8] tracking-tight leading-none">
-                {metric.number}
-              </div>
-              <h3 className="text-sm font-semibold text-white mt-4 leading-snug">
-                {metric.label}
-              </h3>
-              <p className="text-xs text-[#E8DDF0]/55 mt-2 leading-relaxed max-w-[180px]">
-                {metric.description}
-              </p>
-            </motion.div>
-          ))}
+          {IMPACT_METRICS.map((metric, idx) => {
+            let padding = 'py-8 ';
+            let border = 'border-white/10 ';
+            
+            if (idx === 0) {
+              padding += 'pr-6 pl-0 lg:pr-10 lg:pl-0 ';
+              border += 'border-b border-r lg:border-b-0 ';
+            } else if (idx === 1) {
+              padding += 'pl-6 pr-0 lg:px-10 ';
+              border += 'border-b border-r-0 lg:border-b-0 lg:border-r ';
+            } else if (idx === 2) {
+              padding += 'pr-6 pl-0 lg:px-10 ';
+              border += 'border-b-0 border-r lg:border-r ';
+            } else if (idx === 3) {
+              padding += 'pl-6 pr-0 lg:pl-10 lg:pr-0 ';
+              border = '';
+            }
+
+            return (
+              <motion.div
+                key={metric.id}
+                className={`${padding} ${border}`}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
+              >
+                <div className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-[#C5A8D8] tracking-tight leading-none">
+                  {metric.number}
+                </div>
+                <h3 className="text-sm font-semibold text-white mt-4 leading-snug">
+                  {metric.label}
+                </h3>
+                <p className="text-xs text-[#E8DDF0]/55 mt-2 leading-relaxed max-w-[180px]">
+                  {metric.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
 
         <p className="mt-12 text-[10px] text-[#E8DDF0]/35 italic">
