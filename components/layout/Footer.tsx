@@ -90,7 +90,7 @@ export default function Footer() {
 
           {/* Col 2: Quick Links */}
           <div className="space-y-5 lg:pl-8">
-            <h3 className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#A987C2]">
+            <h3 className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white">
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -117,7 +117,7 @@ export default function Footer() {
 
           {/* Col 3: Get Involved & Legal */}
           <div className="space-y-5">
-            <h3 className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#A987C2]">
+            <h3 className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white">
               Get Involved
             </h3>
             <ul className="space-y-3 mb-8">
@@ -137,7 +137,7 @@ export default function Footer() {
               ))}
             </ul>
 
-            <h3 className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#A987C2]">
+            <h3 className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white">
               Legal
             </h3>
             <ul className="space-y-3">
@@ -156,7 +156,7 @@ export default function Footer() {
 
           {/* Col 4: Stay Connected & Social Media */}
           <div className="space-y-5">
-            <h3 className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#A987C2]">
+            <h3 className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white">
               Social Media
             </h3>
             <ul className="space-y-3 mb-8 flex flex-wrap gap-4">
@@ -184,7 +184,7 @@ export default function Footer() {
               })}
             </ul>
 
-            <h3 className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#A987C2]">
+            <h3 className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white">
               Newsletter
             </h3>
             {subscribed ? (
