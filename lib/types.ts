@@ -2,7 +2,7 @@ export interface Program {
   id: string;
   slug: string;
   name: string;
-  category: string;
+  category: "Women's Empowerment" | "Girls' Development" | "Leadership Development" | "Education" | "Mentorship" | "Community Outreach" | "Faith & Spiritual Development";
   tagline: string;
   description: string;
   targetAudience: string;
@@ -11,6 +11,13 @@ export interface Program {
   locations: string[];
   imageUrl: string;
   featured: boolean;
+  impactResults?: string[];
+  testimonial?: {
+    quote: string;
+    author: string;
+    role: string;
+  };
+  galleryImages?: string[];
 }
 
 export interface Project {
@@ -34,7 +41,7 @@ export interface Article {
   id: string;
   slug: string;
   title: string;
-  category: 'Foundation News' | 'Women\'s Issues' | 'Girls\' Development' | 'Leadership' | 'Faith' | 'Empowerment' | 'Community Stories' | 'Events';
+  category: 'Foundation News' | 'Women\'s Issues' | 'Girls\' Development' | 'Leadership' | 'Faith' | 'Empowerment' | 'Community Stories' | 'Event Updates & Announcements';
   excerpt: string;
   content: string;
   author: {
@@ -70,6 +77,8 @@ export interface Person {
   background?: string;
   education?: string;
   vision?: string;
+  responsibilities?: string;
+  expertise?: string[];
   imageUrl: string;
 }
 
@@ -77,9 +86,11 @@ export interface Testimonial {
   id: string;
   quote: string;
   authorName: string;
-  authorRelationship: string; // e.g. "Beneficiary, Leadership Program", "Community Partner"
+  authorRelationship: string; // e.g. "Beneficiary", "Community Leader", "Partner"
   avatarUrl?: string;
   location?: string;
+  category?: 'Beneficiary' | 'Volunteer' | 'Partner' | 'Event Participant' | 'Community Leader';
+  videoUrl?: string;
 }
 
 export interface ImpactMetric {
@@ -93,6 +104,6 @@ export interface ImpactMetric {
 export interface Partner {
   id: string;
   name: string;
-  category: 'Financial' | 'Program' | 'Resource' | 'Strategic' | 'Corporate';
+  category: 'Individuals' | 'Businesses' | 'Churches' | 'NGOs' | 'Foundations' | 'Government Agencies' | 'Educational Institutions' | 'Corporate Organisations' | 'Community Organisations';
   logoUrl?: string;
 }

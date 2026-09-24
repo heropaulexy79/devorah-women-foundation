@@ -38,21 +38,32 @@ export const PROGRAMS: Program[] = [
     name: "Women's Empowerment Initiative",
     category: "Women's Empowerment",
     tagline: 'Building financial dignity, vocational skills, and strategic agency.',
-    description: 'Our flagship initiative equipping women with practical entrepreneurship, financial literacy, and holistic life skills to thrive independently.',
-    targetAudience: 'Young adult women, mothers, and aspiring female entrepreneurs.',
+    description: 'Our flagship initiative equipping women with practical entrepreneurship, financial literacy, vocational dignity, and holistic life skills to thrive independently.',
+    targetAudience: 'Young adult women, mothers, and aspiring female entrepreneurs in underserved urban and rural communities.',
     objectives: [
-      'Provide accredited vocational skills training.',
-      'Foster financial literacy and micro-enterprise development.',
-      'Cultivate supportive peer networks and economic independence.'
+      'Provide accredited vocational skills training and enterprise starter kits.',
+      'Foster financial literacy, micro-savings, and credit management.',
+      'Cultivate supportive peer networks and long-term economic independence.'
     ],
     activities: [
-      'Enterprise incubators & financial literacy workshops.',
+      'Enterprise incubators & financial literacy bootcamps.',
       'One-on-one professional mentorship pairings.',
-      'Community micro-finance guidance circles.'
+      'Community micro-finance guidance circles & trade exhibitions.'
     ],
     locations: ['Accra', 'Kumasi', 'Regional Outreach Hubs'],
     imageUrl: '/images/who_we_are.png',
-    featured: true
+    featured: true,
+    impactResults: [
+      '85% of participating women launched sustainable micro-enterprises within 90 days.',
+      'Over GH₵ 150,000 in micro-grant equipment distributed directly to female entrepreneurs.',
+      '100% of participants established registered community savings circles.'
+    ],
+    testimonial: {
+      quote: "The business training and seed capital provided by Devorah Foundation gave me the dignity to support my family and employ two young girls in my local community.",
+      author: "Abena Mansah",
+      role: "Empowerment Program Graduate"
+    },
+    galleryImages: ['/images/who_we_are.png', '/images/story_beneficiary.png']
   },
   {
     id: 'girls-development',
@@ -60,21 +71,32 @@ export const PROGRAMS: Program[] = [
     name: "Girls' Development & Leadership Academy",
     category: "Girls' Development",
     tagline: 'Nurturing confidence, academic excellence, and self-worth in young girls.',
-    description: 'A transformative academy designed to provide young girls with educational support, digital skills, character development, and personal safety education.',
-    targetAudience: 'Adolescent girls aged 12–19.',
+    description: 'A transformative academy designed to provide adolescent girls with educational support, digital skills, character development, personal safety education, and career guidance.',
+    targetAudience: 'Adolescent girls aged 12–19 in primary and secondary schools.',
     objectives: [
-      'Improve academic retention and STEM engagement.',
-      'Provide comprehensive life-skills and confidence building.',
+      'Improve academic retention and STEM/digital engagement among adolescent girls.',
+      'Provide comprehensive life-skills, confidence building, and moral clarity.',
       'Prevent early dropouts through mentorship and scholarship support.'
     ],
     activities: [
       'After-school leadership clinics & STEM bootcamps.',
       'Health, hygiene, and self-protection workshops.',
-      'Youth mentorship retreats.'
+      'Youth mentorship retreats and public speaking summits.'
     ],
     locations: ['Sub-urban Schools', 'Community Learning Centers'],
     imageUrl: '/images/story_beneficiary.png',
-    featured: true
+    featured: true,
+    impactResults: [
+      '95% academic retention rate among academy participants.',
+      'Over 300 girls trained in introductory digital literacy and coding fundamentals.',
+      '15 active school-based leadership clubs established.'
+    ],
+    testimonial: {
+      quote: "Devorah Foundation showed me that my voice matters. I went from being afraid to speak in class to leading our school's student governance council.",
+      author: "Kofi Boateng",
+      role: "Academy Graduate & Student Leader"
+    },
+    galleryImages: ['/images/story_beneficiary.png', '/images/hero_portrait.png']
   },
   {
     id: 'leadership-development',
@@ -82,21 +104,32 @@ export const PROGRAMS: Program[] = [
     name: 'Devorah Leadership Institute',
     category: 'Leadership Development',
     tagline: 'Raising courageous female leaders positioned for ethical governance and enterprise.',
-    description: 'An executive and grassroots leadership incubator preparing women to step into decision-making roles across civic, corporate, and community spheres.',
-    targetAudience: 'Emerging female leaders, civic organizers, and university scholars.',
+    description: 'An executive and grassroots leadership incubator preparing women to step into decision-making roles across civic, corporate, educational, and community spheres.',
+    targetAudience: 'Emerging female leaders, civic organizers, corporate executives, and university scholars.',
     objectives: [
-      'Develop strategic leadership and public speaking capacities.',
-      'Impart faith-based ethical principles of governance.',
-      'Create institutional pathways for female decision-makers.'
+      'Develop strategic leadership, negotiation, and public governance capacities.',
+      'Impart faith-based ethical principles of Deborah-like wisdom and courage.',
+      'Create institutional pathways and board readiness for female decision-makers.'
     ],
     activities: [
-      'Quarterly executive leadership summits.',
+      'Quarterly executive leadership summits and masterclasses.',
       'Civic engagement and policy advocacy workshops.',
-      'Board governance readiness training.'
+      'Board governance readiness training and executive mentoring.'
     ],
-    locations: ['National Leadership Center'],
+    locations: ['National Leadership Center', 'Accra Central'],
     imageUrl: '/images/hero_portrait.png',
-    featured: true
+    featured: true,
+    impactResults: [
+      '120 emerging female leaders certified in ethical governance and board readiness.',
+      '85% placed in elevated management or community leadership positions.',
+      'Established annual Female Leaders Roundtable.'
+    ],
+    testimonial: {
+      quote: "The Leadership Institute transformed how I approach governance. It rooted my leadership in Biblical integrity and executive clarity.",
+      author: "Esi Amodu",
+      role: "Institute Alumna & Civic Organizer"
+    },
+    galleryImages: ['/images/hero_portrait.png', '/images/founder_portrait.png']
   },
   {
     id: 'education-scholarships',
@@ -105,20 +138,29 @@ export const PROGRAMS: Program[] = [
     category: 'Education',
     tagline: 'Removing financial barriers to guarantee girl-child education.',
     description: 'Providing merit and need-based educational grants, learning materials, and mentorship to ensure young women complete secondary and tertiary education.',
-    targetAudience: 'High-achieving girls from underserved rural communities.',
+    targetAudience: 'High-achieving girls from underserved rural and sub-urban communities.',
     objectives: [
-      'Eliminate financial barriers to secondary education.',
-      'Provide university scholarship pathways.',
+      'Eliminate financial barriers to secondary education for vulnerable girls.',
+      'Provide university scholarship pathways and academic support.',
       'Offer ongoing career counseling and academic tutoring.'
     ],
     activities: [
-      'Annual scholarship awards ceremony.',
+      'Annual scholarship awards ceremony and grant distribution.',
       'Academic tutoring and exam preparation centers.',
-      'Book and digital device distribution drives.'
+      'Book, uniform, and digital device distribution drives.'
     ],
     locations: ['Partnering Schools & Tertiary Institutions'],
     imageUrl: '/images/who_we_are.png',
-    featured: false
+    featured: false,
+    impactResults: [
+      'Full secondary school scholarships awarded to 50 vulnerable girls.',
+      '100% pass rate in national final examinations for scholarship recipients.'
+    ],
+    testimonial: {
+      quote: "Without this scholarship fund, my dream of attending university would have ended. Devorah Foundation gave me hope and a future.",
+      author: "Grace Quarshie",
+      role: "Tertiary Scholarship Recipient"
+    }
   },
   {
     id: 'faith-spiritual-development',
@@ -127,20 +169,29 @@ export const PROGRAMS: Program[] = [
     category: 'Faith & Spiritual Development',
     tagline: 'Anchoring purpose, dignity, and spiritual strength through Biblical wisdom.',
     description: 'Integrating timeless Christian principles of grace, courage, and Deborah-like intercession to nourish the soul and inspire purposeful living.',
-    targetAudience: 'Women seeking spiritual growth and biblical mentorship.',
+    targetAudience: 'Women and girls seeking spiritual growth, moral guidance, and biblical mentorship.',
     objectives: [
-      'Foster a deep, grounded understanding of Christian identity.',
+      'Foster a deep, grounded understanding of Christian identity and divine purpose.',
       'Create safe spaces for prayer, counsel, and emotional healing.',
-      'Encourage servant leadership anchored in integrity.'
+      'Encourage servant leadership anchored in integrity and grace.'
     ],
     activities: [
-      'Weekly devotional fellowships.',
+      'Weekly devotional fellowships & intercessory prayer circles.',
       'Annual Women of Courage Spiritual Retreat.',
-      'Counseling and prayer support helpline.'
+      'Counseling and spiritual mentorship support helpline.'
     ],
     locations: ['Community Chapels & Online Assemblies'],
     imageUrl: '/images/founder_portrait.png',
-    featured: true
+    featured: true,
+    impactResults: [
+      'Over 1,000 women participating in weekly spiritual renewal circles.',
+      'Annual retreat gathering 400+ female leaders for prayer and intercession.'
+    ],
+    testimonial: {
+      quote: "The spiritual circles restored my confidence and grounded my identity in Christ. I am leading with new strength and joy.",
+      author: "Hannah Adjei",
+      role: "Fellowship Circle Member"
+    }
   }
 ];
 
@@ -163,19 +214,20 @@ export const PROJECTS: Project[] = [
     date: 'October 2025',
     location: 'Accra Central Hall',
     shortDescription: 'Gathering over 300 adolescent girls for a 2-day intensive on digital literacy, self-confidence, and career planning.',
-    fullDescription: 'The Community Girls Leadership Summit brought together young leaders from 15 local schools for experiential learning, keynote sessions from female tech pioneers, and group mentorship.',
-    objective: 'Equip adolescent girls with digital tools and self-belief to pursue higher education.',
+    fullDescription: 'The Community Girls Leadership Summit brought together young leaders from 15 local schools for experiential learning, keynote sessions from female tech pioneers, group mentorship, and career roadmap planning.',
+    objective: 'Equip adolescent girls with digital tools, leadership frameworks, and self-belief to pursue higher education.',
     whatWeDid: [
-      'Hosted 12 interactive skill workshops.',
-      'Distributed 300 leadership toolkits and learning kits.',
-      'Established 15 school mentorship clubs.'
+      'Hosted 12 interactive skill workshops covering digital literacy and public speaking.',
+      'Distributed 300 leadership toolkits, journals, and learning kits.',
+      'Established 15 school mentorship clubs led by certified university mentors.'
     ],
     whoWeReached: '320 adolescent girls & 45 educator chaperones',
     impactResults: [
-      '98% reported increased confidence in public speaking.',
-      '100% pledged participation in school mentorship clubs.'
+      '98% reported increased confidence in public speaking and decision-making.',
+      '100% pledged active participation in school mentorship clubs.'
     ],
-    imageUrl: '/images/who_we_are.png'
+    imageUrl: '/images/who_we_are.png',
+    galleryImages: ['/images/who_we_are.png', '/images/story_beneficiary.png']
   },
   {
     id: 'project-2',
@@ -184,19 +236,21 @@ export const PROJECTS: Project[] = [
     category: 'Outreach',
     date: 'August 2025',
     location: 'Ashanti Region',
-    shortDescription: 'Providing 150 women with micro-business seed starter kits and financial management education.',
-    fullDescription: 'An intensive 3-week field program focused on practical skills, financial record keeping, and market access for rural female entrepreneurs.',
-    objective: 'Strengthen household economic stability through women-led small enterprises.',
+    shortDescription: 'Providing 150 women with micro-business seed starter kits, trade equipment, and financial management education.',
+    fullDescription: 'An intensive 3-week field program focused on practical skills, financial record keeping, product packaging, and market access for rural female entrepreneurs.',
+    objective: 'Strengthen household economic stability through women-led small enterprises and community micro-finance.',
     whatWeDid: [
-      'Delivered hands-on enterprise starter sessions.',
-      'Provided micro-grant starter equipment.',
-      'Established community savings circles.'
+      'Delivered hands-on enterprise starter sessions and trade skills workshops.',
+      'Provided micro-grant starter equipment valued at GH₵ 150,000.',
+      'Established 6 community savings and credit circles.'
     ],
-    whoWeReached: '150 female micro-entrepreneurs',
+    whoWeReached: '150 female micro-entrepreneurs & 450 family dependents',
     impactResults: [
-      '85% launched active revenue-generating micro-enterprises within 60 days.'
+      '85% launched active revenue-generating micro-enterprises within 60 days.',
+      'Average household monthly income increased by 40%.'
     ],
-    imageUrl: '/images/hero_portrait.png'
+    imageUrl: '/images/hero_portrait.png',
+    galleryImages: ['/images/hero_portrait.png', '/images/founder_portrait.png']
   }
 ];
 
@@ -279,6 +333,7 @@ export const LEADERSHIP_PEOPLE: Person[] = [
     background: 'Over 15 years of experience in strategic non-profit management, community advocacy, and youth development.',
     education: 'Advanced studies in Social Policy, Leadership, and Business Administration.',
     vision: 'To see every girl and woman discover her God-given potential, walking in dignity, strength, and economic independence.',
+    expertise: ['Non-Profit Governance', 'Women Leadership', 'Faith-Based Advocacy', 'Strategic Philanthropy'],
     imageUrl: '/images/founder_portrait.png'
   },
   {
@@ -287,7 +342,8 @@ export const LEADERSHIP_PEOPLE: Person[] = [
     title: 'Head of Programs & Community Outreach',
     role: 'Program Director',
     category: 'Team Lead',
-    biography: 'Oversees design, implementation, and impact evaluation across all Devorah Foundation initiatives.',
+    biography: 'Oversees design, implementation, and field evaluation across all Devorah Foundation initiatives.',
+    responsibilities: 'Directing field operations, managing program leads, coordinating stakeholder partnerships.',
     imageUrl: '/images/hero_portrait.png'
   },
   {
@@ -296,7 +352,8 @@ export const LEADERSHIP_PEOPLE: Person[] = [
     title: 'Chairperson, Board of Trustees',
     role: 'Board Trustee',
     category: 'Board Member',
-    biography: 'Provides institutional governance, strategic oversight, and fiscal stewardship.',
+    biography: 'Provides institutional governance, strategic oversight, and fiscal stewardship across global operations.',
+    background: 'Senior executive with background in corporate law, board governance, and global development.',
     imageUrl: '/images/who_we_are.png'
   }
 ];
@@ -307,20 +364,40 @@ export const TESTIMONIALS: Testimonial[] = [
     quote: 'The Devorah Foundation stands out for its high standard of integrity, deep community commitment, and genuine focus on individual transformation.',
     authorName: '[Official Partner Representative]',
     authorRelationship: 'Institutional Partner Representative',
-    location: 'Accra'
+    location: 'Accra',
+    category: 'Partner'
   },
   {
     id: 't-2',
     quote: 'Through their mentorship program, my daughter has grown into a confident young scholar who believes in her ability to lead.',
     authorName: '[Parent & Community Leader]',
     authorRelationship: 'Parent of Academy Graduate',
-    location: 'Greater Accra'
+    location: 'Greater Accra',
+    category: 'Community Leader'
+  },
+  {
+    id: 't-3',
+    quote: 'Volunteering with the Girls\' Leadership Academy allowed me to invest my professional skills directly into the next generation.',
+    authorName: '[Volunteer Mentor]',
+    authorRelationship: 'Academy Executive Mentor',
+    location: 'Accra',
+    category: 'Volunteer'
+  },
+  {
+    id: 't-4',
+    quote: 'The Women\'s Empowerment Initiative gave me trade skills, seed equipment, and financial confidence to run my own enterprise.',
+    authorName: '[Program Beneficiary]',
+    authorRelationship: 'Micro-Enterprise Graduate',
+    location: 'Ashanti Region',
+    category: 'Beneficiary'
   }
 ];
 
 export const PARTNERS: Partner[] = [
-  { id: 'p1', name: 'Strategic Corporate Partner', category: 'Corporate' },
-  { id: 'p2', name: 'International Foundation Network', category: 'Strategic' },
-  { id: 'p3', name: 'Community Development Initiative', category: 'Program' },
-  { id: 'p4', name: 'Educational Trust', category: 'Financial' }
+  { id: 'p1', name: 'Strategic Corporate Partner', category: 'Corporate Organisations' },
+  { id: 'p2', name: 'International Foundation Network', category: 'Foundations' },
+  { id: 'p3', name: 'Community Development Initiative', category: 'Community Organisations' },
+  { id: 'p4', name: 'Educational Trust', category: 'Educational Institutions' },
+  { id: 'p5', name: 'Grace Fellowship Alliance', category: 'Churches' },
+  { id: 'p6', name: 'Regional Social Development Board', category: 'Government Agencies' }
 ];

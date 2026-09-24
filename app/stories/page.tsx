@@ -20,6 +20,8 @@ const CATEGORIES = [
   'Events'
 ];
 
+import PageHero from '@/components/ui/PageHero';
+
 export default function StoriesPage() {
   const [selectedCat, setSelectedCat] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
@@ -37,32 +39,26 @@ export default function StoriesPage() {
     <div className="bg-[#FAF8F5] min-h-screen">
       
       {/* Header Banner */}
-      <section className="py-20 bg-gradient-to-b from-[#F7F3F8] to-[#FAF8F5] border-b border-[#E8DDF0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#E8DDF0] text-[#6E3A82] text-xs font-semibold uppercase tracking-widest">
-            JOURNAL & THOUGHT LEADERSHIP
-          </span>
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#3B214F]">
-            Stories & Insights
-          </h1>
-          <p className="text-base sm:text-lg text-[#716A73] max-w-2xl mx-auto leading-relaxed">
-            Perspectives on female leadership, girl-child advocacy, faith in action, and field stories of dignity and transformation.
-          </p>
-
-          <div className="max-w-md mx-auto pt-4">
-            <div className="relative">
-              <Search className="w-5 h-5 absolute left-3.5 top-3.5 text-[#716A73]" />
-              <input
-                type="text"
-                placeholder="Search articles & stories..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-11 pr-4 py-3 rounded-full border border-[#E8DDF0] bg-white text-sm focus:outline-none focus:border-[#6E3A82] shadow-sm"
-              />
-            </div>
+      <div className="relative">
+        <PageHero
+          eyebrow="JOURNAL & THOUGHT LEADERSHIP"
+          title="Stories & Insights"
+          description="Perspectives on female leadership, girl-child advocacy, faith in action, and field stories of dignity and transformation."
+          breadcrumb={[{ label: 'Stories & Insights' }]}
+        />
+        <div className="max-w-md mx-auto px-4 -mt-8 relative z-20 pb-8">
+          <div className="relative shadow-lg rounded-full">
+            <Search className="w-5 h-5 absolute left-4 top-3.5 text-[#6E3A82]" />
+            <input
+              type="text"
+              placeholder="Search articles & stories..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-12 pr-4 py-3.5 rounded-full border border-[#E8DDF0] bg-white text-sm focus:outline-none focus:border-[#6E3A82] text-[#3B214F] placeholder-[#9B8CA6]"
+            />
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Featured Editorial Article */}
       {featuredArticle && (

@@ -10,6 +10,8 @@ import { BookOpen, Download, Eye, Search } from 'lucide-react';
 
 const CATEGORIES = ['All', 'Journals', 'Books', 'Devotionals', 'Guides', 'Publications'];
 
+import PageHero from '@/components/ui/PageHero';
+
 export default function ResourcesPage() {
   const [selectedCat, setSelectedCat] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,33 +27,26 @@ export default function ResourcesPage() {
     <div className="bg-[#FAF8F5] min-h-screen">
       
       {/* Header Banner */}
-      <section className="py-20 bg-gradient-to-b from-[#F7F3F8] to-[#FAF8F5] border-b border-[#E8DDF0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#E8DDF0] text-[#6E3A82] text-xs font-semibold uppercase tracking-widest">
-            DEVORAH RESOURCE LIBRARY
-          </span>
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#3B214F]">
-            Knowledge that empowers.
-          </h1>
-          <p className="text-base sm:text-lg text-[#716A73] max-w-2xl mx-auto leading-relaxed">
-            Access our curated collection of editorial journals, devotional guides, leadership frameworks, and research publications.
-          </p>
-
-          {/* Search Box */}
-          <div className="max-w-md mx-auto pt-4">
-            <div className="relative">
-              <Search className="w-5 h-5 absolute left-3.5 top-3.5 text-[#716A73]" />
-              <input
-                type="text"
-                placeholder="Search library resources..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-11 pr-4 py-3 rounded-full border border-[#E8DDF0] bg-white text-sm focus:outline-none focus:border-[#6E3A82] shadow-sm"
-              />
-            </div>
+      <div className="relative">
+        <PageHero
+          eyebrow="DEVORAH RESOURCE LIBRARY"
+          title="Knowledge that empowers."
+          description="Access our curated collection of editorial journals, devotional guides, leadership frameworks, and research publications."
+          breadcrumb={[{ label: 'Resources' }]}
+        />
+        <div className="max-w-md mx-auto px-4 -mt-8 relative z-20 pb-8">
+          <div className="relative shadow-lg rounded-full">
+            <Search className="w-5 h-5 absolute left-4 top-3.5 text-[#6E3A82]" />
+            <input
+              type="text"
+              placeholder="Search library resources..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-12 pr-4 py-3.5 rounded-full border border-[#E8DDF0] bg-white text-sm focus:outline-none focus:border-[#6E3A82] text-[#3B214F] placeholder-[#9B8CA6]"
+            />
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Filter Tabs & Grid */}
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">

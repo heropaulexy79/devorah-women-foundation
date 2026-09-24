@@ -4,6 +4,8 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import CTASection from '@/components/sections/CTASection';
 import { ArrowRight, Calendar, HeartHandshake, Sparkles, UserPlus, CheckCircle2 } from 'lucide-react';
 
+import PageHero from '@/components/ui/PageHero';
+
 export const metadata = {
   title: 'Get Involved | Devorah Women Foundation',
   description: 'Join the movement. Explore pathways for volunteering, institutional partnering, supporting our work, and attending foundation events.',
@@ -45,19 +47,12 @@ export default function GetInvolvedPage() {
     <div className="bg-[#FAF8F5] min-h-screen">
       
       {/* Hero Header */}
-      <section className="py-20 bg-gradient-to-b from-[#F7F3F8] to-[#FAF8F5] border-b border-[#E8DDF0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#E8DDF0] text-[#6E3A82] text-xs font-semibold uppercase tracking-widest">
-            JOIN THE MOVEMENT
-          </span>
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#3B214F]">
-            There's a place for you in this work.
-          </h1>
-          <p className="text-base sm:text-lg text-[#716A73] max-w-2xl mx-auto leading-relaxed">
-            Every contribution—whether time, expertise, prayer, or resources—multiplies our capacity to transform women's lives.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="JOIN THE MOVEMENT"
+        title="There's a place for you in this work."
+        description="Every contribution—whether time, expertise, prayer, or resources—multiplies our capacity to transform women's lives."
+        breadcrumb={[{ label: 'Get Involved' }]}
+      />
 
       {/* Four Major Pathways */}
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

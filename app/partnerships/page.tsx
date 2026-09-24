@@ -3,10 +3,20 @@
 import React, { useState } from 'react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import CTASection from '@/components/sections/CTASection';
+import PageHero from '@/components/ui/PageHero';
 import { PARTNERS } from '@/lib/data';
-import { Building2, CheckCircle2, HeartHandshake, Mail, Phone, Send, ShieldCheck, Sparkles, User } from 'lucide-react';
+import { Building2, CheckCircle2, HeartHandshake, Mail, Phone, Send, ShieldCheck, Sparkles, User, Globe2, GraduationCap, Church, Users } from 'lucide-react';
 
-const PARTNERSHIP_TYPES = [
+const POTENTIAL_PARTNERS = [
+  { name: 'Individuals & Donors', icon: User, desc: 'Support educational grants and female scholarships.' },
+  { name: 'Businesses & Corporations', icon: Building2, desc: 'Co-sponsor programs and drive CSR initiatives.' },
+  { name: 'Churches & Ministry Networks', icon: Church, desc: 'Mobilize spiritual renewal and mentorship.' },
+  { name: 'NGOs & Civil Foundations', icon: HeartHandshake, desc: 'Collaborate on regional field advocacy.' },
+  { name: 'Government Agencies', icon: Globe2, desc: 'Institutional policy alignment and civic reach.' },
+  { name: 'Educational Institutions', icon: GraduationCap, desc: 'University exchanges and school leadership hubs.' },
+];
+
+const PARTNERSHIP_OPPORTUNITIES = [
   'Financial Support',
   'Program Sponsorship',
   'Resource Donations',
@@ -23,7 +33,7 @@ export default function PartnershipsPage() {
     organization: '',
     email: '',
     phone: '',
-    partnershipType: PARTNERSHIP_TYPES[0],
+    partnershipType: PARTNERSHIP_OPPORTUNITIES[0],
     message: ''
   });
 
@@ -38,63 +48,80 @@ export default function PartnershipsPage() {
     <div className="bg-[#FAF8F5] min-h-screen">
       
       {/* Header Banner */}
-      <section className="py-20 bg-gradient-to-b from-[#F7F3F8] to-[#FAF8F5] border-b border-[#E8DDF0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#E8DDF0] text-[#6E3A82] text-xs font-semibold uppercase tracking-widest">
-            INSTITUTIONAL PARTNERSHIPS
-          </span>
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#3B214F]">
-            Greater impact happens together.
-          </h1>
-          <p className="text-base sm:text-lg text-[#716A73] max-w-2xl mx-auto leading-relaxed">
-            We collaborate with corporate foundations, international non-profits, government entities, and philanthropic sponsors to scale sustainable empowerment.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="INSTITUTIONAL PARTNERSHIPS"
+        title="Together, We Can Create Greater Impact."
+        description="We collaborate with corporate foundations, international non-profits, churches, government entities, and inspired individuals to scale sustainable empowerment."
+        breadcrumb={[{ label: 'Partnerships' }]}
+      />
 
-      {/* Pathways Grid */}
+      {/* Who Can Partner Section */}
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          eyebrow="PARTNERSHIP PATHWAYS"
-          title="Collaborative avenues for institutional engagement."
+          eyebrow="POTENTIAL PARTNERS"
+          title="Who Can Partner With Devorah Foundation"
           centered
           className="mb-12"
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {PARTNERSHIP_TYPES.map((type, idx) => (
-            <div
-              key={idx}
-              className="p-6 rounded-2xl bg-white border border-[#E8DDF0] shadow-sm hover:border-[#6E3A82] transition-colors space-y-3"
-            >
-              <div className="w-10 h-10 rounded-xl bg-[#E8DDF0] flex items-center justify-center text-[#6E3A82]">
-                <HeartHandshake className="w-5 h-5" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {POTENTIAL_PARTNERS.map((partner, idx) => {
+            const IconComp = partner.icon;
+            return (
+              <div
+                key={idx}
+                className="p-6 rounded-2xl bg-white border border-[#E8DDF0] shadow-sm hover:border-[#6E3A82] transition-colors space-y-3"
+              >
+                <div className="w-10 h-10 rounded-xl bg-[#F4ECF7] text-[#6E3A82] flex items-center justify-center">
+                  <IconComp className="w-5 h-5" />
+                </div>
+                <h3 className="font-serif text-lg font-bold text-[#3B214F]">{partner.name}</h3>
+                <p className="text-xs text-[#716A73] leading-relaxed">{partner.desc}</p>
               </div>
-              <h3 className="font-serif text-lg font-bold text-[#3B214F]">{type}</h3>
-              <p className="text-xs text-[#716A73] leading-relaxed">
-                Co-design targeted programs and expand reach to underserved communities.
-              </p>
-            </div>
-          ))}
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Partnership Opportunities Grid */}
+      <section className="py-16 bg-[#F7F3F8] border-y border-[#E8DDF0]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <SectionHeader
+            eyebrow="COLLABORATIVE OPPORTUNITIES"
+            title="Partnership Pathways & Engagement Models"
+            centered
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {PARTNERSHIP_OPPORTUNITIES.map((type, idx) => (
+              <div
+                key={idx}
+                className="p-6 rounded-2xl bg-white border border-[#E8DDF0] shadow-sm space-y-3 flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#6E3A82]">OPPORTUNITY 0{idx + 1}</span>
+                  <h4 className="font-serif text-base font-bold text-[#3B214F]">{type}</h4>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Partner Logos Showcase */}
-      <section className="py-16 bg-[#F7F3F8] border-y border-[#E8DDF0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-[#6E3A82]">
-            INSTITUTIONAL ALLIANCES & SPONSORS
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-            {PARTNERS.map((partner) => (
-              <div
-                key={partner.id}
-                className="p-6 rounded-2xl bg-white/80 border border-[#E8DDF0] text-[#3B214F] font-serif font-bold text-lg shadow-sm"
-              >
-                {partner.name}
-              </div>
-            ))}
-          </div>
+      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+        <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-[#6E3A82]">
+          OUR INSTITUTIONAL ALLIANCES & PARTNER LOGOS
+        </h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
+          {PARTNERS.map((partner) => (
+            <div
+              key={partner.id}
+              className="p-5 rounded-2xl bg-white border border-[#E8DDF0] text-[#3B214F] font-serif font-bold text-sm shadow-sm flex items-center justify-center h-24 text-center"
+            >
+              {partner.name}
+            </div>
+          ))}
         </div>
       </section>
 
@@ -102,8 +129,9 @@ export default function PartnershipsPage() {
       <section className="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white p-8 sm:p-12 rounded-3xl border border-[#E8DDF0] shadow-xl space-y-8">
           <div className="text-center space-y-2">
-            <h2 className="font-serif text-3xl font-bold text-[#3B214F]">Partner With Devorah Women Foundation</h2>
-            <p className="text-sm text-[#716A73]">Fill out the institutional form below and our partnership team will connect with you.</p>
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#6E3A82]">PARTNERSHIP ENQUIRY FORM</span>
+            <h2 className="font-serif text-3xl font-bold text-[#3B214F]">Together, We Can Create Greater Impact.</h2>
+            <p className="text-sm text-[#716A73]">Fill out the institutional form below and our partnership team will connect with you within 24–48 hours.</p>
           </div>
 
           {submitted ? (
@@ -111,7 +139,7 @@ export default function PartnershipsPage() {
               <CheckCircle2 className="w-12 h-12 text-[#6E3A82] mx-auto" />
               <h3 className="font-serif text-2xl font-bold text-[#3B214F]">Partnership Inquiry Received</h3>
               <p className="text-sm text-[#716A73] max-w-md mx-auto">
-                Thank you for reaching out. A senior representative from Devorah Women Foundation will review your submission and contact you within 24–48 business hours.
+                Thank you for reaching out. A senior representative from Devorah Women Foundation will review your submission and contact you shortly.
               </p>
               <button
                 onClick={() => setSubmitted(false)}
@@ -131,18 +159,18 @@ export default function PartnershipsPage() {
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
-                    placeholder="e.g. Dr. Eleanor Vance"
+                    placeholder="Your Name"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold uppercase text-[#3B214F] mb-2">Organization / Company *</label>
+                  <label className="block text-xs font-semibold uppercase text-[#3B214F] mb-2">Organisation / Company *</label>
                   <input
                     type="text"
                     required
                     value={formData.organization}
                     onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
-                    placeholder="e.g. Global Empowerment Trust"
+                    placeholder="Organisation Name"
                   />
                 </div>
               </div>
@@ -156,7 +184,7 @@ export default function PartnershipsPage() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
-                    placeholder="office@organization.org"
+                    placeholder="office@organisation.org"
                   />
                 </div>
                 <div>
@@ -172,13 +200,13 @@ export default function PartnershipsPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase text-[#3B214F] mb-2">Partnership Category *</label>
+                <label className="block text-xs font-semibold uppercase text-[#3B214F] mb-2">Type of Partnership *</label>
                 <select
                   value={formData.partnershipType}
                   onChange={(e) => setFormData({ ...formData, partnershipType: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
                 >
-                  {PARTNERSHIP_TYPES.map((type) => (
+                  {PARTNERSHIP_OPPORTUNITIES.map((type) => (
                     <option key={type} value={type}>{type}</option>
                   ))}
                 </select>
@@ -192,7 +220,7 @@ export default function PartnershipsPage() {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
-                  placeholder="Outline your proposal or area of strategic alignment..."
+                  placeholder="Outline your proposal or strategic area of collaboration..."
                 />
               </div>
 

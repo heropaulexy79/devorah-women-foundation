@@ -10,6 +10,8 @@ import { ArrowUpRight, Calendar, MapPin } from 'lucide-react';
 
 const CATEGORIES = ['All', 'Outreach', 'Training', 'Conferences', 'Community', 'Campaigns'];
 
+import PageHero from '@/components/ui/PageHero';
+
 export default function ImpactPage() {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -21,19 +23,12 @@ export default function ImpactPage() {
     <div className="bg-[#FAF8F5] min-h-screen">
       
       {/* Header Banner */}
-      <section className="py-20 bg-gradient-to-b from-[#F7F3F8] to-[#FAF8F5] border-b border-[#E8DDF0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#E8DDF0] text-[#6E3A82] text-xs font-semibold uppercase tracking-widest">
-            FIELD IMPACT & INITIATIVES
-          </span>
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#3B214F]">
-            See the work in action.
-          </h1>
-          <p className="text-base sm:text-lg text-[#716A73] max-w-2xl mx-auto leading-relaxed">
-            Explore our project archive documenting outreach missions, leadership summits, and community development field reports.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="FIELD IMPACT & INITIATIVES"
+        title="See the work in action."
+        description="Explore our project archive documenting outreach missions, leadership summits, and community development field reports."
+        breadcrumb={[{ label: 'Our Impact' }]}
+      />
 
       {/* Filter Tabs & Grid */}
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">

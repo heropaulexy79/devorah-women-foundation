@@ -10,6 +10,8 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+import PageHero from '@/components/ui/PageHero';
+
 export async function generateStaticParams() {
   return PROJECTS.map((p) => ({ slug: p.slug }));
 }
@@ -25,33 +27,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   return (
     <div className="bg-[#FAF8F5] min-h-screen">
       
-      <section className="py-12 bg-gradient-to-b from-[#F7F3F8] to-[#FAF8F5] border-b border-[#E8DDF0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <Link
-            href="/impact"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-[#6E3A82] hover:text-[#3B214F]"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Impact Portfolio</span>
-          </Link>
-          <div className="flex items-center gap-3 text-xs text-[#6E3A82] font-semibold">
-            <span className="px-3 py-1 rounded-full bg-[#E8DDF0] text-[#3B214F]">
-              {project.category}
-            </span>
-            <span className="flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5" />
-              {project.date}
-            </span>
-            <span className="flex items-center gap-1">
-              <MapPin className="w-3.5 h-3.5" />
-              {project.location}
-            </span>
-          </div>
-          <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#3B214F]">
-            {project.name}
-          </h1>
-        </div>
-      </section>
+      <PageHero
+        eyebrow={project.category}
+        title={project.name}
+        description={`${project.date} · ${project.location}`}
+        breadcrumb={[
+          { label: 'Impact Portfolio', href: '/impact' },
+          { label: project.name }
+        ]}
+      />
 
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">

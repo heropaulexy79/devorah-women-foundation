@@ -33,8 +33,8 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E8DDF0]/80 py-3.5 shadow-sm'
-          : 'bg-gradient-to-b from-[#0a0510]/80 via-[#0a0510]/30 to-transparent py-5'
+          ? 'bg-[#21122E]/40 backdrop-blur-xl border-b border-white/10 py-3.5 shadow-lg shadow-black/10'
+          : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -50,18 +50,10 @@ export default function Navbar() {
             />
           </div>
           <div className="hidden sm:flex flex-col justify-center">
-            <span
-              className={`font-serif text-lg font-semibold tracking-widest leading-none transition-colors duration-300 ${
-                scrolled ? 'text-[#3B214F]' : 'text-white'
-              }`}
-            >
+            <span className="font-serif text-lg font-semibold tracking-widest leading-none text-white">
               DEVORAH
             </span>
-            <span
-              className={`text-[8.5px] font-semibold tracking-[0.35em] uppercase mt-1 transition-colors duration-300 ${
-                scrolled ? 'text-[#6E3A82]' : 'text-[#C5A8D8]/90'
-              }`}
-            >
+            <span className="text-[8.5px] font-semibold tracking-[0.35em] uppercase mt-1 text-[#C5A8D8]">
               WOMEN FOUNDATION
             </span>
           </div>
@@ -76,18 +68,14 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`px-3.5 py-1.5 text-[13px] font-medium tracking-wider uppercase transition-all duration-300 relative ${
-                  scrolled
-                    ? isActive
-                      ? 'text-[#6E3A82] font-semibold'
-                      : 'text-[#3B214F]/80 hover:text-[#6E3A82]'
-                    : isActive
+                  isActive
                     ? 'text-white font-semibold'
-                    : 'text-white/80 hover:text-white'
+                    : 'text-white/85 hover:text-white'
                 }`}
               >
                 {link.label}
                 {isActive && (
-                  <span className="absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-[#6E3A82] rounded-full" />
+                  <span className="absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-[#C5A8D8] rounded-full" />
                 )}
               </Link>
             );
@@ -98,11 +86,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-4">
           <Link
             href="/get-involved"
-            className={`hidden sm:inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-sm hover:shadow-md ${
-              scrolled
-                ? 'bg-[#6E3A82] hover:bg-[#3B214F] text-white'
-                : 'bg-white/15 hover:bg-white/25 text-white border border-white/40 backdrop-blur-md'
-            }`}
+            className="hidden sm:inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-sm hover:shadow-md bg-white/15 hover:bg-white/25 text-white border border-white/30 backdrop-blur-md"
           >
             Get Involved
           </Link>
@@ -110,11 +94,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors focus:outline-none ${
-              scrolled
-                ? 'text-[#3B214F] hover:bg-[#E8DDF0]/50'
-                : 'text-white hover:bg-white/10'
-            }`}
+            className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors focus:outline-none"
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
           >
