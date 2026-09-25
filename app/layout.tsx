@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import ChatWidget from '@/components/ui/ChatWidget';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -34,11 +35,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${plusJakarta.variable} h-full antialiased`}>
+    <html lang="en" suppressHydrationWarning className={`${cormorant.variable} ${plusJakarta.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#FAF8F5] text-[#242024] selection:bg-[#E8DDF0] selection:text-[#3B214F]">
         <Navbar />
         <main className="flex-grow pt-20">{children}</main>
         <Footer />
+        <ChatWidget />
       </body>
     </html>
   );
