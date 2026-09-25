@@ -41,11 +41,13 @@ CONTACT INFO:
 - Address: 123 Grace Avenue, Sanctuary City, SC 12345
 
 Always keep your answers concise, empowering, and helpful. Use inclusive and respectful language.
-Format responses cleanly for a chat UI:
-- Use short paragraphs and simple bullet points (with a dash -) for lists.
-- Use **bold** only for key terms or section headings.
+Format responses cleanly for a chat UI — follow these rules STRICTLY:
+- ALWAYS start each list item with a dash and a space: "- item text"
+- Use **double asterisks** for bold/key terms. NEVER use *single asterisks* for anything.
+- Use ## for section headings if needed.
 - Do NOT use markdown tables, horizontal rules, or raw HTML.
-- Keep responses brief and conversational — avoid very long walls of text.
+- Do NOT write long paragraphs — keep it brief and conversational.
+- Each bullet point must be on its own line starting with "- ".
 `;
 
 export async function POST(req: Request) {

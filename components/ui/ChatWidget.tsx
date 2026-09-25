@@ -19,46 +19,72 @@ function renderMarkdown(text: string): React.ReactNode[] {
   while (i < lines.length) {
     const line = lines[i];
 
-    // Skip empty lines between blocks
+    // Skip empty lines
     if (line.trim() === '') {
       i++;
       continue;
     }
 
-    // Bullet list item
-    if (/^[-*]\s+/.test(line.trim())) {
+    // Markdown bullet list: lines starting with - or *<space>
+    if (/^[-]\s+/.test(line.trim())) {
       const items: React.ReactNode[] = [];
-      while (i < lines.length && /^[-*]\s+/.test(lines[i].trim())) {
-        const itemText = lines[i].trim().replace(/^[-*]\s+/, '');
-        items.push(<li key={i} className="ml-3 list-disc">{renderInline(itemText)}</li>);
+      while (i < lines.length && /^[-]\s+/.test(lines[i].trim())) {
+        const itemText = lines[i].trim().replace(/^[-]\s+/, '');
+        items.push(
+          <li key={i} className="flex gap-2">
+            <span className="text-[#6E3A82] mt-1 shrink-0">•</span>
+            <span>{renderInline(itemText)}</span>
+          </li>
+        );
         i++;
       }
-      nodes.push(<ul key={`ul-${i}`} className="space-y-1 my-1">{items}</ul>);
+      nodes.push(<ul key={`ul-${i}`} className="space-y-1.5 my-1">{items}</ul>);
       continue;
     }
 
-    // Heading (## or ###)
+    // Markdown headings: ## or ###
     if (/^#{1,3}\s+/.test(line)) {
       const headingText = line.replace(/^#{1,3}\s+/, '');
-      nodes.push(<p key={i} className="font-semibold text-[#3B214F] mt-2 mb-0.5">{renderInline(headingText)}</p>);
+      nodes.push(
+        <p key={i} className="font-semibold text-[#3B214F] mt-2 mb-0.5">
+          {renderInline(headingText)}
+        </p>
+      );
+      i++;
+      continue;
+    }
+
+    // A line that is entirely **bold** — treat as a section heading
+    if (/^\*\*[^*]+\*\*:?$/.test(line.trim())) {
+      const headingText = line.trim().replace(/^\*\*/, '').replace(/\*\*:?$/, '');
+      nodes.push(
+        <p key={i} className="font-semibold text-[#3B214F] mt-2 mb-0.5">
+          {headingText}
+        </p>
+      );
       i++;
       continue;
     }
 
     // Regular paragraph
-    nodes.push(<p key={i} className="mb-1">{renderInline(line)}</p>);
+    nodes.push(<p key={i} className="mb-1 leading-relaxed">{renderInline(line)}</p>);
     i++;
   }
 
   return nodes;
 }
 
-// Render inline markdown: **bold**
+// Render inline markdown: **bold** and *italic*
 function renderInline(text: string): React.ReactNode {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  // Split on **bold** and *italic* patterns
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g);
   return parts.map((part, idx) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       return <strong key={idx} className="font-semibold">{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith('*') && part.endsWith('*') && part.length > 2) {
+      // Render *italic* as bold in chat context (easier to read)
+      return <strong key={idx} className="font-semibold">{part.slice(1, -1)}</strong>;
     }
     return part;
   });
