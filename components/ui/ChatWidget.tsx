@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const { messages, sendMessage, status } = useChat();
+  const { messages, sendMessage, status } = useChat({ streamProtocol: 'text' });
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const isLoading = status === 'streaming' || status === 'submitted';
 
