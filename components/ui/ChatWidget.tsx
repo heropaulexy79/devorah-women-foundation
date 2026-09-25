@@ -1,28 +1,81 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { useChat } from '@ai-sdk/react';
 import { MessageCircle, X, Send, Sparkles, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+interface ChatMessage {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+}
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const { messages, sendMessage, status } = useChat({ streamProtocol: 'text' });
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const isLoading = status === 'streaming' || status === 'submitted';
 
-  // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const trimmed = inputValue.trim();
     if (!trimmed || isLoading) return;
-    sendMessage({ role: 'user', parts: [{ type: 'text', text: trimmed }] });
+
+    const userMessage: ChatMessage = {
+      id: Date.now().toString(),
+      role: 'user',
+      content: trimmed,
+    };
+
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
     setInputValue('');
+    setIsLoading(true);
+
+    const assistantId = Date.now().toString() + '-ai';
+    setMessages((prev) => [...prev, { id: assistantId, role: 'assistant', content: '' }]);
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: updatedMessages.map((m) => ({ role: m.role, content: m.content })),
+        }),
+      });
+
+      if (!response.ok || !response.body) {
+        throw new Error('Network response was not ok');
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let assistantContent = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        assistantContent += decoder.decode(value, { stream: true });
+        setMessages((prev) =>
+          prev.map((m) => (m.id === assistantId ? { ...m, content: assistantContent } : m))
+        );
+      }
+    } catch {
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantId
+            ? { ...m, content: "I'm sorry, I couldn't connect. Please try again or email info@devorahwomen.org." }
+            : m
+        )
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -72,48 +125,32 @@ export default function ChatWidget() {
                   <div className="w-16 h-16 mx-auto bg-[#F4ECF7] rounded-full flex items-center justify-center text-[#6E3A82]">
                     <MessageCircle className="w-8 h-8" />
                   </div>
-                  <p className="font-serif text-lg text-[#3B214F]">Hello! I'm here to help.</p>
+                  <p className="font-serif text-lg text-[#3B214F]">Hello! I&apos;m here to help.</p>
                   <p className="text-xs max-w-[250px] mx-auto leading-relaxed">
-                    Ask me anything about the Devorah Women Foundation's programs, mission, or how to get involved.
+                    Ask me anything about the Devorah Women Foundation's programs, mission, or how
+                    to get involved.
                   </p>
                 </div>
               )}
 
-              {messages.map((m) => {
-                // Extract text from parts (v4+ API) or fall back
-                const text = m.parts
-                  ? m.parts
-                      .filter((p: { type: string }) => p.type === 'text')
-                      .map((p: { type: string; text?: string }) => p.text ?? '')
-                      .join('')
-                  : (m as unknown as { content: string }).content ?? '';
-
-                return (
+              {messages.map((m) => (
+                <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div
-                    key={m.id}
-                    className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm ${
+                      m.role === 'user'
+                        ? 'bg-[#6E3A82] text-white rounded-tr-sm'
+                        : 'bg-white text-[#3B214F] border border-[#E8DDF0] rounded-tl-sm'
+                    }`}
                   >
-                    <div
-                      className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm ${
-                        m.role === 'user'
-                          ? 'bg-[#6E3A82] text-white rounded-tr-sm'
-                          : 'bg-white text-[#3B214F] border border-[#E8DDF0] rounded-tl-sm'
-                      }`}
-                    >
-                      {text}
-                    </div>
-                  </div>
-                );
-              })}
-
-              {isLoading && (
-                <div className="flex justify-start">
-                  <div className="bg-white border border-[#E8DDF0] rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-2 shadow-sm">
-                    <Loader2 className="w-4 h-4 text-[#6E3A82] animate-spin" />
-                    <span className="text-xs text-[#716A73]">Typing...</span>
+                    {m.content || (m.role === 'assistant' && isLoading ? (
+                      <span className="flex items-center gap-1.5">
+                        <Loader2 className="w-3 h-3 animate-spin" />
+                        <span className="text-xs text-[#716A73]">Typing…</span>
+                      </span>
+                    ) : null)}
                   </div>
                 </div>
-              )}
+              ))}
 
               <div ref={messagesEndRef} />
             </div>
@@ -125,7 +162,7 @@ export default function ChatWidget() {
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Ask a question..."
+                  placeholder="Ask a question…"
                   className="flex-1 bg-[#F4ECF7] text-[#3B214F] placeholder-[#A088B0] text-sm rounded-full px-5 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#6E3A82]/50 transition-all"
                   disabled={isLoading}
                 />

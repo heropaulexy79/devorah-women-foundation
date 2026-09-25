@@ -41,6 +41,11 @@ CONTACT INFO:
 - Address: 123 Grace Avenue, Sanctuary City, SC 12345
 
 Always keep your answers concise, empowering, and helpful. Use inclusive and respectful language.
+Format responses cleanly for a chat UI:
+- Use short paragraphs and simple bullet points (with a dash -) for lists.
+- Use **bold** only for key terms or section headings.
+- Do NOT use markdown tables, horizontal rules, or raw HTML.
+- Keep responses brief and conversational — avoid very long walls of text.
 `;
 
 export async function POST(req: Request) {
@@ -51,7 +56,7 @@ export async function POST(req: Request) {
   });
 
   const result = await streamText({
-    model: groq('llama-3.3-70b-versatile'),
+    model: groq('openai/gpt-oss-20b'),
     messages,
     system: systemPrompt,
   });
