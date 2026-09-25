@@ -10,6 +10,60 @@ interface ChatMessage {
   content: string;
 }
 
+// Lightweight markdown renderer for chat bubbles
+function renderMarkdown(text: string): React.ReactNode[] {
+  const lines = text.split('\n');
+  const nodes: React.ReactNode[] = [];
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+
+    // Skip empty lines between blocks
+    if (line.trim() === '') {
+      i++;
+      continue;
+    }
+
+    // Bullet list item
+    if (/^[-*]\s+/.test(line.trim())) {
+      const items: React.ReactNode[] = [];
+      while (i < lines.length && /^[-*]\s+/.test(lines[i].trim())) {
+        const itemText = lines[i].trim().replace(/^[-*]\s+/, '');
+        items.push(<li key={i} className="ml-3 list-disc">{renderInline(itemText)}</li>);
+        i++;
+      }
+      nodes.push(<ul key={`ul-${i}`} className="space-y-1 my-1">{items}</ul>);
+      continue;
+    }
+
+    // Heading (## or ###)
+    if (/^#{1,3}\s+/.test(line)) {
+      const headingText = line.replace(/^#{1,3}\s+/, '');
+      nodes.push(<p key={i} className="font-semibold text-[#3B214F] mt-2 mb-0.5">{renderInline(headingText)}</p>);
+      i++;
+      continue;
+    }
+
+    // Regular paragraph
+    nodes.push(<p key={i} className="mb-1">{renderInline(line)}</p>);
+    i++;
+  }
+
+  return nodes;
+}
+
+// Render inline markdown: **bold**
+function renderInline(text: string): React.ReactNode {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, idx) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={idx} className="font-semibold">{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
+}
+
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -142,12 +196,16 @@ export default function ChatWidget() {
                         : 'bg-white text-[#3B214F] border border-[#E8DDF0] rounded-tl-sm'
                     }`}
                   >
-                    {m.content || (m.role === 'assistant' && isLoading ? (
+                    {m.role === 'user' ? (
+                      m.content
+                    ) : m.content ? (
+                      <div className="space-y-1">{renderMarkdown(m.content)}</div>
+                    ) : isLoading ? (
                       <span className="flex items-center gap-1.5">
                         <Loader2 className="w-3 h-3 animate-spin" />
                         <span className="text-xs text-[#716A73]">Typing…</span>
                       </span>
-                    ) : null)}
+                    ) : null}
                   </div>
                 </div>
               ))}
