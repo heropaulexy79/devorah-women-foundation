@@ -98,8 +98,9 @@ export default function Footer() {
                 { label: 'About Us', href: '/about' },
                 { label: 'Programs', href: '/programs' },
                 { label: 'Impact', href: '/impact' },
+                { label: 'Media Gallery', href: '/gallery' },
                 { label: 'Resources', href: '/resources' },
-                { label: 'News', href: '/news' },
+                { label: 'Stories', href: '/stories' },
                 { label: 'Partnerships', href: '/partnerships' },
                 { label: 'Contact', href: '/contact' },
               ].map((link) => (

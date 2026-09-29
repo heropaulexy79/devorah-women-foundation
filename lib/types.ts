@@ -107,3 +107,15 @@ export interface Partner {
   category: 'Individuals' | 'Businesses' | 'Churches' | 'NGOs' | 'Foundations' | 'Government Agencies' | 'Educational Institutions' | 'Corporate Organisations' | 'Community Organisations';
   logoUrl?: string;
 }
+
+export interface GalleryItem {
+  id: string;
+  title: string;
+  category: 'Outreaches' | 'Conferences' | 'Scholarships' | 'Faith & Renewal';
+  date: string;
+  location: string;
+  imageUrl: string;
+  caption: string;
+  impactHighlight?: string;
+}
+

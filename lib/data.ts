@@ -1,4 +1,4 @@
-import { Program, Project, Article, Resource, Person, Testimonial, ImpactMetric, Partner } from './types';
+import { Program, Project, Article, Resource, Person, Testimonial, ImpactMetric, Partner, GalleryItem } from './types';
 
 export const IMPACT_METRICS: ImpactMetric[] = [
   {
@@ -401,3 +401,87 @@ export const PARTNERS: Partner[] = [
   { id: 'p5', name: 'Grace Fellowship Alliance', category: 'Churches' },
   { id: 'p6', name: 'Regional Social Development Board', category: 'Government Agencies' }
 ];
+
+export const GALLERY_ITEMS: GalleryItem[] = [
+  {
+    id: 'g1',
+    title: 'Female Executive Leadership Summit',
+    category: 'Conferences',
+    date: 'October 2025',
+    location: 'Accra International Conference Centre',
+    imageUrl: '/images/gallery_conference.png',
+    caption: 'Gathering over 300 emerging female executives, civic leaders, and scholars for keynote masterclasses on ethical governance and board readiness.',
+    impactHighlight: '300+ Executive Attendees'
+  },
+  {
+    id: 'g2',
+    title: 'Vocational Enterprise & Trade Equipment Outreach',
+    category: 'Outreaches',
+    date: 'August 2025',
+    location: 'Ashanti Regional Community Hub',
+    imageUrl: '/images/gallery_outreach.png',
+    caption: 'Hands-on micro-enterprise starter clinic providing trade tools, seed capital guidance, and financial literacy training to 150 local women.',
+    impactHighlight: '150 Micro-Grants Awarded'
+  },
+  {
+    id: 'g3',
+    title: 'Girls STEM & Digital Literacy Bootcamp',
+    category: 'Scholarships',
+    date: 'July 2025',
+    location: 'Sub-Urban Youth Learning Centre',
+    imageUrl: '/images/gallery_stem.png',
+    caption: 'Adolescent female scholars engaged in computer coding, digital problem solving, and confidence building mentorship sessions.',
+    impactHighlight: '200+ Girls Trained in Coding'
+  },
+  {
+    id: 'g4',
+    title: 'Women of Courage Spiritual Renewal Assembly',
+    category: 'Faith & Renewal',
+    date: 'September 2025',
+    location: 'Sanctuary Assembly Hall',
+    imageUrl: '/images/gallery_retreat.png',
+    caption: 'An inspiring intercessory prayer and spiritual renewal circle anchoring female leaders in Biblical grace, purpose, and unity.',
+    impactHighlight: '400+ Women Joined in Prayer'
+  },
+  {
+    id: 'g5',
+    title: 'Community Girls Leadership Forum',
+    category: 'Conferences',
+    date: 'May 2025',
+    location: 'Greater Accra Youth Hall',
+    imageUrl: '/images/who_we_are.png',
+    caption: 'Interactive workshop focusing on public speaking, youth governance, and moral clarity for high school Prefects and student leaders.',
+    impactHighlight: '15 Active School Clubs Launched'
+  },
+  {
+    id: 'g6',
+    title: 'Grassroots Health & Dignity Drive',
+    category: 'Outreaches',
+    date: 'April 2025',
+    location: 'Northern Outreach Circuit',
+    imageUrl: '/images/story_beneficiary.png',
+    caption: 'Distributing sanitary dignity kits and providing health education to young girls in rural secondary schools.',
+    impactHighlight: '1,000+ Dignity Kits Distributed'
+  },
+  {
+    id: 'g7',
+    title: 'Tertiary Scholarship Awards Ceremony',
+    category: 'Scholarships',
+    date: 'June 2025',
+    location: 'National Civic Auditorium',
+    imageUrl: '/images/hero_portrait.png',
+    caption: 'Awarding merit-based university educational grants to exceptional young women entering STEM and law faculties.',
+    impactHighlight: '50 Full Grants Awarded'
+  },
+  {
+    id: 'g8',
+    title: 'Devorah Mentorship & Vision Retreat',
+    category: 'Faith & Renewal',
+    date: 'January 2025',
+    location: 'Eco-Retreat Center',
+    imageUrl: '/images/founder_portrait.png',
+    caption: 'Annual executive retreat for foundation mentors and program directors reflecting on institutional strategy and prayer.',
+    impactHighlight: 'Full Leadership Alignment'
+  }
+];
+
