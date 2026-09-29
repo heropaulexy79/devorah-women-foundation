@@ -21,7 +21,7 @@ export default function CTASection() {
             <span className="italic font-normal text-[#C5A8D8]"> lifts others with her.</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-[#E8DDF0]/70 max-w-xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-[#E8DDF0]/90 max-w-xl mx-auto leading-relaxed">
             Whether you represent an international institution, a corporate foundation, a local
             church, or an inspired individual — your partnership accelerates sustainable change.
           </p>
@@ -29,14 +29,14 @@ export default function CTASection() {
           <div className="pt-4 flex flex-wrap items-center justify-center gap-5">
             <Link
               href="/partnerships"
-              className="inline-flex items-center bg-white hover:bg-[#FAF8F5] text-[#3B214F] px-8 py-3.5 rounded-sm text-sm font-semibold tracking-wide transition-all duration-300"
+              className="inline-flex items-center bg-white hover:bg-[#FAF8F5] text-[#3B214F] px-8 py-3.5 rounded-sm text-sm font-semibold tracking-wide transition-all duration-300 shadow-md"
             >
               Partner With Us
             </Link>
 
             <Link
               href="/get-involved"
-              className="inline-flex items-center text-[#E8DDF0]/80 hover:text-white text-sm font-medium tracking-wide border-b border-[#E8DDF0]/30 hover:border-[#E8DDF0]/70 pb-0.5 transition-all duration-300"
+              className="inline-flex items-center text-[#E8DDF0] hover:text-white text-sm font-medium tracking-wide border-b border-[#E8DDF0]/50 hover:border-white pb-0.5 transition-all duration-300"
             >
               Support Our Work
             </Link>

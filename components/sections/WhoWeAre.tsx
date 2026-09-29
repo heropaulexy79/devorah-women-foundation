@@ -25,7 +25,7 @@ export default function WhoWeAre() {
               title="Creating spaces where women and girls can discover what is possible."
             />
 
-            <p className="text-base text-[#716A73] leading-relaxed">
+            <p className="text-base sm:text-lg text-[#524C55] leading-relaxed">
               Devorah Women Foundation was established to address the systemic educational,
               social, and leadership barriers facing young girls and women. Inspired by biblical
               courage and guided by professional excellence, we combine strategic mentorship,

@@ -30,9 +30,9 @@ export default function GetInvolvedPage() {
     {
       id: 'support',
       title: 'SUPPORT OUR WORK',
-      subtitle: 'Contribute resources, learning toolkits, or financial support directly to foundation projects.',
-      cta: 'Support Initiatives',
-      href: '/contact?reason=Support'
+      subtitle: 'Contribute resources, financial support, or partner in recurring giving directly via Paystack.',
+      cta: 'Donate & Support',
+      href: '/donate'
     },
     {
       id: 'events',

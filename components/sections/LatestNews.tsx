@@ -35,7 +35,7 @@ export default function LatestNews() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="group bg-white rounded-2xl border border-[#E8DDF0]/70 overflow-hidden shadow-md shadow-[#6E3A82]/5 hover:shadow-2xl hover:shadow-[#6E3A82]/15 hover:border-[#6E3A82]/40 transition-all duration-300 flex flex-col justify-between"
+              className="group bg-white rounded-sm border border-[#E8DDF0] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#6E3A82]/40 transition-all duration-300 flex flex-col justify-between"
             >
               <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#F4ECF7]">
                 <Image
@@ -45,7 +45,7 @@ export default function LatestNews() {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 rounded-full text-[11px] font-semibold tracking-wider uppercase bg-[#3B214F]/90 text-white backdrop-blur-md shadow-sm">
+                  <span className="px-3 py-1 rounded-sm text-[10px] font-semibold tracking-widest uppercase bg-[#3B214F] text-white shadow-sm">
                     {article.category}
                   </span>
                 </div>
@@ -53,26 +53,26 @@ export default function LatestNews() {
 
               <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-6">
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-xs text-[#9B8CA6] font-medium">
+                  <div className="flex items-center gap-3 text-xs text-[#6E3A82] font-semibold tracking-wider">
                     <span>{article.publishedAt}</span>
                     <span>&middot;</span>
                     <span>{article.readingTime}</span>
                   </div>
 
-                  <h3 className="font-serif text-xl sm:text-2xl font-semibold text-[#3B214F] group-hover:text-[#6E3A82] transition-colors duration-200 leading-snug">
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#3B214F] group-hover:text-[#6E3A82] transition-colors duration-200 leading-snug">
                     <Link href={`/stories/${article.slug}`}>
                       {article.title}
                     </Link>
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[#716A73] leading-relaxed line-clamp-3">
+                  <p className="text-xs sm:text-sm text-[#524C55] leading-relaxed line-clamp-3">
                     {article.excerpt}
                   </p>
                 </div>
 
                 <div className="pt-4 border-t border-[#F4ECF7] flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="relative w-8 h-8 rounded-full overflow-hidden bg-[#E8DDF0]">
+                    <div className="relative w-8 h-8 rounded-full overflow-hidden bg-[#E8DDF0] border border-[#E8DDF0]">
                       <Image
                         src={article.author.avatarUrl || '/images/founder_portrait.png'}
                         alt={article.author.name}
@@ -80,7 +80,7 @@ export default function LatestNews() {
                         className="object-cover"
                       />
                     </div>
-                    <span className="text-xs font-semibold text-[#3B214F]">
+                    <span className="text-xs font-bold text-[#3B214F]">
                       {article.author.name}
                     </span>
                   </div>
@@ -102,3 +102,4 @@ export default function LatestNews() {
     </section>
   );
 }
+

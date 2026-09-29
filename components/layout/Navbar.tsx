@@ -83,10 +83,16 @@ export default function Navbar() {
         </nav>
 
         {/* Header Actions */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-3">
+          <Link
+            href="/donate"
+            className="hidden sm:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-sm hover:shadow-md bg-[#6E3A82] hover:bg-[#3B214F] text-white border border-[#C5A8D8]/30"
+          >
+            Donate
+          </Link>
           <Link
             href="/get-involved"
-            className="hidden sm:inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-sm hover:shadow-md bg-white/15 hover:bg-white/25 text-white border border-white/30 backdrop-blur-md"
+            className="hidden sm:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-sm hover:shadow-md bg-white/15 hover:bg-white/25 text-white border border-white/30 backdrop-blur-md"
           >
             Get Involved
           </Link>
