@@ -110,6 +110,7 @@ export interface Partner {
 
 export interface GalleryItem {
   id: string;
+  slug: string;
   title: string;
   category: 'Outreaches' | 'Conferences' | 'Scholarships' | 'Faith & Renewal';
   date: string;
@@ -117,5 +118,11 @@ export interface GalleryItem {
   imageUrl: string;
   caption: string;
   impactHighlight?: string;
+  photoCount?: number;
+  photos?: {
+    id: string;
+    url: string;
+    caption?: string;
+  }[];
 }
 

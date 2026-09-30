@@ -30,7 +30,7 @@ export default function Home() {
       <ImpactStrip />
 
       {/* 6. Outreach & Conference Media Gallery */}
-      <MediaGallery limit={4} />
+      <MediaGallery limit={2} />
       <div className="bg-[#FAF8F5] pb-16 text-center">
         <Link
           href="/gallery"
