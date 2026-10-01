@@ -152,6 +152,12 @@ export default function Footer() {
                   Terms & Conditions
                 </Link>
               </li>
+              <li>
+                <Link href="/admin" className="text-sm text-[#C5A8D8]/80 hover:text-white transition-colors flex items-center gap-1">
+                  <span>CMS Portal</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#6E3A82]/50 text-white font-mono">Admin</span>
+                </Link>
+              </li>
             </ul>
           </div>
 

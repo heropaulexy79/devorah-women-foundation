@@ -1,10 +1,22 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { IMPACT_METRICS } from '@/lib/data';
 
 export default function ImpactStrip() {
+  const [metrics, setMetrics] = useState(IMPACT_METRICS);
+
+  useEffect(() => {
+    fetch('/api/content?type=metrics')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.metrics && data.metrics.length > 0) {
+          setMetrics(data.metrics);
+        }
+      })
+      .catch(() => {});
+  }, []);
   return (
     <section className="bg-[#3B214F] text-white py-20 lg:py-28 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -20,7 +32,7 @@ export default function ImpactStrip() {
 
         {/* Stats — evenly spaced with dynamic borders and paddings */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-0">
-          {IMPACT_METRICS.map((metric, idx) => {
+          {metrics.map((metric, idx) => {
             let padding = 'py-8 ';
             let border = 'border-white/10 ';
             
