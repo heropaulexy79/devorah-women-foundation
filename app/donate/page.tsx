@@ -193,7 +193,7 @@ export default function DonatePage() {
                     <button
                       type="button"
                       onClick={() => setDonationType('one-time')}
-                      className={`py-3 px-4 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 ${
+                      className={`py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 ${
                         donationType === 'one-time'
                           ? 'bg-[#6E3A82] text-white shadow-md'
                           : 'text-[#3B214F]/70 hover:text-[#3B214F]'
@@ -205,7 +205,7 @@ export default function DonatePage() {
                     <button
                       type="button"
                       onClick={() => setDonationType('recurring')}
-                      className={`py-3 px-4 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 ${
+                      className={`py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 ${
                         donationType === 'recurring'
                           ? 'bg-[#6E3A82] text-white shadow-md'
                           : 'text-[#3B214F]/70 hover:text-[#3B214F]'
@@ -222,7 +222,7 @@ export default function DonatePage() {
                   <label className="block text-xs font-bold uppercase tracking-widest text-[#6E3A82] mb-3">
                     2. Select Amount (NGN ₦)
                   </label>
-                  <div className="grid grid-cols-3 sm:grid-cols-5 gap-2.5 mb-4">
+                  <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 sm:gap-2.5 mb-4">
                     {PRESET_AMOUNTS.map((amt) => (
                       <button
                         key={amt}
@@ -243,43 +243,45 @@ export default function DonatePage() {
                     ))}
                   </div>
 
-                  <div className="relative">
-                    <span className={`absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold transition-colors ${
-                      selectedAmount !== null ? 'text-[#3B214F]/40' : 'text-[#3B214F]'
-                    }`}>
-                      ₦
-                    </span>
-                    <input
-                      type="number"
-                      disabled={selectedAmount !== null}
-                      placeholder={selectedAmount !== null ? "Clear preset selection to enter custom amount" : "Or enter custom amount in NGN"}
-                      value={customAmount}
-                      onChange={(e) => {
-                        setCustomAmount(e.target.value);
-                      }}
-                      className="w-full pl-9 pr-24 py-3 bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl text-sm font-medium focus:outline-none focus:border-[#6E3A82] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    />
-                    {selectedAmount !== null && (
-                      <button
-                        type="button"
-                        onClick={() => setSelectedAmount(null)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-[#6E3A82] hover:text-[#3B214F] underline px-2 py-1 bg-white rounded-md border border-[#E8DDF0]"
-                      >
-                        Custom amount
-                      </button>
-                    )}
-                    {customAmount && (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setCustomAmount('');
-                          setSelectedAmount(25000);
-                        }}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-[#6E3A82] hover:text-[#3B214F] underline px-2 py-1 bg-white rounded-md border border-[#E8DDF0]"
-                      >
-                        Use preset
-                      </button>
-                    )}
+                  {/* Amount input row + toggle button below */}
+                  <div className="space-y-2">
+                    <div className="relative">
+                      <span className={`absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold transition-colors ${
+                        selectedAmount !== null ? 'text-[#3B214F]/40' : 'text-[#3B214F]'
+                      }`}>
+                        ₦
+                      </span>
+                      <input
+                        type="number"
+                        disabled={selectedAmount !== null}
+                        placeholder={selectedAmount !== null ? `₦${selectedAmount.toLocaleString()} selected` : 'Enter custom amount (NGN)'}
+                        value={customAmount}
+                        onChange={(e) => setCustomAmount(e.target.value)}
+                        className="w-full pl-9 pr-4 py-3 bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl text-sm font-medium focus:outline-none focus:border-[#6E3A82] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      />
+                    </div>
+
+                    {/* Toggle row — clear below input, never clipped */}
+                    <div className="flex justify-end">
+                      {selectedAmount !== null && (
+                        <button
+                          type="button"
+                          onClick={() => setSelectedAmount(null)}
+                          className="text-xs font-semibold text-[#6E3A82] hover:text-[#3B214F] underline px-3 py-1.5 bg-white rounded-lg border border-[#E8DDF0] transition-colors"
+                        >
+                          Enter custom amount
+                        </button>
+                      )}
+                      {customAmount && (
+                        <button
+                          type="button"
+                          onClick={() => { setCustomAmount(''); setSelectedAmount(25000); }}
+                          className="text-xs font-semibold text-[#6E3A82] hover:text-[#3B214F] underline px-3 py-1.5 bg-white rounded-lg border border-[#E8DDF0] transition-colors"
+                        >
+                          Use preset amounts
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
 
@@ -353,7 +355,7 @@ export default function DonatePage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#6E3A82] hover:bg-[#3B214F] text-white py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-3 disabled:opacity-50 cursor-pointer"
+                  className="w-full bg-[#6E3A82] hover:bg-[#3B214F] text-white py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 sm:gap-3 disabled:opacity-50 cursor-pointer"
                 >
                   <CreditCard className="w-5 h-5" />
                   <span>
