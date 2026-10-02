@@ -42,6 +42,20 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: true, article: newArticle });
     }
 
+    if (action === 'update_article') {
+      const index = currentArticles.findIndex((a) => a.id === payload.id);
+      if (index !== -1) {
+        currentArticles[index] = { ...currentArticles[index], ...payload };
+        return NextResponse.json({ success: true, article: currentArticles[index] });
+      }
+      return NextResponse.json({ success: false, message: 'Article not found' }, { status: 404 });
+    }
+
+    if (action === 'delete_article') {
+      currentArticles = currentArticles.filter((a) => a.id !== payload.id);
+      return NextResponse.json({ success: true, articles: currentArticles });
+    }
+
     if (action === 'update_metrics') {
       currentMetrics = payload;
       return NextResponse.json({ success: true, metrics: currentMetrics });

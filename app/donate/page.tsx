@@ -227,6 +227,7 @@ export default function DonatePage() {
                       <button
                         key={amt}
                         type="button"
+                        disabled={!!customAmount}
                         onClick={() => {
                           setSelectedAmount(amt);
                           setCustomAmount('');
@@ -235,7 +236,7 @@ export default function DonatePage() {
                           selectedAmount === amt && !customAmount
                             ? 'bg-[#3B214F] text-white border-[#3B214F] shadow-sm'
                             : 'bg-white text-[#3B214F] border-[#E8DDF0] hover:border-[#6E3A82]'
-                        }`}
+                        } disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-[#E8DDF0]`}
                       >
                         ₦{amt.toLocaleString()}
                       </button>
@@ -243,19 +244,42 @@ export default function DonatePage() {
                   </div>
 
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-[#3B214F]">
+                    <span className={`absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold transition-colors ${
+                      selectedAmount !== null ? 'text-[#3B214F]/40' : 'text-[#3B214F]'
+                    }`}>
                       ₦
                     </span>
                     <input
                       type="number"
-                      placeholder="Or enter custom amount in NGN"
+                      disabled={selectedAmount !== null}
+                      placeholder={selectedAmount !== null ? "Clear preset selection to enter custom amount" : "Or enter custom amount in NGN"}
                       value={customAmount}
                       onChange={(e) => {
                         setCustomAmount(e.target.value);
-                        setSelectedAmount(null);
                       }}
-                      className="w-full pl-9 pr-4 py-3 bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl text-sm font-medium focus:outline-none focus:border-[#6E3A82] transition-colors"
+                      className="w-full pl-9 pr-24 py-3 bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl text-sm font-medium focus:outline-none focus:border-[#6E3A82] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     />
+                    {selectedAmount !== null && (
+                      <button
+                        type="button"
+                        onClick={() => setSelectedAmount(null)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-[#6E3A82] hover:text-[#3B214F] underline px-2 py-1 bg-white rounded-md border border-[#E8DDF0]"
+                      >
+                        Custom amount
+                      </button>
+                    )}
+                    {customAmount && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setCustomAmount('');
+                          setSelectedAmount(25000);
+                        }}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-[#6E3A82] hover:text-[#3B214F] underline px-2 py-1 bg-white rounded-md border border-[#E8DDF0]"
+                      >
+                        Use preset
+                      </button>
+                    )}
                   </div>
                 </div>
 

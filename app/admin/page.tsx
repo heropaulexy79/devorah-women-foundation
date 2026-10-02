@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { LayoutDashboard, FileText, BarChart3, Image as ImageIcon, Award, LogOut, Plus, CheckCircle, Sparkles, TrendingUp, Users, ShieldCheck, Search } from 'lucide-react';
 import { ARTICLES, IMPACT_METRICS, PROGRAMS, GALLERY_ITEMS } from '@/lib/data';
@@ -15,7 +15,8 @@ export default function AdminDashboardPage() {
   // Article state
   const [articlesList, setArticlesList] = useState(ARTICLES);
   const [showArticleModal, setShowArticleModal] = useState(false);
-  const [newArticle, setNewArticle] = useState({
+  const [editingArticleId, setEditingArticleId] = useState<string | null>(null);
+  const [articleForm, setArticleForm] = useState({
     title: '',
     category: "Girls' Development" as const,
     excerpt: '',
@@ -26,7 +27,152 @@ export default function AdminDashboardPage() {
     featuredImageUrl: '/images/story_beneficiary.png',
   });
 
-  // Metrics state
+  // Upload state
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setIsUploading(true);
+    try {
+      const form = new FormData();
+      form.append('file', file);
+      const res = await fetch('/api/upload', { method: 'POST', body: form });
+      const data = await res.json();
+      if (data.success) {
+        setArticleForm((prev) => ({ ...prev, featuredImageUrl: data.url }));
+        showSuccessNotification('Image uploaded successfully!');
+      } else {
+        showSuccessNotification(data.message || 'Upload failed');
+      }
+    } catch {
+      showSuccessNotification('Upload failed. Please try again.');
+    } finally {
+      setIsUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  };
+
+  const SAMPLE_IMAGES = [
+    { label: 'Beneficiary Story', url: '/images/story_beneficiary.png' },
+    { label: 'Hero Portrait', url: '/images/hero_portrait.png' },
+    { label: 'Founder Portrait', url: '/images/founder_portrait.png' },
+    { label: 'Community Outreach', url: '/images/who_we_are.png' },
+    { label: 'Conference / Summit', url: '/images/gallery_conference.png' },
+    { label: 'STEM & Digital', url: '/images/gallery_stem.png' },
+    { label: 'Spiritual Retreat', url: '/images/gallery_retreat.png' },
+  ];
+
+  const openNewArticleModal = () => {
+    setEditingArticleId(null);
+    setArticleForm({
+      title: '',
+      category: "Girls' Development",
+      excerpt: '',
+      content: '',
+      readingTime: '4 min read',
+      authorName: 'Executive Director',
+      authorRole: 'Devorah Women Foundation',
+      featuredImageUrl: '/images/story_beneficiary.png',
+    });
+    setShowArticleModal(true);
+  };
+
+  const openEditArticleModal = (article: typeof ARTICLES[0]) => {
+    setEditingArticleId(article.id);
+    setArticleForm({
+      title: article.title,
+      category: article.category as any,
+      excerpt: article.excerpt,
+      content: article.content,
+      readingTime: article.readingTime,
+      authorName: article.author.name,
+      authorRole: article.author.role,
+      featuredImageUrl: article.featuredImageUrl,
+    });
+    setShowArticleModal(true);
+  };
+
+  const handleSaveArticle = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!articleForm.title || !articleForm.excerpt) return;
+
+    try {
+      if (editingArticleId) {
+        // Edit existing article
+        const payload = {
+          id: editingArticleId,
+          title: articleForm.title,
+          category: articleForm.category,
+          excerpt: articleForm.excerpt,
+          content: articleForm.content || articleForm.excerpt,
+          readingTime: articleForm.readingTime,
+          author: { name: articleForm.authorName, role: articleForm.authorRole, avatarUrl: '/images/founder_portrait.png' },
+          featuredImageUrl: articleForm.featuredImageUrl,
+        };
+
+        const res = await fetch('/api/content', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'update_article', payload }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          setArticlesList(articlesList.map((a) => (a.id === editingArticleId ? data.article : a)));
+          setShowArticleModal(false);
+          showSuccessNotification('Article updated successfully!');
+        }
+      } else {
+        // Create new article
+        const res = await fetch('/api/content', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'add_article',
+            payload: {
+              title: articleForm.title,
+              category: articleForm.category,
+              excerpt: articleForm.excerpt,
+              content: articleForm.content || articleForm.excerpt,
+              readingTime: articleForm.readingTime,
+              author: { name: articleForm.authorName, role: articleForm.authorRole, avatarUrl: '/images/founder_portrait.png' },
+              featuredImageUrl: articleForm.featuredImageUrl,
+              featured: true,
+            }
+          }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          setArticlesList([data.article, ...articlesList]);
+          setShowArticleModal(false);
+          showSuccessNotification('Article created and published successfully!');
+        }
+      }
+    } catch {
+      showSuccessNotification('Failed to save article');
+    }
+  };
+
+  const handleDeleteArticle = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this article?')) return;
+    try {
+      const res = await fetch('/api/content', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'delete_article', payload: { id } }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setArticlesList(articlesList.filter((a) => a.id !== id));
+        showSuccessNotification('Article deleted successfully.');
+      }
+    } catch {
+      showSuccessNotification('Failed to delete article');
+    }
+  };
+
+  // Metrics & notification state
   const [metricsList, setMetricsList] = useState(IMPACT_METRICS);
   const [notification, setNotification] = useState('');
 
@@ -36,8 +182,6 @@ export default function AdminDashboardPage() {
     if (savedToken === 'devorah_admin_session_valid') {
       setIsAuthenticated(true);
     }
-
-    // Fetch dynamic content from API
     fetch('/api/content')
       .then((res) => res.json())
       .then((data) => {
@@ -71,49 +215,6 @@ export default function AdminDashboardPage() {
   const handleLogout = () => {
     localStorage.removeItem('devorah_admin_token');
     setIsAuthenticated(false);
-  };
-
-  const handleCreateArticle = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newArticle.title || !newArticle.excerpt) return;
-
-    try {
-      const res = await fetch('/api/content', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'add_article',
-          payload: {
-            title: newArticle.title,
-            category: newArticle.category,
-            excerpt: newArticle.excerpt,
-            content: newArticle.content || newArticle.excerpt,
-            readingTime: newArticle.readingTime,
-            author: { name: newArticle.authorName, role: newArticle.authorRole, avatarUrl: '/images/founder_portrait.png' },
-            featuredImageUrl: newArticle.featuredImageUrl,
-            featured: true,
-          }
-        }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setArticlesList([data.article, ...articlesList]);
-        setShowArticleModal(false);
-        setNewArticle({
-          title: '',
-          category: "Girls' Development",
-          excerpt: '',
-          content: '',
-          readingTime: '4 min read',
-          authorName: 'Executive Director',
-          authorRole: 'Devorah Women Foundation',
-          featuredImageUrl: '/images/story_beneficiary.png',
-        });
-        showSuccessNotification('Article created and published successfully!');
-      }
-    } catch {
-      showSuccessNotification('Failed to create article');
-    }
   };
 
   const handleUpdateMetric = (index: number, field: 'number' | 'label' | 'description', value: string) => {
@@ -372,7 +473,7 @@ export default function AdminDashboardPage() {
                 <p className="text-xs text-[#716A73]">Manage content for the Impact Stories hub.</p>
               </div>
               <button
-                onClick={() => setShowArticleModal(true)}
+                onClick={openNewArticleModal}
                 className="bg-[#6E3A82] text-white text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2 hover:bg-[#8B4FA0]"
               >
                 <Plus className="w-4 h-4" />
@@ -382,18 +483,43 @@ export default function AdminDashboardPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {articlesList.map((art) => (
-                <div key={art.id} className="bg-white p-5 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-3">
-                  <div className="flex justify-between items-start">
-                    <span className="text-xs font-semibold px-3 py-1 bg-[#F4ECF7] text-[#6E3A82] rounded-full">
-                      {art.category}
-                    </span>
-                    <span className="text-[11px] text-[#A088B0]">{art.readingTime}</span>
+                <div key={art.id} className="bg-white p-5 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-3 flex flex-col justify-between">
+                  <div className="space-y-3">
+                    {art.featuredImageUrl && (
+                      <div className="relative w-full h-40 rounded-xl overflow-hidden bg-gray-100">
+                        <img
+                          src={art.featuredImageUrl}
+                          alt={art.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
+                    <div className="flex justify-between items-start">
+                      <span className="text-xs font-semibold px-3 py-1 bg-[#F4ECF7] text-[#6E3A82] rounded-full">
+                        {art.category}
+                      </span>
+                      <span className="text-[11px] text-[#A088B0]">{art.readingTime}</span>
+                    </div>
+                    <h3 className="font-serif font-bold text-lg text-[#3B214F] line-clamp-2">{art.title}</h3>
+                    <p className="text-xs text-[#716A73] line-clamp-2">{art.excerpt}</p>
                   </div>
-                  <h3 className="font-serif font-bold text-lg text-[#3B214F] line-clamp-2">{art.title}</h3>
-                  <p className="text-xs text-[#716A73] line-clamp-2">{art.excerpt}</p>
-                  <div className="pt-3 border-t border-[#E8DDF0] flex justify-between items-center text-xs text-[#716A73]">
-                    <span>By {art.author.name}</span>
-                    <span>{art.publishedAt}</span>
+
+                  <div className="pt-3 border-t border-[#E8DDF0] flex justify-between items-center text-xs">
+                    <span className="text-[#716A73]">By {art.author.name}</span>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => openEditArticleModal(art)}
+                        className="px-3 py-1 bg-[#F4ECF7] text-[#6E3A82] hover:bg-[#6E3A82] hover:text-white rounded-lg font-semibold transition-colors"
+                      >
+                        Edit Story & Image
+                      </button>
+                      <button
+                        onClick={() => handleDeleteArticle(art.id)}
+                        className="px-3 py-1 bg-red-50 text-red-600 hover:bg-red-600 hover:text-white rounded-lg font-semibold transition-colors"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -527,21 +653,31 @@ export default function AdminDashboardPage() {
           </div>
         )}
 
-        {/* Modal: Add Article */}
+        {/* Modal: Add/Edit Article */}
         {showArticleModal && (
           <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="bg-white max-w-lg w-full rounded-3xl p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto border border-[#E8DDF0]">
-              <h2 className="text-xl font-serif font-bold text-[#3B214F]">Create New Article</h2>
+            <div className="bg-white max-w-xl w-full rounded-3xl p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto border border-[#E8DDF0]">
+              <div className="flex justify-between items-center pb-2 border-b border-[#E8DDF0]">
+                <h2 className="text-xl font-serif font-bold text-[#3B214F]">
+                  {editingArticleId ? 'Edit Article & Featured Image' : 'Create New Article'}
+                </h2>
+                <button
+                  onClick={() => setShowArticleModal(false)}
+                  className="text-gray-400 hover:text-gray-600 text-sm font-bold"
+                >
+                  ✕
+                </button>
+              </div>
 
-              <form onSubmit={handleCreateArticle} className="space-y-4 text-xs">
+              <form onSubmit={handleSaveArticle} className="space-y-4 text-xs">
                 <div>
                   <label className="block font-semibold text-[#3B214F] mb-1">Title</label>
                   <input
                     type="text"
                     required
-                    value={newArticle.title}
-                    onChange={(e) => setNewArticle({ ...newArticle, title: e.target.value })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs"
+                    value={articleForm.title}
+                    onChange={(e) => setArticleForm({ ...articleForm, title: e.target.value })}
+                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
                     placeholder="Article title…"
                   />
                 </div>
@@ -549,9 +685,9 @@ export default function AdminDashboardPage() {
                 <div>
                   <label className="block font-semibold text-[#3B214F] mb-1">Category</label>
                   <select
-                    value={newArticle.category}
-                    onChange={(e) => setNewArticle({ ...newArticle, category: e.target.value as any })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs"
+                    value={articleForm.category}
+                    onChange={(e) => setArticleForm({ ...articleForm, category: e.target.value as any })}
+                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
                   >
                     <option value="Girls' Development">Girls' Development</option>
                     <option value="Women's Issues">Women's Issues</option>
@@ -561,26 +697,118 @@ export default function AdminDashboardPage() {
                   </select>
                 </div>
 
+                {/* Featured Image Selection & Preview */}
+                <div className="space-y-2 bg-[#FAF8F5] p-3.5 rounded-2xl border border-[#E8DDF0]">
+                  <label className="block font-semibold text-[#3B214F]">Featured Image</label>
+                  
+                  {articleForm.featuredImageUrl && (
+                    <div className="relative w-full h-36 rounded-xl overflow-hidden bg-gray-200 border border-[#E8DDF0]">
+                      <img
+                        src={articleForm.featuredImageUrl}
+                        alt="Article Preview"
+                        className="w-full h-full object-cover"
+                      />
+                      <span className="absolute bottom-2 left-2 bg-black/60 text-white text-[10px] px-2 py-0.5 rounded backdrop-blur-sm">
+                        Current Image
+                      </span>
+                    </div>
+                  )}
+
+                  <div>
+                    <span className="block text-[11px] font-medium text-[#716A73] mb-1.5">
+                      Choose from Foundation Media Library:
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {SAMPLE_IMAGES.map((img) => (
+                        <button
+                          key={img.url}
+                          type="button"
+                          onClick={() => setArticleForm({ ...articleForm, featuredImageUrl: img.url })}
+                          className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all ${
+                            articleForm.featuredImageUrl === img.url
+                              ? 'bg-[#6E3A82] text-white font-semibold'
+                              : 'bg-white border border-[#E8DDF0] text-[#3B214F] hover:border-[#6E3A82]'
+                          }`}
+                        >
+                          {img.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Upload from Computer */}
+                  <div className="pt-1">
+                    <span className="block text-[11px] font-medium text-[#716A73] mb-1.5">
+                      Upload from your Computer:
+                    </span>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/jpeg,image/jpg,image/png,image/webp,image/gif"
+                      onChange={handleImageUpload}
+                      className="hidden"
+                      id="image-upload-input"
+                    />
+                    <button
+                      type="button"
+                      disabled={isUploading}
+                      onClick={() => fileInputRef.current?.click()}
+                      className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border-2 border-dashed text-[11px] font-semibold transition-all ${
+                        isUploading
+                          ? 'border-[#6E3A82]/40 text-[#A088B0] cursor-not-allowed bg-[#F4ECF7]/50'
+                          : 'border-[#6E3A82]/50 text-[#6E3A82] hover:bg-[#F4ECF7] hover:border-[#6E3A82] cursor-pointer'
+                      }`}
+                    >
+                      {isUploading ? (
+                        <>
+                          <span className="w-3.5 h-3.5 border-2 border-[#6E3A82] border-t-transparent rounded-full animate-spin" />
+                          Uploading…
+                        </>
+                      ) : (
+                        <>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                          </svg>
+                          Click to Upload Image (JPG, PNG, WebP — max 5MB)
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  <div className="pt-1">
+                    <label className="block text-[11px] font-medium text-[#716A73] mb-1">
+                      Or paste Custom Image URL / Path:
+                    </label>
+                    <input
+                      type="text"
+                      value={articleForm.featuredImageUrl}
+                      onChange={(e) => setArticleForm({ ...articleForm, featuredImageUrl: e.target.value })}
+                      className="w-full bg-white border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                      placeholder="/images/your_custom_image.png or https://…"
+                    />
+                  </div>
+                </div>
+
                 <div>
                   <label className="block font-semibold text-[#3B214F] mb-1">Excerpt</label>
                   <textarea
                     required
                     rows={2}
-                    value={newArticle.excerpt}
-                    onChange={(e) => setNewArticle({ ...newArticle, excerpt: e.target.value })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs"
+                    value={articleForm.excerpt}
+                    onChange={(e) => setArticleForm({ ...articleForm, excerpt: e.target.value })}
+                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
                     placeholder="Short summary excerpt…"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-semibold text-[#3B214F] mb-1">Full Content</label>
+                  <label className="block font-semibold text-[#3B214F] mb-1">Full Article Content</label>
                   <textarea
-                    rows={4}
-                    value={newArticle.content}
-                    onChange={(e) => setNewArticle({ ...newArticle, content: e.target.value })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs"
-                    placeholder="Full article content…"
+                    rows={5}
+                    value={articleForm.content}
+                    onChange={(e) => setArticleForm({ ...articleForm, content: e.target.value })}
+                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    placeholder="Full article content text…"
                   />
                 </div>
 
@@ -594,9 +822,9 @@ export default function AdminDashboardPage() {
                   </button>
                   <button
                     type="submit"
-                    className="px-5 py-2 rounded-xl text-xs font-semibold bg-[#6E3A82] text-white hover:bg-[#8B4FA0]"
+                    className="px-5 py-2 rounded-xl text-xs font-semibold bg-[#6E3A82] text-white hover:bg-[#8B4FA0] shadow-md"
                   >
-                    Publish Article
+                    {editingArticleId ? 'Save Changes' : 'Publish Article'}
                   </button>
                 </div>
               </form>
