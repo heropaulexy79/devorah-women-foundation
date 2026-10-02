@@ -178,11 +178,14 @@ export default function AdminDashboardPage() {
 
   useEffect(() => {
     setIsMounted(true);
-    const savedToken = localStorage.getItem('devorah_admin_token');
-    if (savedToken === 'devorah_admin_session_valid') {
-      setIsAuthenticated(true);
-    }
-    fetch('/api/content')
+    // Check server-side session cookie (HttpOnly — JS cannot read it directly)
+    fetch('/api/admin/auth/check', { credentials: 'include' })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.authenticated) setIsAuthenticated(true);
+      })
+      .catch(() => {});
+    fetch('/api/content', { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => {
         if (data.metrics) setMetricsList(data.metrics);
@@ -197,13 +200,14 @@ export default function AdminDashboardPage() {
     try {
       const res = await fetch('/api/admin/auth', {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ passkey }),
       });
       const data = await res.json();
       if (data.success) {
-        localStorage.setItem('devorah_admin_token', data.token);
         setIsAuthenticated(true);
+        setPasskey('');
       } else {
         setAuthError(data.message || 'Incorrect Admin Passkey');
       }
@@ -212,8 +216,8 @@ export default function AdminDashboardPage() {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('devorah_admin_token');
+  const handleLogout = async () => {
+    await fetch('/api/admin/auth', { method: 'DELETE', credentials: 'include' }).catch(() => {});
     setIsAuthenticated(false);
   };
 
