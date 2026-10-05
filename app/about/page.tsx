@@ -24,8 +24,32 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'About Us | Devorah Women Foundation',
-  description: 'Learn about our history, mission, vision, core values, Christian identity, and leadership team.',
+  title: 'About Us',
+  description:
+    'Learn about Devorah Women Foundation — our history, mission, vision, core values, Christian identity, and leadership team dedicated to empowering girls and women across Ghana.',
+  keywords: [
+    'about Devorah Women Foundation',
+    'Christian women NGO Ghana',
+    'women leadership mission',
+    'girl-child advocacy organization',
+    'faith-based foundation Africa',
+    'female empowerment vision',
+  ],
+  alternates: { canonical: '/about' },
+  openGraph: {
+    title: 'About Us | Devorah Women Foundation',
+    description:
+      'An institution built on strength, dignity, and purpose — dedicated to unlocking the potential of girls and women through holistic education, mentorship, and faith-anchored community action.',
+    url: '/about',
+    type: 'website',
+    images: [{ url: '/images/who_we_are.png', width: 1200, height: 630, alt: 'Devorah Women Foundation community gathering' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Us | Devorah Women Foundation',
+    description: 'Learn about our mission, vision, values, and the team behind Devorah Women Foundation.',
+    images: ['/images/who_we_are.png'],
+  },
 };
 
 const CORE_VALUES = [

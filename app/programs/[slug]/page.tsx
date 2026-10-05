@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import { PROGRAMS } from '@/lib/data';
 import { ArrowLeft, CheckCircle2, MapPin, Target, Users, HeartHandshake, Award, Quote, Sparkles } from 'lucide-react';
 import CTASection from '@/components/sections/CTASection';
@@ -15,6 +16,53 @@ export async function generateStaticParams() {
   return PROGRAMS.map((p) => ({ slug: p.slug }));
 }
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const program = PROGRAMS.find((p) => p.slug === slug);
+
+  if (!program) {
+    return {
+      title: 'Program Not Found',
+      robots: { index: false, follow: false },
+    };
+  }
+
+  return {
+    title: program.name,
+    description: program.description,
+    keywords: [
+      program.name,
+      program.category,
+      'Devorah Women Foundation',
+      'women empowerment Ghana',
+      ...program.locations,
+    ],
+    alternates: {
+      canonical: `/programs/${program.slug}`,
+    },
+    openGraph: {
+      title: `${program.name} | Devorah Women Foundation`,
+      description: program.tagline,
+      url: `/programs/${program.slug}`,
+      type: 'website',
+      images: [
+        {
+          url: program.imageUrl,
+          width: 1200,
+          height: 630,
+          alt: program.name,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${program.name} | Devorah Women Foundation`,
+      description: program.tagline,
+      images: [program.imageUrl],
+    },
+  };
+}
+
 export default async function ProgramDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const program = PROGRAMS.find((p) => p.slug === slug);
@@ -23,9 +71,34 @@ export default async function ProgramDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const programJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOccupationalProgram',
+    name: program.name,
+    description: program.description,
+    provider: {
+      '@type': 'NGO',
+      name: 'Devorah Women Foundation',
+      url: 'https://devorahwomen.org',
+    },
+    occupationalCategory: program.category,
+    applicationStartDate: '2025-01-01',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'GHS',
+      description: 'Free community program',
+    },
+    url: `https://devorahwomen.org/programs/${program.slug}`,
+    image: `https://devorahwomen.org${program.imageUrl}`,
+  };
+
   return (
     <div className="bg-[#FAF8F5] min-h-screen">
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(programJsonLd) }}
+      />
       {/* Top Header */}
       <PageHero
         eyebrow={program.category}

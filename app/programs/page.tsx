@@ -7,8 +7,31 @@ import { PROGRAMS } from '@/lib/data';
 import PageHero from '@/components/ui/PageHero';
 
 export const metadata = {
-  title: 'Our Programs | Devorah Women Foundation',
-  description: 'Explore our comprehensive empowerment programs covering women leadership, girl-child development, education grants, and spiritual growth.',
+  title: 'Our Programs',
+  description:
+    'Explore Devorah Women Foundation\'s comprehensive empowerment programs covering women leadership, girl-child development, education scholarships, vocational training, and spiritual growth.',
+  keywords: [
+    'women empowerment programs Ghana',
+    'girls development program',
+    'leadership development women',
+    'vocational training Ghana',
+    'girl scholarship Africa',
+    'faith spiritual development',
+  ],
+  alternates: { canonical: '/programs' },
+  openGraph: {
+    title: 'Our Programs | Devorah Women Foundation',
+    description: 'Our multi-disciplinary initiatives provide sustainable education, career leadership, vocational dignity, and spiritual resilience for women and girls.',
+    url: '/programs',
+    type: 'website',
+    images: [{ url: '/images/who_we_are.png', width: 1200, height: 630, alt: 'Devorah Women Foundation programs' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Our Programs | Devorah Women Foundation',
+    description: 'Explore our empowerment programs for women and girls across Ghana.',
+    images: ['/images/who_we_are.png'],
+  },
 };
 
 export default function ProgramsPage() {

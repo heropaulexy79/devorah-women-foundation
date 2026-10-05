@@ -7,8 +7,28 @@ import { ArrowRight, Calendar, HeartHandshake, Sparkles, UserPlus, CheckCircle2 
 import PageHero from '@/components/ui/PageHero';
 
 export const metadata = {
-  title: 'Get Involved | Devorah Women Foundation',
-  description: 'Join the movement. Explore pathways for volunteering, institutional partnering, supporting our work, and attending foundation events.',
+  title: 'Get Involved',
+  description:
+    'Join the Devorah Women Foundation movement. Explore pathways for volunteering, institutional partnering, supporting our work, and attending foundation events across Ghana.',
+  keywords: [
+    'volunteer Ghana NGO',
+    'support women foundation',
+    'get involved women empowerment',
+    'volunteer mentorship Ghana',
+    'partner women development',
+  ],
+  alternates: { canonical: '/get-involved' },
+  openGraph: {
+    title: 'Get Involved | Devorah Women Foundation',
+    description: 'There\'s a place for you in this work. Join us as a volunteer, partner, donor, or event participant.',
+    url: '/get-involved',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Get Involved | Devorah Women Foundation',
+    description: 'Volunteer, partner, donate or attend events — join the movement empowering women and girls in Ghana.',
+  },
 };
 
 export default function GetInvolvedPage() {

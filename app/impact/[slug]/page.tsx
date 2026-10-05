@@ -2,18 +2,65 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import { PROJECTS } from '@/lib/data';
 import { ArrowLeft, Calendar, CheckCircle2, MapPin, Users, HeartHandshake } from 'lucide-react';
 import CTASection from '@/components/sections/CTASection';
+import PageHero from '@/components/ui/PageHero';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-import PageHero from '@/components/ui/PageHero';
-
 export async function generateStaticParams() {
   return PROJECTS.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = PROJECTS.find((p) => p.slug === slug);
+
+  if (!project) {
+    return {
+      title: 'Project Not Found',
+      robots: { index: false, follow: false },
+    };
+  }
+
+  return {
+    title: project.name,
+    description: project.shortDescription,
+    keywords: [
+      project.name,
+      project.category,
+      project.location,
+      'Devorah Women Foundation',
+      'community impact Ghana',
+    ],
+    alternates: {
+      canonical: `/impact/${project.slug}`,
+    },
+    openGraph: {
+      type: 'website',
+      title: `${project.name} | Devorah Women Foundation`,
+      description: project.shortDescription,
+      url: `/impact/${project.slug}`,
+      images: [
+        {
+          url: project.imageUrl,
+          width: 1200,
+          height: 630,
+          alt: project.name,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${project.name} | Devorah Women Foundation`,
+      description: project.shortDescription,
+      images: [project.imageUrl],
+    },
+  };
 }
 
 export default async function ProjectDetailPage({ params }: PageProps) {

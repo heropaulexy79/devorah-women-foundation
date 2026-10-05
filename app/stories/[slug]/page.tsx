@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import { ARTICLES } from '@/lib/data';
 import { ArrowLeft, Clock, Calendar, User, Share2, Link as LinkIcon } from 'lucide-react';
 import CTASection from '@/components/sections/CTASection';
@@ -15,6 +16,54 @@ export async function generateStaticParams() {
   return ARTICLES.map((a) => ({ slug: a.slug }));
 }
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const article = ARTICLES.find((a) => a.slug === slug);
+
+  if (!article) {
+    return {
+      title: 'Article Not Found',
+      robots: { index: false, follow: false },
+    };
+  }
+
+  return {
+    title: article.title,
+    description: article.excerpt,
+    keywords: [
+      article.category,
+      'Devorah Women Foundation',
+      'women leadership',
+      'girl-child empowerment Ghana',
+    ],
+    authors: [{ name: article.author.name }],
+    alternates: {
+      canonical: `/stories/${article.slug}`,
+    },
+    openGraph: {
+      type: 'article',
+      title: article.title,
+      description: article.excerpt,
+      url: `/stories/${article.slug}`,
+      images: [
+        {
+          url: article.featuredImageUrl,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+      authors: [article.author.name],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.excerpt,
+      images: [article.featuredImageUrl],
+    },
+  };
+}
+
 export default async function ArticleDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const article = ARTICLES.find((a) => a.slug === slug);
@@ -25,9 +74,35 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 
   const relatedArticles = ARTICLES.filter((a) => a.id !== article.id).slice(0, 2);
 
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.excerpt,
+    image: `https://devorahwomen.org${article.featuredImageUrl}`,
+    author: {
+      '@type': 'Person',
+      name: article.author.name,
+      jobTitle: article.author.role,
+    },
+    publisher: {
+      '@type': 'NGO',
+      name: 'Devorah Women Foundation',
+      url: 'https://devorahwomen.org',
+    },
+    datePublished: article.publishedAt,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://devorahwomen.org/stories/${article.slug}`,
+    },
+  };
+
   return (
     <div className="bg-[#FAF8F5] min-h-screen">
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       {/* Header Banner */}
       <PageHero
         eyebrow={article.category}

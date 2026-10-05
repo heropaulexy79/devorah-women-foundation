@@ -19,7 +19,7 @@ const securityHeaders = [
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob: https:",
       "connect-src 'self' https://api.groq.com https://js.paystack.co",
-      "frame-src https://checkout.paystack.com",
+      "frame-src https://checkout.paystack.com https://www.google.com",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self'",
