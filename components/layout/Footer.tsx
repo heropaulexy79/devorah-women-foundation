@@ -82,7 +82,7 @@ export default function Footer() {
               A Christian foundation committed to seeing every woman and girl walk in her full God-given potential through education, mentorship, and faith-anchored support.
             </p>
             <div className="pt-2 space-y-2 text-xs text-[#E8DDF0]/60">
-              <p><strong className="text-[#C5A8D8] font-medium">Email:</strong> info@devorahwomen.org</p>
+              <p><strong className="text-[#C5A8D8] font-medium">Email:</strong> womendevorah@gmail.com</p>
               <p><strong className="text-[#C5A8D8] font-medium">Phone:</strong> +1 (555) 123-4567</p>
               <p><strong className="text-[#C5A8D8] font-medium">Address:</strong> 123 Grace Avenue, Sanctuary City, SC 12345</p>
             </div>
