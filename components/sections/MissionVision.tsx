@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, Target, Heart, Compass, BookOpen, Award, Sparkles, Quote, Globe, ArrowUpRight } from 'lucide-react';
+import { ShieldCheck, Target, Heart, Compass, BookOpen, Award, Sparkles, Quote, Globe, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const VALUES = [
   {
@@ -178,60 +178,129 @@ export default function MissionVision() {
 
         </div>
 
-        {/* Values — Bespoke Architectural Cards */}
+        {/* 4. Core Values Carousel (3 Boxes Visible, Slider Controls) */}
         <div className="border-t border-[#E8DDF0] pt-16 mt-4">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
-            <div>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#6E3A82]">
-                CORE VALUES
-              </span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-medium text-[#3B214F] mt-2">
-                Wisdom • Integrity • Service • Courage • Excellence • Compassion
-              </h3>
-            </div>
-            <p className="text-sm text-[#524C55] max-w-md">
-              The core values shaping every program, outreach, and community initiative led by Devorah Global Women.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {VALUES.map((val, idx) => {
-              const IconComp = val.icon;
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="group bg-white rounded-2xl p-7 sm:p-8 border border-[#E8DDF0] shadow-sm hover:shadow-xl hover:border-[#6E3A82]/40 transition-all duration-300 flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="w-12 h-12 rounded-xl bg-[#F4ECF7] border border-[#E8DDF0] flex items-center justify-center text-[#6E3A82] mb-6 group-hover:bg-[#6E3A82] group-hover:text-white transition-all duration-300">
-                      <IconComp className="w-5 h-5" aria-hidden="true" />
-                    </div>
-
-                    <h4 className="font-serif text-xl font-bold text-[#3B214F] mb-3 group-hover:text-[#6E3A82] transition-colors duration-200">
-                      {val.title}
-                    </h4>
-
-                    <p className="text-xs sm:text-sm text-[#524C55] leading-relaxed">
-                      {val.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-8 pt-4 border-t border-[#F4ECF7] flex items-center justify-between text-[11px] font-semibold tracking-wider text-[#A987C2] group-hover:text-[#6E3A82] transition-colors duration-200">
-                    <span>CORE VALUE 0{idx + 1}</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#6E3A82]/30 group-hover:bg-[#6E3A82] transition-all duration-300" />
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+          <CoreValuesCarousel />
         </div>
 
       </div>
     </section>
+  );
+}
+
+function CoreValuesCarousel() {
+  const [activePageIndex, setActivePageIndex] = React.useState(0);
+
+  // 6 values divided into 2 slides of 3 cards each (or responsive sliding)
+  const itemsPerPage = 3;
+  const totalPages = Math.ceil(VALUES.length / itemsPerPage);
+
+  const handleNext = () => {
+    setActivePageIndex((prev) => (prev + 1) % totalPages);
+  };
+
+  const handlePrev = () => {
+    setActivePageIndex((prev) => (prev - 1 + totalPages) % totalPages);
+  };
+
+  const currentValues = VALUES.slice(
+    activePageIndex * itemsPerPage,
+    (activePageIndex + 1) * itemsPerPage
+  );
+
+  return (
+    <div className="space-y-8">
+      {/* Header & Slider Navigation */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="max-w-3xl space-y-2">
+          <span className="text-[10px] font-extrabold uppercase tracking-[0.3em] text-[#6E3A82] bg-[#E8DDF0] px-3 py-1 rounded-full border border-[#C5A8D8]/40 inline-block">
+            CORE VALUES
+          </span>
+          <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#3B214F] leading-snug">
+            The core values shaping every program, outreach, and community initiative led by Devorah Global Women.
+          </h3>
+        </div>
+
+        {/* Carousel Controls */}
+        <div className="flex items-center gap-3 shrink-0">
+          <button
+            onClick={handlePrev}
+            className="w-11 h-11 rounded-full bg-white border border-[#E8DDF0] flex items-center justify-center text-[#3B214F] hover:bg-[#6E3A82] hover:text-white hover:border-[#6E3A82] transition-all shadow-sm"
+            aria-label="Previous core values"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <span className="text-xs font-bold text-[#6E3A82] px-2 font-mono">
+            0{activePageIndex + 1} / 0{totalPages}
+          </span>
+          <button
+            onClick={handleNext}
+            className="w-11 h-11 rounded-full bg-white border border-[#E8DDF0] flex items-center justify-center text-[#3B214F] hover:bg-[#6E3A82] hover:text-white hover:border-[#6E3A82] transition-all shadow-sm"
+            aria-label="Next core values"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+
+      {/* 3 Visible Cards Display with Motion Animation */}
+      <div className="relative">
+        <motion.div
+          key={activePageIndex}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+        >
+          {currentValues.map((val, idx) => {
+            const actualIndex = activePageIndex * itemsPerPage + idx;
+            const IconComp = val.icon;
+            return (
+              <div
+                key={val.title}
+                className="group bg-white rounded-3xl p-7 sm:p-8 border border-[#E8DDF0] shadow-md hover:shadow-2xl hover:border-[#6E3A82]/40 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div className="space-y-5">
+                  <div className="w-12 h-12 rounded-2xl bg-[#F7F3F8] border border-[#E8DDF0] flex items-center justify-center text-[#6E3A82] group-hover:bg-[#6E3A82] group-hover:text-white transition-all duration-300 shadow-sm">
+                    <IconComp className="w-6 h-6" aria-hidden="true" />
+                  </div>
+
+                  <h4 className="font-serif text-2xl font-bold text-[#3B214F] group-hover:text-[#6E3A82] transition-colors duration-200">
+                    {val.title}
+                  </h4>
+
+                  <p className="text-sm text-[#716A73] leading-relaxed font-light">
+                    {val.description}
+                  </p>
+                </div>
+
+                <div className="mt-8 pt-4 border-t border-[#F7F3F8] flex items-center justify-between text-[11px] font-bold tracking-wider text-[#A987C2] group-hover:text-[#6E3A82] transition-colors duration-200">
+                  <span>CORE VALUE 0{actualIndex + 1}</span>
+                  <span className="w-2 h-2 rounded-full bg-[#6E3A82]/30 group-hover:bg-[#6E3A82] transition-all duration-300" />
+                </div>
+              </div>
+            );
+          })}
+        </motion.div>
+      </div>
+
+      {/* Pagination Dot Indicators */}
+      <div className="flex items-center justify-center gap-2 pt-2">
+        {Array.from({ length: totalPages }).map((_, pageIdx) => (
+          <button
+            key={pageIdx}
+            onClick={() => setActivePageIndex(pageIdx)}
+            className={`transition-all duration-300 rounded-full ${
+              activePageIndex === pageIdx
+                ? 'w-8 h-2 bg-[#6E3A82]'
+                : 'w-2 h-2 bg-[#E8DDF0] hover:bg-[#C5A8D8]'
+            }`}
+            aria-label={`Go to page ${pageIdx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
