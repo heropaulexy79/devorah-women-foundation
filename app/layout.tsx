@@ -105,35 +105,23 @@ const organizationJsonLd = {
       },
       image: `${BASE_URL}/images/og-image.png`,
       description:
-        'A Christian, women-focused foundation committed to empowering girls and women through education, mentorship, leadership development, community initiatives, and faith-anchored support across Ghana.',
-      foundingLocation: {
-        '@type': 'Place',
-        name: 'Accra, Ghana',
-        addressCountry: 'GH',
-      },
-      areaServed: {
-        '@type': 'Country',
-        name: 'Ghana',
+        'Devorah Global Women is a faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women.',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'No 14, Esubiyi Street, Mende',
+        addressLocality: 'Maryland',
       },
       contactPoint: [
         {
           '@type': 'ContactPoint',
           contactType: 'general enquiry',
-          email: 'info@devorahwomen.org',
-          availableLanguage: 'English',
-        },
-        {
-          '@type': 'ContactPoint',
-          contactType: 'partnerships',
-          email: 'partnerships@devorahwomen.org',
+          telephone: '08030526200',
+          email: 'womendevorah@gmail.com',
           availableLanguage: 'English',
         },
       ],
       sameAs: [
-        'https://www.facebook.com/devorahwomenfoundation',
-        'https://www.instagram.com/devorahwomenfoundation',
-        'https://twitter.com/devorahwomen',
-        'https://www.linkedin.com/company/devorahwomenfoundation',
+        'https://www.instagram.com/devorahwomen',
       ],
     },
     {

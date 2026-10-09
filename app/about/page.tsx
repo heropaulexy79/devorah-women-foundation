@@ -54,24 +54,34 @@ export const metadata = {
 
 const CORE_VALUES = [
   {
+    icon: BookOpen,
+    title: 'Wisdom',
+    description: 'Equipping women with sound judgment, biblical insight, and deep understanding to lead purposefully.',
+  },
+  {
     icon: Compass,
-    title: 'Faith & Integrity',
-    description: 'Guided by Biblical principles of grace, intercession, and unyielding truth in all initiatives.',
+    title: 'Integrity',
+    description: 'Upholding unwavering moral clarity, truth, and transparency rooted in Christian values.',
+  },
+  {
+    icon: HeartHandshake,
+    title: 'Service',
+    description: 'Dedicated to servant leadership and uplifting vulnerable communities through action.',
   },
   {
     icon: ShieldCheck,
-    title: 'Dignity & Respect',
-    description: 'Honoring the intrinsic value and unique God-given identity of every girl and woman.',
+    title: 'Courage',
+    description: 'Boldly stepping into leadership and standing firm to drive sustainable community transformation.',
   },
   {
-    icon: Target,
-    title: 'Excellence in Action',
-    description: 'Maintaining world-class institutional standards in program execution, stewardship, and governance.',
+    icon: Award,
+    title: 'Excellence',
+    description: 'Striving for world-class quality and distinction in every educational and outreach initiative.',
   },
   {
     icon: Heart,
-    title: 'Transformative Community',
-    description: 'Cultivating supportive networks where women elevate one another into positions of impact.',
+    title: 'Compassion',
+    description: 'Serving with empathy, care, and practical support for healthcare, education, and food security.',
   },
 ];
 
@@ -79,26 +89,26 @@ const APPROACH_PILLARS = [
   {
     number: '01',
     icon: GraduationCap,
-    title: 'Educational Support & Scholarships',
-    description: 'Removing financial barriers for high-potential girls to guarantee uninterrupted secondary and tertiary education.',
+    title: 'Leadership & Mentorship Programs',
+    description: 'Equipping women with knowledge, wisdom, courage, and character for impactful leadership.',
   },
   {
     number: '02',
     icon: Users,
-    title: 'Structured Mentorship Incubators',
-    description: 'Pairing young women with accomplished female executives, civic leaders, and scholars for holistic guidance.',
+    title: 'Community Outreach Initiatives',
+    description: 'Transforming vulnerable communities by advancing healthcare, education, and food security.',
   },
   {
     number: '03',
     icon: Lightbulb,
-    title: 'Vocational Dignity & Micro-Enterprise',
-    description: 'Equipping women with financial literacy, business skills, and micro-grant pathways for self-sustaining independence.',
+    title: 'Podcasts & Educational Campaigns',
+    description: 'Broadcasting empowering frameworks, spiritual encouragement, and practical support.',
   },
   {
     number: '04',
     icon: HeartHandshake,
-    title: 'Grassroots Community & Advocacy',
-    description: 'Engaging local communities and stakeholders to eradicate systemic barriers and foster safe spaces for growth.',
+    title: 'UN SDGs Alignment (SDGs 3 & 4)',
+    description: 'Driving good health, well-being, and quality education across targeted communities.',
   },
 ];
 
@@ -112,50 +122,41 @@ export default function AboutPage() {
       
       {/* 1. Page Hero Header */}
       <PageHero
-        eyebrow="ABOUT DEVORAH WOMEN FOUNDATION"
-        title="An institution built on strength, dignity, and purpose."
-        description="We are dedicated to unlocking the potential of girls and women through holistic education, mentorship, leadership development, and faith-anchored community action."
+        eyebrow="ABOUT DEVORAH GLOBAL WOMEN"
+        title="Raising Women of Wisdom, Courage, and Global Impact."
+        description="A faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women."
         breadcrumb={[{ label: 'About Us' }]}
       />
 
-      {/* 2. Who We Are – History, Background, Who We Serve & Issues Addressed */}
+      {/* 2. Overview of Devorah Global Women */}
       <section className="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           <div className="lg:col-span-6 space-y-6">
             <SectionHeader
-              eyebrow="WHO WE ARE"
-              title="Building pathways where women and girls walk in full potential."
+              eyebrow="OVERVIEW OF DEVORAH GLOBAL WOMEN"
+              title="Equipping women to become catalysts for global transformation."
             />
 
             <p className="text-base text-[#716A73] leading-relaxed">
-              Established with a deep commitment to social justice and human dignity, Devorah Women Foundation addresses the systemic educational, economic, and leadership barriers facing young girls and women in underserved communities.
+              Devorah Global Women is a faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women.
             </p>
 
-            <div className="space-y-4 pt-2">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-[#3B214F]">
-                Key Issues We Address & Who We Serve:
+            <p className="text-base text-[#716A73] leading-relaxed">
+              Rooted in Christian values, we believe that when women are equipped with knowledge, wisdom, courage, and character, they become catalysts for transformation in their communities, nations, and across the globe.
+            </p>
+
+            <div className="p-5 rounded-2xl bg-[#F7F3F8] border border-[#E8DDF0] space-y-2">
+              <h3 className="text-xs font-bold text-[#6E3A82] uppercase tracking-wider">
+                UN Sustainable Development Goals (SDGs 3 & 4)
               </h3>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl bg-white border border-[#E8DDF0] space-y-1 shadow-sm">
-                  <h4 className="text-xs font-bold text-[#6E3A82] uppercase">Who We Serve</h4>
-                  <p className="text-xs text-[#716A73] leading-relaxed">
-                    Adolescent girls (ages 12–19), young adult female scholars, micro-entrepreneurs, and emerging community leaders.
-                  </p>
-                </div>
-
-                <div className="p-4 rounded-xl bg-white border border-[#E8DDF0] space-y-1 shadow-sm">
-                  <h4 className="text-xs font-bold text-[#6E3A82] uppercase">Issues Addressed</h4>
-                  <p className="text-xs text-[#716A73] leading-relaxed">
-                    School dropout rates, leadership underrepresentation, economic vulnerability, and lack of structured female mentorship.
-                  </p>
-                </div>
-              </div>
+              <p className="text-xs text-[#716A73] leading-relaxed">
+                Our work directly aligns with SDG 3 (Good Health and Well-Being) & SDG 4 (Quality Education) by providing practical support while inspiring women to lead lives of faith, excellence, and service.
+              </p>
             </div>
 
             <p className="text-sm text-[#716A73] leading-relaxed pt-2">
-              By combining rigorous professional standards with faith-anchored compassion, our foundation creates sustainable ecosystems where every woman is empowered to thrive.
+              Through leadership training, mentorship programs, community outreach initiatives, podcasts, and educational campaigns, Devorah Global Women provides practical support while inspiring women to lead lives of faith, excellence, and service.
             </p>
           </div>
 
@@ -163,7 +164,7 @@ export default function AboutPage() {
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
               <Image
                 src="/images/who_we_are.png"
-                alt="Devorah Foundation community gathering"
+                alt="Devorah Global Women community outreach"
                 fill
                 className="object-cover"
               />
@@ -171,7 +172,7 @@ export default function AboutPage() {
             <div className="absolute -bottom-6 -left-6 w-48 aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white hidden sm:block">
               <Image
                 src="/images/story_beneficiary.png"
-                alt="Young woman empowered through mentorship"
+                alt="Empowering women through leadership"
                 fill
                 className="object-cover"
               />
@@ -181,9 +182,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 3 & 4. Our Vision & Our Mission */}
+      {/* 3 & 4. Goal, Vision & Mission */}
       <section className="py-20 bg-[#F7F3F8] border-y border-[#E8DDF0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+          
+          {/* Goal Banner */}
+          <div className="bg-white p-8 sm:p-10 rounded-3xl border border-[#E8DDF0] shadow-sm">
+            <span className="text-[10px] font-semibold tracking-[0.3em] text-[#6E3A82] uppercase block mb-3">
+              OUR GOAL
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#3B214F] leading-relaxed">
+              "To raise spiritually grounded and empowered women who are equipped for impactful leadership while driving sustainable transformation in communities through mentorship, service, and strategic outreach."
+            </h2>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 lg:divide-x lg:divide-[#E8DDF0]">
             
             {/* Our Vision */}
@@ -191,12 +203,9 @@ export default function AboutPage() {
               <span className="text-[10px] font-semibold tracking-[0.3em] text-[#6E3A82] uppercase">
                 OUR VISION
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-medium text-[#3B214F] leading-tight">
-                A world where every girl and woman walks in her full God-given potential, free from systemic limitations.
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#3B214F] leading-tight">
+                To raise a generation of empowered women who are spiritually grounded, purpose-driven, and globally influential, impacting lives and every sector of society.
               </h2>
-              <p className="text-sm text-[#716A73] leading-relaxed pt-2">
-                We envision thriving communities shaped by courageous female leaders who foster economic prosperity, social harmony, and enduring spiritual hope across generations.
-              </p>
             </div>
 
             {/* Our Mission */}
@@ -204,11 +213,11 @@ export default function AboutPage() {
               <span className="text-[10px] font-semibold tracking-[0.3em] text-[#6E3A82] uppercase">
                 OUR MISSION
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-medium text-[#3B214F] leading-tight">
-                To empower, educate, and elevate girls and women into positions of strength, leadership, and independence.
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#3B214F] leading-tight">
+                To equip and empower women to thrive spiritually, socially, and economically, enabling them to lead with impact through leadership development, mentorship, and service.
               </h2>
               <p className="text-sm text-[#716A73] leading-relaxed pt-2">
-                We achieve this through structured educational grants, vocational mentorship, ethical leadership development, and faith-anchored community outreach designed for multi-generational impact.
+                We are committed to transforming vulnerable communities by advancing healthcare, education, and food security through purposeful outreach initiatives.
               </p>
             </div>
 

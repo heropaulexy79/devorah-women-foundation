@@ -79,12 +79,12 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-sm text-[#E8DDF0]/70 font-light leading-relaxed">
-              A Christian foundation committed to seeing every woman and girl walk in her full God-given potential through education, mentorship, and faith-anchored support.
+              Raising Women of Wisdom, Courage, and Global Impact. A faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women.
             </p>
             <div className="pt-2 space-y-2 text-xs text-[#E8DDF0]/60">
               <p><strong className="text-[#C5A8D8] font-medium">Email:</strong> womendevorah@gmail.com</p>
-              <p><strong className="text-[#C5A8D8] font-medium">Phone:</strong> +1 (555) 123-4567</p>
-              <p><strong className="text-[#C5A8D8] font-medium">Address:</strong> 123 Grace Avenue, Sanctuary City, SC 12345</p>
+              <p><strong className="text-[#C5A8D8] font-medium">Phone:</strong> 08030526200</p>
+              <p><strong className="text-[#C5A8D8] font-medium">Address:</strong> No 14, Esubiyi Street, Mende, Maryland</p>
             </div>
           </div>
 
@@ -168,7 +168,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3 mb-8 flex flex-wrap gap-4">
               {[
-                { label: 'Instagram', href: 'https://instagram.com', Icon: InstagramIcon },
+                { label: 'Instagram', href: 'https://instagram.com/devorahwomen', Icon: InstagramIcon },
                 { label: 'Facebook', href: 'https://facebook.com', Icon: FacebookIcon },
                 { label: 'TikTok', href: 'https://tiktok.com', Icon: TikTokIcon },
                 { label: 'YouTube', href: 'https://youtube.com', Icon: YoutubeIcon },

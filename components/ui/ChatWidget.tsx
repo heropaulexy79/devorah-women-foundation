@@ -149,7 +149,7 @@ export default function ChatWidget() {
       setMessages((prev) =>
         prev.map((m) =>
           m.id === assistantId
-            ? { ...m, content: "I'm sorry, I couldn't connect. Please try again or email info@devorahwomen.org." }
+            ? { ...m, content: "I'm sorry, I couldn't connect. Please try again or email womendevorah@gmail.com." }
             : m
         )
       );

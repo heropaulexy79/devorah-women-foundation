@@ -21,23 +21,24 @@ export default function WhoWeAre() {
             transition={{ duration: 0.7 }}
           >
             <SectionHeader
-              eyebrow="WHO WE ARE"
-              title="Creating spaces where women and girls can discover what is possible."
+              eyebrow="OVERVIEW OF DEVORAH GLOBAL WOMEN"
+              title="Raising Women of Wisdom, Courage, and Global Impact."
             />
 
             <p className="text-base sm:text-lg text-[#524C55] leading-relaxed">
-              Devorah Women Foundation was established to address the systemic educational,
-              social, and leadership barriers facing young girls and women. Inspired by biblical
-              courage and guided by professional excellence, we combine strategic mentorship,
-              community outreach, and skills acquisition to build self-sustaining change.
+              Devorah Global Women is a faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women. Rooted in Christian values, we believe that when women are equipped with knowledge, wisdom, courage, and character, they become catalysts for transformation in their communities, nations, and across the globe.
             </p>
 
-            <ul className="space-y-4 pt-1">
+            <p className="text-sm text-[#716A73] leading-relaxed">
+              Our work aligns with the United Nations Sustainable Development Goals (SDGs 3 & 4) by promoting good health and well-being, as well as quality education. Through leadership training, mentorship programs, community outreach initiatives, podcasts, and educational campaigns, Devorah Global Women provides practical support while inspiring women to lead lives of faith, excellence, and service.
+            </p>
+
+            <ul className="space-y-3 pt-1">
               {[
-                'Faith-anchored holistic development',
-                'Grassroots community engagement & mentorship hubs',
-                'Empowerment focused on long-term self-sufficiency',
-                'Dignified leadership development for emerging women leaders',
+                'Spiritually Grounded & Faith-Driven Approach',
+                'Leadership Training & Mentorship Programs',
+                'UN Sustainable Development Goals Alignment (SDGs 3 & 4)',
+                'Community Outreach, Health & Educational Campaigns',
               ].map((point, index) => (
                 <li
                   key={index}
