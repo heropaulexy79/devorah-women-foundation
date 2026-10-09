@@ -183,42 +183,63 @@ export default function AboutPage() {
       </section>
 
       {/* 3 & 4. Goal, Vision & Mission */}
-      <section className="py-20 bg-[#F7F3F8] border-y border-[#E8DDF0]">
+      <section className="py-20 bg-[#F7F3F8] border-y border-[#E8DDF0] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           
-          {/* Goal Banner */}
-          <div className="bg-white p-8 sm:p-10 rounded-3xl border border-[#E8DDF0] shadow-sm">
-            <span className="text-[10px] font-semibold tracking-[0.3em] text-[#6E3A82] uppercase block mb-3">
-              OUR GOAL
+          {/* Main Section Heading */}
+          <div className="text-center max-w-3xl mx-auto">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8DDF0] text-[#6E3A82] text-[11px] font-bold tracking-[0.2em] uppercase mb-4 border border-[#C5A8D8]/50 shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-[#6E3A82]" />
+              GUIDING INSTITUTIONAL PILLARS
             </span>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#3B214F] leading-relaxed">
-              "To raise spiritually grounded and empowered women who are equipped for impactful leadership while driving sustainable transformation in communities through mentorship, service, and strategic outreach."
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#3B214F] tracking-tight leading-tight">
+              Foundation Goal, Vision & Mission
             </h2>
+            <p className="text-sm sm:text-base text-[#716A73] mt-3 font-light max-w-xl mx-auto">
+              The strategic compass driving our faith-anchored leadership development, community outreach, and global impact.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 lg:divide-x lg:divide-[#E8DDF0]">
+          {/* Goal Hero Banner */}
+          <div className="relative bg-gradient-to-br from-[#3B214F] via-[#2A1638] to-[#512863] text-white rounded-3xl p-8 sm:p-12 shadow-2xl overflow-hidden border border-[#6E3A82]/30">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.3em] text-[#C5A8D8]">
+                <span>Our Overarching Goal</span>
+              </div>
+              <blockquote className="font-serif text-2xl sm:text-3xl lg:text-4xl text-white font-medium leading-relaxed">
+                "To raise spiritually grounded and empowered women who are equipped for impactful leadership while driving sustainable transformation in communities through mentorship, service, and strategic outreach."
+              </blockquote>
+            </div>
+          </div>
+
+          {/* Vision & Mission Side-by-Side */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             
-            {/* Our Vision */}
-            <div className="lg:pr-12 space-y-4">
-              <span className="text-[10px] font-semibold tracking-[0.3em] text-[#6E3A82] uppercase">
-                OUR VISION
-              </span>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#3B214F] leading-tight">
-                To raise a generation of empowered women who are spiritually grounded, purpose-driven, and globally influential, impacting lives and every sector of society.
-              </h2>
+            {/* Vision Card */}
+            <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#E8DDF0] shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+              <div className="space-y-4">
+                <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#6E3A82] bg-[#F7F3F8] px-3 py-1 rounded-full border border-[#E8DDF0] inline-block">
+                  OUR VISION
+                </span>
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#3B214F] leading-snug">
+                  To raise a generation of empowered women who are spiritually grounded, purpose-driven, and globally influential, impacting lives and every sector of society.
+                </h3>
+              </div>
             </div>
 
-            {/* Our Mission */}
-            <div className="lg:pl-12 space-y-4 border-t border-[#E8DDF0] lg:border-t-0 pt-12 lg:pt-0">
-              <span className="text-[10px] font-semibold tracking-[0.3em] text-[#6E3A82] uppercase">
-                OUR MISSION
-              </span>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#3B214F] leading-tight">
-                To equip and empower women to thrive spiritually, socially, and economically, enabling them to lead with impact through leadership development, mentorship, and service.
-              </h2>
-              <p className="text-sm text-[#716A73] leading-relaxed pt-2">
-                We are committed to transforming vulnerable communities by advancing healthcare, education, and food security through purposeful outreach initiatives.
-              </p>
+            {/* Mission Card */}
+            <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#E8DDF0] shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+              <div className="space-y-4">
+                <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#6E3A82] bg-[#F7F3F8] px-3 py-1 rounded-full border border-[#E8DDF0] inline-block">
+                  OUR MISSION
+                </span>
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#3B214F] leading-snug">
+                  To equip and empower women to thrive spiritually, socially, and economically, enabling them to lead with impact through leadership development, mentorship, and service.
+                </h3>
+                <p className="text-sm text-[#716A73] leading-relaxed pt-2 font-light">
+                  We are committed to transforming vulnerable communities by advancing healthcare, education, and food security through purposeful outreach initiatives.
+                </p>
+              </div>
             </div>
 
           </div>
