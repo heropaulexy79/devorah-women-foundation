@@ -2,7 +2,7 @@ export interface Program {
   id: string;
   slug: string;
   name: string;
-  category: "Women's Empowerment" | "Girls' Development" | "Leadership Development" | "Education" | "Mentorship" | "Community Outreach" | "Faith & Spiritual Development";
+  category: "Empowerment & Leadership" | "Educational Support" | "Mentorship & Capacity Development" | "Community Outreach & Support" | "Faith & Spiritual Development";
   tagline: string;
   description: string;
   targetAudience: string;

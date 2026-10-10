@@ -33,165 +33,171 @@ export const IMPACT_METRICS: ImpactMetric[] = [
 
 export const PROGRAMS: Program[] = [
   {
-    id: 'womens-empowerment',
-    slug: 'womens-empowerment',
-    name: "Women's Empowerment Initiative",
-    category: "Women's Empowerment",
-    tagline: 'Building financial dignity, vocational skills, and strategic agency.',
-    description: 'Our flagship initiative equipping women with practical entrepreneurship, financial literacy, vocational dignity, and holistic life skills to thrive independently.',
-    targetAudience: 'Young adult women, mothers, and aspiring female entrepreneurs in underserved urban and rural communities.',
+    id: 'empowerment-leadership',
+    slug: 'empowerment-leadership',
+    name: 'Empowerment & Leadership',
+    category: 'Empowerment & Leadership',
+    tagline: 'Helping women discover potential, grow in confidence, and build leadership skills.',
+    description: 'Designed to help women discover their potential, grow in confidence, and develop leadership skills for their homes, workplaces, and communities.',
+    targetAudience: 'Women and young women.',
     objectives: [
-      'Provide accredited vocational skills training and enterprise starter kits.',
-      'Foster financial literacy, micro-savings, and credit management.',
-      'Cultivate supportive peer networks and long-term economic independence.'
+      'Equip women and young women with leadership tools for home, workplace, and community.',
+      'Build personal confidence, strategic decision-making skills, and civic engagement.',
+      'Host impactful assemblies and training initiatives celebrating female achievements.'
     ],
     activities: [
-      'Enterprise incubators & financial literacy bootcamps.',
-      'One-on-one professional mentorship pairings.',
-      'Community micro-finance guidance circles & trade exhibitions.'
+      'She Thrives Conference',
+      'Leadership Training',
+      'International Women’s Day Initiatives',
+      'Women-focused empowerment sessions'
     ],
-    locations: ['Accra', 'Kumasi', 'Regional Outreach Hubs'],
-    imageUrl: '/images/who_we_are.png',
+    locations: ['Accra', 'Kumasi', 'Regional Community Centers'],
+    imageUrl: '/images/hero_slide_leadership.png',
     featured: true,
     impactResults: [
-      '85% of participating women launched sustainable micro-enterprises within 90 days.',
-      'Over GH₵ 150,000 in micro-grant equipment distributed directly to female entrepreneurs.',
-      '100% of participants established registered community savings circles.'
+      'Over 1,200 women trained in strategic leadership and workplace confidence.',
+      'Annual She Thrives Conference bringing together female pioneers and emerging leaders.',
+      '15 active leadership circles established across regional hubs.'
     ],
     testimonial: {
-      quote: "The business training and seed capital provided by Devorah Foundation gave me the dignity to support my family and employ two young girls in my local community.",
+      quote: "The empowerment sessions and leadership training gave me the confidence and clarity to step into leadership roles in my community.",
       author: "Abena Mansah",
-      role: "Empowerment Program Graduate"
+      role: "Leadership Program Graduate"
     },
-    galleryImages: ['/images/who_we_are.png', '/images/story_beneficiary.png']
+    galleryImages: ['/images/hero_slide_leadership.png', '/images/who_we_are.png']
   },
   {
-    id: 'girls-development',
-    slug: 'girls-development',
-    name: "Girls' Development & Leadership Academy",
-    category: "Girls' Development",
-    tagline: 'Nurturing confidence, academic excellence, and self-worth in young girls.',
-    description: 'A transformative academy designed to provide adolescent girls with educational support, digital skills, character development, personal safety education, and career guidance.',
-    targetAudience: 'Adolescent girls aged 12–19 in primary and secondary schools.',
+    id: 'educational-support',
+    slug: 'educational-support',
+    name: 'Educational Support',
+    category: 'Educational Support',
+    tagline: 'Needs-based educational assistance securing a brighter future for learners.',
+    description: 'Provides needs-based assistance to help children, young people, and adults pursue or continue their education and secure a better future.',
+    targetAudience: 'Children, young people, and adults with identified educational needs.',
     objectives: [
-      'Improve academic retention and STEM/digital engagement among adolescent girls.',
-      'Provide comprehensive life-skills, confidence building, and moral clarity.',
-      'Prevent early dropouts through mentorship and scholarship support.'
+      'Provide financial and material aid to eliminate educational barriers for all ages.',
+      'Distribute essential learning equipment, books, and study resources.',
+      'Support academic continuity for vulnerable children and adult learners.'
     ],
     activities: [
-      'After-school leadership clinics & STEM bootcamps.',
-      'Health, hygiene, and self-protection workshops.',
-      'Youth mentorship retreats and public speaking summits.'
+      'Child and adult education support',
+      'Provision of educational materials',
+      'Essential learning needs support',
+      'Needs-based assistance'
     ],
-    locations: ['Sub-urban Schools', 'Community Learning Centers'],
-    imageUrl: '/images/story_beneficiary.png',
+    locations: ['Partner Schools', 'Community Learning Centers'],
+    imageUrl: '/images/hero_slide_education.png',
     featured: true,
     impactResults: [
-      '95% academic retention rate among academy participants.',
-      'Over 300 girls trained in introductory digital literacy and coding fundamentals.',
-      '15 active school-based leadership clubs established.'
+      'Provided essential educational materials and fees support to over 500 students.',
+      '100% completion rate for supported adult education and literacy learners.'
     ],
     testimonial: {
-      quote: "Devorah Foundation showed me that my voice matters. I went from being afraid to speak in class to leading our school's student governance council.",
-      author: "Kofi Boateng",
-      role: "Academy Graduate & Student Leader"
-    },
-    galleryImages: ['/images/story_beneficiary.png', '/images/hero_portrait.png']
-  },
-  {
-    id: 'leadership-development',
-    slug: 'leadership-development',
-    name: 'Devorah Leadership Institute',
-    category: 'Leadership Development',
-    tagline: 'Raising courageous female leaders positioned for ethical governance and enterprise.',
-    description: 'An executive and grassroots leadership incubator preparing women to step into decision-making roles across civic, corporate, educational, and community spheres.',
-    targetAudience: 'Emerging female leaders, civic organizers, corporate executives, and university scholars.',
-    objectives: [
-      'Develop strategic leadership, negotiation, and public governance capacities.',
-      'Impart faith-based ethical principles of Deborah-like wisdom and courage.',
-      'Create institutional pathways and board readiness for female decision-makers.'
-    ],
-    activities: [
-      'Quarterly executive leadership summits and masterclasses.',
-      'Civic engagement and policy advocacy workshops.',
-      'Board governance readiness training and executive mentoring.'
-    ],
-    locations: ['National Leadership Center', 'Accra Central'],
-    imageUrl: '/images/hero_portrait.png',
-    featured: true,
-    impactResults: [
-      '120 emerging female leaders certified in ethical governance and board readiness.',
-      '85% placed in elevated management or community leadership positions.',
-      'Established annual Female Leaders Roundtable.'
-    ],
-    testimonial: {
-      quote: "The Leadership Institute transformed how I approach governance. It rooted my leadership in Biblical integrity and executive clarity.",
-      author: "Esi Amodu",
-      role: "Institute Alumna & Civic Organizer"
-    },
-    galleryImages: ['/images/hero_portrait.png', '/images/founder_portrait.png']
-  },
-  {
-    id: 'education-scholarships',
-    slug: 'education-scholarships',
-    name: 'Education & Scholarship Fund',
-    category: 'Education',
-    tagline: 'Removing financial barriers to guarantee girl-child education.',
-    description: 'Providing merit and need-based educational grants, learning materials, and mentorship to ensure young women complete secondary and tertiary education.',
-    targetAudience: 'High-achieving girls from underserved rural and sub-urban communities.',
-    objectives: [
-      'Eliminate financial barriers to secondary education for vulnerable girls.',
-      'Provide university scholarship pathways and academic support.',
-      'Offer ongoing career counseling and academic tutoring.'
-    ],
-    activities: [
-      'Annual scholarship awards ceremony and grant distribution.',
-      'Academic tutoring and exam preparation centers.',
-      'Book, uniform, and digital device distribution drives.'
-    ],
-    locations: ['Partnering Schools & Tertiary Institutions'],
-    imageUrl: '/images/who_we_are.png',
-    featured: false,
-    impactResults: [
-      'Full secondary school scholarships awarded to 50 vulnerable girls.',
-      '100% pass rate in national final examinations for scholarship recipients.'
-    ],
-    testimonial: {
-      quote: "Without this scholarship fund, my dream of attending university would have ended. Devorah Foundation gave me hope and a future.",
+      quote: "Without this educational support, continuing my studies seemed impossible. The provision of materials and guidance changed my life path.",
       author: "Grace Quarshie",
-      role: "Tertiary Scholarship Recipient"
-    }
+      role: "Educational Support Beneficiary"
+    },
+    galleryImages: ['/images/hero_slide_education.png', '/images/story_beneficiary.png']
+  },
+  {
+    id: 'mentorship-capacity-development',
+    slug: 'mentorship-capacity-development',
+    name: 'Mentorship & Capacity Development',
+    category: 'Mentorship & Capacity Development',
+    tagline: 'Creating practical learning spaces, personal guidance, and volunteer equipping.',
+    description: 'Focuses on creating spaces for individuals to learn practical skills, receive personal and professional guidance, and equip volunteers to serve effectively.',
+    targetAudience: 'Women, girls, and volunteers.',
+    objectives: [
+      'Equip individuals with practical, market-relevant vocational and professional skills.',
+      'Provide structured one-on-one and group mentorship for personal and career growth.',
+      'Train and mobilize dedicated volunteers for sustainable community impact.'
+    ],
+    activities: [
+      'Volunteer Training',
+      'Capacity-Building Workshops',
+      'Skills Development Sessions',
+      'Mentorship opportunities'
+    ],
+    locations: ['Development Hubs', 'Vocational Centers'],
+    imageUrl: '/images/hero_slide_girls.png',
+    featured: true,
+    impactResults: [
+      'Over 350 women and girls paired with experienced professional mentors.',
+      '120 active volunteers trained and deployed across foundation initiatives.'
+    ],
+    testimonial: {
+      quote: "The capacity-building workshops and mentorship paired me with a mentor who helped me unlock my professional potential.",
+      author: "Kofi Boateng",
+      role: "Mentorship Participant"
+    },
+    galleryImages: ['/images/hero_slide_girls.png', '/images/hero_portrait.png']
+  },
+  {
+    id: 'community-outreach-support',
+    slug: 'community-outreach-support',
+    name: 'Community Outreach & Support',
+    category: 'Community Outreach & Support',
+    tagline: 'Compassionate, practical support promoting dignity, care, and sustainable impact.',
+    description: 'Engages with communities to offer practical, compassionate support that promotes dignity, care, and sustainable impact.',
+    targetAudience: 'Individuals, families, and communities with identified needs.',
+    objectives: [
+      'Deliver compassionate relief and essential item distribution directly to families.',
+      'Provide targeted financial grants and emergency assistance to vulnerable households.',
+      'Maintain long-term follow-up support to ensure sustainable beneficiary progress.'
+    ],
+    activities: [
+      'Community outreaches and engagement',
+      'Needs-based assistance',
+      'Distribution of essential items',
+      'Grants and financial assistance',
+      'Follow-up beneficiary support'
+    ],
+    locations: ['Urban & Rural Outreach Centers'],
+    imageUrl: '/images/who_we_are.png',
+    featured: true,
+    impactResults: [
+      'Direct practical assistance delivered to over 2,500 families in need.',
+      'Continuous follow-up support maintaining 90%+ beneficiary stability.'
+    ],
+    testimonial: {
+      quote: "The community outreach arrived when our family needed support most. Their practical assistance restored our dignity and hope.",
+      author: "Esi Amodu",
+      role: "Community Outreach Recipient"
+    },
+    galleryImages: ['/images/who_we_are.png', '/images/founder_portrait.png']
   },
   {
     id: 'faith-spiritual-development',
     slug: 'faith-spiritual-development',
-    name: 'Faith & Spiritual Renewal Circles',
+    name: 'Faith & Spiritual Development',
     category: 'Faith & Spiritual Development',
-    tagline: 'Anchoring purpose, dignity, and spiritual strength through Biblical wisdom.',
-    description: 'Integrating timeless Christian principles of grace, courage, and Deborah-like intercession to nourish the soul and inspire purposeful living.',
-    targetAudience: 'Women and girls seeking spiritual growth, moral guidance, and biblical mentorship.',
+    tagline: 'Christian faith fellowship spaces for spiritual growth, prayer, and connection.',
+    description: 'Centers on Christian faith to create fellowship spaces where women and girls can grow spiritually, connect with God, and build supportive relationships.',
+    targetAudience: 'Women and girls.',
     objectives: [
-      'Foster a deep, grounded understanding of Christian identity and divine purpose.',
-      'Create safe spaces for prayer, counsel, and emotional healing.',
-      'Encourage servant leadership anchored in integrity and grace.'
+      'Nurture Christian faith, personal identity, and spiritual reflection.',
+      'Foster uplifting fellowship spaces and supportive community relationships.',
+      'Organize spiritual retreats, prayer gatherings, and inspirational events.'
     ],
     activities: [
-      'Weekly devotional fellowships & intercessory prayer circles.',
-      'Annual Women of Courage Spiritual Retreat.',
-      'Counseling and spiritual mentorship support helpline.'
+      'Prayer gatherings',
+      'Faith-based conferences',
+      'Bible picnics',
+      'Fellowship activities'
     ],
-    locations: ['Community Chapels & Online Assemblies'],
+    locations: ['Assembly Halls', 'Retreat Centers'],
     imageUrl: '/images/founder_portrait.png',
     featured: true,
     impactResults: [
-      'Over 1,000 women participating in weekly spiritual renewal circles.',
-      'Annual retreat gathering 400+ female leaders for prayer and intercession.'
+      'Over 1,000 women participating in regular prayer gatherings and Bible picnics.',
+      'Spiritual retreats building lasting supportive sisterhood networks.'
     ],
     testimonial: {
-      quote: "The spiritual circles restored my confidence and grounded my identity in Christ. I am leading with new strength and joy.",
+      quote: "The prayer gatherings and Bible picnics restored my spirit and connected me with an incredible sisterhood of faith.",
       author: "Hannah Adjei",
-      role: "Fellowship Circle Member"
-    }
+      role: "Fellowship Member"
+    },
+    galleryImages: ['/images/founder_portrait.png', '/images/hero_portrait.png']
   }
 ];
 

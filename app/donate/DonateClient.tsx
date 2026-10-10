@@ -29,10 +29,11 @@ const PRESET_AMOUNTS = [50000, 100000, 250000, 500000, 1000000];
 
 const PILLARS = [
   { id: 'general', name: 'General Support / Where Needed Most' },
-  { id: 'women-empowerment', name: "Women's Empowerment Incubator" },
-  { id: 'girls-development', name: "Girls' STEM & Education Grants" },
-  { id: 'leadership', name: 'Devorah Leadership Institute' },
-  { id: 'outreach', name: 'Community Outreach & Action Circles' },
+  { id: 'empowerment-leadership', name: 'Empowerment & Leadership' },
+  { id: 'educational-support', name: 'Educational Support' },
+  { id: 'mentorship-capacity-development', name: 'Mentorship & Capacity Development' },
+  { id: 'community-outreach-support', name: 'Community Outreach & Support' },
+  { id: 'faith-spiritual-development', name: 'Faith & Spiritual Development' },
 ];
 
 export default function DonateClient() {
