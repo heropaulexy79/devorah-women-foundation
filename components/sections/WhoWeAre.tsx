@@ -25,11 +25,11 @@ export default function WhoWeAre() {
               title="Raising Women of Wisdom, Courage, and Global Impact."
             />
 
-            <p className="text-base sm:text-lg text-[#524C55] leading-relaxed">
+            <p className="text-base sm:text-lg text-[#3B3340] leading-relaxed">
               Devorah Global Women is a faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women. Rooted in Christian values, we believe that when women are equipped with knowledge, wisdom, courage, and character, they become catalysts for transformation in their communities, nations, and across the globe.
             </p>
 
-            <p className="text-sm text-[#716A73] leading-relaxed">
+            <p className="text-sm text-[#524C55] leading-relaxed font-normal">
               Our work aligns with the United Nations Sustainable Development Goals (SDGs 3 & 4) by promoting good health and well-being, as well as quality education. Through leadership training, mentorship programs, community outreach initiatives, podcasts, and educational campaigns, Devorah Global Women provides practical support while inspiring women to lead lives of faith, excellence, and service.
             </p>
 
@@ -52,7 +52,7 @@ export default function WhoWeAre() {
             <div className="pt-3">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-1.5 text-[#6E3A82] font-semibold text-sm hover:text-[#3B214F] transition-colors tracking-wide group"
+                className="inline-flex items-center gap-1.5 text-[#6E3A82] font-semibold text-sm hover:text-[#3B214F] transition-colors tracking-wide group focus-visible:ring-2 focus-visible:ring-[#6E3A82] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAF8F5] focus-visible:outline-none rounded-sm"
               >
                 <span>Discover Our Story</span>
                 <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>

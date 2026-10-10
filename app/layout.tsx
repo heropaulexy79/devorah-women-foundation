@@ -157,7 +157,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-[#FAF8F5] text-[#242024] selection:bg-[#E8DDF0] selection:text-[#3B214F]">
         <Navbar />
-        <main className="flex-grow pt-20">{children}</main>
+        <main id="main-content" className="flex-grow pt-20">{children}</main>
         <Footer />
         <ChatWidget />
       </body>

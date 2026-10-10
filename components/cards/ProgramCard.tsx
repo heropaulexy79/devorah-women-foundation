@@ -15,7 +15,7 @@ export default function ProgramCard({ program, featured = false }: ProgramCardPr
     return (
       <Link
         href={`/programs/${program.slug}`}
-        className="group block relative overflow-hidden rounded-sm bg-[#1a0f22] focus:outline-none"
+        className="group block relative overflow-hidden rounded-sm bg-[#1a0f22] focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAF8F5] focus-visible:outline-none"
         aria-label={`${program.name} — ${program.tagline}`}
       >
         {/* Large featured image */}
@@ -37,10 +37,10 @@ export default function ProgramCard({ program, featured = false }: ProgramCardPr
           <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight max-w-2xl group-hover:text-[#E8DDF0] transition-colors duration-300">
             {program.name}
           </h3>
-          <p className="text-sm text-white/60 font-light italic mt-2 max-w-xl">
+          <p className="text-sm text-white/85 font-light italic mt-2 max-w-xl">
             {program.tagline}
           </p>
-          <div className="mt-5 flex items-center gap-2 text-[#A987C2] text-sm font-medium">
+          <div className="mt-5 flex items-center gap-2 text-[#C5A8D8] text-sm font-medium">
             <span>Explore Program</span>
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </div>
@@ -52,7 +52,7 @@ export default function ProgramCard({ program, featured = false }: ProgramCardPr
   return (
     <Link
       href={`/programs/${program.slug}`}
-      className="group block overflow-hidden bg-white rounded-sm focus:outline-none"
+      className="group block overflow-hidden bg-white rounded-sm focus-visible:ring-2 focus-visible:ring-[#6E3A82] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAF8F5] focus-visible:outline-none"
       aria-label={`${program.name} — ${program.tagline}`}
     >
       {/* Program Image */}
@@ -72,7 +72,7 @@ export default function ProgramCard({ program, featured = false }: ProgramCardPr
           {program.name}
         </h3>
 
-        <p className="text-xs text-[#716A73] line-clamp-2 leading-relaxed">
+        <p className="text-xs text-[#524C55] line-clamp-2 leading-relaxed">
           {program.tagline}
         </p>
 

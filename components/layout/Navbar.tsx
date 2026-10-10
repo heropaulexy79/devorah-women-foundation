@@ -38,9 +38,17 @@ export default function Navbar() {
           : 'bg-transparent py-5'
       }`}
     >
+      {/* Skip to Content Link for Keyboard Accessibility (WCAG 2.2 AA) */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[#6E3A82] focus:text-white focus:rounded-sm font-semibold text-xs uppercase tracking-widest focus:ring-2 focus:ring-white focus:outline-none shadow-xl"
+      >
+        Skip to main content
+      </a>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-3 group focus:outline-none">
+        <Link href="/" className="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a0f22] focus-visible:outline-none rounded-sm">
           <div className="relative w-10 h-10 transition-transform duration-300 group-hover:scale-105">
             <Image
               src="/logo.png"
@@ -68,7 +76,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-3.5 py-1.5 text-[13px] font-medium tracking-wider uppercase transition-all duration-300 relative ${
+                className={`px-3.5 py-1.5 text-[13px] font-medium tracking-wider uppercase transition-all duration-300 relative rounded-sm focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:outline-none ${
                   isActive
                     ? 'text-white font-semibold'
                     : 'text-white/85 hover:text-white'
@@ -87,7 +95,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-3">
           <Link
             href="/donate"
-            className="hidden sm:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-sm hover:shadow-md bg-[#6E3A82] hover:bg-[#3B214F] text-white border border-[#C5A8D8]/30"
+            className="hidden sm:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-sm hover:shadow-md bg-[#6E3A82] hover:bg-[#3B214F] text-white border border-[#C5A8D8]/30 focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a0f22] focus-visible:outline-none"
           >
             Donate
           </Link>
@@ -95,7 +103,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors focus:outline-none"
+            className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:outline-none"
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
           >

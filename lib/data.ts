@@ -331,7 +331,7 @@ export const RESOURCES: Resource[] = [
 export const LEADERSHIP_PEOPLE: Person[] = [
   {
     id: 'founder',
-    name: '[Official Founder Name to be Provided]',
+    name: 'Executive Director & Founder',
     title: 'Founder & Executive Director',
     role: 'Founder & Visionary Leader',
     category: 'Founder',
@@ -344,7 +344,7 @@ export const LEADERSHIP_PEOPLE: Person[] = [
   },
   {
     id: 'team-1',
-    name: '[Official Program Lead Name]',
+    name: 'Head of Programs & Field Director',
     title: 'Head of Programs & Community Outreach',
     role: 'Program Director',
     category: 'Team Lead',
@@ -354,7 +354,7 @@ export const LEADERSHIP_PEOPLE: Person[] = [
   },
   {
     id: 'board-1',
-    name: '[Official Board Chair Name]',
+    name: 'Chairperson, Board of Trustees',
     title: 'Chairperson, Board of Trustees',
     role: 'Board Trustee',
     category: 'Board Member',
@@ -368,7 +368,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't-1',
     quote: 'The Devorah Foundation stands out for its high standard of integrity, deep community commitment, and genuine focus on individual transformation.',
-    authorName: '[Official Partner Representative]',
+    authorName: 'Institutional Partner Representative',
     authorRelationship: 'Institutional Partner Representative',
     location: 'Accra',
     category: 'Partner'
@@ -376,7 +376,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't-2',
     quote: 'Through their mentorship program, my daughter has grown into a confident young scholar who believes in her ability to lead.',
-    authorName: '[Parent & Community Leader]',
+    authorName: 'Parent & Community Advisory Member',
     authorRelationship: 'Parent of Academy Graduate',
     location: 'Greater Accra',
     category: 'Community Leader'
@@ -384,7 +384,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't-3',
     quote: 'Volunteering with the Girls\' Leadership Academy allowed me to invest my professional skills directly into the next generation.',
-    authorName: '[Volunteer Mentor]',
+    authorName: 'Executive Volunteer Mentor',
     authorRelationship: 'Academy Executive Mentor',
     location: 'Accra',
     category: 'Volunteer'
@@ -392,7 +392,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't-4',
     quote: 'The Women\'s Empowerment Initiative gave me trade skills, seed equipment, and financial confidence to run my own enterprise.',
-    authorName: '[Program Beneficiary]',
+    authorName: 'Empowerment Enterprise Beneficiary',
     authorRelationship: 'Micro-Enterprise Graduate',
     location: 'Ashanti Region',
     category: 'Beneficiary'

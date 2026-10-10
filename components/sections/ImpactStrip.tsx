@@ -65,7 +65,7 @@ export default function ImpactStrip() {
                 <h3 className="text-sm font-semibold text-white mt-4 leading-snug">
                   {metric.label}
                 </h3>
-                <p className="text-xs text-[#E8DDF0]/55 mt-2 leading-relaxed max-w-[180px]">
+                <p className="text-xs text-[#E8DDF0]/85 mt-2 leading-relaxed max-w-[180px]">
                   {metric.description}
                 </p>
               </motion.div>
@@ -73,7 +73,7 @@ export default function ImpactStrip() {
           })}
         </div>
 
-        <p className="mt-12 text-[10px] text-[#E8DDF0]/35 italic">
+        <p className="mt-12 text-[10px] text-[#E8DDF0]/60 italic">
           * Metrics reflect operational program targets & field milestones.
         </p>
       </div>
