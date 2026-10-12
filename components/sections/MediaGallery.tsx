@@ -8,16 +8,35 @@ import { GALLERY_ITEMS } from '@/lib/data';
 import { GalleryItem } from '@/lib/types';
 import { X, ChevronLeft, ChevronRight, Calendar, MapPin, ArrowRight, Images } from 'lucide-react';
 
-const CATEGORIES = ['All', 'Outreaches', 'Conferences', 'Scholarships', 'Faith & Renewal'] as const;
+const CATEGORIES = [
+  'All',
+  'Community Outreach',
+  'Faith and Spiritual Development',
+  'Leadership Development',
+  'School Outreaches',
+  'Women Empowerment',
+] as const;
 
 export default function MediaGallery({ limit }: { limit?: number }) {
+  const [items, setItems] = useState<GalleryItem[]>(GALLERY_ITEMS);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeAlbum, setActiveAlbum] = useState<GalleryItem | null>(null);
   const [activePhotoIndex, setActivePhotoIndex] = useState<number>(0);
 
+  useEffect(() => {
+    fetch('/api/content?type=gallery')
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data?.gallery) && data.gallery.length > 0) {
+          setItems(data.gallery);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const filteredItems = selectedCategory === 'All'
-    ? GALLERY_ITEMS
-    : GALLERY_ITEMS.filter((item) => item.category === selectedCategory);
+    ? items
+    : items.filter((item) => item.category === selectedCategory);
 
   const displayedItems = limit ? filteredItems.slice(0, limit) : filteredItems;
 

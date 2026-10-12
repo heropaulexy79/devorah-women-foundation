@@ -2,15 +2,24 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { LayoutDashboard, FileText, BarChart3, Image as ImageIcon, Award, LogOut, Plus, CheckCircle, Sparkles, TrendingUp, Users, ShieldCheck, Search } from 'lucide-react';
+import { LayoutDashboard, FileText, BarChart3, Image as ImageIcon, Award, LogOut, Plus, CheckCircle, Sparkles, TrendingUp, Users, ShieldCheck, Search, Trash2, Edit3, MapPin, Calendar, ExternalLink, Upload, FolderPlus } from 'lucide-react';
 import { ARTICLES, IMPACT_METRICS, PROGRAMS, GALLERY_ITEMS } from '@/lib/data';
+import { GalleryItem } from '@/lib/types';
+
+const GALLERY_CATEGORIES = [
+  'Community Outreach',
+  'Faith and Spiritual Development',
+  'Leadership Development',
+  'School Outreaches',
+  'Women Empowerment',
+] as const;
 
 export default function AdminDashboardPage() {
   const [isMounted, setIsMounted] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passkey, setPasskey] = useState('');
   const [authError, setAuthError] = useState('');
-  const [activeTab, setActiveTab] = useState<'overview' | 'articles' | 'metrics' | 'insights'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'articles' | 'gallery' | 'metrics' | 'insights'>('overview');
 
   // Article state
   const [articlesList, setArticlesList] = useState(ARTICLES);
@@ -27,9 +36,30 @@ export default function AdminDashboardPage() {
     featuredImageUrl: '/images/story_beneficiary.png',
   });
 
-  // Upload state
+  // Gallery state
+  const [galleryList, setGalleryList] = useState<GalleryItem[]>(GALLERY_ITEMS);
+  const [galleryCategoryFilter, setGalleryCategoryFilter] = useState<string>('All');
+  const [showGalleryModal, setShowGalleryModal] = useState(false);
+  const [editingGalleryId, setEditingGalleryId] = useState<string | null>(null);
+  const [galleryForm, setGalleryForm] = useState({
+    title: '',
+    category: 'Community Outreach' as (typeof GALLERY_CATEGORIES)[number],
+    date: 'October 2026',
+    location: 'Accra, Ghana',
+    caption: '',
+    impactHighlight: '',
+    imageUrl: '/images/gallery_outreach.png',
+    photos: [] as { id: string; url: string; caption?: string }[],
+  });
+
+  // Upload state (Articles)
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Upload state (Gallery Cover & Additional Photos)
+  const [isGalleryUploading, setIsGalleryUploading] = useState(false);
+  const galleryCoverInputRef = useRef<HTMLInputElement>(null);
+  const galleryExtraPhotosInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -172,6 +202,196 @@ export default function AdminDashboardPage() {
     }
   };
 
+  // Gallery CRUD functions
+  const openNewGalleryModal = () => {
+    setEditingGalleryId(null);
+    setGalleryForm({
+      title: '',
+      category: 'Community Outreach',
+      date: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+      location: 'Accra, Ghana',
+      caption: '',
+      impactHighlight: '',
+      imageUrl: '/images/gallery_outreach.png',
+      photos: [],
+    });
+    setShowGalleryModal(true);
+  };
+
+  const openEditGalleryModal = (item: GalleryItem) => {
+    setEditingGalleryId(item.id);
+    setGalleryForm({
+      title: item.title,
+      category: item.category as any,
+      date: item.date,
+      location: item.location,
+      caption: item.caption,
+      impactHighlight: item.impactHighlight || '',
+      imageUrl: item.imageUrl,
+      photos: item.photos ? [...item.photos] : [{ id: `photo-${item.id}`, url: item.imageUrl, caption: item.caption }],
+    });
+    setShowGalleryModal(true);
+  };
+
+  const handleGalleryCoverUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setIsGalleryUploading(true);
+    try {
+      const form = new FormData();
+      form.append('file', file);
+      const res = await fetch('/api/upload', { method: 'POST', body: form });
+      const data = await res.json();
+      if (data.success) {
+        setGalleryForm((prev) => ({
+          ...prev,
+          imageUrl: data.url,
+          photos: prev.photos.length === 0
+            ? [{ id: `photo-${Date.now()}`, url: data.url, caption: prev.caption }]
+            : prev.photos,
+        }));
+        showSuccessNotification('Gallery cover photograph uploaded successfully!');
+      } else {
+        showSuccessNotification(data.message || 'Cover upload failed');
+      }
+    } catch {
+      showSuccessNotification('Cover upload failed. Please try again.');
+    } finally {
+      setIsGalleryUploading(false);
+      if (galleryCoverInputRef.current) galleryCoverInputRef.current.value = '';
+    }
+  };
+
+  const handleGalleryExtraPhotosUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+    setIsGalleryUploading(true);
+    let uploadedCount = 0;
+    try {
+      const newPhotosList = [...galleryForm.photos];
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const form = new FormData();
+        form.append('file', file);
+        const res = await fetch('/api/upload', { method: 'POST', body: form });
+        const data = await res.json();
+        if (data.success) {
+          uploadedCount++;
+          newPhotosList.push({
+            id: `photo-${Date.now()}-${i}`,
+            url: data.url,
+            caption: '',
+          });
+        }
+      }
+      setGalleryForm((prev) => ({ ...prev, photos: newPhotosList }));
+      showSuccessNotification(`${uploadedCount} photograph(s) uploaded to album!`);
+    } catch {
+      showSuccessNotification('Upload failed for additional photos');
+    } finally {
+      setIsGalleryUploading(false);
+      if (galleryExtraPhotosInputRef.current) galleryExtraPhotosInputRef.current.value = '';
+    }
+  };
+
+  const handleRemovePhotoFromAlbum = (index: number) => {
+    const updated = galleryForm.photos.filter((_, idx) => idx !== index);
+    setGalleryForm((prev) => ({
+      ...prev,
+      photos: updated,
+      imageUrl: prev.imageUrl === prev.photos[index]?.url && updated.length > 0 ? updated[0].url : prev.imageUrl,
+    }));
+  };
+
+  const handleSaveGallery = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!galleryForm.title || !galleryForm.imageUrl) return;
+
+    try {
+      if (editingGalleryId) {
+        // Edit existing album
+        const payload = {
+          id: editingGalleryId,
+          title: galleryForm.title,
+          category: galleryForm.category,
+          date: galleryForm.date,
+          location: galleryForm.location,
+          caption: galleryForm.caption,
+          impactHighlight: galleryForm.impactHighlight,
+          imageUrl: galleryForm.imageUrl,
+          photos: galleryForm.photos.length > 0
+            ? galleryForm.photos
+            : [{ id: `photo-${Date.now()}`, url: galleryForm.imageUrl, caption: galleryForm.caption }],
+        };
+
+        const res = await fetch('/api/content', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'update_gallery', payload }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          setGalleryList(galleryList.map((g) => (g.id === editingGalleryId ? data.galleryItem : g)));
+          setShowGalleryModal(false);
+          showSuccessNotification('Gallery album updated successfully!');
+        } else {
+          showSuccessNotification(data.message || 'Failed to update album');
+        }
+      } else {
+        // Create new album
+        const res = await fetch('/api/content', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'add_gallery',
+            payload: {
+              title: galleryForm.title,
+              category: galleryForm.category,
+              date: galleryForm.date,
+              location: galleryForm.location,
+              caption: galleryForm.caption,
+              impactHighlight: galleryForm.impactHighlight,
+              imageUrl: galleryForm.imageUrl,
+              photos: galleryForm.photos.length > 0
+                ? galleryForm.photos
+                : [{ id: `photo-${Date.now()}`, url: galleryForm.imageUrl, caption: galleryForm.caption }],
+            },
+          }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          setGalleryList([data.galleryItem, ...galleryList]);
+          setShowGalleryModal(false);
+          showSuccessNotification('New gallery album published successfully!');
+        } else {
+          showSuccessNotification(data.message || 'Failed to create gallery album');
+        }
+      }
+    } catch {
+      showSuccessNotification('Failed to save gallery album');
+    }
+  };
+
+  const handleDeleteGallery = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this gallery album?')) return;
+    try {
+      const res = await fetch('/api/content', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'delete_gallery', payload: { id } }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setGalleryList(galleryList.filter((g) => g.id !== id));
+        showSuccessNotification('Gallery album deleted successfully.');
+      } else {
+        showSuccessNotification(data.message || 'Failed to delete gallery album');
+      }
+    } catch {
+      showSuccessNotification('Failed to delete gallery album');
+    }
+  };
+
   // Metrics & notification state
   const [metricsList, setMetricsList] = useState(IMPACT_METRICS);
   const [notification, setNotification] = useState('');
@@ -190,6 +410,7 @@ export default function AdminDashboardPage() {
       .then((data) => {
         if (data.metrics) setMetricsList(data.metrics);
         if (data.articles) setArticlesList(data.articles);
+        if (data.gallery) setGalleryList(data.gallery);
       })
       .catch(() => {});
   }, []);
@@ -341,6 +562,16 @@ export default function AdminDashboardPage() {
             </button>
 
             <button
+              onClick={() => setActiveTab('gallery')}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                activeTab === 'gallery' ? 'bg-[#6E3A82] text-white' : 'text-[#C5A8D8] hover:bg-[#6E3A82]/30'
+              }`}
+            >
+              <ImageIcon className="w-4 h-4" />
+              Gallery Albums ({galleryList.length})
+            </button>
+
+            <button
               onClick={() => setActiveTab('metrics')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                 activeTab === 'metrics' ? 'bg-[#6E3A82] text-white' : 'text-[#C5A8D8] hover:bg-[#6E3A82]/30'
@@ -401,7 +632,10 @@ export default function AdminDashboardPage() {
 
             {/* Quick Stats Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-white p-6 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-2">
+              <div
+                onClick={() => setActiveTab('articles')}
+                className="bg-white p-6 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-2 cursor-pointer hover:border-[#6E3A82] transition-colors"
+              >
                 <div className="flex justify-between items-center text-[#6E3A82]">
                   <FileText className="w-6 h-6" />
                   <span className="text-xs font-semibold uppercase tracking-wider text-[#A088B0]">Articles</span>
@@ -419,12 +653,15 @@ export default function AdminDashboardPage() {
                 <p className="text-xs text-[#716A73]">Active Foundation Initiatives</p>
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-2">
+              <div
+                onClick={() => setActiveTab('gallery')}
+                className="bg-white p-6 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-2 cursor-pointer hover:border-[#6E3A82] transition-colors"
+              >
                 <div className="flex justify-between items-center text-[#6E3A82]">
                   <ImageIcon className="w-6 h-6" />
                   <span className="text-xs font-semibold uppercase tracking-wider text-[#A088B0]">Gallery</span>
                 </div>
-                <p className="text-3xl font-serif font-bold text-[#3B214F]">{GALLERY_ITEMS.length}</p>
+                <p className="text-3xl font-serif font-bold text-[#3B214F]">{galleryList.length}</p>
                 <p className="text-xs text-[#716A73]">Event Albums & Outreaches</p>
               </div>
 
@@ -438,31 +675,67 @@ export default function AdminDashboardPage() {
               </div>
             </div>
 
-            {/* Recent Articles & Quick Actions */}
-            <div className="bg-white p-6 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-4">
-              <div className="flex justify-between items-center">
-                <h3 className="text-lg font-serif font-bold text-[#3B214F]">Recent Articles</h3>
-                <button
-                  onClick={() => { setActiveTab('articles'); setShowArticleModal(true); }}
-                  className="bg-[#6E3A82] text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 hover:bg-[#8B4FA0]"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  Add New Story
-                </button>
+            {/* Quick Actions & Recent Gallery */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Recent Articles */}
+              <div className="bg-white p-6 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-4">
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-serif font-bold text-[#3B214F]">Recent Articles</h3>
+                  <button
+                    onClick={() => { setActiveTab('articles'); setShowArticleModal(true); }}
+                    className="bg-[#6E3A82] text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 hover:bg-[#8B4FA0]"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    Add Story
+                  </button>
+                </div>
+
+                <div className="divide-y divide-[#E8DDF0]">
+                  {articlesList.slice(0, 3).map((art) => (
+                    <div key={art.id} className="py-3 flex justify-between items-center text-sm">
+                      <div>
+                        <p className="font-semibold text-[#3B214F]">{art.title}</p>
+                        <span className="text-xs text-[#716A73]">{art.category} • {art.publishedAt}</span>
+                      </div>
+                      <span className="text-xs font-medium px-3 py-1 bg-[#F4ECF7] text-[#6E3A82] rounded-full">
+                        Published
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <div className="divide-y divide-[#E8DDF0]">
-                {articlesList.slice(0, 3).map((art) => (
-                  <div key={art.id} className="py-3 flex justify-between items-center text-sm">
-                    <div>
-                      <p className="font-semibold text-[#3B214F]">{art.title}</p>
-                      <span className="text-xs text-[#716A73]">{art.category} • {art.publishedAt}</span>
+              {/* Recent Gallery Highlights */}
+              <div className="bg-white p-6 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-4">
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-serif font-bold text-[#3B214F]">Media Gallery Albums</h3>
+                  <button
+                    onClick={() => { setActiveTab('gallery'); openNewGalleryModal(); }}
+                    className="bg-[#6E3A82] text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 hover:bg-[#8B4FA0]"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    Upload Album
+                  </button>
+                </div>
+
+                <div className="divide-y divide-[#E8DDF0]">
+                  {galleryList.slice(0, 3).map((item) => (
+                    <div key={item.id} className="py-3 flex items-center justify-between text-sm gap-3">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className="relative w-12 h-10 rounded-lg overflow-hidden bg-gray-100 shrink-0">
+                          <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-semibold text-[#3B214F] truncate">{item.title}</p>
+                          <span className="text-xs text-[#716A73]">{item.category} • {item.date}</span>
+                        </div>
+                      </div>
+                      <span className="text-[11px] font-semibold px-2.5 py-1 bg-[#F4ECF7] text-[#6E3A82] rounded-full shrink-0">
+                        {item.photoCount || (item.photos?.length || 1)} Photos
+                      </span>
                     </div>
-                    <span className="text-xs font-medium px-3 py-1 bg-[#F4ECF7] text-[#6E3A82] rounded-full">
-                      Published
-                    </span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -528,6 +801,166 @@ export default function AdminDashboardPage() {
                 </div>
               ))}
             </div>
+          </div>
+        )}
+
+        {/* GALLERY TAB */}
+        {activeTab === 'gallery' && (
+          <div className="space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h1 className="text-2xl font-serif font-bold text-[#3B214F]">Media Gallery Management</h1>
+                <p className="text-xs text-[#716A73]">
+                  Upload and manage photo albums across the 5 core foundation categories.
+                </p>
+              </div>
+              <button
+                onClick={openNewGalleryModal}
+                className="bg-[#6E3A82] text-white text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2 hover:bg-[#8B4FA0] self-start sm:self-auto shadow-md transition-all"
+              >
+                <Plus className="w-4 h-4" />
+                Upload New Album
+              </button>
+            </div>
+
+            {/* Category Filter Pills */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-[#E8DDF0]">
+              <button
+                onClick={() => setGalleryCategoryFilter('All')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all ${
+                  galleryCategoryFilter === 'All'
+                    ? 'bg-[#6E3A82] text-white shadow-sm font-semibold'
+                    : 'bg-white border border-[#E8DDF0] text-[#3B214F] hover:border-[#6E3A82]'
+                }`}
+              >
+                All Categories ({galleryList.length})
+              </button>
+              {GALLERY_CATEGORIES.map((cat) => {
+                const count = galleryList.filter((g) => g.category === cat).length;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setGalleryCategoryFilter(cat)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all ${
+                      galleryCategoryFilter === cat
+                        ? 'bg-[#6E3A82] text-white shadow-sm font-semibold'
+                        : 'bg-white border border-[#E8DDF0] text-[#3B214F] hover:border-[#6E3A82]'
+                    }`}
+                  >
+                    {cat} ({count})
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Gallery Albums Grid */}
+            {galleryList.filter((g) => galleryCategoryFilter === 'All' || g.category === galleryCategoryFilter).length === 0 ? (
+              <div className="bg-white rounded-2xl border border-[#E8DDF0] p-12 text-center space-y-3">
+                <ImageIcon className="w-10 h-10 text-[#C5A8D8] mx-auto" />
+                <h3 className="font-serif font-bold text-lg text-[#3B214F]">No albums in this category</h3>
+                <p className="text-xs text-[#716A73]">Click &quot;Upload New Album&quot; to add photos to {galleryCategoryFilter}.</p>
+                <button
+                  onClick={openNewGalleryModal}
+                  className="bg-[#6E3A82] text-white text-xs font-semibold px-4 py-2 rounded-xl inline-flex items-center gap-1.5 hover:bg-[#8B4FA0]"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  Add First Album
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {galleryList
+                  .filter((g) => galleryCategoryFilter === 'All' || g.category === galleryCategoryFilter)
+                  .map((item) => (
+                    <div
+                      key={item.id}
+                      className="bg-white rounded-2xl border border-[#E8DDF0] shadow-sm overflow-hidden flex flex-col justify-between hover:border-[#6E3A82]/50 transition-all group"
+                    >
+                      <div className="space-y-3">
+                        {/* Cover Image & Count Badge */}
+                        <div className="relative aspect-[16/10] w-full bg-[#1a0f22] overflow-hidden">
+                          <img
+                            src={item.imageUrl}
+                            alt={item.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute top-3 left-3">
+                            <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold tracking-wider uppercase bg-[#3B214F]/90 text-white backdrop-blur-sm border border-white/20">
+                              {item.category}
+                            </span>
+                          </div>
+                          <div className="absolute bottom-3 right-3">
+                            <span className="px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-black/60 text-white backdrop-blur-sm flex items-center gap-1">
+                              <ImageIcon className="w-3 h-3" />
+                              {item.photos?.length || item.photoCount || 1} Photos
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Album Info */}
+                        <div className="p-4 space-y-2">
+                          <div className="flex items-center gap-2 text-[11px] text-[#A088B0] font-medium">
+                            <span className="flex items-center gap-1">
+                              <MapPin className="w-3 h-3 text-[#6E3A82]" />
+                              {item.location}
+                            </span>
+                            <span>•</span>
+                            <span className="flex items-center gap-1">
+                              <Calendar className="w-3 h-3 text-[#6E3A82]" />
+                              {item.date}
+                            </span>
+                          </div>
+
+                          <h3 className="font-serif font-bold text-base text-[#3B214F] line-clamp-1">
+                            {item.title}
+                          </h3>
+
+                          {item.caption && (
+                            <p className="text-xs text-[#716A73] line-clamp-2 leading-relaxed">
+                              {item.caption}
+                            </p>
+                          )}
+
+                          {item.impactHighlight && (
+                            <div className="pt-1">
+                              <span className="text-[11px] font-semibold text-[#6E3A82] bg-[#F4ECF7] px-2.5 py-0.5 rounded-md inline-block">
+                                ✨ {item.impactHighlight}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="p-4 pt-2 border-t border-[#E8DDF0] flex items-center justify-between text-xs">
+                        <Link
+                          href={`/gallery/${item.slug}`}
+                          target="_blank"
+                          className="text-[#6E3A82] hover:text-[#3B214F] font-semibold flex items-center gap-1 text-[11px]"
+                        >
+                          View Live <ExternalLink className="w-3 h-3" />
+                        </Link>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => openEditGalleryModal(item)}
+                            className="px-2.5 py-1 bg-[#F4ECF7] text-[#6E3A82] hover:bg-[#6E3A82] hover:text-white rounded-lg font-semibold transition-colors flex items-center gap-1 text-[11px]"
+                          >
+                            <Edit3 className="w-3 h-3" />
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDeleteGallery(item.id)}
+                            className="px-2.5 py-1 bg-red-50 text-red-600 hover:bg-red-600 hover:text-white rounded-lg font-semibold transition-colors flex items-center gap-1 text-[11px]"
+                          >
+                            <Trash2 className="w-3 h-3" />
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            )}
           </div>
         )}
 
@@ -829,6 +1262,295 @@ export default function AdminDashboardPage() {
                     className="px-5 py-2 rounded-xl text-xs font-semibold bg-[#6E3A82] text-white hover:bg-[#8B4FA0] shadow-md"
                   >
                     {editingArticleId ? 'Save Changes' : 'Publish Article'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {/* Modal: Add/Edit Gallery Album */}
+        {showGalleryModal && (
+          <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="bg-white max-w-2xl w-full rounded-3xl p-6 sm:p-8 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto border border-[#E8DDF0]">
+              <div className="flex justify-between items-center pb-3 border-b border-[#E8DDF0]">
+                <div>
+                  <h2 className="text-xl font-serif font-bold text-[#3B214F]">
+                    {editingGalleryId ? 'Edit Gallery Album' : 'Upload New Gallery Album'}
+                  </h2>
+                  <p className="text-xs text-[#716A73] mt-0.5">
+                    Categorize and publish photography into the foundation media archives.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setShowGalleryModal(false)}
+                  className="p-1.5 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <form onSubmit={handleSaveGallery} className="space-y-5 text-xs">
+                {/* Title */}
+                <div>
+                  <label className="block font-semibold text-[#3B214F] mb-1">
+                    Album / Event Title <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={galleryForm.title}
+                    onChange={(e) => setGalleryForm({ ...galleryForm, title: e.target.value })}
+                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F] focus:outline-none focus:ring-2 focus:ring-[#6E3A82]"
+                    placeholder="e.g. Grassroots Digital Skills & STEM Bootcamp 2026…"
+                  />
+                </div>
+
+                {/* Category Selection */}
+                <div>
+                  <label className="block font-semibold text-[#3B214F] mb-1">
+                    Gallery Category <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    value={galleryForm.category}
+                    onChange={(e) => setGalleryForm({ ...galleryForm, category: e.target.value as any })}
+                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F] font-medium focus:outline-none focus:ring-2 focus:ring-[#6E3A82]"
+                  >
+                    {GALLERY_CATEGORIES.map((cat, idx) => (
+                      <option key={cat} value={cat}>
+                        {idx + 1}. {cat}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="text-[10px] text-[#A088B0] mt-1">
+                    Choose one of the 5 official foundation program areas.
+                  </p>
+                </div>
+
+                {/* Date & Location Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block font-semibold text-[#3B214F] mb-1">Date</label>
+                    <input
+                      type="text"
+                      value={galleryForm.date}
+                      onChange={(e) => setGalleryForm({ ...galleryForm, date: e.target.value })}
+                      className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F]"
+                      placeholder="e.g. October 2026 or October 12, 2026"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-semibold text-[#3B214F] mb-1">Location</label>
+                    <input
+                      type="text"
+                      value={galleryForm.location}
+                      onChange={(e) => setGalleryForm({ ...galleryForm, location: e.target.value })}
+                      className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F]"
+                      placeholder="e.g. Kumasi, Ashanti Region"
+                    />
+                  </div>
+                </div>
+
+                {/* Impact Highlight */}
+                <div>
+                  <label className="block font-semibold text-[#3B214F] mb-1">
+                    Impact Highlight / Milestone (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    value={galleryForm.impactHighlight}
+                    onChange={(e) => setGalleryForm({ ...galleryForm, impactHighlight: e.target.value })}
+                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F]"
+                    placeholder="e.g. 250+ Girls Mentored or 150 Seed Grants Distributed"
+                  />
+                </div>
+
+                {/* Caption / Story */}
+                <div>
+                  <label className="block font-semibold text-[#3B214F] mb-1">
+                    Album Story / Caption
+                  </label>
+                  <textarea
+                    rows={3}
+                    value={galleryForm.caption}
+                    onChange={(e) => setGalleryForm({ ...galleryForm, caption: e.target.value })}
+                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F]"
+                    placeholder="Provide context about what took place during this event or field mission…"
+                  />
+                </div>
+
+                {/* Cover Photograph Section */}
+                <div className="space-y-3 bg-[#FAF8F5] p-4 rounded-2xl border border-[#E8DDF0]">
+                  <div className="flex justify-between items-center">
+                    <label className="block font-semibold text-[#3B214F]">
+                      Main Cover Photograph <span className="text-red-500">*</span>
+                    </label>
+                    <span className="text-[10px] text-[#A088B0]">Primary hero thumbnail</span>
+                  </div>
+
+                  {galleryForm.imageUrl && (
+                    <div className="relative w-full h-44 rounded-xl overflow-hidden bg-gray-200 border border-[#E8DDF0]">
+                      <img
+                        src={galleryForm.imageUrl}
+                        alt="Album Cover Preview"
+                        className="w-full h-full object-cover"
+                      />
+                      <span className="absolute bottom-2 left-2 bg-black/60 text-white text-[10px] px-2.5 py-0.5 rounded backdrop-blur-sm">
+                        Current Cover
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Upload from Computer Button */}
+                  <div>
+                    <input
+                      ref={galleryCoverInputRef}
+                      type="file"
+                      accept="image/jpeg,image/jpg,image/png,image/webp,image/gif"
+                      onChange={handleGalleryCoverUpload}
+                      className="hidden"
+                      id="gallery-cover-file-input"
+                    />
+                    <button
+                      type="button"
+                      disabled={isGalleryUploading}
+                      onClick={() => galleryCoverInputRef.current?.click()}
+                      className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl border-2 border-dashed text-xs font-semibold transition-all ${
+                        isGalleryUploading
+                          ? 'border-[#6E3A82]/40 text-[#A088B0] cursor-not-allowed bg-[#F4ECF7]/50'
+                          : 'border-[#6E3A82]/50 text-[#6E3A82] hover:bg-[#F4ECF7] hover:border-[#6E3A82] cursor-pointer bg-white'
+                      }`}
+                    >
+                      {isGalleryUploading ? (
+                        <>
+                          <span className="w-4 h-4 border-2 border-[#6E3A82] border-t-transparent rounded-full animate-spin" />
+                          Uploading Cover Photo…
+                        </>
+                      ) : (
+                        <>
+                          <Upload className="w-4 h-4 text-[#6E3A82]" />
+                          Upload Cover Image from Computer (JPG, PNG, WebP)
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Quick Select from Library */}
+                  <div>
+                    <span className="block text-[11px] font-medium text-[#716A73] mb-1.5">
+                      Or select from Media Library:
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {SAMPLE_IMAGES.map((img) => (
+                        <button
+                          key={img.url}
+                          type="button"
+                          onClick={() => setGalleryForm({ ...galleryForm, imageUrl: img.url })}
+                          className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all ${
+                            galleryForm.imageUrl === img.url
+                              ? 'bg-[#6E3A82] text-white font-semibold shadow-sm'
+                              : 'bg-white border border-[#E8DDF0] text-[#3B214F] hover:border-[#6E3A82]'
+                          }`}
+                        >
+                          {img.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-medium text-[#716A73] mb-1">
+                      Or custom Image URL:
+                    </label>
+                    <input
+                      type="text"
+                      value={galleryForm.imageUrl}
+                      onChange={(e) => setGalleryForm({ ...galleryForm, imageUrl: e.target.value })}
+                      className="w-full bg-white border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                      placeholder="/images/uploads/my_photo.jpg"
+                    />
+                  </div>
+                </div>
+
+                {/* Additional Album Photos */}
+                <div className="space-y-3 bg-[#FAF8F5] p-4 rounded-2xl border border-[#E8DDF0]">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <label className="block font-semibold text-[#3B214F]">
+                        Additional Album Photos ({galleryForm.photos.length})
+                      </label>
+                      <p className="text-[10px] text-[#A088B0]">
+                        Include multiple photos to create a full multi-shot album viewable in the lightbox & album page.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Multi-file Upload Input */}
+                  <input
+                    ref={galleryExtraPhotosInputRef}
+                    type="file"
+                    multiple
+                    accept="image/jpeg,image/jpg,image/png,image/webp,image/gif"
+                    onChange={handleGalleryExtraPhotosUpload}
+                    className="hidden"
+                    id="gallery-multi-file-input"
+                  />
+                  <button
+                    type="button"
+                    disabled={isGalleryUploading}
+                    onClick={() => galleryExtraPhotosInputRef.current?.click()}
+                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-[#6E3A82]/30 text-[#6E3A82] hover:bg-[#F4ECF7] text-xs font-semibold bg-white transition-all"
+                  >
+                    <FolderPlus className="w-4 h-4" />
+                    + Upload Additional Photos to Album (Select Multiple Files)
+                  </button>
+
+                  {/* Thumbnails of current photos */}
+                  {galleryForm.photos.length > 0 && (
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
+                      {galleryForm.photos.map((photo, pIdx) => (
+                        <div
+                          key={photo.id || pIdx}
+                          className="relative aspect-video rounded-lg overflow-hidden border border-[#E8DDF0] group/thumb bg-black"
+                        >
+                          <img src={photo.url} alt="album photo" className="w-full h-full object-cover" />
+                          <button
+                            type="button"
+                            onClick={() => handleRemovePhotoFromAlbum(pIdx)}
+                            className="absolute top-1 right-1 bg-red-600/90 text-white rounded p-1 opacity-0 group-hover/thumb:opacity-100 transition-opacity"
+                            title="Remove photo"
+                          >
+                            <Trash2 className="w-3 h-3" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setGalleryForm({ ...galleryForm, imageUrl: photo.url })}
+                            className="absolute bottom-1 left-1 bg-black/70 text-white text-[9px] px-1.5 py-0.5 rounded opacity-0 group-hover/thumb:opacity-100 transition-opacity"
+                            title="Set as main cover"
+                          >
+                            Set as Cover
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Form Action Buttons */}
+                <div className="flex justify-end gap-3 pt-4 border-t border-[#E8DDF0]">
+                  <button
+                    type="button"
+                    onClick={() => setShowGalleryModal(false)}
+                    className="px-4 py-2 rounded-xl text-xs font-semibold text-[#716A73] hover:bg-gray-100 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-6 py-2.5 rounded-xl text-xs font-semibold bg-[#6E3A82] text-white hover:bg-[#8B4FA0] shadow-md transition-all flex items-center gap-1.5"
+                  >
+                    <CheckCircle className="w-4 h-4" />
+                    {editingGalleryId ? 'Save Album Changes' : 'Publish Gallery Album'}
                   </button>
                 </div>
               </form>

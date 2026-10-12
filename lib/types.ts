@@ -112,7 +112,7 @@ export interface GalleryItem {
   id: string;
   slug: string;
   title: string;
-  category: 'Outreaches' | 'Conferences' | 'Scholarships' | 'Faith & Renewal';
+  category: 'Community Outreach' | 'Faith and Spiritual Development' | 'Leadership Development' | 'School Outreaches' | 'Women Empowerment';
   date: string;
   location: string;
   imageUrl: string;

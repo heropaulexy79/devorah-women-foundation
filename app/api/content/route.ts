@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { activeSessions } from '@/lib/sessions';
 import { ARTICLES, IMPACT_METRICS, PROGRAMS, GALLERY_ITEMS } from '@/lib/data';
-import type { Article, ImpactMetric } from '@/lib/types';
+import type { Article, ImpactMetric, GalleryItem } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
 
@@ -60,11 +60,26 @@ function isAllowedCategory(val: unknown): val is AllowedCategory {
   return typeof val === 'string' && (ALLOWED_CATEGORIES as readonly string[]).includes(val);
 }
 
+// ── Allowed gallery categories ─────────────────────────────────────────────
+const ALLOWED_GALLERY_CATEGORIES = [
+  'Community Outreach',
+  'Faith and Spiritual Development',
+  'Leadership Development',
+  'School Outreaches',
+  'Women Empowerment',
+] as const;
+
+type AllowedGalleryCategory = typeof ALLOWED_GALLERY_CATEGORIES[number];
+
+function isAllowedGalleryCategory(val: unknown): val is AllowedGalleryCategory {
+  return typeof val === 'string' && (ALLOWED_GALLERY_CATEGORIES as readonly string[]).includes(val);
+}
+
 // ── In-memory runtime cache ────────────────────────────────────────────────
 let currentArticles: Article[] = [...ARTICLES];
 let currentMetrics: ImpactMetric[] = [...IMPACT_METRICS];
 const currentPrograms = [...PROGRAMS];
-const currentGallery = [...GALLERY_ITEMS];
+let currentGallery: GalleryItem[] = [...GALLERY_ITEMS];
 
 // ── Field sanitizer (prevent mass assignment) ──────────────────────────────
 function sanitizeArticlePayload(payload: Record<string, unknown>) {
@@ -77,6 +92,28 @@ function sanitizeArticlePayload(payload: Record<string, unknown>) {
     authorName: String(payload.authorName ?? '').slice(0, 200),
     authorRole: String(payload.authorRole ?? '').slice(0, 200),
     featuredImageUrl: String(payload.featuredImageUrl ?? '').slice(0, 500),
+  };
+}
+
+function sanitizeGalleryPayload(payload: Record<string, unknown>) {
+  const rawPhotos = Array.isArray(payload.photos) ? payload.photos : [];
+  const photos = rawPhotos.slice(0, 30).map((p: any, idx: number) => ({
+    id: String(p?.id || `photo-${Date.now()}-${idx}`),
+    url: String(p?.url || '').slice(0, 500),
+    caption: p?.caption ? String(p.caption).slice(0, 300) : undefined,
+  })).filter((p: any) => p.url.trim().length > 0);
+
+  return {
+    title: String(payload.title ?? '').slice(0, 300),
+    category: isAllowedGalleryCategory(payload.category)
+      ? (payload.category as AllowedGalleryCategory)
+      : ('Community Outreach' as AllowedGalleryCategory),
+    date: String(payload.date ?? '').slice(0, 100),
+    location: String(payload.location ?? '').slice(0, 200),
+    imageUrl: String(payload.imageUrl ?? '').slice(0, 500),
+    caption: String(payload.caption ?? '').slice(0, 1000),
+    impactHighlight: payload.impactHighlight ? String(payload.impactHighlight).slice(0, 200) : undefined,
+    photos,
   };
 }
 
@@ -188,6 +225,74 @@ export async function POST(req: Request) {
         description: String(m.description ?? '').slice(0, 200),
       }));
       return NextResponse.json({ success: true, metrics: currentMetrics });
+    }
+
+    if (action === 'add_gallery') {
+      const safe = sanitizeGalleryPayload(payload || {});
+      if (!safe.title) return NextResponse.json({ success: false, message: 'Title required' }, { status: 400 });
+      if (!safe.imageUrl && safe.photos.length === 0) {
+        return NextResponse.json({ success: false, message: 'Cover image required' }, { status: 400 });
+      }
+
+      const coverImage = safe.imageUrl || safe.photos[0]?.url;
+      const slug = safe.title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)+/g, '') || `album-${Date.now()}`;
+
+      const newGalleryItem: GalleryItem = {
+        id: `gal-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        slug,
+        title: safe.title,
+        category: safe.category,
+        date: safe.date || new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+        location: safe.location || 'Ghana',
+        imageUrl: coverImage,
+        caption: safe.caption,
+        impactHighlight: safe.impactHighlight,
+        photoCount: safe.photos.length > 0 ? safe.photos.length : 1,
+        photos: safe.photos.length > 0 ? safe.photos : [{ id: `photo-${Date.now()}-0`, url: coverImage, caption: safe.caption }],
+      };
+
+      currentGallery.unshift(newGalleryItem);
+      return NextResponse.json({ success: true, galleryItem: newGalleryItem });
+    }
+
+    if (action === 'update_gallery') {
+      if (!payload?.id || typeof payload.id !== 'string') {
+        return NextResponse.json({ success: false, message: 'Gallery item ID required' }, { status: 400 });
+      }
+      const index = currentGallery.findIndex((g) => g.id === payload.id);
+      if (index === -1) {
+        return NextResponse.json({ success: false, message: 'Gallery item not found' }, { status: 404 });
+      }
+      const safe = sanitizeGalleryPayload(payload);
+      const existing = currentGallery[index];
+      const coverImage = safe.imageUrl || safe.photos[0]?.url || existing.imageUrl;
+      const photos = safe.photos.length > 0 ? safe.photos : existing.photos;
+
+      currentGallery[index] = {
+        ...existing,
+        title: safe.title || existing.title,
+        category: safe.category,
+        date: safe.date || existing.date,
+        location: safe.location || existing.location,
+        imageUrl: coverImage,
+        caption: safe.caption || existing.caption,
+        impactHighlight: safe.impactHighlight ?? existing.impactHighlight,
+        photoCount: photos?.length || 1,
+        photos,
+      };
+
+      return NextResponse.json({ success: true, galleryItem: currentGallery[index] });
+    }
+
+    if (action === 'delete_gallery') {
+      if (!payload?.id || typeof payload.id !== 'string') {
+        return NextResponse.json({ success: false, message: 'Gallery item ID required' }, { status: 400 });
+      }
+      currentGallery = currentGallery.filter((g) => g.id !== payload.id);
+      return NextResponse.json({ success: true });
     }
 
     return NextResponse.json({ success: false, message: 'Unknown action' }, { status: 400 });
