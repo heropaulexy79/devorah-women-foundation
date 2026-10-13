@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { activeSessions } from '@/lib/sessions';
 import { ARTICLES, IMPACT_METRICS, PROGRAMS, GALLERY_ITEMS } from '@/lib/data';
 import type { Article, ImpactMetric, GalleryItem } from '@/lib/types';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { join } from 'path';
 
 export const dynamic = 'force-dynamic';
 
@@ -75,11 +77,47 @@ function isAllowedGalleryCategory(val: unknown): val is AllowedGalleryCategory {
   return typeof val === 'string' && (ALLOWED_GALLERY_CATEGORIES as readonly string[]).includes(val);
 }
 
-// ── In-memory runtime cache ────────────────────────────────────────────────
-let currentArticles: Article[] = [...ARTICLES];
-let currentMetrics: ImpactMetric[] = [...IMPACT_METRICS];
-const currentPrograms = [...PROGRAMS];
-let currentGallery: GalleryItem[] = [...GALLERY_ITEMS];
+// ── File-system persistence (survives server restarts) ────────────────────
+const DATA_DIR = join(process.cwd(), '.cms-data');
+const STORE_PATH = join(DATA_DIR, 'store.json');
+
+interface CmsStore {
+  articles: Article[];
+  metrics: ImpactMetric[];
+  gallery: GalleryItem[];
+}
+
+function readStore(): CmsStore {
+  try {
+    if (existsSync(STORE_PATH)) {
+      const raw = readFileSync(STORE_PATH, 'utf-8');
+      return JSON.parse(raw) as CmsStore;
+    }
+  } catch {
+    // fallback to static data if store is corrupt
+  }
+  return {
+    articles: [...ARTICLES],
+    metrics: [...IMPACT_METRICS],
+    gallery: [...GALLERY_ITEMS],
+  };
+}
+
+function writeStore(store: CmsStore): void {
+  try {
+    if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
+    writeFileSync(STORE_PATH, JSON.stringify(store, null, 2), 'utf-8');
+  } catch {
+    // non-fatal — in-memory values still work for the current session
+  }
+}
+
+// ── In-memory cache (loaded from disk on first request) ───────────────────
+const _store = readStore();
+let currentArticles: Article[] = _store.articles;
+let currentMetrics: ImpactMetric[] = _store.metrics;
+const currentPrograms = [...PROGRAMS];  // programs are code-only, not CMS-managed
+let currentGallery: GalleryItem[] = _store.gallery;
 
 // ── Field sanitizer (prevent mass assignment) ──────────────────────────────
 function sanitizeArticlePayload(payload: Record<string, unknown>) {
@@ -177,6 +215,7 @@ export async function POST(req: Request) {
         featuredImageUrl: safe.featuredImageUrl,
       };
       currentArticles.unshift(newArticle);
+      writeStore({ articles: currentArticles, metrics: currentMetrics, gallery: currentGallery });
       return NextResponse.json({ success: true, article: newArticle });
     }
 
@@ -203,6 +242,7 @@ export async function POST(req: Request) {
           role: safe.authorRole || currentArticles[index].author.role,
         },
       };
+      writeStore({ articles: currentArticles, metrics: currentMetrics, gallery: currentGallery });
       return NextResponse.json({ success: true, article: currentArticles[index] });
     }
 
@@ -211,6 +251,7 @@ export async function POST(req: Request) {
         return NextResponse.json({ success: false, message: 'Article ID required' }, { status: 400 });
       }
       currentArticles = currentArticles.filter((a) => a.id !== payload.id);
+      writeStore({ articles: currentArticles, metrics: currentMetrics, gallery: currentGallery });
       return NextResponse.json({ success: true });
     }
 
@@ -224,6 +265,7 @@ export async function POST(req: Request) {
         label: String(m.label ?? '').slice(0, 100),
         description: String(m.description ?? '').slice(0, 200),
       }));
+      writeStore({ articles: currentArticles, metrics: currentMetrics, gallery: currentGallery });
       return NextResponse.json({ success: true, metrics: currentMetrics });
     }
 
@@ -255,6 +297,7 @@ export async function POST(req: Request) {
       };
 
       currentGallery.unshift(newGalleryItem);
+      writeStore({ articles: currentArticles, metrics: currentMetrics, gallery: currentGallery });
       return NextResponse.json({ success: true, galleryItem: newGalleryItem });
     }
 
@@ -284,6 +327,7 @@ export async function POST(req: Request) {
         photos,
       };
 
+      writeStore({ articles: currentArticles, metrics: currentMetrics, gallery: currentGallery });
       return NextResponse.json({ success: true, galleryItem: currentGallery[index] });
     }
 
@@ -292,6 +336,7 @@ export async function POST(req: Request) {
         return NextResponse.json({ success: false, message: 'Gallery item ID required' }, { status: 400 });
       }
       currentGallery = currentGallery.filter((g) => g.id !== payload.id);
+      writeStore({ articles: currentArticles, metrics: currentMetrics, gallery: currentGallery });
       return NextResponse.json({ success: true });
     }
 

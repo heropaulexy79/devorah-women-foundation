@@ -56,8 +56,9 @@ export default function AdminDashboardPage() {
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Upload state (Gallery Cover & Additional Photos)
-  const [isGalleryUploading, setIsGalleryUploading] = useState(false);
+  // Upload state (Gallery Cover & Additional Photos — split so they don't block each other)
+  const [isGalleryCoverUploading, setIsGalleryCoverUploading] = useState(false);
+  const [isGalleryExtraUploading, setIsGalleryExtraUploading] = useState(false);
   const galleryCoverInputRef = useRef<HTMLInputElement>(null);
   const galleryExtraPhotosInputRef = useRef<HTMLInputElement>(null);
 
@@ -236,20 +237,28 @@ export default function AdminDashboardPage() {
   const handleGalleryCoverUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    setIsGalleryUploading(true);
+    setIsGalleryCoverUploading(true);
     try {
       const form = new FormData();
       form.append('file', file);
       const res = await fetch('/api/upload', { method: 'POST', body: form });
       const data = await res.json();
       if (data.success) {
-        setGalleryForm((prev) => ({
-          ...prev,
-          imageUrl: data.url,
-          photos: prev.photos.length === 0
-            ? [{ id: `photo-${Date.now()}`, url: data.url, caption: prev.caption }]
-            : prev.photos,
-        }));
+        setGalleryForm((prev) => {
+          // If photos array is empty, seed it with the cover
+          if (prev.photos.length === 0) {
+            return {
+              ...prev,
+              imageUrl: data.url,
+              photos: [{ id: `photo-${Date.now()}`, url: data.url, caption: prev.caption }],
+            };
+          }
+          // If the current cover was already in the photos array, replace that entry too
+          const updatedPhotos = prev.photos.map((p) =>
+            p.url === prev.imageUrl ? { ...p, url: data.url } : p
+          );
+          return { ...prev, imageUrl: data.url, photos: updatedPhotos };
+        });
         showSuccessNotification('Gallery cover photograph uploaded successfully!');
       } else {
         showSuccessNotification(data.message || 'Cover upload failed');
@@ -257,7 +266,7 @@ export default function AdminDashboardPage() {
     } catch {
       showSuccessNotification('Cover upload failed. Please try again.');
     } finally {
-      setIsGalleryUploading(false);
+      setIsGalleryCoverUploading(false);
       if (galleryCoverInputRef.current) galleryCoverInputRef.current.value = '';
     }
   };
@@ -265,10 +274,11 @@ export default function AdminDashboardPage() {
   const handleGalleryExtraPhotosUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
-    setIsGalleryUploading(true);
+    setIsGalleryExtraUploading(true);
     let uploadedCount = 0;
     try {
-      const newPhotosList = [...galleryForm.photos];
+      // Upload all files and collect results before setting state once
+      const newPhotos: { id: string; url: string; caption: string }[] = [];
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const form = new FormData();
@@ -277,19 +287,20 @@ export default function AdminDashboardPage() {
         const data = await res.json();
         if (data.success) {
           uploadedCount++;
-          newPhotosList.push({
+          newPhotos.push({
             id: `photo-${Date.now()}-${i}`,
             url: data.url,
             caption: '',
           });
         }
       }
-      setGalleryForm((prev) => ({ ...prev, photos: newPhotosList }));
+      // Batch state update after all uploads complete
+      setGalleryForm((prev) => ({ ...prev, photos: [...prev.photos, ...newPhotos] }));
       showSuccessNotification(`${uploadedCount} photograph(s) uploaded to album!`);
     } catch {
       showSuccessNotification('Upload failed for additional photos');
     } finally {
-      setIsGalleryUploading(false);
+      setIsGalleryExtraUploading(false);
       if (galleryExtraPhotosInputRef.current) galleryExtraPhotosInputRef.current.value = '';
     }
   };
@@ -1413,15 +1424,15 @@ export default function AdminDashboardPage() {
                     />
                     <button
                       type="button"
-                      disabled={isGalleryUploading}
+                      disabled={isGalleryCoverUploading}
                       onClick={() => galleryCoverInputRef.current?.click()}
                       className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl border-2 border-dashed text-xs font-semibold transition-all ${
-                        isGalleryUploading
+                        isGalleryCoverUploading
                           ? 'border-[#6E3A82]/40 text-[#A088B0] cursor-not-allowed bg-[#F4ECF7]/50'
                           : 'border-[#6E3A82]/50 text-[#6E3A82] hover:bg-[#F4ECF7] hover:border-[#6E3A82] cursor-pointer bg-white'
                       }`}
                     >
-                      {isGalleryUploading ? (
+                      {isGalleryCoverUploading ? (
                         <>
                           <span className="w-4 h-4 border-2 border-[#6E3A82] border-t-transparent rounded-full animate-spin" />
                           Uploading Cover Photo…
@@ -1497,12 +1508,25 @@ export default function AdminDashboardPage() {
                   />
                   <button
                     type="button"
-                    disabled={isGalleryUploading}
+                    disabled={isGalleryExtraUploading}
                     onClick={() => galleryExtraPhotosInputRef.current?.click()}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-[#6E3A82]/30 text-[#6E3A82] hover:bg-[#F4ECF7] text-xs font-semibold bg-white transition-all"
+                    className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border text-xs font-semibold transition-all ${
+                      isGalleryExtraUploading
+                        ? 'border-[#6E3A82]/20 text-[#A088B0] cursor-not-allowed bg-[#F4ECF7]/50'
+                        : 'border-[#6E3A82]/30 text-[#6E3A82] hover:bg-[#F4ECF7] bg-white'
+                    }`}
                   >
-                    <FolderPlus className="w-4 h-4" />
-                    + Upload Additional Photos to Album (Select Multiple Files)
+                    {isGalleryExtraUploading ? (
+                      <>
+                        <span className="w-4 h-4 border-2 border-[#6E3A82] border-t-transparent rounded-full animate-spin" />
+                        Uploading Photos…
+                      </>
+                    ) : (
+                      <>
+                        <FolderPlus className="w-4 h-4" />
+                        + Upload Additional Photos to Album (Select Multiple Files)
+                      </>
+                    )}
                   </button>
 
                   {/* Thumbnails of current photos */}
