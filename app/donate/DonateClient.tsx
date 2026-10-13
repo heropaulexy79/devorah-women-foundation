@@ -240,17 +240,17 @@ export default function DonateClient() {
             { display_name: 'Anonymous Donor', variable_name: 'is_anonymous', value: isAnonymous ? 'Yes' : 'No' },
           ],
         },
-        callback: async (response) => {
+        callback: function (response: { reference: string; status?: string }) {
           setLoading(false);
-          if (response.status === 'success' || response.reference) {
+          if (response && (response.status === 'success' || response.reference)) {
             setIsDemoMode(false);
             setSuccessRef(response.reference);
-            await recordDonation(response.reference, false);
+            recordDonation(response.reference, false);
           } else {
             setErrorMsg('Payment could not be confirmed. Please try again.');
           }
         },
-        onClose: () => {
+        onClose: function () {
           setLoading(false);
         },
       });
