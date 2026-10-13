@@ -209,9 +209,15 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                   <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-[#3B214F] mb-4">
                     <Image src={rel.featuredImageUrl} alt={rel.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-[#E8DDF0] text-[#6E3A82]">
-                    {rel.category}
-                  </span>
+                  <div className="flex items-center justify-between gap-2 mt-2">
+                    <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-[#E8DDF0] text-[#6E3A82]">
+                      {rel.category}
+                    </span>
+                    <span className="text-[11px] text-[#716A73] flex items-center gap-1 font-medium">
+                      <Calendar className="w-3 h-3 text-[#6E3A82]" />
+                      {rel.publishedAt}
+                    </span>
+                  </div>
                   <h4 className="font-serif text-lg font-bold text-[#3B214F] group-hover:text-[#6E3A82] transition-colors mt-2 leading-snug">
                     {rel.title}
                   </h4>

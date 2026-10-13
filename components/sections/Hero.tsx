@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Pause, Play, Heart } from 'lucide-react';
 
 const SLIDES = [
   {
@@ -15,10 +15,10 @@ const SLIDES = [
     titleLine3: 'Global Impact.',
     supportingText:
       'Devorah Global Women is a faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women.',
-    primaryCtaText: 'Explore Our Work',
-    primaryCtaLink: '/programs',
-    secondaryCtaText: 'Become a Partner',
-    secondaryCtaLink: '/partnerships',
+    primaryCtaText: 'Donate Now',
+    primaryCtaLink: '/donate',
+    secondaryCtaText: 'Explore Our Work',
+    secondaryCtaLink: '/programs',
     image: '/images/hero_portrait.png',
   },
   {
@@ -32,7 +32,7 @@ const SLIDES = [
     primaryCtaText: 'Educational Support',
     primaryCtaLink: '/programs/educational-support',
     secondaryCtaText: 'Support a Scholarship',
-    secondaryCtaLink: '/get-involved#support',
+    secondaryCtaLink: '/donate?pillar=educational-support',
     image: '/images/hero_slide_girls.png',
   },
   {
@@ -45,8 +45,8 @@ const SLIDES = [
       'Designed to help women discover their potential, grow in confidence, and develop leadership skills for their homes, workplaces, and communities.',
     primaryCtaText: 'Empowerment & Leadership',
     primaryCtaLink: '/programs/empowerment-leadership',
-    secondaryCtaText: 'Executive Summits',
-    secondaryCtaLink: '/get-involved#events',
+    secondaryCtaText: 'Support Women Leaders',
+    secondaryCtaLink: '/donate?pillar=empowerment-leadership',
     image: '/images/hero_slide_leadership.png',
   },
   {
@@ -59,8 +59,8 @@ const SLIDES = [
       'Building self-sustaining families through micro-enterprise starter incubators, vocational mentorship, and spiritual renewal circles.',
     primaryCtaText: 'See Field Projects',
     primaryCtaLink: '/impact',
-    secondaryCtaText: 'Become a Sponsor',
-    secondaryCtaLink: '/partnerships',
+    secondaryCtaText: 'Donate to Outreach',
+    secondaryCtaLink: '/donate?pillar=community-outreach-support',
     image: '/images/who_we_are.png',
   },
 ];
@@ -175,9 +175,12 @@ export default function Hero() {
               <div className="pt-2 flex flex-wrap items-center gap-5">
                 <Link
                   href={slide.primaryCtaLink}
-                  className="inline-flex items-center bg-[#6E3A82] hover:bg-[#8B4FA0] text-white px-8 py-3.5 rounded-sm text-sm font-semibold tracking-wide transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a0f22] focus-visible:outline-none"
+                  className="inline-flex items-center gap-2 bg-[#6E3A82] hover:bg-[#8B4FA0] text-white px-8 py-3.5 rounded-sm text-sm font-semibold tracking-wide transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a0f22] focus-visible:outline-none shadow-lg shadow-black/20"
                 >
-                  {slide.primaryCtaText}
+                  {slide.primaryCtaLink.startsWith('/donate') && (
+                    <Heart className="w-4 h-4 fill-white/20 text-white" />
+                  )}
+                  <span>{slide.primaryCtaText}</span>
                 </Link>
 
                 <Link

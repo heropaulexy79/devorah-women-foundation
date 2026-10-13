@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Heart } from 'lucide-react';
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
@@ -92,12 +92,13 @@ export default function Navbar() {
         </nav>
 
         {/* Header Actions */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-2 sm:space-x-3">
           <Link
             href="/donate"
-            className="hidden sm:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-sm hover:shadow-md bg-[#6E3A82] hover:bg-[#3B214F] text-white border border-[#C5A8D8]/30 focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a0f22] focus-visible:outline-none"
+            className="inline-flex items-center gap-1.5 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-sm hover:shadow-md bg-[#6E3A82] hover:bg-[#3B214F] text-white border border-[#C5A8D8]/30 focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a0f22] focus-visible:outline-none"
           >
-            Donate
+            <Heart className="w-3.5 h-3.5 fill-white/20 text-white" />
+            <span>Donate</span>
           </Link>
 
           {/* Mobile Menu Toggle */}
@@ -133,11 +134,19 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <div className="pt-5 border-t border-[#E8DDF0]">
+            <div className="pt-5 border-t border-[#E8DDF0] space-y-2.5">
+              <Link
+                href="/donate"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full flex items-center justify-center gap-2 bg-[#6E3A82] hover:bg-[#3B214F] text-white py-3.5 rounded-full font-semibold text-xs uppercase tracking-widest text-center shadow-md transition-colors"
+              >
+                <Heart className="w-4 h-4 fill-white/20 text-white" />
+                <span>Donate Now</span>
+              </Link>
               <Link
                 href="/get-involved"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 bg-[#6E3A82] text-white py-3.5 rounded-full font-semibold text-xs uppercase tracking-widest text-center shadow-md"
+                className="w-full flex items-center justify-center gap-2 border border-[#6E3A82]/30 text-[#3B214F] hover:bg-[#F7F3F8] py-3 rounded-full font-semibold text-xs uppercase tracking-widest text-center transition-colors"
               >
                 Get Involved
               </Link>

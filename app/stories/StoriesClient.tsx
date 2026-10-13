@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import CTASection from '@/components/sections/CTASection';
 import { ARTICLES } from '@/lib/data';
-import { ArrowUpRight, Clock, User, Search } from 'lucide-react';
+import { ArrowUpRight, Clock, User, Search, Calendar } from 'lucide-react';
 import PageHero from '@/components/ui/PageHero';
 
 const CATEGORIES = [
@@ -87,14 +87,20 @@ export default function StoriesClient() {
                 {featuredArticle.excerpt}
               </p>
 
-              <div className="pt-4 border-t border-[#E8DDF0] flex items-center justify-between text-xs text-[#716A73]">
+              <div className="pt-4 border-t border-[#E8DDF0] flex flex-wrap items-center justify-between gap-3 text-xs text-[#716A73]">
                 <div className="flex items-center gap-2">
                   <User className="w-3.5 h-3.5 text-[#6E3A82]" />
                   <span>{featuredArticle.author.name}</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-3.5 h-3.5 text-[#6E3A82]" />
-                  <span>{featuredArticle.readingTime}</span>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-1.5 text-[#6E3A82] font-semibold">
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>{featuredArticle.publishedAt}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5 text-[#6E3A82]" />
+                    <span>{featuredArticle.readingTime}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -151,8 +157,14 @@ export default function StoriesClient() {
                 </p>
 
                 <div className="pt-3 border-t border-[#E8DDF0] flex items-center justify-between text-xs text-[#716A73]">
-                  <span>{article.publishedAt}</span>
-                  <span className="font-semibold text-[#6E3A82]">{article.readingTime}</span>
+                  <span className="flex items-center gap-1.5 font-medium text-[#6E3A82]">
+                    <Calendar className="w-3.5 h-3.5" />
+                    {article.publishedAt}
+                  </span>
+                  <span className="flex items-center gap-1 text-[#716A73]">
+                    <Clock className="w-3 h-3 text-[#A987C2]" />
+                    {article.readingTime}
+                  </span>
                 </div>
               </div>
             </Link>

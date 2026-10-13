@@ -208,6 +208,7 @@ export const FEATURED_STORY = {
   authorName: 'Esi Amodu',
   program: "Girls' Development & Leadership Academy",
   location: 'Greater Accra',
+  date: 'October 13, 2026',
   imageUrl: '/images/story_beneficiary.png'
 };
 

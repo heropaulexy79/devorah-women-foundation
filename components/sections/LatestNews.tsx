@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { ARTICLES } from '@/lib/data';
+import { Calendar, Clock } from 'lucide-react';
 
 export default function LatestNews() {
   return (
@@ -54,9 +55,15 @@ export default function LatestNews() {
               <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-6">
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 text-xs text-[#6E3A82] font-semibold tracking-wider">
-                    <span>{article.publishedAt}</span>
+                    <span className="flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5" />
+                      {article.publishedAt}
+                    </span>
                     <span>&middot;</span>
-                    <span>{article.readingTime}</span>
+                    <span className="flex items-center gap-1.5 text-[#716A73]">
+                      <Clock className="w-3.5 h-3.5" />
+                      {article.readingTime}
+                    </span>
                   </div>
 
                   <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#3B214F] group-hover:text-[#6E3A82] transition-colors duration-200 leading-snug">

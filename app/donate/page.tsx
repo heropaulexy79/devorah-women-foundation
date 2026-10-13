@@ -1,3 +1,4 @@
+import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import DonateClient from './DonateClient';
 
@@ -29,5 +30,9 @@ export const metadata: Metadata = {
 };
 
 export default function DonatePage() {
-  return <DonateClient />;
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#FAF8F5] pt-24 text-center">Loading donation system...</div>}>
+      <DonateClient />
+    </Suspense>
+  );
 }

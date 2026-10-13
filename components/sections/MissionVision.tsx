@@ -62,7 +62,7 @@ export default function MissionVision() {
 
         {/* 2. Hero Overarching Goal Banner */}
         <motion.div
-          className="relative bg-gradient-to-br from-[#3B214F] via-[#2A1638] to-[#512863] text-white rounded-3xl p-8 sm:p-12 lg:p-14 shadow-2xl overflow-hidden mb-12 border border-[#6E3A82]/30"
+          className="relative bg-gradient-to-br from-[#3B214F] via-[#2A1638] to-[#512863] text-white rounded-2xl p-8 sm:p-12 lg:p-14 shadow-2xl overflow-hidden mb-12 border border-[#6E3A82]/30"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -101,7 +101,7 @@ export default function MissionVision() {
 
           {/* Vision Card */}
           <motion.div
-            className="group bg-white rounded-3xl p-8 sm:p-10 border border-[#E8DDF0] shadow-lg hover:shadow-2xl hover:border-[#6E3A82]/40 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+            className="group bg-white rounded-2xl p-8 sm:p-10 border border-[#E8DDF0] shadow-lg hover:shadow-2xl hover:border-[#6E3A82]/40 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -112,7 +112,7 @@ export default function MissionVision() {
 
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <div className="w-14 h-14 rounded-2xl bg-[#F7F3F8] border border-[#E8DDF0] flex items-center justify-center text-[#6E3A82] group-hover:bg-[#6E3A82] group-hover:text-white transition-all duration-300 shadow-sm">
+                <div className="w-14 h-14 rounded-xl bg-[#F7F3F8] border border-[#E8DDF0] flex items-center justify-center text-[#6E3A82] group-hover:bg-[#6E3A82] group-hover:text-white transition-all duration-300 shadow-sm">
                   <Compass className="w-7 h-7" />
                 </div>
                 <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#6E3A82] bg-[#F7F3F8] px-3.5 py-1.5 rounded-full border border-[#E8DDF0]">
@@ -140,7 +140,7 @@ export default function MissionVision() {
 
           {/* Mission Card */}
           <motion.div
-            className="group bg-white rounded-3xl p-8 sm:p-10 border border-[#E8DDF0] shadow-lg hover:shadow-2xl hover:border-[#6E3A82]/40 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+            className="group bg-white rounded-2xl p-8 sm:p-10 border border-[#E8DDF0] shadow-lg hover:shadow-2xl hover:border-[#6E3A82]/40 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -151,7 +151,7 @@ export default function MissionVision() {
 
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <div className="w-14 h-14 rounded-2xl bg-[#F7F3F8] border border-[#E8DDF0] flex items-center justify-center text-[#6E3A82] group-hover:bg-[#6E3A82] group-hover:text-white transition-all duration-300 shadow-sm">
+                <div className="w-14 h-14 rounded-xl bg-[#F7F3F8] border border-[#E8DDF0] flex items-center justify-center text-[#6E3A82] group-hover:bg-[#6E3A82] group-hover:text-white transition-all duration-300 shadow-sm">
                   <Target className="w-7 h-7" />
                 </div>
                 <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#6E3A82] bg-[#F7F3F8] px-3.5 py-1.5 rounded-full border border-[#E8DDF0]">
@@ -259,10 +259,10 @@ function CoreValuesCarousel() {
             return (
               <div
                 key={val.title}
-                className="group bg-white rounded-3xl p-7 sm:p-8 border border-[#E8DDF0] shadow-md hover:shadow-2xl hover:border-[#6E3A82]/40 transition-all duration-300 flex flex-col justify-between"
+                className="group bg-white rounded-2xl p-7 sm:p-8 border border-[#E8DDF0] shadow-md hover:shadow-2xl hover:border-[#6E3A82]/40 transition-all duration-300 flex flex-col justify-between"
               >
                 <div className="space-y-5">
-                  <div className="w-12 h-12 rounded-2xl bg-[#F7F3F8] border border-[#E8DDF0] flex items-center justify-center text-[#6E3A82] group-hover:bg-[#6E3A82] group-hover:text-white transition-all duration-300 shadow-sm">
+                  <div className="w-12 h-12 rounded-xl bg-[#F7F3F8] border border-[#E8DDF0] flex items-center justify-center text-[#6E3A82] group-hover:bg-[#6E3A82] group-hover:text-white transition-all duration-300 shadow-sm">
                     <IconComp className="w-6 h-6" aria-hidden="true" />
                   </div>
 

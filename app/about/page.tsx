@@ -201,7 +201,7 @@ export default function AboutPage() {
           </div>
 
           {/* Goal Hero Banner */}
-          <div className="relative bg-gradient-to-br from-[#3B214F] via-[#2A1638] to-[#512863] text-white rounded-3xl p-8 sm:p-12 shadow-2xl overflow-hidden border border-[#6E3A82]/30">
+          <div className="relative bg-gradient-to-br from-[#3B214F] via-[#2A1638] to-[#512863] text-white rounded-2xl p-8 sm:p-12 shadow-2xl overflow-hidden border border-[#6E3A82]/30">
             <div className="space-y-4">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.3em] text-[#C5A8D8]">
                 <span>Our Overarching Goal</span>
@@ -216,7 +216,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             
             {/* Vision Card */}
-            <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#E8DDF0] shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+            <div className="bg-white rounded-2xl p-8 sm:p-10 border border-[#E8DDF0] shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
               <div className="space-y-4">
                 <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#6E3A82] bg-[#F7F3F8] px-3 py-1 rounded-full border border-[#E8DDF0] inline-block">
                   OUR VISION
@@ -228,7 +228,7 @@ export default function AboutPage() {
             </div>
 
             {/* Mission Card */}
-            <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#E8DDF0] shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+            <div className="bg-white rounded-2xl p-8 sm:p-10 border border-[#E8DDF0] shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
               <div className="space-y-4">
                 <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#6E3A82] bg-[#F7F3F8] px-3 py-1 rounded-full border border-[#E8DDF0] inline-block">
                   OUR MISSION
@@ -373,7 +373,7 @@ export default function AboutPage() {
             </div>
 
             <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 bg-[#291439] group">
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 bg-[#291439] group">
                 <Image
                   src="/images/founder_portrait.png"
                   alt="Faith & Spiritual Development"
@@ -402,9 +402,9 @@ export default function AboutPage() {
           />
 
           {/* Founder Spotlight */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-white p-8 sm:p-12 rounded-3xl border border-[#E8DDF0] shadow-lg">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-white p-8 sm:p-12 rounded-2xl border border-[#E8DDF0] shadow-lg">
             <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-md bg-[#3B214F]">
+              <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-md bg-[#3B214F]">
                 <Image
                   src={founder.imageUrl}
                   alt={founder.name}

@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { Calendar } from 'lucide-react';
 import { FEATURED_STORY } from '@/lib/data';
 
 export default function FeaturedStory() {
@@ -65,9 +66,16 @@ export default function FeaturedStory() {
               <h4 className="font-serif text-xl font-semibold text-white">
                 {FEATURED_STORY.authorName}
               </h4>
-              <p className="text-xs text-[#A987C2] mt-1.5 tracking-wide">
-                {FEATURED_STORY.program} &middot; {FEATURED_STORY.location}
-              </p>
+              <div className="flex flex-wrap items-center gap-2.5 text-xs text-[#A987C2] mt-2 tracking-wide">
+                <span>{FEATURED_STORY.program}</span>
+                <span>&middot;</span>
+                <span>{FEATURED_STORY.location}</span>
+                <span>&middot;</span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/10 text-white/90 border border-white/15">
+                  <Calendar className="w-3 h-3 text-[#C5A8D8]" />
+                  <span>Published {FEATURED_STORY.date}</span>
+                </span>
+              </div>
 
               <div className="mt-7">
                 <Link
