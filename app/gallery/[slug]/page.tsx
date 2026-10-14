@@ -6,7 +6,11 @@ import Link from 'next/link';
 import PageHero from '@/components/ui/PageHero';
 import CTASection from '@/components/sections/CTASection';
 import { GALLERY_ITEMS } from '@/lib/data';
+import { GalleryItem } from '@/lib/types';
 import { Calendar, MapPin, ArrowLeft, Sparkles, Images } from 'lucide-react';
+
+// Always fetch fresh data so CMS changes are reflected immediately
+export const dynamic = 'force-dynamic';
 
 interface AlbumPageProps {
   params: Promise<{
@@ -14,7 +18,30 @@ interface AlbumPageProps {
   }>;
 }
 
+/** Fetch gallery data from the CMS API; fall back to static seed data. */
+async function getGalleryItems(): Promise<GalleryItem[]> {
+  try {
+    // Use an absolute URL so this works during SSR
+    const baseUrl =
+      process.env.NEXT_PUBLIC_BASE_URL ||
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+    const res = await fetch(`${baseUrl}/api/content?type=gallery`, {
+      cache: 'no-store',
+    });
+    if (!res.ok) throw new Error(`API returned ${res.status}`);
+    const data = await res.json();
+    if (Array.isArray(data?.gallery) && data.gallery.length > 0) {
+      return data.gallery as GalleryItem[];
+    }
+  } catch {
+    // Fall through to static data
+  }
+  return GALLERY_ITEMS;
+}
+
 export async function generateStaticParams() {
+  // Only pre-render the built-in static slugs at build time.
+  // Dynamic (CMS-created) albums are handled at runtime via force-dynamic.
   return GALLERY_ITEMS.map((item) => ({
     slug: item.slug,
   }));
@@ -22,7 +49,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: AlbumPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const album = GALLERY_ITEMS.find((item) => item.slug === slug);
+  const items = await getGalleryItems();
+  const album = items.find((item) => item.slug === slug);
   if (!album) {
     return {
       title: 'Album Not Found | Devorah Women Foundation',
@@ -42,7 +70,8 @@ export async function generateMetadata({ params }: AlbumPageProps): Promise<Meta
 
 export default async function AlbumDetailPage({ params }: AlbumPageProps) {
   const { slug } = await params;
-  const album = GALLERY_ITEMS.find((item) => item.slug === slug);
+  const items = await getGalleryItems();
+  const album = items.find((item) => item.slug === slug);
 
   if (!album) {
     notFound();
@@ -122,13 +151,14 @@ export default async function AlbumDetailPage({ params }: AlbumPageProps) {
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  unoptimized={photo.url.startsWith('/images/uploads/')}
                 />
               </div>
 
               {photo.caption && (
                 <div className="p-4 border-t border-[#F4ECF7]">
                   <p className="text-xs text-[#524C55] leading-relaxed italic">
-                    "{photo.caption}"
+                    &ldquo;{photo.caption}&rdquo;
                   </p>
                 </div>
               )}

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { activeSessions } from '@/lib/sessions';
 import { ARTICLES, IMPACT_METRICS, PROGRAMS, GALLERY_ITEMS } from '@/lib/data';
 import type { Article, ImpactMetric, GalleryItem } from '@/lib/types';
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, renameSync, unlinkSync } from 'fs';
 import { join } from 'path';
 
 export const dynamic = 'force-dynamic';
@@ -106,8 +106,19 @@ function readStore(): CmsStore {
 function writeStore(store: CmsStore): void {
   try {
     if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
-    writeFileSync(STORE_PATH, JSON.stringify(store, null, 2), 'utf-8');
-  } catch {
+    // Write to a temp file first, then rename atomically.
+    // This avoids OneDrive / antivirus file-lock races on Windows that
+    // would cause a direct writeFileSync to throw and lose data silently.
+    const tmpPath = STORE_PATH + '.tmp';
+    writeFileSync(tmpPath, JSON.stringify(store, null, 2), 'utf-8');
+    // Clean up any stale final file before rename
+    if (existsSync(STORE_PATH)) unlinkSync(STORE_PATH);
+    renameSync(tmpPath, STORE_PATH);
+  } catch (err) {
+    // Surface the error in development so it's not invisible
+    if (process.env.NODE_ENV !== 'production') {
+      console.error('[CMS] writeStore failed:', err);
+    }
     // non-fatal — in-memory values still work for the current session
   }
 }
@@ -227,7 +238,16 @@ export async function POST(req: Request) {
       if (index === -1) {
         return NextResponse.json({ success: false, message: 'Article not found' }, { status: 404 });
       }
-      const safe = sanitizeArticlePayload(payload);
+      // Flatten the nested author object so sanitizeArticlePayload can read
+      // authorName / authorRole at the top level (matches the payload shape
+      // that the admin page sends when editing an existing article).
+      const flatPayload: Record<string, unknown> = { ...payload };
+      if (payload.author && typeof payload.author === 'object') {
+        const author = payload.author as Record<string, unknown>;
+        if (!flatPayload.authorName) flatPayload.authorName = author.name;
+        if (!flatPayload.authorRole) flatPayload.authorRole = author.role;
+      }
+      const safe = sanitizeArticlePayload(flatPayload);
       currentArticles[index] = {
         ...currentArticles[index],
         title: safe.title || currentArticles[index].title,
