@@ -4,12 +4,13 @@ import PartnershipsClient from './PartnershipsClient';
 export const metadata: Metadata = {
   title: 'Partnerships',
   description:
-    'Partner with Devorah Women Foundation to co-sponsor programs, provide educational grants, and scale sustainable empowerment for women and girls across Ghana.',
+    'Partner with Devorah Women Foundation to co-sponsor programs, provide educational grants, and scale sustainable empowerment for women and girls across Lagos, Nigeria.',
   keywords: [
-    'partnership NGO Ghana',
+    'partnership NGO Nigeria',
+    'partnership NGO Lagos',
     'corporate social responsibility Africa',
     'women empowerment partnership',
-    'sponsor girls education Ghana',
+    'sponsor girls education Nigeria',
     'Devorah Foundation partner',
     'faith-based partnership',
   ],

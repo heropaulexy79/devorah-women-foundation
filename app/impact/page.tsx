@@ -3,10 +3,11 @@ import ImpactClient from './ImpactClient';
 
 export const metadata: Metadata = {
   title: 'Our Impact',
-  description: "Explore Devorah Women Foundation's field impact portfolio documenting outreach missions, leadership summits, and community development projects across Ghana.",
+  description: "Explore Devorah Women Foundation's field impact portfolio documenting outreach missions, leadership summits, and community development projects across Lagos, Nigeria.",
   keywords: [
-    'women empowerment impact Ghana',
-    'community outreach Ghana',
+    'women empowerment impact Nigeria',
+    'community outreach Nigeria',
+    'community outreach Lagos',
     'girls leadership summit',
     'Devorah Foundation projects',
     'NGO impact report',

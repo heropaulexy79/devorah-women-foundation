@@ -34,7 +34,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       program.name,
       program.category,
       'Devorah Women Foundation',
-      'women empowerment Ghana',
+      'women empowerment Nigeria',
+      'women empowerment Lagos',
       ...program.locations,
     ],
     alternates: {
@@ -86,7 +87,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
     offers: {
       '@type': 'Offer',
       price: '0',
-      priceCurrency: 'GHS',
+      priceCurrency: 'NGN',
       description: 'Free community program',
     },
     url: `https://devorahwomen.org/programs/${program.slug}`,

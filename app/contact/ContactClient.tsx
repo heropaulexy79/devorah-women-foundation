@@ -106,7 +106,7 @@ export default function ContactClient() {
                 <div>
                   <h3 className="text-xs uppercase font-semibold text-[#6E3A82]">Headquarters Address</h3>
                   <p className="text-sm font-bold text-[#3B214F] mt-0.5">No 14, Esubiyi Street, Mende, Maryland</p>
-                  <p className="text-xs text-[#716A73]">Devorah Global Women Headquarters</p>
+                  <p className="text-xs text-[#716A73]">Lagos State, Nigeria</p>
                 </div>
               </div>
 
@@ -175,7 +175,7 @@ export default function ContactClient() {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
-                      placeholder="+233 ..."
+                      placeholder="+234 ..."
                     />
                   </div>
                 </div>
@@ -225,12 +225,12 @@ export default function ContactClient() {
         <div className="mt-16 bg-white p-4 rounded-3xl border border-[#E8DDF0] shadow-md overflow-hidden">
           <div className="p-4 border-b border-[#E8DDF0] mb-4">
             <h3 className="font-serif text-xl font-bold text-[#3B214F]">Foundation Location</h3>
-            <p className="text-xs text-[#716A73]">Accra Headquarters, Greater Accra Region, Ghana</p>
+            <p className="text-xs text-[#716A73]">No 14, Esubiyi Street, Mende, Maryland, Lagos State, Nigeria</p>
           </div>
           <div className="relative w-full h-72 rounded-2xl overflow-hidden bg-[#3B214F]/10 flex items-center justify-center">
             <iframe
               title="Devorah Foundation Office Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d254148.07722741544!2d-0.3013898863618641!3d5.591238676239109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9084b2b7a773%3A0xbed14ed8650e2dd3!2sAccra%2C%20Ghana!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.8833555543026!2d3.3644!3d6.5744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d78909403a7%3A0xc392bfeb248740c0!2sMende%2C%20Maryland%2C%20Lagos!5e0!3m2!1sen!2sng!4v1700000000000!5m2!1sen!2sng"
               width="100%"
               height="100%"
               style={{ border: 0 }}

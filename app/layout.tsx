@@ -28,17 +28,18 @@ export const metadata: Metadata = {
     template: '%s | Devorah Women Foundation',
   },
   description:
-    'A Christian, women-focused foundation committed to empowering girls and women through education, mentorship, leadership development, community initiatives, and faith-anchored support across Ghana.',
+    'A Christian, women-focused foundation committed to empowering girls and women through education, mentorship, leadership development, community initiatives, and faith-anchored support across Lagos, Nigeria.',
   keywords: [
     'Devorah Women Foundation',
-    'women empowerment Ghana',
+    'women empowerment',
     'girl-child development',
     'female leadership Africa',
-    'Christian foundation Ghana',
-    'girls scholarship Ghana',
+    'Christian foundation Nigeria',
+    'NGO Lagos Nigeria',
+    'girls scholarship',
     'women mentorship',
     'faith-based NGO',
-    'girls STEM Ghana',
+    'girls STEM',
     'vocational training women',
   ],
   authors: [{ name: 'Devorah Women Foundation', url: BASE_URL }],
@@ -59,12 +60,12 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'en_GH',
+    locale: 'en_NG',
     url: BASE_URL,
     siteName: 'Devorah Women Foundation',
     title: 'Devorah Women Foundation | Empowering Women, Shaping Girls',
     description:
-      'Empowering Women. Shaping Girls. Transforming Communities. A faith-anchored foundation dedicated to holistic development across Ghana.',
+      'Empowering Women. Shaping Girls. Transforming Communities. A faith-anchored foundation dedicated to holistic development across Lagos, Nigeria.',
     images: [
       {
         url: '/images/og-image.png',
@@ -108,8 +109,10 @@ const organizationJsonLd = {
         'Devorah Global Women is a faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women.',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'No 14, Esubiyi Street, Mende',
-        addressLocality: 'Maryland',
+        streetAddress: 'No 14, Esubiyi Street, Mende, Maryland',
+        addressLocality: 'Lagos',
+        addressRegion: 'Lagos State',
+        addressCountry: 'NG',
       },
       contactPoint: [
         {

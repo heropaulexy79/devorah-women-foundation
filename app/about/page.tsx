@@ -26,10 +26,11 @@ import {
 export const metadata = {
   title: 'About Us',
   description:
-    'Learn about Devorah Women Foundation — our history, mission, vision, core values, Christian identity, and leadership team dedicated to empowering girls and women across Ghana.',
+    'Learn about Devorah Women Foundation — our history, mission, vision, core values, Christian identity, and leadership team dedicated to empowering girls and women across Lagos, Nigeria.',
   keywords: [
     'about Devorah Women Foundation',
-    'Christian women NGO Ghana',
+    'Christian women NGO Nigeria',
+    'Christian women NGO Lagos',
     'women leadership mission',
     'girl-child advocacy organization',
     'faith-based foundation Africa',

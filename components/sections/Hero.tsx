@@ -19,7 +19,7 @@ const SLIDES = [
     primaryCtaLink: '/donate',
     secondaryCtaText: 'Explore Our Work',
     secondaryCtaLink: '/programs',
-    image: '/images/hero_portrait.png',
+    image: '/images/heroslider/hero1.jpeg',
   },
   {
     id: 'slide-2',
@@ -33,7 +33,7 @@ const SLIDES = [
     primaryCtaLink: '/programs/educational-support',
     secondaryCtaText: 'Support a Scholarship',
     secondaryCtaLink: '/donate?pillar=educational-support',
-    image: '/images/hero_slide_girls.png',
+    image: '/images/heroslider/hero2.png',
   },
   {
     id: 'slide-3',
@@ -47,7 +47,7 @@ const SLIDES = [
     primaryCtaLink: '/programs/empowerment-leadership',
     secondaryCtaText: 'Support Women Leaders',
     secondaryCtaLink: '/donate?pillar=empowerment-leadership',
-    image: '/images/hero_slide_leadership.png',
+    image: '/images/heroslider/hero3.png',
   },
   {
     id: 'slide-4',
@@ -61,7 +61,7 @@ const SLIDES = [
     primaryCtaLink: '/impact',
     secondaryCtaText: 'Donate to Outreach',
     secondaryCtaLink: '/donate?pillar=community-outreach-support',
-    image: '/images/who_we_are.png',
+    image: '/images/heroslider/hero4.png',
   },
 ];
 

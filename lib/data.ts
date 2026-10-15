@@ -51,8 +51,8 @@ export const PROGRAMS: Program[] = [
       'International Women’s Day Initiatives',
       'Women-focused empowerment sessions'
     ],
-    locations: ['Accra', 'Kumasi', 'Regional Community Centers'],
-    imageUrl: '/images/hero_slide_leadership.png',
+    locations: ['Lagos', 'Ikeja', 'Regional Community Centers'],
+    imageUrl: '/images/programs/Empowerment-leadership.PNG',
     featured: true,
     impactResults: [
       'Over 1,200 women trained in strategic leadership and workplace confidence.',
@@ -61,10 +61,10 @@ export const PROGRAMS: Program[] = [
     ],
     testimonial: {
       quote: "The empowerment sessions and leadership training gave me the confidence and clarity to step into leadership roles in my community.",
-      author: "Abena Mansah",
+      author: "Amina Adeleke",
       role: "Leadership Program Graduate"
     },
-    galleryImages: ['/images/hero_slide_leadership.png', '/images/who_we_are.png']
+    galleryImages: ['/images/programs/Empowerment-leadership.PNG', '/images/who_we_are.png']
   },
   {
     id: 'educational-support',
@@ -86,7 +86,7 @@ export const PROGRAMS: Program[] = [
       'Needs-based assistance'
     ],
     locations: ['Partner Schools', 'Community Learning Centers'],
-    imageUrl: '/images/hero_slide_education.png',
+    imageUrl: '/images/programs/educational-support.PNG',
     featured: true,
     impactResults: [
       'Provided essential educational materials and fees support to over 500 students.',
@@ -94,10 +94,10 @@ export const PROGRAMS: Program[] = [
     ],
     testimonial: {
       quote: "Without this educational support, continuing my studies seemed impossible. The provision of materials and guidance changed my life path.",
-      author: "Grace Quarshie",
+      author: "Grace Okon",
       role: "Educational Support Beneficiary"
     },
-    galleryImages: ['/images/hero_slide_education.png', '/images/story_beneficiary.png']
+    galleryImages: ['/images/programs/educational-support.PNG', '/images/story_beneficiary.png']
   },
   {
     id: 'mentorship-capacity-development',
@@ -119,7 +119,7 @@ export const PROGRAMS: Program[] = [
       'Mentorship opportunities'
     ],
     locations: ['Development Hubs', 'Vocational Centers'],
-    imageUrl: '/images/hero_slide_girls.png',
+    imageUrl: '/images/programs/mentorship-capacity.jpeg',
     featured: true,
     impactResults: [
       'Over 350 women and girls paired with experienced professional mentors.',
@@ -127,10 +127,10 @@ export const PROGRAMS: Program[] = [
     ],
     testimonial: {
       quote: "The capacity-building workshops and mentorship paired me with a mentor who helped me unlock my professional potential.",
-      author: "Kofi Boateng",
+      author: "Tunde Balogun",
       role: "Mentorship Participant"
     },
-    galleryImages: ['/images/hero_slide_girls.png', '/images/hero_portrait.png']
+    galleryImages: ['/images/programs/mentorship-capacity.jpeg', '/images/hero_portrait.png']
   },
   {
     id: 'community-outreach-support',
@@ -153,7 +153,7 @@ export const PROGRAMS: Program[] = [
       'Follow-up beneficiary support'
     ],
     locations: ['Urban & Rural Outreach Centers'],
-    imageUrl: '/images/who_we_are.png',
+    imageUrl: '/images/programs/community-outreach.PNG',
     featured: true,
     impactResults: [
       'Direct practical assistance delivered to over 2,500 families in need.',
@@ -161,10 +161,10 @@ export const PROGRAMS: Program[] = [
     ],
     testimonial: {
       quote: "The community outreach arrived when our family needed support most. Their practical assistance restored our dignity and hope.",
-      author: "Esi Amodu",
+      author: "Folake Adeleke",
       role: "Community Outreach Recipient"
     },
-    galleryImages: ['/images/who_we_are.png', '/images/founder_portrait.png']
+    galleryImages: ['/images/programs/community-outreach.PNG', '/images/founder_portrait.png']
   },
   {
     id: 'faith-spiritual-development',
@@ -186,7 +186,7 @@ export const PROGRAMS: Program[] = [
       'Fellowship activities'
     ],
     locations: ['Assembly Halls', 'Retreat Centers'],
-    imageUrl: '/images/founder_portrait.png',
+    imageUrl: '/images/programs/faith-spiritual-development.PNG',
     featured: true,
     impactResults: [
       'Over 1,000 women participating in regular prayer gatherings and Bible picnics.',
@@ -194,10 +194,10 @@ export const PROGRAMS: Program[] = [
     ],
     testimonial: {
       quote: "The prayer gatherings and Bible picnics restored my spirit and connected me with an incredible sisterhood of faith.",
-      author: "Hannah Adjei",
+      author: "Hannah Babatunde",
       role: "Fellowship Member"
     },
-    galleryImages: ['/images/founder_portrait.png', '/images/hero_portrait.png']
+    galleryImages: ['/images/programs/faith-spiritual-development.PNG', '/images/hero_portrait.png']
   }
 ];
 
@@ -205,9 +205,9 @@ export const FEATURED_STORY = {
   id: 'story-1',
   headline: 'Transformation becomes real when you hear the story behind the numbers.',
   quote: '"Before joining the Devorah Leadership Institute, I doubted whether my voice could make a difference in my community. Through their mentorship, I gained the skills and courage to launch a community literacy drive that now serves over 200 children. Devorah Foundation didn\'t just teach me—they showed me who God created me to be."',
-  authorName: 'Esi Amodu',
+  authorName: 'Folake Adeleke',
   program: "Girls' Development & Leadership Academy",
-  location: 'Greater Accra',
+  location: 'Lagos, Nigeria',
   date: 'October 13, 2026',
   imageUrl: '/images/story_beneficiary.png'
 };
@@ -219,7 +219,7 @@ export const PROJECTS: Project[] = [
     name: 'Community Girls Leadership Summit',
     category: 'Conferences',
     date: 'October 2025',
-    location: 'Accra Central Hall',
+    location: 'Lagos City Hall',
     shortDescription: 'Gathering over 300 adolescent girls for a 2-day intensive on digital literacy, self-confidence, and career planning.',
     fullDescription: 'The Community Girls Leadership Summit brought together young leaders from 15 local schools for experiential learning, keynote sessions from female tech pioneers, group mentorship, and career roadmap planning.',
     objective: 'Equip adolescent girls with digital tools, leadership frameworks, and self-belief to pursue higher education.',
@@ -242,13 +242,13 @@ export const PROJECTS: Project[] = [
     name: 'Vocational Enterprise & Dignity Outreach',
     category: 'Outreach',
     date: 'August 2025',
-    location: 'Ashanti Region',
+    location: 'Lagos State',
     shortDescription: 'Providing 150 women with micro-business seed starter kits, trade equipment, and financial management education.',
     fullDescription: 'An intensive 3-week field program focused on practical skills, financial record keeping, product packaging, and market access for rural female entrepreneurs.',
     objective: 'Strengthen household economic stability through women-led small enterprises and community micro-finance.',
     whatWeDid: [
       'Delivered hands-on enterprise starter sessions and trade skills workshops.',
-      'Provided micro-grant starter equipment valued at GH₵ 150,000.',
+      'Provided micro-grant starter equipment valued at ₦1,500,000.',
       'Established 6 community savings and credit circles.'
     ],
     whoWeReached: '150 female micro-entrepreneurs & 450 family dependents',
@@ -371,7 +371,7 @@ export const TESTIMONIALS: Testimonial[] = [
     quote: 'The Devorah Foundation stands out for its high standard of integrity, deep community commitment, and genuine focus on individual transformation.',
     authorName: 'Institutional Partner Representative',
     authorRelationship: 'Institutional Partner Representative',
-    location: 'Accra',
+    location: 'Lagos',
     category: 'Partner'
   },
   {
@@ -379,7 +379,7 @@ export const TESTIMONIALS: Testimonial[] = [
     quote: 'Through their mentorship program, my daughter has grown into a confident young scholar who believes in her ability to lead.',
     authorName: 'Parent & Community Advisory Member',
     authorRelationship: 'Parent of Academy Graduate',
-    location: 'Greater Accra',
+    location: 'Lagos',
     category: 'Community Leader'
   },
   {
@@ -387,7 +387,7 @@ export const TESTIMONIALS: Testimonial[] = [
     quote: 'Volunteering with the Girls\' Leadership Academy allowed me to invest my professional skills directly into the next generation.',
     authorName: 'Executive Volunteer Mentor',
     authorRelationship: 'Academy Executive Mentor',
-    location: 'Accra',
+    location: 'Lagos',
     category: 'Volunteer'
   },
   {
@@ -395,7 +395,7 @@ export const TESTIMONIALS: Testimonial[] = [
     quote: 'The Women\'s Empowerment Initiative gave me trade skills, seed equipment, and financial confidence to run my own enterprise.',
     authorName: 'Empowerment Enterprise Beneficiary',
     authorRelationship: 'Micro-Enterprise Graduate',
-    location: 'Ashanti Region',
+    location: 'Lagos',
     category: 'Beneficiary'
   }
 ];
@@ -416,7 +416,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Female Executive Leadership Summit',
     category: 'Leadership Development',
     date: 'October 2025',
-    location: 'Accra International Conference Centre',
+    location: 'Eko Convention Centre, Lagos',
     imageUrl: '/images/gallery_conference.png',
     caption: 'Gathering emerging female executives, civic leaders, and scholars for keynote masterclasses on ethical governance and board readiness.',
     impactHighlight: '300+ Executive Attendees',
@@ -436,7 +436,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Vocational Enterprise & Trade Equipment Outreach',
     category: 'Women Empowerment',
     date: 'August 2025',
-    location: 'Ashanti Regional Community Hub',
+    location: 'Lagos Community Hub',
     imageUrl: '/images/gallery_outreach.png',
     caption: 'Hands-on micro-enterprise starter clinic providing trade tools, seed capital guidance, and financial literacy training to local women.',
     impactHighlight: '150 Micro-Grants Awarded',
@@ -491,7 +491,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Community Girls Leadership Forum',
     category: 'Leadership Development',
     date: 'May 2025',
-    location: 'Greater Accra Youth Hall',
+    location: 'Lagos Youth Hall',
     imageUrl: '/images/who_we_are.png',
     caption: 'Interactive workshop focusing on public speaking, youth governance, and moral clarity for high school Prefects and student leaders.',
     impactHighlight: '15 Active School Clubs Launched',

@@ -35,7 +35,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       project.category,
       project.location,
       'Devorah Women Foundation',
-      'community impact Ghana',
+      'community impact Nigeria',
+      'community outreach Lagos',
     ],
     alternates: {
       canonical: `/impact/${project.slug}`,

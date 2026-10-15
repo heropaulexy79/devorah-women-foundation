@@ -42,7 +42,7 @@ declare global {
   }
 }
 
-type CurrencyCode = 'NGN' | 'GHS' | 'USD';
+type CurrencyCode = 'NGN' | 'USD' | 'GBP';
 
 interface CurrencyConfig {
   code: CurrencyCode;
@@ -62,19 +62,19 @@ const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
     defaultAmount: 25000,
     koboMultiplier: 100,
   },
-  GHS: {
-    code: 'GHS',
-    symbol: 'GH₵',
-    name: 'Ghanaian Cedi',
-    presets: [100, 250, 500, 1000, 2500],
-    defaultAmount: 500,
-    koboMultiplier: 100,
-  },
   USD: {
     code: 'USD',
     symbol: '$',
     name: 'US Dollars',
     presets: [25, 50, 100, 250, 500],
+    defaultAmount: 50,
+    koboMultiplier: 100,
+  },
+  GBP: {
+    code: 'GBP',
+    symbol: '£',
+    name: 'British Pound',
+    presets: [20, 50, 100, 250, 500],
     defaultAmount: 50,
     koboMultiplier: 100,
   },
@@ -580,7 +580,7 @@ export default function DonateClient() {
                 <div className="p-4 rounded-xl bg-[#FAF8F5] border border-[#E8DDF0] space-y-2 text-xs">
                   <div className="flex justify-between items-center">
                     <span className="text-[#716A73]">Bank Name:</span>
-                    <span className="font-semibold text-[#3B214F]">Ecobank Ghana PLC</span>
+                    <span className="font-semibold text-[#3B214F]">Ecobank Nigeria</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-[#716A73]">Account Name:</span>
@@ -589,10 +589,10 @@ export default function DonateClient() {
                   <div className="flex justify-between items-center pt-1 border-t border-[#E8DDF0]">
                     <span className="text-[#716A73]">Account Number:</span>
                     <div className="flex items-center gap-2">
-                      <span className="font-mono font-bold text-sm text-[#6E3A82]">1441002345678</span>
+                      <span className="font-mono font-bold text-sm text-[#6E3A82]">1441002345</span>
                       <button
                         type="button"
-                        onClick={() => copyAccountNumber('1441002345678')}
+                        onClick={() => copyAccountNumber('1441002345')}
                         className="p-1 hover:bg-white rounded border border-[#E8DDF0] text-[#6E3A82] transition-colors"
                         title="Copy Account Number"
                       >
@@ -601,8 +601,8 @@ export default function DonateClient() {
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-[#716A73]">SWIFT / BIC Code:</span>
-                    <span className="font-mono font-medium text-[#3B214F]">ECOBGHAC</span>
+                    <span className="text-[#716A73]">Location / Currency:</span>
+                    <span className="font-mono font-medium text-[#3B214F]">Lagos, Nigeria (NGN)</span>
                   </div>
                 </div>
 
@@ -616,7 +616,7 @@ export default function DonateClient() {
               <div className="pt-2 text-xs text-[#716A73] leading-relaxed">
                 After transfer, kindly share your transaction confirmation with{' '}
                 <a
-                  href="https://wa.me/233240000000?text=Hello%20Devorah%20Foundation,%20I%20have%20made%20a%20donation%20transfer."
+                  href="https://wa.me/2348030526200?text=Hello%20Devorah%20Foundation,%20I%20have%20made%20a%20donation%20transfer."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-semibold text-[#6E3A82] hover:underline inline-flex items-center gap-0.5"

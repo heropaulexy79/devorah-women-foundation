@@ -34,7 +34,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       article.category,
       'Devorah Women Foundation',
       'women leadership',
-      'girl-child empowerment Ghana',
+      'girl-child empowerment Nigeria',
+      'women empowerment Lagos',
     ],
     authors: [{ name: article.author.name }],
     alternates: {

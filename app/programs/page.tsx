@@ -11,11 +11,11 @@ export const metadata = {
   description:
     'Explore Devorah Women Foundation\'s comprehensive empowerment programs covering women leadership, girl-child development, education scholarships, vocational training, and spiritual growth.',
   keywords: [
-    'women empowerment programs Ghana',
+    'women empowerment programs',
     'girls development program',
     'leadership development women',
-    'vocational training Ghana',
-    'girl scholarship Africa',
+    'vocational training',
+    'girl scholarship',
     'faith spiritual development',
   ],
   alternates: { canonical: '/programs' },
@@ -29,7 +29,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Our Programs | Devorah Women Foundation',
-    description: 'Explore our empowerment programs for women and girls across Ghana.',
+    description: 'Explore our empowerment programs for women and girls across Lagos, Nigeria.',
     images: ['/images/who_we_are.png'],
   },
 };

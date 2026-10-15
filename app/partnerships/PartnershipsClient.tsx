@@ -216,7 +216,7 @@ export default function PartnershipsClient() {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
-                    placeholder="+233 ..."
+                    placeholder="+234 ..."
                   />
                 </div>
               </div>

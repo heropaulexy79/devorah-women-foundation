@@ -8,7 +8,8 @@ export const metadata: Metadata = {
   keywords: [
     'women leadership stories',
     'girl-child advocacy',
-    'Christian women Ghana',
+    'Christian women Nigeria',
+    'Christian women Lagos',
     'faith-based empowerment',
     'female leadership Africa',
     'Devorah Foundation journal',

@@ -45,7 +45,7 @@ export default function AdminDashboardPage() {
     title: '',
     category: 'Community Outreach' as (typeof GALLERY_CATEGORIES)[number],
     date: 'October 2026',
-    location: 'Accra, Ghana',
+    location: 'Lagos, Nigeria',
     caption: '',
     impactHighlight: '',
     imageUrl: '/images/gallery_outreach.png',
@@ -210,7 +210,7 @@ export default function AdminDashboardPage() {
       title: '',
       category: 'Community Outreach',
       date: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
-      location: 'Accra, Ghana',
+      location: 'Lagos, Nigeria',
       caption: '',
       impactHighlight: '',
       imageUrl: '/images/gallery_outreach.png',
@@ -1357,7 +1357,7 @@ export default function AdminDashboardPage() {
                       value={galleryForm.location}
                       onChange={(e) => setGalleryForm({ ...galleryForm, location: e.target.value })}
                       className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F]"
-                      placeholder="e.g. Kumasi, Ashanti Region"
+                      placeholder="e.g. Ikeja, Lagos State"
                     />
                   </div>
                 </div>

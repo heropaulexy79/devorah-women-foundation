@@ -308,7 +308,7 @@ export async function POST(req: Request) {
         title: safe.title,
         category: safe.category,
         date: safe.date || new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
-        location: safe.location || 'Ghana',
+        location: safe.location || 'Lagos, Nigeria',
         imageUrl: coverImage,
         caption: safe.caption,
         impactHighlight: safe.impactHighlight,

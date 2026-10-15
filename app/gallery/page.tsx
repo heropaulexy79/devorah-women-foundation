@@ -7,13 +7,14 @@ import CTASection from '@/components/sections/CTASection';
 export const metadata: Metadata = {
   title: 'Media Gallery',
   description:
-    "Explore moments from Devorah Women Foundation's programs, outreaches, conferences, scholarships and faith-based initiatives across Ghana.",
+    "Explore moments from Devorah Women Foundation's programs, outreaches, conferences, scholarships and faith-based initiatives across Lagos, Nigeria.",
   keywords: [
     'Devorah Foundation gallery',
-    'women empowerment photos Ghana',
+    'women empowerment photos Nigeria',
+    'women empowerment photos Lagos',
     'girls leadership conference',
     'community outreach photos',
-    'NGO media Ghana',
+    'NGO media Nigeria',
   ],
   alternates: { canonical: '/gallery' },
   openGraph: {

@@ -5,13 +5,14 @@ import DonateClient from './DonateClient';
 export const metadata: Metadata = {
   title: 'Donate',
   description:
-    'Support Devorah Women Foundation by donating to fuel micro-grants, educational scholarships, leadership training, and holistic mentorship for women and girls across Ghana.',
+    'Support Devorah Women Foundation by donating to fuel micro-grants, educational scholarships, leadership training, and holistic mentorship for women and girls across Lagos, Nigeria.',
   keywords: [
-    'donate women foundation Ghana',
+    'donate women foundation Nigeria',
     'support girls education Africa',
-    'NGO donation Ghana',
+    'NGO donation Nigeria',
+    'NGO donation Lagos',
     'women empowerment fund',
-    'Paystack donation Ghana',
+    'Paystack donation Nigeria',
     'sponsor girl-child',
   ],
   alternates: { canonical: '/donate' },
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Donate | Devorah Women Foundation',
-    description: 'Support women and girls in Ghana — donate to Devorah Women Foundation today.',
+    description: 'Support women and girls in Lagos, Nigeria — donate to Devorah Women Foundation today.',
   },
 };
 

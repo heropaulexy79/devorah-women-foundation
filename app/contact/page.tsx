@@ -4,13 +4,13 @@ import ContactClient from './ContactClient';
 export const metadata: Metadata = {
   title: 'Contact Us',
   description:
-    'Get in touch with Devorah Women Foundation for general inquiries, partnership proposals, volunteer applications, or media requests. We are based in Accra, Ghana.',
+    'Get in touch with Devorah Women Foundation for general inquiries, partnership proposals, volunteer applications, or media requests. We are based in Lagos, Nigeria.',
   keywords: [
     'contact Devorah Women Foundation',
-    'NGO contact Ghana',
+    'NGO contact Nigeria',
     'partner with us',
-    'volunteer Ghana',
-    'women foundation Accra',
+    'volunteer Nigeria',
+    'women foundation Lagos',
   ],
   alternates: { canonical: '/contact' },
   openGraph: {
