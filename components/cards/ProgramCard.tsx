@@ -19,28 +19,28 @@ export default function ProgramCard({ program, featured = false }: ProgramCardPr
         aria-label={`${program.name} — ${program.tagline}`}
       >
         {/* Large featured image */}
-        <div className="relative aspect-[21/9] overflow-hidden">
+        <div className="relative min-h-[340px] aspect-[4/3] sm:min-h-0 sm:aspect-[16/9] lg:aspect-[21/9] overflow-hidden">
           <Image
             src={program.imageUrl}
             alt={program.name}
             fill
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1a0f22]/90 via-[#1a0f22]/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1a0f22]/95 via-[#1a0f22]/60 to-[#1a0f22]/10" />
         </div>
 
         {/* Content — overlaid bottom-left */}
-        <div className="absolute bottom-0 left-0 right-0 p-7 sm:p-10">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#C5A8D8] block mb-3">
+        <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 lg:p-10">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[#C5A8D8] block mb-1.5 sm:mb-3">
             {program.category}
           </span>
-          <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight max-w-2xl group-hover:text-[#E8DDF0] transition-colors duration-300">
+          <h3 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight max-w-2xl group-hover:text-[#E8DDF0] transition-colors duration-300">
             {program.name}
           </h3>
-          <p className="text-sm text-white/85 font-light italic mt-2 max-w-xl">
+          <p className="text-xs sm:text-sm text-white/85 font-light italic mt-1.5 sm:mt-2 max-w-xl line-clamp-2 sm:line-clamp-none">
             {program.tagline}
           </p>
-          <div className="mt-5 flex items-center gap-2 text-[#C5A8D8] text-sm font-medium">
+          <div className="mt-3.5 sm:mt-5 flex items-center gap-2 text-[#C5A8D8] text-xs sm:text-sm font-medium">
             <span>Explore Program</span>
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </div>

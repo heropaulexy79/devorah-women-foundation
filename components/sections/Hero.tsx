@@ -113,7 +113,7 @@ export default function Hero() {
       className="relative w-full min-h-[75dvh] lg:min-h-screen flex items-center lg:items-end pt-20 pb-12 sm:pt-28 sm:pb-24 lg:pb-32 overflow-hidden bg-[#1a0f22] -mt-20"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-    >
+    > 
       {/* Full-Bleed Background Image */}
       <AnimatePresence mode="wait">
         <motion.div
