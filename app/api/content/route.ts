@@ -66,8 +66,8 @@ function isAllowedCategory(val: unknown): val is AllowedCategory {
 const ALLOWED_GALLERY_CATEGORIES = [
   'Community Outreach',
   'Faith and Spiritual Development',
-  'Leadership Development',
   'School Outreaches',
+  'Leadership Development',
   'Women Empowerment',
 ] as const;
 

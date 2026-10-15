@@ -9,8 +9,8 @@ import { GalleryItem } from '@/lib/types';
 const GALLERY_CATEGORIES = [
   'Community Outreach',
   'Faith and Spiritual Development',
-  'Leadership Development',
   'School Outreaches',
+  'Leadership Development',
   'Women Empowerment',
 ] as const;
 
