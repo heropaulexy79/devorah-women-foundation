@@ -264,8 +264,6 @@ export default function DonateClient() {
 
   return (
     <div className="bg-[#FAF8F5] min-h-screen pb-24">
-      {/* Load Paystack Inline Script */}
-      <Script src="https://js.paystack.co/v1/inline.js" strategy="afterInteractive" />
 
       {/* Hero Header */}
       <PageHero
@@ -359,7 +357,8 @@ export default function DonateClient() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleDonate} className="space-y-8">
+              <form id="paystack-form" onSubmit={handleDonate} className="space-y-8">
+                <Script src="https://js.paystack.co/v1/inline.js" strategy="lazyOnload" />
                 {/* Notice if configured in demo / placeholder mode */}
                 {isPlaceholderKey && (
                   <div className="p-3.5 rounded-xl bg-[#F7F3F8] border border-[#C5A8D8]/60 flex items-start gap-3 text-xs text-[#3B214F]">

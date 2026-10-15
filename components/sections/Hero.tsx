@@ -33,7 +33,7 @@ const SLIDES = [
     primaryCtaLink: '/programs/educational-support',
     secondaryCtaText: 'Support a Scholarship',
     secondaryCtaLink: '/donate?pillar=educational-support',
-    image: '/images/heroslider/hero2.png',
+    image: '/images/heroslider/hero2.PNG',
   },
   {
     id: 'slide-3',
@@ -47,7 +47,7 @@ const SLIDES = [
     primaryCtaLink: '/programs/empowerment-leadership',
     secondaryCtaText: 'Support Women Leaders',
     secondaryCtaLink: '/donate?pillar=empowerment-leadership',
-    image: '/images/heroslider/hero3.png',
+    image: '/images/heroslider/hero3.PNG',
   },
   {
     id: 'slide-4',
@@ -61,7 +61,7 @@ const SLIDES = [
     primaryCtaLink: '/impact',
     secondaryCtaText: 'Donate to Outreach',
     secondaryCtaLink: '/donate?pillar=community-outreach-support',
-    image: '/images/heroslider/hero4.png',
+    image: '/images/heroslider/hero4.PNG',
   },
 ];
 
