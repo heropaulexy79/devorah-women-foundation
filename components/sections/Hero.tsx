@@ -110,7 +110,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative w-full min-h-[95vh] lg:min-h-screen flex items-end pt-28 pb-24 lg:pb-32 overflow-hidden bg-[#1a0f22] -mt-20"
+      className="relative w-full min-h-[100dvh] lg:min-h-screen flex items-center lg:items-end pt-20 pb-16 sm:pt-28 sm:pb-24 lg:pb-32 overflow-hidden bg-[#1a0f22] -mt-20"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -134,9 +134,9 @@ export default function Hero() {
           />
 
           {/* Sophisticated editorial overlay — darker from left, preserves photo on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0d0714]/85 via-[#0d0714]/55 to-[#0d0714]/20" />
-          {/* Bottom vignette for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0d0714]/75 via-transparent to-[#0d0714]/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0d0714]/90 via-[#0d0714]/65 to-[#0d0714]/30 lg:from-[#0d0714]/85 lg:via-[#0d0714]/55 lg:to-[#0d0714]/20" />
+          {/* Bottom vignette & mobile dark wash for crystal-clear text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0d0714]/95 via-[#0d0714]/55 to-[#0d0714]/35 lg:from-[#0d0714]/75 lg:via-transparent lg:to-[#0d0714]/30" />
         </motion.div>
       </AnimatePresence>
 
@@ -150,15 +150,15 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.65, ease: 'easeOut' }}
-              className="space-y-7"
+              className="space-y-4 sm:space-y-6 lg:space-y-7"
             >
               {/* Eyebrow — plain editorial label */}
-              <p className="text-[10px] font-semibold tracking-[0.35em] uppercase text-[#C5A8D8]">
+              <p className="text-[10px] sm:text-xs font-semibold tracking-[0.25em] sm:tracking-[0.35em] uppercase text-[#C5A8D8]">
                 {slide.eyebrow}
               </p>
 
               {/* Headline — selective italic for contrast */}
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.08] tracking-tight">
+              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.12] sm:leading-[1.08] tracking-tight">
                 <span className="block font-bold">{slide.titleLine1}</span>
                 <span className="block font-normal italic text-[#C5A8D8]">
                   {slide.titleLine2}
@@ -167,25 +167,25 @@ export default function Hero() {
               </h1>
 
               {/* Supporting copy — WCAG AA contrast enhanced */}
-              <p className="text-base sm:text-lg text-white/85 leading-relaxed max-w-xl font-light">
+              <p className="text-sm sm:text-base lg:text-lg text-white/90 leading-relaxed max-w-xl font-light">
                 {slide.supportingText}
               </p>
 
-              {/* CTAs — refined, not pill-shaped */}
-              <div className="pt-2 flex flex-wrap items-center gap-5">
+              {/* CTAs — refined, responsive sizing */}
+              <div className="pt-1 sm:pt-2 flex flex-wrap items-center gap-3.5 sm:gap-5">
                 <Link
                   href={slide.primaryCtaLink}
-                  className="inline-flex items-center gap-2 bg-[#6E3A82] hover:bg-[#8B4FA0] text-white px-8 py-3.5 rounded-sm text-sm font-semibold tracking-wide transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a0f22] focus-visible:outline-none shadow-lg shadow-black/20"
+                  className="inline-flex items-center gap-2 bg-[#6E3A82] hover:bg-[#8B4FA0] text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-sm text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a0f22] focus-visible:outline-none shadow-lg shadow-black/20"
                 >
                   {slide.primaryCtaLink.startsWith('/donate') && (
-                    <Heart className="w-4 h-4 fill-white/20 text-white" />
+                    <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white/20 text-white" />
                   )}
                   <span>{slide.primaryCtaText}</span>
                 </Link>
 
                 <Link
                   href={slide.secondaryCtaLink}
-                  className="inline-flex items-center text-white/85 hover:text-white text-sm font-medium tracking-wide border-b border-white/30 hover:border-white pb-0.5 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:outline-none"
+                  className="inline-flex items-center text-white/85 hover:text-white text-xs sm:text-sm font-medium tracking-wide border-b border-white/30 hover:border-white pb-0.5 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:outline-none"
                 >
                   {slide.secondaryCtaText}
                 </Link>
@@ -196,9 +196,9 @@ export default function Hero() {
       </div>
 
       {/* Bottom Controls Bar */}
-      <div className="absolute bottom-0 inset-x-0 z-30 pb-7 px-4 sm:px-8">
+      <div className="absolute bottom-0 inset-x-0 z-30 pb-4 sm:pb-7 px-4 sm:px-8">
         {/* Thin Progress Bar */}
-        <div className="max-w-7xl mx-auto mb-5 w-full h-px bg-white/15 overflow-hidden">
+        <div className="max-w-7xl mx-auto mb-3 sm:mb-5 w-full h-px bg-white/15 overflow-hidden">
           <div
             className="h-full bg-[#A987C2] transition-all ease-linear"
             style={{ width: `${progress}%` }}
