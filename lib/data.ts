@@ -52,7 +52,7 @@ export const PROGRAMS: Program[] = [
       'Women-focused empowerment sessions'
     ],
     locations: ['Lagos', 'Ikeja', 'Regional Community Centers'],
-    imageUrl: '/images/programs/Empowerment-leadership.PNG',
+    imageUrl: '/images/programs/Empowerment-leadership.jpeg',
     featured: true,
     impactResults: [
       'Over 1,200 women trained in strategic leadership and workplace confidence.',
@@ -119,7 +119,7 @@ export const PROGRAMS: Program[] = [
       'Mentorship opportunities'
     ],
     locations: ['Development Hubs', 'Vocational Centers'],
-    imageUrl: '/images/programs/mentorship-capacity.jpeg',
+    imageUrl: '/images/programs/mentorship-capacity.PNG',
     featured: true,
     impactResults: [
       'Over 350 women and girls paired with experienced professional mentors.',
