@@ -312,7 +312,7 @@ export const RESOURCES: Resource[] = [
     type: 'Journals',
     author: 'Devorah Research & Thought Leadership Unit',
     shortDescription: 'A comprehensive editorial journal exploring ethical leadership, girl-child advocacy, and economic empowerment models.',
-    coverImageUrl: '/images/hero_portrait.png',
+    coverImageUrl: '/images/leadership development/SV2L8629.jpeg',
     downloadUrl: '#',
     readOnlineUrl: '#'
   },
