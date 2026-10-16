@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     keywords: [
       program.name,
       program.category,
-      'Devorah Women's Leadership & Empowerment Initiative',
+      "Devorah Women's Leadership & Empowerment Initiative",
       'women empowerment Nigeria',
       'women empowerment Lagos',
       ...program.locations,
@@ -79,7 +79,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
     description: program.description,
     provider: {
       '@type': 'NGO',
-      name: 'Devorah Women's Leadership & Empowerment Initiative',
+      name: "Devorah Women's Leadership & Empowerment Initiative",
       url: 'https://devorahwomen.org',
     },
     occupationalCategory: program.category,

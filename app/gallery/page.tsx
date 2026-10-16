@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/gallery' },
   openGraph: {
-    title: 'Media Gallery | Devorah Women's Leadership & Empowerment Initiative',
+    title: "Media Gallery | Devorah Women's Leadership & Empowerment Initiative",
     description: 'Moments from the work. Stories from the community.',
     url: '/gallery',
     type: 'website',
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Media Gallery | Devorah Women's Leadership & Empowerment Initiative',
-    description: 'Explore moments from Devorah Women's Leadership & Empowerment Initiative\'s programs, outreaches, and community events.',
+    title: "Media Gallery | Devorah Women's Leadership & Empowerment Initiative",
+    description: "Explore moments from Devorah Women's Leadership & Empowerment Initiative's programs, outreaches, and community events.",
     images: ['/images/gallery_conference.png'],
   },
 };

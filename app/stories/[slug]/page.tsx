@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: article.excerpt,
     keywords: [
       article.category,
-      'Devorah Women's Leadership & Empowerment Initiative',
+      "Devorah Women's Leadership & Empowerment Initiative",
       'women leadership',
       'girl-child empowerment Nigeria',
       'women empowerment Lagos',
@@ -88,7 +88,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     },
     publisher: {
       '@type': 'NGO',
-      name: 'Devorah Women's Leadership & Empowerment Initiative',
+      name: "Devorah Women's Leadership & Empowerment Initiative",
       url: 'https://devorahwomen.org',
     },
     datePublished: article.publishedAt,

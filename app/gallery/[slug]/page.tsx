@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: AlbumPageProps): Promise<Meta
   const album = items.find((item) => item.slug === slug);
   if (!album) {
     return {
-      title: 'Album Not Found | Devorah Women's Leadership & Empowerment Initiative',
+      title: "Album Not Found | Devorah Women's Leadership & Empowerment Initiative",
     };
   }
 

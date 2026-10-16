@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/resources' },
   openGraph: {
-    title: 'Resources | Devorah Women's Leadership & Empowerment Initiative',
+    title: "Resources | Devorah Women's Leadership & Empowerment Initiative",
     description:
       'Knowledge that empowers. Access our curated journals, devotionals, leadership frameworks, and research publications.',
     url: '/resources',
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Resources | Devorah Women's Leadership & Empowerment Initiative',
-    description: 'Curated journals, devotional guides, and leadership publications from Devorah Women's Leadership & Empowerment Initiative.',
+    title: "Resources | Devorah Women's Leadership & Empowerment Initiative",
+    description: "Curated journals, devotional guides, and leadership publications from Devorah Women's Leadership & Empowerment Initiative.",
   },
 };
 

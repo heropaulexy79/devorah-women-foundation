@@ -32,7 +32,7 @@ export default function AdminDashboardPage() {
     content: '',
     readingTime: '4 min read',
     authorName: 'Executive Director',
-    authorRole: 'Devorah Women's Leadership & Empowerment Initiative',
+    authorRole: "Devorah Women's Leadership & Empowerment Initiative",
     featuredImageUrl: '/images/story_beneficiary.png',
   });
 
@@ -104,7 +104,7 @@ export default function AdminDashboardPage() {
       content: '',
       readingTime: '4 min read',
       authorName: 'Executive Director',
-      authorRole: 'Devorah Women's Leadership & Empowerment Initiative',
+      authorRole: "Devorah Women's Leadership & Empowerment Initiative",
       featuredImageUrl: '/images/story_beneficiary.png',
     });
     setShowArticleModal(true);

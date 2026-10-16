@@ -5,7 +5,7 @@ import DonateClient from './DonateClient';
 export const metadata: Metadata = {
   title: 'Donate',
   description:
-    'Support Devorah Women's Leadership & Empowerment Initiative by donating to fuel micro-grants, educational scholarships, leadership training, and holistic mentorship for women and girls across Lagos, Nigeria.',
+    "Support Devorah Women's Leadership & Empowerment Initiative by donating to fuel micro-grants, educational scholarships, leadership training, and holistic mentorship for women and girls across Lagos, Nigeria.",
   keywords: [
     'donate women foundation Nigeria',
     'support girls education Africa',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/donate' },
   openGraph: {
-    title: 'Donate | Devorah Women's Leadership & Empowerment Initiative',
+    title: "Donate | Devorah Women's Leadership & Empowerment Initiative",
     description:
       'Fuel the movement empowering women & girls. Your support unlocks micro-grants, scholarships, leadership training, and mentorship.',
     url: '/donate',
@@ -25,8 +25,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Donate | Devorah Women's Leadership & Empowerment Initiative',
-    description: 'Support women and girls in Lagos, Nigeria — donate to Devorah Women's Leadership & Empowerment Initiative today.',
+    title: "Donate | Devorah Women's Leadership & Empowerment Initiative",
+    description: "Support women and girls in Lagos, Nigeria — donate to Devorah Women's Leadership & Empowerment Initiative today.",
   },
 };
 

@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       project.name,
       project.category,
       project.location,
-      'Devorah Women's Leadership & Empowerment Initiative',
+      "Devorah Women's Leadership & Empowerment Initiative",
       'community impact Nigeria',
       'community outreach Lagos',
     ],

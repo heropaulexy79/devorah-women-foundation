@@ -5,7 +5,7 @@ import CTASection from '@/components/sections/CTASection';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Privacy Policy for Devorah Women's Leadership & Empowerment Initiative. Learn how we safeguard your personal information and maintain transparency.',
+  description: "Privacy Policy for Devorah Women's Leadership & Empowerment Initiative. Learn how we safeguard your personal information and maintain transparency.",
   alternates: { canonical: '/privacy' },
 };
 
