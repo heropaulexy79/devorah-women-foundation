@@ -58,9 +58,9 @@ const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
     code: 'NGN',
     symbol: '₦',
     name: 'Nigerian Naira',
-    presets: [5000, 10000, 25000, 50000, 100000],
-    defaultAmount: 25000,
-    koboMultiplier: 100,
+    presets: [50000, 100000, 250000, 500000, 1000000],
+    defaultAmount: 250000,
+    koboMultiplier: 1000,
   },
   USD: {
     code: 'USD',
