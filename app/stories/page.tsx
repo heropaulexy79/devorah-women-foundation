@@ -4,7 +4,7 @@ import StoriesClient from './StoriesClient';
 export const metadata: Metadata = {
   title: 'Stories & Insights',
   description:
-    'Read perspectives on female leadership, girl-child advocacy, faith in action, and field stories of dignity and transformation from Devorah Women Foundation.',
+    'Read perspectives on female leadership, girl-child advocacy, faith in action, and field stories of dignity and transformation from Devorah Women's Leadership & Empowerment Initiative.',
   keywords: [
     'women leadership stories',
     'girl-child advocacy',
@@ -12,11 +12,11 @@ export const metadata: Metadata = {
     'Christian women Lagos',
     'faith-based empowerment',
     'female leadership Africa',
-    'Devorah Foundation journal',
+    'Devorah Initiative journal',
   ],
   alternates: { canonical: '/stories' },
   openGraph: {
-    title: 'Stories & Insights | Devorah Women Foundation',
+    title: 'Stories & Insights | Devorah Women's Leadership & Empowerment Initiative',
     description:
       'Perspectives on female leadership, girl-child advocacy, faith in action, and field stories of dignity and transformation.',
     url: '/stories',
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Stories & Insights | Devorah Women Foundation',
-    description: 'Read thought leadership, advocacy, and community stories from Devorah Women Foundation.',
+    title: 'Stories & Insights | Devorah Women's Leadership & Empowerment Initiative',
+    description: 'Read thought leadership, advocacy, and community stories from Devorah Women's Leadership & Empowerment Initiative.',
   },
 };
 

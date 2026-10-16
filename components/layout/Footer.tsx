@@ -64,7 +64,7 @@ export default function Footer() {
               <div className="relative w-11 h-11">
                 <Image
                   src="/logo.png"
-                  alt="Devorah Women Foundation Logo"
+                  alt="Devorah Women's Leadership & Empowerment Initiative Logo"
                   fill
                   className="object-contain"
                 />
@@ -229,7 +229,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#E8DDF0]/40 gap-3">
           <p>
-            © {new Date().getFullYear()} Devorah Women Foundation. All rights reserved.
+            © {new Date().getFullYear()} Devorah Women's Leadership & Empowerment Initiative. All rights reserved.
           </p>
           <p className="italic text-[#E8DDF0]/30 font-serif text-xs">
             Empowering Women. Shaping Girls. Transforming Communities.

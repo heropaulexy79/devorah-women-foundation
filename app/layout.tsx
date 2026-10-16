@@ -24,13 +24,13 @@ const BASE_URL = 'https://devorahwomen.org';
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'Devorah Women Foundation | Empowering Women, Shaping Girls',
-    template: '%s | Devorah Women Foundation',
+    default: "Devorah Women's Leadership & Empowerment Initiative | Empowering Women, Shaping Girls",
+    template: "%s | Devorah Women's Leadership & Empowerment Initiative",
   },
   description:
     'A Christian, women-focused foundation committed to empowering girls and women through education, mentorship, leadership development, community initiatives, and faith-anchored support across Lagos, Nigeria.',
   keywords: [
-    'Devorah Women Foundation',
+    "Devorah Women's Leadership & Empowerment Initiative",
     'women empowerment',
     'girl-child development',
     'female leadership Africa',
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
     'girls STEM',
     'vocational training women',
   ],
-  authors: [{ name: 'Devorah Women Foundation', url: BASE_URL }],
-  creator: 'Devorah Women Foundation',
-  publisher: 'Devorah Women Foundation',
+  authors: [{ name: "Devorah Women's Leadership & Empowerment Initiative", url: BASE_URL }],
+  creator: "Devorah Women's Leadership & Empowerment Initiative",
+  publisher: "Devorah Women's Leadership & Empowerment Initiative",
   robots: {
     index: true,
     follow: true,
@@ -62,8 +62,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_NG',
     url: BASE_URL,
-    siteName: 'Devorah Women Foundation',
-    title: 'Devorah Women Foundation | Empowering Women, Shaping Girls',
+    siteName: "Devorah Women's Leadership & Empowerment Initiative",
+    title: "Devorah Women's Leadership & Empowerment Initiative | Empowering Women, Shaping Girls",
     description:
       'Empowering Women. Shaping Girls. Transforming Communities. A faith-anchored foundation dedicated to holistic development across Lagos, Nigeria.',
     images: [
@@ -71,13 +71,13 @@ export const metadata: Metadata = {
         url: '/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Devorah Women Foundation – Empowering Women, Shaping Girls',
+        alt: "Devorah Women's Leadership & Empowerment Initiative – Empowering Women, Shaping Girls",
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Devorah Women Foundation | Empowering Women, Shaping Girls',
+    title: "Devorah Women's Leadership & Empowerment Initiative | Empowering Women, Shaping Girls",
     description:
       'A Christian foundation dedicated to empowering girls and women through education, mentorship, leadership, and faith-anchored community action.',
     images: ['/images/og-image.png'],
@@ -96,7 +96,7 @@ const organizationJsonLd = {
     {
       '@type': 'NGO',
       '@id': `${BASE_URL}/#organization`,
-      name: 'Devorah Women Foundation',
+      name: "Devorah Women's Leadership & Empowerment Initiative",
       url: BASE_URL,
       logo: {
         '@type': 'ImageObject',
@@ -106,7 +106,7 @@ const organizationJsonLd = {
       },
       image: `${BASE_URL}/images/og-image.png`,
       description:
-        'Devorah Global Women is a faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women.',
+        "Devorah Women's Leadership & Empowerment Initiative is a faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women.",
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'No 14, Esubiyi Street, Mende, Maryland',
@@ -131,7 +131,7 @@ const organizationJsonLd = {
       '@type': 'WebSite',
       '@id': `${BASE_URL}/#website`,
       url: BASE_URL,
-      name: 'Devorah Women Foundation',
+      name: "Devorah Women's Leadership & Empowerment Initiative",
       publisher: { '@id': `${BASE_URL}/#organization` },
       potentialAction: {
         '@type': 'SearchAction',

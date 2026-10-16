@@ -53,15 +53,15 @@ export async function generateMetadata({ params }: AlbumPageProps): Promise<Meta
   const album = items.find((item) => item.slug === slug);
   if (!album) {
     return {
-      title: 'Album Not Found | Devorah Women Foundation',
+      title: 'Album Not Found | Devorah Women's Leadership & Empowerment Initiative',
     };
   }
 
   return {
-    title: `${album.title} | Devorah Women Foundation Gallery`,
+    title: `${album.title} | Devorah Women's Leadership & Empowerment Initiative Gallery`,
     description: album.caption,
     openGraph: {
-      title: `${album.title} | Devorah Women Foundation`,
+      title: `${album.title} | Devorah Women's Leadership & Empowerment Initiative`,
       description: album.caption,
       images: [album.imageUrl],
     },

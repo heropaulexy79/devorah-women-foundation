@@ -32,7 +32,7 @@ export default function AdminDashboardPage() {
     content: '',
     readingTime: '4 min read',
     authorName: 'Executive Director',
-    authorRole: 'Devorah Women Foundation',
+    authorRole: 'Devorah Women's Leadership & Empowerment Initiative',
     featuredImageUrl: '/images/story_beneficiary.png',
   });
 
@@ -104,7 +104,7 @@ export default function AdminDashboardPage() {
       content: '',
       readingTime: '4 min read',
       authorName: 'Executive Director',
-      authorRole: 'Devorah Women Foundation',
+      authorRole: 'Devorah Women's Leadership & Empowerment Initiative',
       featuredImageUrl: '/images/story_beneficiary.png',
     });
     setShowArticleModal(true);
@@ -495,7 +495,7 @@ export default function AdminDashboardPage() {
             <ShieldCheck className="w-8 h-8" />
           </div>
           <div>
-            <h1 className="text-2xl font-serif font-bold text-[#3B214F]">Devorah Foundation CMS</h1>
+            <h1 className="text-2xl font-serif font-bold text-[#3B214F]">Devorah Initiative CMS</h1>
             <p className="text-xs text-[#716A73] mt-1">Admin Content Portal & Digital Insights</p>
           </div>
 

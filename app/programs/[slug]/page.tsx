@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     keywords: [
       program.name,
       program.category,
-      'Devorah Women Foundation',
+      'Devorah Women's Leadership & Empowerment Initiative',
       'women empowerment Nigeria',
       'women empowerment Lagos',
       ...program.locations,
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: `/programs/${program.slug}`,
     },
     openGraph: {
-      title: `${program.name} | Devorah Women Foundation`,
+      title: `${program.name} | Devorah Women's Leadership & Empowerment Initiative`,
       description: program.tagline,
       url: `/programs/${program.slug}`,
       type: 'website',
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${program.name} | Devorah Women Foundation`,
+      title: `${program.name} | Devorah Women's Leadership & Empowerment Initiative`,
       description: program.tagline,
       images: [program.imageUrl],
     },
@@ -79,7 +79,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
     description: program.description,
     provider: {
       '@type': 'NGO',
-      name: 'Devorah Women Foundation',
+      name: 'Devorah Women's Leadership & Empowerment Initiative',
       url: 'https://devorahwomen.org',
     },
     occupationalCategory: program.category,

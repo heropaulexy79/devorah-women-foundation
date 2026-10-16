@@ -75,7 +75,7 @@ export default function FeaturedResource() {
                 {/* Journal cover overlay details */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#3B214F] via-[#3B214F]/40 to-transparent p-6 flex flex-col justify-between text-white">
                   <span className="text-[10px] uppercase font-semibold tracking-widest text-[#C5A8D8]">
-                    DEVORAH FOUNDATION &middot; JOURNAL
+                    DEVORAH INITIATIVE &middot; JOURNAL
                   </span>
                   
                   <div>

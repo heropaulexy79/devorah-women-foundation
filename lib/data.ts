@@ -204,7 +204,7 @@ export const PROGRAMS: Program[] = [
 export const FEATURED_STORY = {
   id: 'story-1',
   headline: 'Transformation becomes real when you hear the story behind the numbers.',
-  quote: '"Before joining the Devorah Leadership Institute, I doubted whether my voice could make a difference in my community. Through their mentorship, I gained the skills and courage to launch a community literacy drive that now serves over 200 children. Devorah Foundation didn\'t just teach me—they showed me who God created me to be."',
+  quote: '"Before joining Devorah Women\'s Leadership & Empowerment Initiative, I doubted whether my voice could make a difference in my community. Through their mentorship, I gained the skills and courage to launch a community literacy drive that now serves over 200 children. The Initiative didn\'t just teach me—they showed me who God created me to be."',
   authorName: 'Folake Adeleke',
   program: "Girls' Development & Leadership Academy",
   location: 'Lagos, Nigeria',
@@ -270,12 +270,12 @@ export const ARTICLES: Article[] = [
     excerpt: 'How intentional mentorship, spiritual grounding, and community support create resilient young women who lead with integrity.',
     content: `True empowerment begins long before a young woman enters the boardroom or public office. It takes root in the early years of self-discovery, when a girl learns that her intellect, her voice, and her identity in God carry profound weight.
 
-At Devorah Women Foundation, our commitment to shaping girls goes beyond academic support. We focus on building internal strength—the courage to stand firm against societal constraints, the confidence to pursue rigorous fields like technology and governance, and the empathy to uplift others.
+At Devorah Women's Leadership & Empowerment Initiative, our commitment to shaping girls goes beyond academic support. We focus on building internal strength—the courage to stand firm against societal constraints, the confidence to pursue rigorous fields like technology and governance, and the empathy to uplift others.
 
 Through structured mentorship circles, we pair young girls with experienced female mentors who guide them through life transitions, academic choices, and spiritual growth. The results are transformative: girls who once hesitated to speak in class become school prefects, community organizers, and visionary thinkers.`,
     author: {
       name: 'Executive Director',
-      role: 'Devorah Women Foundation',
+      role: "Devorah Women's Leadership & Empowerment Initiative",
       avatarUrl: '/images/founder_portrait.png'
     },
     publishedAt: 'September 14, 2025',
@@ -294,7 +294,7 @@ Through structured mentorship circles, we pair young girls with experienced fema
 When we reflect on Deborah's leadership under the palm tree, we see a woman who was accessible to her community, discerning in times of crisis, and resolute in her faith. Modern women called to leadership in business, politics, education, and ministry find in Deborah an enduring example of how grace and authority coexist.`,
     author: {
       name: 'Spiritual Mentorship Team',
-      role: 'Devorah Women Foundation',
+      role: "Devorah Women's Leadership & Empowerment Initiative",
       avatarUrl: '/images/founder_portrait.png'
     },
     publishedAt: 'August 28, 2025',
@@ -349,7 +349,7 @@ export const LEADERSHIP_PEOPLE: Person[] = [
     title: 'Head of Programs & Community Outreach',
     role: 'Program Director',
     category: 'Team Lead',
-    biography: 'Oversees design, implementation, and field evaluation across all Devorah Foundation initiatives.',
+    biography: "Oversees design, implementation, and field evaluation across all Devorah Women's Leadership & Empowerment Initiative programs and initiatives.",
     responsibilities: 'Directing field operations, managing program leads, coordinating stakeholder partnerships.',
     imageUrl: '/images/hero_portrait.png'
   },
@@ -368,7 +368,7 @@ export const LEADERSHIP_PEOPLE: Person[] = [
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't-1',
-    quote: 'The Devorah Foundation stands out for its high standard of integrity, deep community commitment, and genuine focus on individual transformation.',
+    quote: "Devorah Women's Leadership & Empowerment Initiative stands out for its high standard of integrity, deep community commitment, and genuine focus on individual transformation.",
     authorName: 'Institutional Partner Representative',
     authorRelationship: 'Institutional Partner Representative',
     location: 'Lagos',

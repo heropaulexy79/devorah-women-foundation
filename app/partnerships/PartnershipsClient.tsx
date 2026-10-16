@@ -72,7 +72,7 @@ export default function PartnershipsClient() {
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="POTENTIAL PARTNERS"
-          title="Who Can Partner With Devorah Foundation"
+          title="Who Can Partner With Devorah Women's Leadership & Empowerment Initiative"
           centered
           className="mb-12"
         />
@@ -158,7 +158,7 @@ export default function PartnershipsClient() {
               <CheckCircle2 className="w-12 h-12 text-[#6E3A82] mx-auto" />
               <h3 className="font-serif text-2xl font-bold text-[#3B214F]">Partnership Inquiry Received</h3>
               <p className="text-sm text-[#716A73] max-w-md mx-auto">
-                Thank you for reaching out. A senior representative from Devorah Women Foundation will review your
+                Thank you for reaching out. A senior representative from Devorah Women's Leadership & Empowerment Initiative will review your
                 submission and contact you shortly.
               </p>
               <button

@@ -9,7 +9,7 @@ import PageHero from '@/components/ui/PageHero';
 export const metadata = {
   title: 'Get Involved',
   description:
-    'Join the Devorah Women Foundation movement. Explore pathways for volunteering, institutional partnering, supporting our work, and attending foundation events across Lagos, Nigeria.',
+    'Join the Devorah Women's Leadership & Empowerment Initiative movement. Explore pathways for volunteering, institutional partnering, supporting our work, and attending foundation events across Lagos, Nigeria.',
   keywords: [
     'volunteer Nigeria NGO',
     'volunteer Lagos NGO',
@@ -20,14 +20,14 @@ export const metadata = {
   ],
   alternates: { canonical: '/get-involved' },
   openGraph: {
-    title: 'Get Involved | Devorah Women Foundation',
+    title: 'Get Involved | Devorah Women's Leadership & Empowerment Initiative',
     description: 'There\'s a place for you in this work. Join us as a volunteer, partner, donor, or event participant.',
     url: '/get-involved',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Get Involved | Devorah Women Foundation',
+    title: 'Get Involved | Devorah Women's Leadership & Empowerment Initiative',
     description: 'Volunteer, partner, donate or attend events — join the movement empowering women and girls in Lagos, Nigeria.',
   },
 };

@@ -217,7 +217,7 @@ function CoreValuesCarousel() {
             CORE VALUES
           </span>
           <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#3B214F] leading-snug">
-            The core values shaping every program, outreach, and community initiative led by Devorah Global Women.
+            The core values shaping every program, outreach, and community initiative led by Devorah Women's Leadership & Empowerment Initiative.
           </h3>
         </div>
 

@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       project.name,
       project.category,
       project.location,
-      'Devorah Women Foundation',
+      'Devorah Women's Leadership & Empowerment Initiative',
       'community impact Nigeria',
       'community outreach Lagos',
     ],
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     openGraph: {
       type: 'website',
-      title: `${project.name} | Devorah Women Foundation`,
+      title: `${project.name} | Devorah Women's Leadership & Empowerment Initiative`,
       description: project.shortDescription,
       url: `/impact/${project.slug}`,
       images: [
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${project.name} | Devorah Women Foundation`,
+      title: `${project.name} | Devorah Women's Leadership & Empowerment Initiative`,
       description: project.shortDescription,
       images: [project.imageUrl],
     },

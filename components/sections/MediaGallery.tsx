@@ -82,7 +82,7 @@ export default function MediaGallery({ limit }: { limit?: number }) {
             <span className="italic font-normal text-[#6E3A82]">Stories from the community.</span>
           </h1>
           <p className="mt-5 text-base sm:text-lg text-[#524C55] leading-relaxed font-light">
-            Explore moments from Devorah Women Foundation's programs, outreaches, conferences, scholarships and faith-based initiatives.
+            Explore moments from Devorah Women's Leadership & Empowerment Initiative's programs, outreaches, conferences, scholarships and faith-based initiatives.
           </p>
         </div>
 

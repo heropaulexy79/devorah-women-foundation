@@ -5,7 +5,7 @@ import CTASection from '@/components/sections/CTASection';
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions',
-  description: 'Terms and conditions governing the use of the Devorah Women Foundation website and donation portal.',
+  description: "Terms and conditions governing the use of the Devorah Women's Leadership & Empowerment Initiative website and donation portal.",
   alternates: { canonical: '/terms' },
 };
 
@@ -29,21 +29,21 @@ export default function TermsPage() {
           <div className="space-y-3">
             <h2 className="font-serif text-2xl font-bold text-[#3B214F]">1. Acceptance of Terms</h2>
             <p>
-              By accessing or using the Devorah Women Foundation website (devorahwomen.org), you agree to comply with and be bound by these Terms and Conditions. If you do not agree, please do not use our services.
+              By accessing or using the Devorah Women's Leadership & Empowerment Initiative website (devorahwomen.org), you agree to comply with and be bound by these Terms and Conditions. If you do not agree, please do not use our services.
             </p>
           </div>
 
           <div className="space-y-3">
             <h2 className="font-serif text-2xl font-bold text-[#3B214F]">2. Non-Profit Mission &amp; Purpose</h2>
             <p>
-              Devorah Women Foundation is a registered non-governmental organization headquartered in Lagos, Nigeria. Our mission is dedicated to raising spiritually grounded, purpose-driven, and socially impactful women and girls through educational scholarships, leadership development, mentorship, and faith-anchored community outreach.
+              Devorah Women's Leadership & Empowerment Initiative is a registered non-governmental organization headquartered in Lagos, Nigeria. Our mission is dedicated to raising spiritually grounded, purpose-driven, and socially impactful women and girls through educational scholarships, leadership development, mentorship, and faith-anchored community outreach.
             </p>
           </div>
 
           <div className="space-y-3">
             <h2 className="font-serif text-2xl font-bold text-[#3B214F]">3. Donations &amp; Financial Contributions</h2>
             <ul className="list-disc pl-5 space-y-1.5">
-              <li>All donations made to Devorah Women Foundation are voluntary contributions supporting our charitable objectives and designated program pillars.</li>
+              <li>All donations made to Devorah Women's Leadership & Empowerment Initiative are voluntary contributions supporting our charitable objectives and designated program pillars.</li>
               <li>Donations are processed securely through accredited payment partners including Paystack.</li>
               <li>While donations are generally non-refundable once deployed to field initiatives, inquiries regarding mistaken or duplicate transactions can be directed to womendevorah@gmail.com within 7 days of the transaction.</li>
             </ul>
@@ -52,7 +52,7 @@ export default function TermsPage() {
           <div className="space-y-3">
             <h2 className="font-serif text-2xl font-bold text-[#3B214F]">4. Intellectual Property</h2>
             <p>
-              All materials, photographs, stories, reports, logos, and branding on this website are the property of Devorah Women Foundation or used with appropriate permissions. Unauthorized reproduction, modification, or commercial distribution is prohibited without prior written consent.
+              All materials, photographs, stories, reports, logos, and branding on this website are the property of Devorah Women's Leadership & Empowerment Initiative or used with appropriate permissions. Unauthorized reproduction, modification, or commercial distribution is prohibited without prior written consent.
             </p>
           </div>
 

@@ -21,16 +21,16 @@ export default function WhoWeAre() {
             transition={{ duration: 0.7 }}
           >
             <SectionHeader
-              eyebrow="OVERVIEW OF DEVORAH GLOBAL WOMEN"
+              eyebrow="OVERVIEW OF DEVORAH WOMEN'S LEADERSHIP & EMPOWERMENT INITIATIVE"
               title="Raising Women of Wisdom, Courage, and Global Impact."
             />
 
             <p className="text-base sm:text-lg text-[#3B3340] leading-relaxed">
-              Devorah Global Women is a faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women. Rooted in Christian values, we believe that when women are equipped with knowledge, wisdom, courage, and character, they become catalysts for transformation in their communities, nations, and across the globe.
+              Devorah Women's Leadership & Empowerment Initiative is a faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women. Rooted in Christian values, we believe that when women are equipped with knowledge, wisdom, courage, and character, they become catalysts for transformation in their communities, nations, and across the globe.
             </p>
 
             <p className="text-sm text-[#524C55] leading-relaxed font-normal">
-              Our work aligns with the United Nations Sustainable Development Goals (SDGs 3 & 4) by promoting good health and well-being, as well as quality education. Through leadership training, mentorship programs, community outreach initiatives, podcasts, and educational campaigns, Devorah Global Women provides practical support while inspiring women to lead lives of faith, excellence, and service.
+              Our work aligns with the United Nations Sustainable Development Goals (SDGs 3 & 4) by promoting good health and well-being, as well as quality education. Through leadership training, mentorship programs, community outreach initiatives, podcasts, and educational campaigns, Devorah Women's Leadership & Empowerment Initiative provides practical support while inspiring women to lead lives of faith, excellence, and service.
             </p>
 
             <ul className="space-y-3 pt-1">
@@ -73,7 +73,7 @@ export default function WhoWeAre() {
               <div className="relative rounded-sm overflow-hidden aspect-[4/3] max-w-lg mx-auto lg:max-w-none">
                 <Image
                   src="/images/who_we_are.png"
-                  alt="Devorah Foundation community gathering — women and girls coming together"
+                  alt="Devorah Women's Leadership & Empowerment Initiative community gathering — women and girls coming together"
                   fill
                   className="object-cover"
                 />
@@ -83,7 +83,7 @@ export default function WhoWeAre() {
               <div className="absolute -bottom-10 -left-6 w-40 sm:w-48 aspect-square rounded-sm overflow-hidden shadow-xl border-2 border-[#FAF8F5] hidden sm:block">
                 <Image
                   src="/images/story_beneficiary.png"
-                  alt="Young woman empowered through Devorah Foundation programs"
+                  alt="Young woman empowered through Devorah Women's Leadership & Empowerment Initiative programs"
                   fill
                   className="object-cover"
                 />

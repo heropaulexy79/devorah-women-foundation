@@ -26,9 +26,9 @@ import {
 export const metadata = {
   title: 'About Us',
   description:
-    'Learn about Devorah Women Foundation — our history, mission, vision, core values, Christian identity, and leadership team dedicated to empowering girls and women across Lagos, Nigeria.',
+    "Learn about Devorah Women's Leadership & Empowerment Initiative — our history, mission, vision, core values, Christian identity, and leadership team dedicated to empowering girls and women across Lagos, Nigeria.",
   keywords: [
-    'about Devorah Women Foundation',
+    "about Devorah Women's Leadership & Empowerment Initiative",
     'Christian women NGO Nigeria',
     'Christian women NGO Lagos',
     'women leadership mission',
@@ -38,17 +38,17 @@ export const metadata = {
   ],
   alternates: { canonical: '/about' },
   openGraph: {
-    title: 'About Us | Devorah Women Foundation',
+    title: "About Us | Devorah Women's Leadership & Empowerment Initiative",
     description:
       'An institution built on strength, dignity, and purpose — dedicated to unlocking the potential of girls and women through holistic education, mentorship, and faith-anchored community action.',
     url: '/about',
     type: 'website',
-    images: [{ url: '/images/who_we_are.png', width: 1200, height: 630, alt: 'Devorah Women Foundation community gathering' }],
+    images: [{ url: '/images/who_we_are.png', width: 1200, height: 630, alt: "Devorah Women's Leadership & Empowerment Initiative community gathering" }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Us | Devorah Women Foundation',
-    description: 'Learn about our mission, vision, values, and the team behind Devorah Women Foundation.',
+    title: "About Us | Devorah Women's Leadership & Empowerment Initiative",
+    description: "Learn about our mission, vision, values, and the team behind Devorah Women's Leadership & Empowerment Initiative.",
     images: ['/images/who_we_are.png'],
   },
 };
@@ -123,24 +123,24 @@ export default function AboutPage() {
       
       {/* 1. Page Hero Header */}
       <PageHero
-        eyebrow="ABOUT DEVORAH GLOBAL WOMEN"
+        eyebrow="ABOUT DEVORAH WOMEN'S LEADERSHIP & EMPOWERMENT INITIATIVE"
         title="Raising Women of Wisdom, Courage, and Global Impact."
         description="A faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women."
         breadcrumb={[{ label: 'About Us' }]}
       />
 
-      {/* 2. Overview of Devorah Global Women */}
+      {/* 2. Overview of Devorah Women's Leadership & Empowerment Initiative */}
       <section className="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           <div className="lg:col-span-6 space-y-6">
             <SectionHeader
-              eyebrow="OVERVIEW OF DEVORAH GLOBAL WOMEN"
+              eyebrow="OVERVIEW OF DEVORAH WOMEN'S LEADERSHIP & EMPOWERMENT INITIATIVE"
               title="Equipping women to become catalysts for global transformation."
             />
 
             <p className="text-base text-[#716A73] leading-relaxed">
-              Devorah Global Women is a faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women.
+              Devorah Women's Leadership & Empowerment Initiative is a faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women.
             </p>
 
             <p className="text-base text-[#716A73] leading-relaxed">
@@ -157,7 +157,7 @@ export default function AboutPage() {
             </div>
 
             <p className="text-sm text-[#716A73] leading-relaxed pt-2">
-              Through leadership training, mentorship programs, community outreach initiatives, podcasts, and educational campaigns, Devorah Global Women provides practical support while inspiring women to lead lives of faith, excellence, and service.
+              Through leadership training, mentorship programs, community outreach initiatives, podcasts, and educational campaigns, Devorah Women's Leadership & Empowerment Initiative provides practical support while inspiring women to lead lives of faith, excellence, and service.
             </p>
           </div>
 
@@ -165,7 +165,7 @@ export default function AboutPage() {
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
               <Image
                 src="/images/who_we_are.png"
-                alt="Devorah Global Women community outreach"
+                alt="Devorah Women's Leadership & Empowerment Initiative community outreach"
                 fill
                 className="object-cover"
               />
@@ -353,7 +353,7 @@ export default function AboutPage() {
               </h2>
 
               <p className="text-base text-[#E8DDF0]/80 leading-relaxed">
-                Devorah Women Foundation is explicitly rooted in timeless Christian principles. Our name is drawn from the Biblical narrative of <strong className="text-white">Deborah (Judges 4–5)</strong>—a prophetess, leader, and judge who exemplified wisdom, courageous intercession, and unyielding faith in God.
+                Devorah Women's Leadership & Empowerment Initiative is explicitly rooted in timeless Christian principles. Our name is drawn from the Biblical narrative of <strong className="text-white">Deborah (Judges 4–5)</strong>—a prophetess, leader, and judge who exemplified wisdom, courageous intercession, and unyielding faith in God.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">

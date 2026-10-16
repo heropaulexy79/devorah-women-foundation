@@ -52,7 +52,7 @@ export default function Navbar() {
           <div className="relative w-10 h-10 transition-transform duration-300 group-hover:scale-105">
             <Image
               src="/logo.png"
-              alt="Devorah Women Foundation Logo"
+              alt="Devorah Women's Leadership & Empowerment Initiative Logo"
               fill
               className="object-contain filter drop-shadow"
               priority

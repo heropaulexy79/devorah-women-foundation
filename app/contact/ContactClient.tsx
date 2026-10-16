@@ -43,7 +43,7 @@ export default function ContactClient() {
     <div className="bg-[#FAF8F5] min-h-screen">
       {/* Header Banner */}
       <PageHero
-        eyebrow="CONTACT DEVORAH WOMEN FOUNDATION"
+        eyebrow="CONTACT DEVORAH WOMEN'S LEADERSHIP & EMPOWERMENT INITIATIVE"
         title="We would love to hear from you."
         description="Reach out for general inquiries, partnership proposals, media requests, or volunteer interest."
         breadcrumb={[{ label: 'Contact Us' }]}
@@ -130,7 +130,7 @@ export default function ContactClient() {
                 <CheckCircle2 className="w-12 h-12 text-[#6E3A82] mx-auto" />
                 <h3 className="font-serif text-2xl font-bold text-[#3B214F]">Message Sent Successfully</h3>
                 <p className="text-sm text-[#716A73] max-w-md mx-auto">
-                  Thank you for reaching out to Devorah Women Foundation. Our support team will review your inquiry and
+                  Thank you for reaching out to Devorah Women's Leadership & Empowerment Initiative. Our support team will review your inquiry and
                   get back to you shortly.
                 </p>
                 <button
@@ -229,7 +229,7 @@ export default function ContactClient() {
           </div>
           <div className="relative w-full h-72 rounded-2xl overflow-hidden bg-[#3B214F]/10 flex items-center justify-center">
             <iframe
-              title="Devorah Foundation Office Location"
+              title="Devorah Women's Leadership & Empowerment Initiative Office Location"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.8833555543026!2d3.3644!3d6.5744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d78909403a7%3A0xc392bfeb248740c0!2sMende%2C%20Maryland%2C%20Lagos!5e0!3m2!1sen!2sng!4v1700000000000!5m2!1sen!2sng"
               width="100%"
               height="100%"

@@ -5,7 +5,7 @@ import CTASection from '@/components/sections/CTASection';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Privacy Policy for Devorah Women Foundation. Learn how we safeguard your personal information and maintain transparency.',
+  description: 'Privacy Policy for Devorah Women's Leadership & Empowerment Initiative. Learn how we safeguard your personal information and maintain transparency.',
   alternates: { canonical: '/privacy' },
 };
 
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
           <div className="space-y-3">
             <h2 className="font-serif text-2xl font-bold text-[#3B214F]">1. Information We Collect</h2>
             <p>
-              When you interact with Devorah Women Foundation through our website, donate, volunteer, or subscribe to our newsletter, we may collect:
+              When you interact with Devorah Women's Leadership & Empowerment Initiative through our website, donate, volunteer, or subscribe to our newsletter, we may collect:
             </p>
             <ul className="list-disc pl-5 space-y-1.5">
               <li>Contact details such as your full name, email address, and phone number.</li>

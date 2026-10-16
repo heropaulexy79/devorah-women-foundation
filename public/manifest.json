@@ -1,6 +1,6 @@
 {
-  "name": "Devorah Women Foundation",
-  "short_name": "Devorah Foundation",
+  "name": "Devorah Women's Leadership & Empowerment Initiative",
+  "short_name": "Devorah Initiative",
   "description": "A Christian, women-focused foundation committed to empowering girls and women through education, mentorship, leadership development, and faith-anchored support.",
   "start_url": "/",
   "display": "standalone",
@@ -32,7 +32,7 @@
       "src": "/images/og-image.png",
       "sizes": "1200x630",
       "type": "image/png",
-      "label": "Devorah Women Foundation — Empowering Women, Shaping Girls"
+      "label": "Devorah Women's Leadership & Empowerment Initiative — Empowering Women, Shaping Girls"
     }
   ]
 }

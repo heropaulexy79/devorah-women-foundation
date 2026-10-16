@@ -583,7 +583,7 @@ export default function DonateClient() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-[#716A73]">Account Name:</span>
-                    <span className="font-semibold text-[#3B214F]">Devorah Global Women Foundation</span>
+                    <span className="font-semibold text-[#3B214F]">Devorah Women's Leadership & Empowerment Initiative</span>
                   </div>
                   <div className="flex justify-between items-center pt-1 border-t border-[#E8DDF0]">
                     <span className="text-[#716A73]">Account Number:</span>

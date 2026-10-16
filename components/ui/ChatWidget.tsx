@@ -207,7 +207,7 @@ export default function ChatWidget() {
                   </div>
                   <p className="font-serif text-lg text-[#3B214F]">Hello! I&apos;m here to help.</p>
                   <p className="text-xs max-w-[250px] mx-auto leading-relaxed">
-                    Ask me anything about the Devorah Women Foundation's programs, mission, or how
+                    Ask me anything about Devorah Women's Leadership & Empowerment Initiative's programs, mission, or how
                     to get involved.
                   </p>
                 </div>

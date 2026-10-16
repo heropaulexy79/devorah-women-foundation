@@ -9,12 +9,12 @@ import { ChevronLeft, ChevronRight, Pause, Play, Heart } from 'lucide-react';
 const SLIDES = [
   {
     id: 'slide-1',
-    eyebrow: 'DEVORAH GLOBAL WOMEN',
+    eyebrow: "DEVORAH WOMEN'S LEADERSHIP & EMPOWERMENT INITIATIVE",
     titleLine1: 'Raising Women of',
     titleLine2: 'Wisdom, Courage, &',
     titleLine3: 'Global Impact.',
     supportingText:
-      'Devorah Global Women is a faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women.',
+      "Devorah Women's Leadership & Empowerment Initiative is a faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women.",
     primaryCtaText: 'Donate Now',
     primaryCtaLink: '/donate',
     secondaryCtaText: 'Explore Our Work',

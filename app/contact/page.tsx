@@ -4,9 +4,9 @@ import ContactClient from './ContactClient';
 export const metadata: Metadata = {
   title: 'Contact Us',
   description:
-    'Get in touch with Devorah Women Foundation for general inquiries, partnership proposals, volunteer applications, or media requests. We are based in Lagos, Nigeria.',
+    'Get in touch with Devorah Women's Leadership & Empowerment Initiative for general inquiries, partnership proposals, volunteer applications, or media requests. We are based in Lagos, Nigeria.',
   keywords: [
-    'contact Devorah Women Foundation',
+    'contact Devorah Women's Leadership & Empowerment Initiative',
     'NGO contact Nigeria',
     'partner with us',
     'volunteer Nigeria',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/contact' },
   openGraph: {
-    title: 'Contact Us | Devorah Women Foundation',
+    title: 'Contact Us | Devorah Women's Leadership & Empowerment Initiative',
     description:
       'Reach out for general inquiries, partnership proposals, media requests, or volunteer interest. We would love to hear from you.',
     url: '/contact',
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact Us | Devorah Women Foundation',
-    description: 'Connect with Devorah Women Foundation — partnerships, volunteering, media & general inquiries.',
+    title: 'Contact Us | Devorah Women's Leadership & Empowerment Initiative',
+    description: 'Connect with Devorah Women's Leadership & Empowerment Initiative — partnerships, volunteering, media & general inquiries.',
   },
 };
 
