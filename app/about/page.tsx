@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import SectionHeader from '@/components/ui/SectionHeader';
 import CTASection from '@/components/sections/CTASection';
 import PageHero from '@/components/ui/PageHero';
+import BoardLeadershipSection from '@/components/sections/BoardLeadershipSection';
 import { LEADERSHIP_PEOPLE, TESTIMONIALS } from '@/lib/data';
 import { 
   Award, 
@@ -114,9 +115,10 @@ const APPROACH_PILLARS = [
 ];
 
 export default function AboutPage() {
-  const founder = LEADERSHIP_PEOPLE.find((p) => p.category === 'Founder');
+  const boardMembers = LEADERSHIP_PEOPLE.filter(
+    (p) => p.category === 'Founder' || p.category === 'Board Member'
+  );
   const teamLeads = LEADERSHIP_PEOPLE.filter((p) => p.category === 'Team Lead');
-  const boardMembers = LEADERSHIP_PEOPLE.filter((p) => p.category === 'Board Member');
 
   return (
     <div className="bg-[#FAF8F5] min-h-screen">
@@ -393,63 +395,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 8. Leadership & Governance */}
-      {founder && (
-        <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-          <SectionHeader
-            eyebrow="LEADERSHIP & GOVERNANCE"
-            title="Guided by visionary leaders & faithful stewards."
-            centered
-          />
-
-          {/* Founder Spotlight */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-white p-8 sm:p-12 rounded-2xl border border-[#E8DDF0] shadow-lg">
-            <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-md bg-[#3B214F]">
-                <Image
-                  src={founder.imageUrl}
-                  alt={founder.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-
-            <div className="lg:col-span-7 space-y-4">
-              <span className="text-xs font-semibold tracking-widest text-[#6E3A82] uppercase bg-[#E8DDF0] px-3 py-1 rounded-full">
-                FOUNDER & EXECUTIVE DIRECTOR
-              </span>
-              <h3 className="font-serif text-3xl font-bold text-[#3B214F]">
-                {founder.name}
-              </h3>
-              <p className="text-sm font-semibold text-[#6E3A82]">{founder.title}</p>
-              <p className="text-sm text-[#716A73] leading-relaxed">{founder.biography}</p>
-              <p className="text-xs italic text-[#6E3A82] pt-2">"{founder.vision}"</p>
-            </div>
-          </div>
-
-          {/* Team Leads */}
-          <div>
-            <h3 className="font-serif text-2xl font-bold text-[#3B214F] mb-8 text-center">
-              Executive Team Leads
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {teamLeads.map((person) => (
-                <div key={person.id} className="p-6 rounded-2xl bg-white border border-[#E8DDF0] shadow-sm space-y-4">
-                  <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-[#3B214F]">
-                    <Image src={person.imageUrl} alt={person.name} fill className="object-cover" />
-                  </div>
-                  <div>
-                    <h4 className="font-serif text-xl font-bold text-[#3B214F]">{person.name}</h4>
-                    <p className="text-xs font-semibold text-[#6E3A82]">{person.title}</p>
-                    <p className="text-xs text-[#716A73] mt-2 leading-relaxed">{person.biography}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      {/* 8. Leadership & Governance (4 Board Members + Operations) */}
+      <BoardLeadershipSection
+        boardMembers={boardMembers}
+        teamLeads={teamLeads}
+      />
 
       {/* 9. Final Call to Action */}
       <CTASection />

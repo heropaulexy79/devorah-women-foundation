@@ -80,6 +80,9 @@ export interface Person {
   responsibilities?: string;
   expertise?: string[];
   imageUrl: string;
+  committee?: string;
+  quote?: string;
+  badge?: string;
 }
 
 export interface Testimonial {

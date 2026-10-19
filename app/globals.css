@@ -2,6 +2,8 @@
 
 @layer base {
   :root {
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     --brand-deep: #3B214F;
     --brand-primary: #6E3A82;
     --brand-lilac: #A987C2;
