@@ -60,7 +60,7 @@ const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
     name: 'Nigerian Naira',
     presets: [50000, 100000, 250000, 500000, 1000000],
     defaultAmount: 250000,
-    koboMultiplier: 1000,
+    koboMultiplier: 100,
   },
   USD: {
     code: 'USD',
