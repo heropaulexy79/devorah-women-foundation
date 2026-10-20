@@ -6,6 +6,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import CTASection from '@/components/sections/CTASection';
 import PageHero from '@/components/ui/PageHero';
 import BoardLeadershipSection from '@/components/sections/BoardLeadershipSection';
+import { getBoardMembers } from '@/lib/db';
 import { LEADERSHIP_PEOPLE, TESTIMONIALS } from '@/lib/data';
 import { 
   Award, 
@@ -114,11 +115,14 @@ const APPROACH_PILLARS = [
   },
 ];
 
-export default function AboutPage() {
-  const boardMembers = LEADERSHIP_PEOPLE.filter(
+export const revalidate = 60;
+
+export default async function AboutPage() {
+  const allPeople = await getBoardMembers();
+  const boardMembers = allPeople.filter(
     (p) => p.category === 'Founder' || p.category === 'Board Member'
   );
-  const teamLeads = LEADERSHIP_PEOPLE.filter((p) => p.category === 'Team Lead');
+  const teamLeads = allPeople.filter((p) => p.category === 'Team Lead');
 
   return (
     <div className="bg-[#FAF8F5] min-h-screen">

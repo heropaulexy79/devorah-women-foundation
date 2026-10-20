@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { createHmac, randomBytes } from 'crypto';
-import { activeSessions } from '@/lib/sessions';
+import { createHmac } from 'crypto';
+import { createSignedSession } from '@/lib/sessions';
 
 export const dynamic = 'force-dynamic';
 
@@ -51,8 +51,7 @@ export async function POST(req: Request) {
 
     if (isValid) {
       failedAttempts.delete(ip);
-      const sessionToken = randomBytes(32).toString('hex');
-      activeSessions.set(sessionToken, { createdAt: now, expiresAt: now + 8 * 60 * 60 * 1000 });
+      const sessionToken = createSignedSession();
 
       const response = NextResponse.json({ success: true });
       response.cookies.set('devorah_admin_session', sessionToken, {
@@ -76,13 +75,8 @@ export async function POST(req: Request) {
   }
 }
 
-export async function DELETE(req: Request) {
-  const cookie = req.headers.get('cookie') || '';
-  const token = cookie
-    .split(';')
-    .find((c) => c.trim().startsWith('devorah_admin_session='))
-    ?.split('=')[1];
-  if (token) activeSessions.delete(token);
+export async function DELETE() {
+  // Cookie-based sessions are invalidated by clearing the cookie — no server-side store needed.
   const response = NextResponse.json({ success: true });
   response.cookies.delete('devorah_admin_session');
   return response;

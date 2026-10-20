@@ -1,13 +1,23 @@
 import { NextResponse } from 'next/server';
-import { activeSessions } from '@/lib/sessions';
-import { ARTICLES, IMPACT_METRICS, PROGRAMS, GALLERY_ITEMS } from '@/lib/data';
-import type { Article, ImpactMetric, GalleryItem } from '@/lib/types';
-import { readFileSync, writeFileSync, existsSync, mkdirSync, renameSync, unlinkSync } from 'fs';
-import { join } from 'path';
+import { verifySessionToken } from '@/lib/sessions';
+import { 
+  getArticles, 
+  saveArticles,
+  getBoardMembers,
+  saveBoardMembers,
+  getPrograms,
+  savePrograms,
+  getGallery,
+  saveGallery,
+  getMetrics,
+  saveMetrics,
+  getSiteSettings,
+  saveSiteSettings
+} from '@/lib/db';
+import type { Article, Person, Program, GalleryItem, ImpactMetric } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
 
-// ── Authentication guard ───────────────────────────────────────────────────
 function isAuthenticated(req: Request): boolean {
   const cookie = req.headers.get('cookie') || '';
   const token = cookie
@@ -15,183 +25,67 @@ function isAuthenticated(req: Request): boolean {
     .find((c) => c.trim().startsWith('devorah_admin_session='))
     ?.split('=')[1]
     ?.trim();
-  if (!token) return false;
-  const session = activeSessions.get(token);
-  if (!session) return false;
-  if (Date.now() > session.expiresAt) {
-    activeSessions.delete(token);
-    return false;
-  }
-  return true;
+  return verifySessionToken(token);
 }
 
-// ── Rate limiting for POST mutations ──────────────────────────────────────
-const mutationAttempts = new Map<string, { count: number; resetAt: number }>();
-
-function checkMutationRate(req: Request): boolean {
-  const ip =
-    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-    req.headers.get('x-real-ip') ||
-    'unknown';
-  const now = Date.now();
-  const record = mutationAttempts.get(ip);
-  if (record && now < record.resetAt && record.count > 60) return false;
-  if (!record || now >= record.resetAt) {
-    mutationAttempts.set(ip, { count: 1, resetAt: now + 60_000 });
-  } else {
-    record.count += 1;
-  }
-  return true;
-}
-
-// ── Allowed article categories ─────────────────────────────────────────────
-const ALLOWED_CATEGORIES = [
-  'Foundation News',
-  "Women's Issues",
-  "Girls' Development",
-  'Leadership',
-  'Faith',
-  'Empowerment',
-  'Community Stories',
-  'Event Updates & Announcements',
-] as const;
-
-type AllowedCategory = typeof ALLOWED_CATEGORIES[number];
-
-function isAllowedCategory(val: unknown): val is AllowedCategory {
-  return typeof val === 'string' && (ALLOWED_CATEGORIES as readonly string[]).includes(val);
-}
-
-// ── Allowed gallery categories ─────────────────────────────────────────────
-const ALLOWED_GALLERY_CATEGORIES = [
-  'Community Outreach',
-  'Faith and Spiritual Development',
-  'School Outreaches',
-  'Leadership Development',
-  'Women Empowerment',
-] as const;
-
-type AllowedGalleryCategory = typeof ALLOWED_GALLERY_CATEGORIES[number];
-
-function isAllowedGalleryCategory(val: unknown): val is AllowedGalleryCategory {
-  return typeof val === 'string' && (ALLOWED_GALLERY_CATEGORIES as readonly string[]).includes(val);
-}
-
-// ── File-system persistence (survives server restarts) ────────────────────
-const DATA_DIR = join(process.cwd(), '.cms-data');
-const STORE_PATH = join(DATA_DIR, 'store.json');
-
-interface CmsStore {
-  articles: Article[];
-  metrics: ImpactMetric[];
-  gallery: GalleryItem[];
-}
-
-function readStore(): CmsStore {
-  try {
-    if (existsSync(STORE_PATH)) {
-      const raw = readFileSync(STORE_PATH, 'utf-8');
-      return JSON.parse(raw) as CmsStore;
-    }
-  } catch {
-    // fallback to static data if store is corrupt
-  }
-  return {
-    articles: [...ARTICLES],
-    metrics: [...IMPACT_METRICS],
-    gallery: [...GALLERY_ITEMS],
-  };
-}
-
-function writeStore(store: CmsStore): void {
-  try {
-    if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
-    // Write to a temp file first, then rename atomically.
-    // This avoids OneDrive / antivirus file-lock races on Windows that
-    // would cause a direct writeFileSync to throw and lose data silently.
-    const tmpPath = STORE_PATH + '.tmp';
-    writeFileSync(tmpPath, JSON.stringify(store, null, 2), 'utf-8');
-    // Clean up any stale final file before rename
-    if (existsSync(STORE_PATH)) unlinkSync(STORE_PATH);
-    renameSync(tmpPath, STORE_PATH);
-  } catch (err) {
-    // Surface the error in development so it's not invisible
-    if (process.env.NODE_ENV !== 'production') {
-      console.error('[CMS] writeStore failed:', err);
-    }
-    // non-fatal — in-memory values still work for the current session
-  }
-}
-
-// ── In-memory cache (loaded from disk on first request) ───────────────────
-const _store = readStore();
-let currentArticles: Article[] = _store.articles;
-let currentMetrics: ImpactMetric[] = _store.metrics;
-const currentPrograms = [...PROGRAMS];  // programs are code-only, not CMS-managed
-let currentGallery: GalleryItem[] = _store.gallery;
-
-// ── Field sanitizer (prevent mass assignment) ──────────────────────────────
-function sanitizeArticlePayload(payload: Record<string, unknown>) {
-  return {
-    title: String(payload.title ?? '').slice(0, 500),
-    category: isAllowedCategory(payload.category) ? payload.category : ("Foundation News" as AllowedCategory),
-    excerpt: String(payload.excerpt ?? '').slice(0, 1000),
-    content: String(payload.content ?? '').slice(0, 50_000),
-    readingTime: String(payload.readingTime ?? '4 min read').slice(0, 30),
-    authorName: String(payload.authorName ?? '').slice(0, 200),
-    authorRole: String(payload.authorRole ?? '').slice(0, 200),
-    featuredImageUrl: String(payload.featuredImageUrl ?? '').slice(0, 500),
-  };
-}
-
-function sanitizeGalleryPayload(payload: Record<string, unknown>) {
-  const rawPhotos = Array.isArray(payload.photos) ? payload.photos : [];
-  const photos = rawPhotos.slice(0, 30).map((p: any, idx: number) => ({
-    id: String(p?.id || `photo-${Date.now()}-${idx}`),
-    url: String(p?.url || '').slice(0, 500),
-    caption: p?.caption ? String(p.caption).slice(0, 300) : undefined,
-  })).filter((p: any) => p.url.trim().length > 0);
-
-  return {
-    title: String(payload.title ?? '').slice(0, 300),
-    category: isAllowedGalleryCategory(payload.category)
-      ? (payload.category as AllowedGalleryCategory)
-      : ('Community Outreach' as AllowedGalleryCategory),
-    date: String(payload.date ?? '').slice(0, 100),
-    location: String(payload.location ?? '').slice(0, 200),
-    imageUrl: String(payload.imageUrl ?? '').slice(0, 500),
-    caption: String(payload.caption ?? '').slice(0, 1000),
-    impactHighlight: payload.impactHighlight ? String(payload.impactHighlight).slice(0, 200) : undefined,
-    photos,
-  };
-}
-
-// ── GET — public read ─────────────────────────────────────────────────────
+// ── GET: Public reads ───────────────────────────────────────────────────────
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const type = searchParams.get('type');
 
-  if (type === 'articles') return NextResponse.json({ articles: currentArticles });
-  if (type === 'metrics') return NextResponse.json({ metrics: currentMetrics });
-  if (type === 'programs') return NextResponse.json({ programs: currentPrograms });
-  if (type === 'gallery') return NextResponse.json({ gallery: currentGallery });
+  try {
+    if (type === 'articles') {
+      const articles = await getArticles();
+      return NextResponse.json({ articles });
+    }
+    if (type === 'board' || type === 'board_members') {
+      const boardMembers = await getBoardMembers();
+      return NextResponse.json({ boardMembers });
+    }
+    if (type === 'programs') {
+      const programs = await getPrograms();
+      return NextResponse.json({ programs });
+    }
+    if (type === 'gallery') {
+      const gallery = await getGallery();
+      return NextResponse.json({ gallery });
+    }
+    if (type === 'metrics') {
+      const metrics = await getMetrics();
+      return NextResponse.json({ metrics });
+    }
+    if (type === 'settings') {
+      const settings = await getSiteSettings();
+      return NextResponse.json({ settings });
+    }
 
-  return NextResponse.json({
-    articles: currentArticles,
-    metrics: currentMetrics,
-    programs: currentPrograms,
-    gallery: currentGallery,
-  });
+    const [articles, boardMembers, programs, gallery, metrics, settings] = await Promise.all([
+      getArticles(),
+      getBoardMembers(),
+      getPrograms(),
+      getGallery(),
+      getMetrics(),
+      getSiteSettings(),
+    ]);
+
+    return NextResponse.json({
+      articles,
+      boardMembers,
+      programs,
+      gallery,
+      metrics,
+      settings,
+    });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : 'Error fetching content';
+    return NextResponse.json({ success: false, message }, { status: 500 });
+  }
 }
 
-// ── POST — authenticated mutations only ───────────────────────────────────
+// ── POST: Authenticated CMS mutations ──────────────────────────────────────
 export async function POST(req: Request) {
   if (!isAuthenticated(req)) {
     return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
-  }
-
-  if (!checkMutationRate(req)) {
-    return NextResponse.json({ success: false, message: 'Too many requests' }, { status: 429 });
   }
 
   try {
@@ -202,166 +96,234 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, message: 'Missing action' }, { status: 400 });
     }
 
+    // ── 1. Articles Actions ────────────────────────────────────────────────
     if (action === 'add_article') {
-      const safe = sanitizeArticlePayload(payload || {});
-      if (!safe.title) return NextResponse.json({ success: false, message: 'Title required' }, { status: 400 });
+      const articles = await getArticles();
+      const title = String(payload?.title || '').trim();
+      if (!title) return NextResponse.json({ success: false, message: 'Title is required' }, { status: 400 });
 
       const newArticle: Article = {
         id: `art-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-        slug: safe.title
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, '-')
-          .replace(/(^-|-$)+/g, ''),
+        slug: title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, ''),
         publishedAt: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
-        title: safe.title,
-        category: safe.category,
-        excerpt: safe.excerpt,
-        content: safe.content,
-        readingTime: safe.readingTime,
+        title,
+        category: payload?.category || 'Foundation News',
+        excerpt: String(payload?.excerpt || ''),
+        content: String(payload?.content || ''),
+        readingTime: String(payload?.readingTime || '4 min read'),
         author: {
-          name: safe.authorName,
-          role: safe.authorRole,
-          avatarUrl: '/images/founder_portrait.png',
+          name: payload?.authorName || payload?.author?.name || 'Faith Akinola',
+          role: payload?.authorRole || payload?.author?.role || 'Founder',
+          avatarUrl: payload?.author?.avatarUrl || '/images/board/Faith-Akinola.jpeg',
         },
-        featuredImageUrl: safe.featuredImageUrl,
+        featuredImageUrl: payload?.featuredImageUrl || '/images/board/Faith-Akinola.jpeg',
       };
-      currentArticles.unshift(newArticle);
-      writeStore({ articles: currentArticles, metrics: currentMetrics, gallery: currentGallery });
+
+      articles.unshift(newArticle);
+      await saveArticles(articles);
       return NextResponse.json({ success: true, article: newArticle });
     }
 
     if (action === 'update_article') {
-      if (!payload?.id || typeof payload.id !== 'string') {
-        return NextResponse.json({ success: false, message: 'Article ID required' }, { status: 400 });
-      }
-      const index = currentArticles.findIndex((a) => a.id === payload.id);
+      const articles = await getArticles();
+      const index = articles.findIndex((a) => a.id === payload?.id);
       if (index === -1) {
         return NextResponse.json({ success: false, message: 'Article not found' }, { status: 404 });
       }
-      // Flatten the nested author object so sanitizeArticlePayload can read
-      // authorName / authorRole at the top level (matches the payload shape
-      // that the admin page sends when editing an existing article).
-      const flatPayload: Record<string, unknown> = { ...payload };
-      if (payload.author && typeof payload.author === 'object') {
-        const author = payload.author as Record<string, unknown>;
-        if (!flatPayload.authorName) flatPayload.authorName = author.name;
-        if (!flatPayload.authorRole) flatPayload.authorRole = author.role;
-      }
-      const safe = sanitizeArticlePayload(flatPayload);
-      currentArticles[index] = {
-        ...currentArticles[index],
-        title: safe.title || currentArticles[index].title,
-        category: safe.category,
-        excerpt: safe.excerpt || currentArticles[index].excerpt,
-        content: safe.content || currentArticles[index].content,
-        readingTime: safe.readingTime,
-        featuredImageUrl: safe.featuredImageUrl || currentArticles[index].featuredImageUrl,
+
+      articles[index] = {
+        ...articles[index],
+        title: payload?.title || articles[index].title,
+        category: payload?.category || articles[index].category,
+        excerpt: payload?.excerpt ?? articles[index].excerpt,
+        content: payload?.content ?? articles[index].content,
+        readingTime: payload?.readingTime ?? articles[index].readingTime,
+        featuredImageUrl: payload?.featuredImageUrl ?? articles[index].featuredImageUrl,
         author: {
-          ...currentArticles[index].author,
-          name: safe.authorName || currentArticles[index].author.name,
-          role: safe.authorRole || currentArticles[index].author.role,
+          ...articles[index].author,
+          name: payload?.authorName || payload?.author?.name || articles[index].author.name,
+          role: payload?.authorRole || payload?.author?.role || articles[index].author.role,
         },
       };
-      writeStore({ articles: currentArticles, metrics: currentMetrics, gallery: currentGallery });
-      return NextResponse.json({ success: true, article: currentArticles[index] });
+
+      await saveArticles(articles);
+      return NextResponse.json({ success: true, article: articles[index] });
     }
 
     if (action === 'delete_article') {
-      if (!payload?.id || typeof payload.id !== 'string') {
-        return NextResponse.json({ success: false, message: 'Article ID required' }, { status: 400 });
-      }
-      currentArticles = currentArticles.filter((a) => a.id !== payload.id);
-      writeStore({ articles: currentArticles, metrics: currentMetrics, gallery: currentGallery });
+      const articles = await getArticles();
+      const updated = articles.filter((a) => a.id !== payload?.id);
+      await saveArticles(updated);
       return NextResponse.json({ success: true });
     }
 
+    // ── 2. Board Members Actions ───────────────────────────────────────────
+    if (action === 'update_board_member') {
+      const members = await getBoardMembers();
+      const index = members.findIndex((m) => m.id === payload?.id);
+      if (index === -1) {
+        return NextResponse.json({ success: false, message: 'Member not found' }, { status: 404 });
+      }
+
+      members[index] = {
+        ...members[index],
+        name: payload?.name || members[index].name,
+        title: payload?.title || members[index].title,
+        role: payload?.role || members[index].role,
+        badge: payload?.badge || members[index].badge,
+        biography: payload?.biography ?? members[index].biography,
+        background: payload?.background ?? members[index].background,
+        education: payload?.education ?? members[index].education,
+        vision: payload?.vision ?? members[index].vision,
+        quote: payload?.quote ?? members[index].quote,
+        imageUrl: payload?.imageUrl || members[index].imageUrl,
+        expertise: Array.isArray(payload?.expertise) ? payload.expertise : members[index].expertise,
+      };
+
+      await saveBoardMembers(members);
+      return NextResponse.json({ success: true, member: members[index] });
+    }
+
+    if (action === 'add_board_member') {
+      const members = await getBoardMembers();
+      const name = String(payload?.name || '').trim();
+      if (!name) return NextResponse.json({ success: false, message: 'Name is required' }, { status: 400 });
+
+      const newMember: Person = {
+        id: `board-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        name,
+        title: payload?.title || 'Board Member',
+        role: payload?.role || 'Board Member',
+        category: 'Board Member',
+        badge: payload?.badge || 'Board Member',
+        biography: String(payload?.biography || ''),
+        background: payload?.background,
+        education: payload?.education,
+        vision: payload?.vision,
+        quote: payload?.quote,
+        imageUrl: payload?.imageUrl || '/images/board_trustee_1.jpg',
+        expertise: Array.isArray(payload?.expertise) ? payload.expertise : [],
+      };
+
+      members.push(newMember);
+      await saveBoardMembers(members);
+      return NextResponse.json({ success: true, member: newMember });
+    }
+
+    if (action === 'delete_board_member') {
+      const members = await getBoardMembers();
+      const updated = members.filter((m) => m.id !== payload?.id);
+      await saveBoardMembers(updated);
+      return NextResponse.json({ success: true });
+    }
+
+    // ── 3. Programs Actions ────────────────────────────────────────────────
+    if (action === 'update_program') {
+      const programs = await getPrograms();
+      const index = programs.findIndex((p) => p.id === payload?.id);
+      if (index === -1) {
+        return NextResponse.json({ success: false, message: 'Program not found' }, { status: 404 });
+      }
+
+      programs[index] = {
+        ...programs[index],
+        name: payload?.name || programs[index].name,
+        tagline: payload?.tagline ?? programs[index].tagline,
+        description: payload?.description ?? programs[index].description,
+        targetAudience: payload?.targetAudience ?? programs[index].targetAudience,
+        imageUrl: payload?.imageUrl || programs[index].imageUrl,
+        objectives: Array.isArray(payload?.objectives) ? payload.objectives : programs[index].objectives,
+        activities: Array.isArray(payload?.activities) ? payload.activities : programs[index].activities,
+      };
+
+      await savePrograms(programs);
+      return NextResponse.json({ success: true, program: programs[index] });
+    }
+
+    // ── 4. Gallery Actions ─────────────────────────────────────────────────
+    if (action === 'add_gallery') {
+      const gallery = await getGallery();
+      const title = String(payload?.title || '').trim();
+      if (!title) return NextResponse.json({ success: false, message: 'Title required' }, { status: 400 });
+
+      const coverImage = payload?.imageUrl || payload?.photos?.[0]?.url || '/images/gallery_outreach.png';
+      const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '') || `album-${Date.now()}`;
+
+      const newAlbum: GalleryItem = {
+        id: `gal-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        slug,
+        title,
+        category: payload?.category || 'Community Outreach',
+        date: payload?.date || new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+        location: payload?.location || 'Lagos, Nigeria',
+        imageUrl: coverImage,
+        caption: payload?.caption || '',
+        impactHighlight: payload?.impactHighlight,
+        photoCount: Array.isArray(payload?.photos) && payload.photos.length > 0 ? payload.photos.length : 1,
+        photos: Array.isArray(payload?.photos) && payload.photos.length > 0 ? payload.photos : [{ id: `p-${Date.now()}`, url: coverImage }],
+      };
+
+      gallery.unshift(newAlbum);
+      await saveGallery(gallery);
+      return NextResponse.json({ success: true, galleryItem: newAlbum });
+    }
+
+    if (action === 'update_gallery') {
+      const gallery = await getGallery();
+      const index = gallery.findIndex((g) => g.id === payload?.id);
+      if (index === -1) {
+        return NextResponse.json({ success: false, message: 'Gallery item not found' }, { status: 404 });
+      }
+
+      gallery[index] = {
+        ...gallery[index],
+        title: payload?.title || gallery[index].title,
+        category: payload?.category || gallery[index].category,
+        date: payload?.date || gallery[index].date,
+        location: payload?.location || gallery[index].location,
+        imageUrl: payload?.imageUrl || gallery[index].imageUrl,
+        caption: payload?.caption ?? gallery[index].caption,
+        impactHighlight: payload?.impactHighlight ?? gallery[index].impactHighlight,
+        photos: Array.isArray(payload?.photos) ? payload.photos : gallery[index].photos,
+        photoCount: Array.isArray(payload?.photos) ? payload.photos.length : gallery[index].photoCount,
+      };
+
+      await saveGallery(gallery);
+      return NextResponse.json({ success: true, galleryItem: gallery[index] });
+    }
+
+    if (action === 'delete_gallery') {
+      const gallery = await getGallery();
+      const updated = gallery.filter((g) => g.id !== payload?.id);
+      await saveGallery(updated);
+      return NextResponse.json({ success: true });
+    }
+
+    // ── 5. Metrics & Settings Actions ──────────────────────────────────────
     if (action === 'update_metrics') {
       if (!Array.isArray(payload)) {
         return NextResponse.json({ success: false, message: 'Payload must be an array' }, { status: 400 });
       }
-      currentMetrics = payload.slice(0, 20).map((m: Record<string, unknown>, i: number): ImpactMetric => ({
-        id: String(m.id ?? `metric-${i}`),
-        number: String(m.number ?? '').slice(0, 20),
-        label: String(m.label ?? '').slice(0, 100),
-        description: String(m.description ?? '').slice(0, 200),
+      const metrics: ImpactMetric[] = payload.map((m, i) => ({
+        id: String(m.id || `metric-${i}`),
+        number: String(m.number || ''),
+        label: String(m.label || ''),
+        description: String(m.description || ''),
       }));
-      writeStore({ articles: currentArticles, metrics: currentMetrics, gallery: currentGallery });
-      return NextResponse.json({ success: true, metrics: currentMetrics });
+      await saveMetrics(metrics);
+      return NextResponse.json({ success: true, metrics });
     }
 
-    if (action === 'add_gallery') {
-      const safe = sanitizeGalleryPayload(payload || {});
-      if (!safe.title) return NextResponse.json({ success: false, message: 'Title required' }, { status: 400 });
-      if (!safe.imageUrl && safe.photos.length === 0) {
-        return NextResponse.json({ success: false, message: 'Cover image required' }, { status: 400 });
-      }
-
-      const coverImage = safe.imageUrl || safe.photos[0]?.url;
-      const slug = safe.title
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)+/g, '') || `album-${Date.now()}`;
-
-      const newGalleryItem: GalleryItem = {
-        id: `gal-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-        slug,
-        title: safe.title,
-        category: safe.category,
-        date: safe.date || new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
-        location: safe.location || 'Lagos, Nigeria',
-        imageUrl: coverImage,
-        caption: safe.caption,
-        impactHighlight: safe.impactHighlight,
-        photoCount: safe.photos.length > 0 ? safe.photos.length : 1,
-        photos: safe.photos.length > 0 ? safe.photos : [{ id: `photo-${Date.now()}-0`, url: coverImage, caption: safe.caption }],
-      };
-
-      currentGallery.unshift(newGalleryItem);
-      writeStore({ articles: currentArticles, metrics: currentMetrics, gallery: currentGallery });
-      return NextResponse.json({ success: true, galleryItem: newGalleryItem });
-    }
-
-    if (action === 'update_gallery') {
-      if (!payload?.id || typeof payload.id !== 'string') {
-        return NextResponse.json({ success: false, message: 'Gallery item ID required' }, { status: 400 });
-      }
-      const index = currentGallery.findIndex((g) => g.id === payload.id);
-      if (index === -1) {
-        return NextResponse.json({ success: false, message: 'Gallery item not found' }, { status: 404 });
-      }
-      const safe = sanitizeGalleryPayload(payload);
-      const existing = currentGallery[index];
-      const coverImage = safe.imageUrl || safe.photos[0]?.url || existing.imageUrl;
-      const photos = safe.photos.length > 0 ? safe.photos : existing.photos;
-
-      currentGallery[index] = {
-        ...existing,
-        title: safe.title || existing.title,
-        category: safe.category,
-        date: safe.date || existing.date,
-        location: safe.location || existing.location,
-        imageUrl: coverImage,
-        caption: safe.caption || existing.caption,
-        impactHighlight: safe.impactHighlight ?? existing.impactHighlight,
-        photoCount: photos?.length || 1,
-        photos,
-      };
-
-      writeStore({ articles: currentArticles, metrics: currentMetrics, gallery: currentGallery });
-      return NextResponse.json({ success: true, galleryItem: currentGallery[index] });
-    }
-
-    if (action === 'delete_gallery') {
-      if (!payload?.id || typeof payload.id !== 'string') {
-        return NextResponse.json({ success: false, message: 'Gallery item ID required' }, { status: 400 });
-      }
-      currentGallery = currentGallery.filter((g) => g.id !== payload.id);
-      writeStore({ articles: currentArticles, metrics: currentMetrics, gallery: currentGallery });
-      return NextResponse.json({ success: true });
+    if (action === 'update_site_settings') {
+      const current = await getSiteSettings();
+      const updated = { ...current, ...(payload || {}) };
+      await saveSiteSettings(updated);
+      return NextResponse.json({ success: true, settings: updated });
     }
 
     return NextResponse.json({ success: false, message: 'Unknown action' }, { status: 400 });
-  } catch {
-    return NextResponse.json({ success: false, message: 'Failed to update content' }, { status: 500 });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : 'Server error';
+    return NextResponse.json({ success: false, message }, { status: 500 });
   }
 }

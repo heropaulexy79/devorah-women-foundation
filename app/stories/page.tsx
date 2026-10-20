@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import StoriesClient from './StoriesClient';
+import { getArticles } from '@/lib/db';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Stories & Insights',
@@ -29,6 +32,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function StoriesPage() {
-  return <StoriesClient />;
+export default async function StoriesPage() {
+  const articles = await getArticles();
+  return <StoriesClient initialArticles={articles} />;
 }

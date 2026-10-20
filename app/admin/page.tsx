@@ -3,8 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { LayoutDashboard, FileText, BarChart3, Image as ImageIcon, Award, LogOut, Plus, CheckCircle, Sparkles, TrendingUp, Users, ShieldCheck, Search, Trash2, Edit3, MapPin, Calendar, ExternalLink, Upload, FolderPlus } from 'lucide-react';
-import { ARTICLES, IMPACT_METRICS, PROGRAMS, GALLERY_ITEMS } from '@/lib/data';
-import { GalleryItem } from '@/lib/types';
+import { ARTICLES, IMPACT_METRICS, PROGRAMS, GALLERY_ITEMS, LEADERSHIP_PEOPLE } from '@/lib/data';
+import { GalleryItem, Person } from '@/lib/types';
 
 const GALLERY_CATEGORIES = [
   'Community Outreach',
@@ -19,7 +19,7 @@ export default function AdminDashboardPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passkey, setPasskey] = useState('');
   const [authError, setAuthError] = useState('');
-  const [activeTab, setActiveTab] = useState<'overview' | 'articles' | 'gallery' | 'metrics' | 'insights'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'articles' | 'board' | 'gallery' | 'metrics' | 'insights'>('overview');
 
   // Article state
   const [articlesList, setArticlesList] = useState(ARTICLES);
@@ -35,6 +35,24 @@ export default function AdminDashboardPage() {
     authorRole: "Devorah Women's Leadership & Empowerment Initiative",
     featuredImageUrl: '/images/story_beneficiary.png',
   });
+
+  // Board Members state
+  const [boardList, setBoardList] = useState<Person[]>(LEADERSHIP_PEOPLE);
+  const [showBoardModal, setShowBoardModal] = useState(false);
+  const [editingBoardId, setEditingBoardId] = useState<string | null>(null);
+  const [boardForm, setBoardForm] = useState({
+    name: '',
+    title: '',
+    biography: '',
+    background: '',
+    education: '',
+    vision: '',
+    quote: '',
+    expertise: '',
+    imageUrl: '/images/board/Faith-Akinola.jpeg',
+  });
+  const [isBoardPhotoUploading, setIsBoardPhotoUploading] = useState(false);
+  const boardPhotoInputRef = useRef<HTMLInputElement>(null);
 
   // Gallery state
   const [galleryList, setGalleryList] = useState<GalleryItem[]>(GALLERY_ITEMS);
@@ -200,6 +218,80 @@ export default function AdminDashboardPage() {
       }
     } catch {
       showSuccessNotification('Failed to delete article');
+    }
+  };
+
+  // Board Members CRUD functions
+  const openEditBoardModal = (member: Person) => {
+    setEditingBoardId(member.id);
+    setBoardForm({
+      name: member.name,
+      title: member.title || '',
+      biography: member.biography,
+      background: member.background || '',
+      education: member.education || '',
+      vision: member.vision || '',
+      quote: member.quote || '',
+      expertise: (member.expertise || []).join(', '),
+      imageUrl: member.imageUrl,
+    });
+    setShowBoardModal(true);
+  };
+
+  const handleBoardPhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setIsBoardPhotoUploading(true);
+    try {
+      const form = new FormData();
+      form.append('file', file);
+      const res = await fetch('/api/upload', { method: 'POST', body: form });
+      const data = await res.json();
+      if (data.success) {
+        setBoardForm((prev) => ({ ...prev, imageUrl: data.url }));
+        showSuccessNotification('Photo uploaded successfully!');
+      } else {
+        showSuccessNotification(data.message || 'Upload failed');
+      }
+    } catch {
+      showSuccessNotification('Upload failed. Please try again.');
+    } finally {
+      setIsBoardPhotoUploading(false);
+      if (boardPhotoInputRef.current) boardPhotoInputRef.current.value = '';
+    }
+  };
+
+  const handleSaveBoardMember = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingBoardId) return;
+    try {
+      const payload = {
+        id: editingBoardId,
+        name: boardForm.name,
+        title: boardForm.title,
+        biography: boardForm.biography,
+        background: boardForm.background,
+        education: boardForm.education,
+        vision: boardForm.vision,
+        quote: boardForm.quote,
+        expertise: boardForm.expertise.split(',').map((s) => s.trim()).filter(Boolean),
+        imageUrl: boardForm.imageUrl,
+      };
+      const res = await fetch('/api/content', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'update_board_member', payload }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setBoardList(boardList.map((m) => (m.id === editingBoardId ? data.member : m)));
+        setShowBoardModal(false);
+        showSuccessNotification('Board member profile updated successfully!');
+      } else {
+        showSuccessNotification(data.message || 'Failed to update profile');
+      }
+    } catch {
+      showSuccessNotification('Failed to save board member');
     }
   };
 
@@ -422,6 +514,7 @@ export default function AdminDashboardPage() {
         if (data.metrics) setMetricsList(data.metrics);
         if (data.articles) setArticlesList(data.articles);
         if (data.gallery) setGalleryList(data.gallery);
+        if (data.boardMembers) setBoardList(data.boardMembers);
       })
       .catch(() => {});
   }, []);
@@ -570,6 +663,16 @@ export default function AdminDashboardPage() {
             >
               <FileText className="w-4 h-4" />
               Stories & Articles ({articlesList.length})
+            </button>
+
+            <button
+              onClick={() => setActiveTab('board')}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                activeTab === 'board' ? 'bg-[#6E3A82] text-white' : 'text-[#C5A8D8] hover:bg-[#6E3A82]/30'
+              }`}
+            >
+              <Users className="w-4 h-4" />
+              Board Members ({boardList.length})
             </button>
 
             <button
@@ -812,6 +915,72 @@ export default function AdminDashboardPage() {
                 </div>
               ))}
             </div>
+          </div>
+        )}
+
+        {/* BOARD MEMBERS TAB */}
+        {activeTab === 'board' && (
+          <div className="space-y-6">
+            <div>
+              <h1 className="text-2xl font-serif font-bold text-[#3B214F]">Board Members Manager</h1>
+              <p className="text-xs text-[#716A73] mt-1">
+                Edit board member profiles shown on the About page. Changes are saved to the database and reflected on the website.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {boardList.map((member) => (
+                <div key={member.id} className="bg-white rounded-2xl border border-[#E8DDF0] shadow-sm overflow-hidden flex flex-col justify-between">
+                  <div className="flex gap-4 p-5">
+                    <div className="relative w-20 h-24 rounded-xl overflow-hidden bg-[#3B214F] shrink-0 border border-[#E8DDF0]">
+                      <img
+                        src={member.imageUrl}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="space-y-1 min-w-0">
+                      <span className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                        member.category === 'Founder'
+                          ? 'bg-[#C5A880]/20 text-[#8B6A3E]'
+                          : 'bg-[#E8DDF0] text-[#6E3A82]'
+                      }`}>
+                        {member.badge || member.category}
+                      </span>
+                      <h3 className="font-serif font-bold text-base text-[#3B214F] leading-snug">{member.name}</h3>
+                      {member.title && (
+                        <p className="text-xs font-semibold text-[#6E3A82] line-clamp-1">{member.title}</p>
+                      )}
+                      <p className="text-xs text-[#716A73] line-clamp-2 leading-relaxed">{member.biography}</p>
+                    </div>
+                  </div>
+
+                  {member.expertise && member.expertise.length > 0 && (
+                    <div className="px-5 pb-3 flex flex-wrap gap-1.5">
+                      {member.expertise.slice(0, 3).map((skill, idx) => (
+                        <span key={idx} className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-[#FAF8F5] border border-[#E8DDF0] text-[#3B214F]">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="px-5 py-3 border-t border-[#E8DDF0] flex justify-end">
+                    <button
+                      onClick={() => openEditBoardModal(member)}
+                      className="px-4 py-1.5 bg-[#F4ECF7] text-[#6E3A82] hover:bg-[#6E3A82] hover:text-white rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5"
+                    >
+                      <Edit3 className="w-3.5 h-3.5" />
+                      Edit Profile
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-[11px] text-[#A088B0] bg-[#FAF8F5] rounded-xl px-4 py-3 border border-[#E8DDF0]">
+              ℹ️ To update a board member's photo, click "Edit Profile" and use the photo upload section. Images are stored securely via Vercel Blob.
+            </p>
           </div>
         )}
 
@@ -1097,6 +1266,176 @@ export default function AdminDashboardPage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal: Edit Board Member */}
+        {showBoardModal && editingBoardId && (
+          <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="bg-white max-w-2xl w-full rounded-3xl p-6 sm:p-8 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto border border-[#E8DDF0]">
+              <div className="flex justify-between items-center pb-3 border-b border-[#E8DDF0]">
+                <div>
+                  <h2 className="text-xl font-serif font-bold text-[#3B214F]">Edit Board Member Profile</h2>
+                  <p className="text-xs text-[#716A73] mt-0.5">Changes are saved to the database and shown on the website immediately.</p>
+                </div>
+                <button onClick={() => setShowBoardModal(false)} className="p-1.5 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors">✕</button>
+              </div>
+
+              <form onSubmit={handleSaveBoardMember} className="space-y-4 text-xs">
+                {/* Photo Upload */}
+                <div className="space-y-3 bg-[#FAF8F5] p-4 rounded-2xl border border-[#E8DDF0]">
+                  <label className="block font-semibold text-[#3B214F]">Profile Photo</label>
+                  <div className="flex items-center gap-4">
+                    <div className="relative w-24 h-28 rounded-xl overflow-hidden bg-[#3B214F] border border-[#E8DDF0] shrink-0">
+                      <img src={boardForm.imageUrl} alt="Preview" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex-1 space-y-2">
+                      <input
+                        ref={boardPhotoInputRef}
+                        type="file"
+                        accept="image/jpeg,image/jpg,image/png,image/webp"
+                        onChange={handleBoardPhotoUpload}
+                        className="hidden"
+                        id="board-photo-input"
+                      />
+                      <button
+                        type="button"
+                        disabled={isBoardPhotoUploading}
+                        onClick={() => boardPhotoInputRef.current?.click()}
+                        className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border-2 border-dashed text-xs font-semibold transition-all ${
+                          isBoardPhotoUploading
+                            ? 'border-[#6E3A82]/40 text-[#A088B0] cursor-not-allowed bg-[#F4ECF7]/50'
+                            : 'border-[#6E3A82]/50 text-[#6E3A82] hover:bg-[#F4ECF7] hover:border-[#6E3A82] cursor-pointer bg-white'
+                        }`}
+                      >
+                        {isBoardPhotoUploading ? (
+                          <><span className="w-3.5 h-3.5 border-2 border-[#6E3A82] border-t-transparent rounded-full animate-spin" /> Uploading…</>
+                        ) : (
+                          <><Upload className="w-3.5 h-3.5" /> Upload New Photo (JPG, PNG, WebP)</>
+                        )}
+                      </button>
+                      <div>
+                        <label className="block text-[11px] font-medium text-[#716A73] mb-1">Or paste image URL:</label>
+                        <input
+                          type="text"
+                          value={boardForm.imageUrl}
+                          onChange={(e) => setBoardForm({ ...boardForm, imageUrl: e.target.value })}
+                          className="w-full bg-white border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                          placeholder="/images/board/name.jpg"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Name & Title */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block font-semibold text-[#3B214F] mb-1">Full Name <span className="text-red-500">*</span></label>
+                    <input
+                      type="text"
+                      required
+                      value={boardForm.name}
+                      onChange={(e) => setBoardForm({ ...boardForm, name: e.target.value })}
+                      className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                      placeholder="Full name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-semibold text-[#3B214F] mb-1">Role / Title</label>
+                    <input
+                      type="text"
+                      value={boardForm.title}
+                      onChange={(e) => setBoardForm({ ...boardForm, title: e.target.value })}
+                      className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                      placeholder="e.g. Founder, Board Member"
+                    />
+                  </div>
+                </div>
+
+                {/* Biography */}
+                <div>
+                  <label className="block font-semibold text-[#3B214F] mb-1">Biography <span className="text-red-500">*</span></label>
+                  <textarea
+                    required
+                    rows={4}
+                    value={boardForm.biography}
+                    onChange={(e) => setBoardForm({ ...boardForm, biography: e.target.value })}
+                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    placeholder="Professional biography…"
+                  />
+                </div>
+
+                {/* Background */}
+                <div>
+                  <label className="block font-semibold text-[#3B214F] mb-1">Professional Background</label>
+                  <textarea
+                    rows={2}
+                    value={boardForm.background}
+                    onChange={(e) => setBoardForm({ ...boardForm, background: e.target.value })}
+                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    placeholder="Career and professional experience…"
+                  />
+                </div>
+
+                {/* Education */}
+                <div>
+                  <label className="block font-semibold text-[#3B214F] mb-1">Education & Credentials</label>
+                  <textarea
+                    rows={2}
+                    value={boardForm.education}
+                    onChange={(e) => setBoardForm({ ...boardForm, education: e.target.value })}
+                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    placeholder="Academic qualifications and professional certifications…"
+                  />
+                </div>
+
+                {/* Vision */}
+                <div>
+                  <label className="block font-semibold text-[#3B214F] mb-1">Governance Vision</label>
+                  <textarea
+                    rows={2}
+                    value={boardForm.vision}
+                    onChange={(e) => setBoardForm({ ...boardForm, vision: e.target.value })}
+                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    placeholder="Vision and philosophy for governance…"
+                  />
+                </div>
+
+                {/* Quote */}
+                <div>
+                  <label className="block font-semibold text-[#3B214F] mb-1">Signature Quote</label>
+                  <input
+                    type="text"
+                    value={boardForm.quote}
+                    onChange={(e) => setBoardForm({ ...boardForm, quote: e.target.value })}
+                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    placeholder="An inspiring quote from this board member…"
+                  />
+                </div>
+
+                {/* Expertise */}
+                <div>
+                  <label className="block font-semibold text-[#3B214F] mb-1">Areas of Expertise</label>
+                  <input
+                    type="text"
+                    value={boardForm.expertise}
+                    onChange={(e) => setBoardForm({ ...boardForm, expertise: e.target.value })}
+                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    placeholder="Separate with commas e.g. Leadership, Nonprofit Strategy, Aviation"
+                  />
+                  <p className="text-[10px] text-[#A088B0] mt-1">Separate each skill/area with a comma.</p>
+                </div>
+
+                <div className="flex justify-end gap-3 pt-4 border-t border-[#E8DDF0]">
+                  <button type="button" onClick={() => setShowBoardModal(false)} className="px-4 py-2 rounded-xl text-xs font-semibold text-[#716A73] hover:bg-gray-100">Cancel</button>
+                  <button type="submit" className="px-6 py-2.5 rounded-xl text-xs font-semibold bg-[#6E3A82] text-white hover:bg-[#8B4FA0] shadow-md transition-all flex items-center gap-1.5">
+                    <CheckCircle className="w-4 h-4" />
+                    Save Profile Changes
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         )}

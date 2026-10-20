@@ -11,6 +11,8 @@
   "dependencies": {
     "@ai-sdk/groq": "^4.0.48",
     "@ai-sdk/react": "^4.0.117",
+    "@neondatabase/serverless": "^1.2.0",
+    "@vercel/blob": "^2.8.2",
     "ai": "^7.0.114",
     "clsx": "^2.1.1",
     "framer-motion": "^13.4.0",

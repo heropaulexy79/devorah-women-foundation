@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import CTASection from '@/components/sections/CTASection';
 import { ARTICLES } from '@/lib/data';
+import type { Article } from '@/lib/types';
 import { ArrowUpRight, Clock, User, Search, Calendar } from 'lucide-react';
 import PageHero from '@/components/ui/PageHero';
 
@@ -20,11 +21,27 @@ const CATEGORIES = [
   'Events',
 ];
 
-export default function StoriesClient() {
+interface StoriesClientProps {
+  initialArticles?: Article[];
+}
+
+export default function StoriesClient({ initialArticles }: StoriesClientProps) {
+  const [articlesList, setArticlesList] = useState<Article[]>(initialArticles || ARTICLES);
   const [selectedCat, setSelectedCat] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredArticles = ARTICLES.filter((art) => {
+  useEffect(() => {
+    fetch('/api/content?type=articles')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.articles && Array.isArray(data.articles)) {
+          setArticlesList(data.articles);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const filteredArticles = articlesList.filter((art) => {
     const matchesCat = selectedCat === 'All' || art.category === selectedCat;
     const matchesSearch =
       art.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -32,7 +49,7 @@ export default function StoriesClient() {
     return matchesCat && matchesSearch;
   });
 
-  const featuredArticle = ARTICLES.find((a) => a.featured) || ARTICLES[0];
+  const featuredArticle = articlesList.find((a) => a.featured) || articlesList[0];
 
   return (
     <div className="bg-[#FAF8F5] min-h-screen">

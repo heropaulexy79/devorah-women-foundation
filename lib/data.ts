@@ -381,7 +381,9 @@ export const LEADERSHIP_PEOPLE: Person[] = [
     role: 'Board Member',
     category: 'Board Member',
     badge: 'Board Member',
-    biography: 'Serves on the Board of Devorah Women Leadership and Empowerment Initiative, supporting governance, partnership expansion, and outreach programs across Nigeria.',
+    biography: 'Serves on the Board of Devorah Women Leadership and Empowerment Initiative, contributing strategic leadership, governance oversight, and community partnership expertise to advance the foundation\'s mission across Nigeria.',
+    vision: 'Committed to strengthening the foundation\'s governance structure and expanding its reach to empower more women and girls across Nigeria and beyond.',
+    expertise: ['Governance', 'Community Leadership', 'Strategic Partnerships'],
     imageUrl: '/images/board_trustee_3.jpg'
   }
 ];

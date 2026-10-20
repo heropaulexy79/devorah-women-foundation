@@ -1,14 +1,27 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { ARTICLES } from '@/lib/data';
+import type { Article } from '@/lib/types';
 import { Calendar, Clock } from 'lucide-react';
 
 export default function LatestNews() {
+  const [articlesList, setArticlesList] = useState<Article[]>(ARTICLES.slice(0, 2));
+
+  useEffect(() => {
+    fetch('/api/content?type=articles')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.articles && Array.isArray(data.articles) && data.articles.length > 0) {
+          setArticlesList(data.articles.slice(0, 2));
+        }
+      })
+      .catch(() => {});
+  }, []);
   return (
     <section className="py-24 lg:py-32 bg-[#FAF8F5] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -29,7 +42,7 @@ export default function LatestNews() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-          {ARTICLES.map((article, idx) => (
+          {articlesList.map((article, idx) => (
             <motion.article
               key={article.id}
               initial={{ opacity: 0, y: 20 }}

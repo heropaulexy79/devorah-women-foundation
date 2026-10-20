@@ -4,21 +4,27 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { ARTICLES } from '@/lib/data';
+import { getArticles } from '@/lib/db';
 import { ArrowLeft, Clock, Calendar, User, Share2, Link as LinkIcon } from 'lucide-react';
 import CTASection from '@/components/sections/CTASection';
 import PageHero from '@/components/ui/PageHero';
+
+export const revalidate = 60;
+export const dynamicParams = true;
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return ARTICLES.map((a) => ({ slug: a.slug }));
+  const articles = await getArticles();
+  return articles.map((a) => ({ slug: a.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = ARTICLES.find((a) => a.slug === slug);
+  const articles = await getArticles();
+  const article = articles.find((a) => a.slug === slug);
 
   if (!article) {
     return {
@@ -67,13 +73,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ArticleDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const article = ARTICLES.find((a) => a.slug === slug);
+  const articles = await getArticles();
+  const article = articles.find((a) => a.slug === slug);
 
   if (!article) {
     notFound();
   }
 
-  const relatedArticles = ARTICLES.filter((a) => a.id !== article.id).slice(0, 2);
+  const relatedArticles = articles.filter((a) => a.id !== article.id).slice(0, 2);
 
   const articleJsonLd = {
     '@context': 'https://schema.org',

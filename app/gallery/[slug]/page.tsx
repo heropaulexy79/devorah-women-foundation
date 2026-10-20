@@ -9,6 +9,8 @@ import { GALLERY_ITEMS } from '@/lib/data';
 import { GalleryItem } from '@/lib/types';
 import { Calendar, MapPin, ArrowLeft, Sparkles, Images } from 'lucide-react';
 
+import { getGallery } from '@/lib/db';
+
 // Always fetch fresh data so CMS changes are reflected immediately
 export const dynamic = 'force-dynamic';
 
@@ -18,23 +20,13 @@ interface AlbumPageProps {
   }>;
 }
 
-/** Fetch gallery data from the CMS API; fall back to static seed data. */
+/** Fetch gallery data from the CMS database with fallback */
 async function getGalleryItems(): Promise<GalleryItem[]> {
   try {
-    // Use an absolute URL so this works during SSR
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL ||
-      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
-    const res = await fetch(`${baseUrl}/api/content?type=gallery`, {
-      cache: 'no-store',
-    });
-    if (!res.ok) throw new Error(`API returned ${res.status}`);
-    const data = await res.json();
-    if (Array.isArray(data?.gallery) && data.gallery.length > 0) {
-      return data.gallery as GalleryItem[];
-    }
+    const items = await getGallery();
+    if (Array.isArray(items) && items.length > 0) return items;
   } catch {
-    // Fall through to static data
+    // Fallback
   }
   return GALLERY_ITEMS;
 }
