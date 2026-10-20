@@ -346,24 +346,33 @@ export const LEADERSHIP_PEOPLE: Person[] = [
     imageUrl: '/images/board/Faith-Akinola.jpeg'
   },
   {
-    id: 'board-1',
-    name: 'Board Member',
+    id: 'board-mike-olaoye',
+    name: 'Mr. Mike Olaoye',
     title: 'Board Member',
     role: 'Board Member',
     category: 'Board Member',
     badge: 'Board Member',
-    biography: 'Serves on the Board of Devorah Women Leadership and Empowerment Initiative, providing institutional guidance, governance oversight, and strategic advice to support the foundation’s mission.',
-    imageUrl: '/images/board_trustee_1.jpg'
+    biography: 'Mr. Mike Olaoye is a passionate entrepreneur, visionary leader, philanthropist, teacher, and a man deeply committed to serving God and humanity. As the Chief Executive Officer of Bitachon Group, he leads a diverse portfolio of businesses across aviation, logistics, agriculture, and other strategic ventures. Beyond business, he is a member of our Board of Directors and the Founder of Eden Empowerment Initiative, where his passion for people and community continues to create meaningful impact.',
+    background: 'Chief Executive Officer of Bitachon Group, leading a diverse portfolio across aviation, logistics, agriculture, and strategic commercial ventures. Founder of Eden Empowerment Initiative.',
+    vision: 'Mr. Mike Olaoye is not only building businesses; he is building people, creating opportunities, and leaving a legacy of service and impact, inspiring others to dream bigger and pursue purpose with courage and excellence.',
+    quote: 'True greatness is measured not only by how high you rise, but by how many people rise because of you.',
+    expertise: ['Executive Leadership', 'Aviation & Logistics', 'Strategic Philanthropy', 'Community Empowerment'],
+    imageUrl: '/images/board/Mr-Mike-Olaoye.JPG'
   },
   {
-    id: 'board-2',
-    name: 'Board Member',
+    id: 'board-seun-akinola',
+    name: 'Oluwaseunfunmi Akinola',
     title: 'Board Member',
     role: 'Board Member',
     category: 'Board Member',
     badge: 'Board Member',
-    biography: 'Serves on the Board of Devorah Women Leadership and Empowerment Initiative, contributing strategic counsel, fiduciary oversight, and operational insights for sustainable community impact.',
-    imageUrl: '/images/board_trustee_2.jpg'
+    biography: 'Oluwaseunfunmi Akinola is an educator, writer, volunteer, and professional with a passion for education, storytelling, leadership, and community development. She currently works as a Logistics Coordinator at Amazon and serves as a Board Director at Devorah Women Leadership and Empowerment Initiatives, where her commitment to service, personal development, and women’s empowerment finds meaningful expression. With a background in Mass Communication and Early Childhood Education, alongside a master’s degree in International Territorial Studies, Oluwaseunfunmi brings an interdisciplinary perspective to her work.',
+    background: 'Logistics Coordinator at Amazon with extensive experience across education, logistics, communication, and community engagement. Passionate educator, writer, and volunteer dedicated to social impact.',
+    education: 'Background in Mass Communication and Early Childhood Education, alongside a Master’s degree in International Territorial Studies.',
+    vision: 'At the heart of her work and personal philosophy is a belief in continuous growth, purposeful living, and the responsibility to contribute positively to the lives of others, creating spaces where people feel encouraged to learn, reflect, and realise their potential.',
+    quote: 'We become more of ourselves through what we learn, what we create, and what we give to others.',
+    expertise: ['Education & Mentorship', 'Logistics & Systems', 'Communication & Storytelling', 'Community Development'],
+    imageUrl: '/images/board/Seun-Akinola.JPG'
   },
   {
     id: 'board-3',
