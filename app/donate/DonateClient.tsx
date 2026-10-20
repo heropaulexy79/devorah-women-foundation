@@ -579,7 +579,7 @@ export default function DonateClient() {
                 <div className="p-4 rounded-xl bg-[#FAF8F5] border border-[#E8DDF0] space-y-2 text-xs">
                   <div className="flex justify-between items-center">
                     <span className="text-[#716A73]">Bank Name:</span>
-                    <span className="font-semibold text-[#3B214F]">Ecobank Nigeria</span>
+                    <span className="font-semibold text-[#3B214F]">Wema</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-[#716A73]">Account Name:</span>
@@ -588,7 +588,7 @@ export default function DonateClient() {
                   <div className="flex justify-between items-center pt-1 border-t border-[#E8DDF0]">
                     <span className="text-[#716A73]">Account Number:</span>
                     <div className="flex items-center gap-2">
-                      <span className="font-mono font-bold text-sm text-[#6E3A82]">1441002345</span>
+                      <span className="font-mono font-bold text-sm text-[#6E3A82]">0128102671</span>
                       <button
                         type="button"
                         onClick={() => copyAccountNumber('1441002345')}
