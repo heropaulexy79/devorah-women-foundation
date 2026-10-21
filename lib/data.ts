@@ -385,6 +385,50 @@ export const LEADERSHIP_PEOPLE: Person[] = [
     vision: 'Committed to strengthening the foundation\'s governance structure and expanding its reach to empower more women and girls across Nigeria and beyond.',
     expertise: ['Governance', 'Community Leadership', 'Strategic Partnerships'],
     imageUrl: '/images/board_trustee_3.jpg'
+  },
+  {
+    id: 'team-fawuyi-omotayo',
+    name: 'Fawuyi Omotayo',
+    title: 'Human Resources Manager',
+    role: 'Human Resources Manager',
+    category: 'Team Member',
+    badge: 'HR Manager',
+    biography: 'Fawuyi Omotayo is an HR professional and entrepreneur with a passion for people development and community impact. She serves as the Head of the Human Resources Department at Cirrus Air Support Services and Urbanstack Limited, where she contributes to people management, organizational development, and creating a positive workplace culture.\n\nShe also serves as the Human Resources Manager for Devorah Women’s Leadership and Empowerment Initiative, supporting its mission of empowering women, supporting children, and promoting personal, spiritual, and economic growth.\n\nOmotayo is a strong believer in the power of faith, service, and the importance of creating opportunities for women to discover their purpose, develop their potential, and make a difference in their families and communities.',
+    background: 'Head of the Human Resources Department at Cirrus Air Support Services and Urbanstack Limited, contributing to people management, organizational development, and creating a positive workplace culture.',
+    vision: 'A strong believer in the power of faith, service, and the importance of creating opportunities for women to discover their purpose, develop their potential, and make a difference in their families and communities.',
+    quote: 'Creating opportunities for women to discover their purpose, develop their potential, and make a difference in their families and communities.',
+    expertise: ['People Development', 'Organizational Development', 'Human Resources', 'Workplace Culture'],
+    imageUrl: '/images/board/Tayo.jpeg'
+  },
+  {
+    id: 'team-priscilla-maiyeko',
+    name: 'Priscilla Maiyeko',
+    title: 'Project Manager & Executive Assistant',
+    role: 'Project Manager & Executive Assistant',
+    category: 'Team Member',
+    badge: 'Project Manager',
+    biography: 'Priscilla Maiyeko is a passionate young professional with a strong interest in women’s empowerment, leadership, community development, and public health. She is committed to creating meaningful impact and helping women and girls discover their potential and thrive.\n\nShe holds a Bachelor of Science degree in Biochemistry from the University of Ilorin and is currently pursuing a Master’s degree in Public Health at Lead City University, Ibadan with a growing interest in mental health and community well-being.\n\nPriscilla has gained experience across research, administration, communications, and project coordination. Her professional journey includes serving as an Administrative Assistant to the Director of Physiotherapy under the Oyo State Hospital Management Board, contributing to research at the Neuroscience and Ageing Research Unit, University College Hospital, Ibadan, and working as a Video Editor at Punch Newspapers.\n\nShe currently serves as the Project Manager and Executive Assistant at Devorah Women’s Leadership & Empowerment Initiative where she supports the planning and execution of initiatives focused on empowering women and girls through education, leadership development, mentorship, and community outreach.\n\nBeyond her professional responsibilities, Priscilla is a creative storyteller, content creator, and video editor who uses digital media to inspire, educate, and connect with people. She is also passionate about faith, personal growth, and building safe spaces for meaningful conversations and genuine community.\n\nDriven by her faith and desire to serve, Priscilla believes that true impact begins with intentional service and a willingness to make a difference, one life at a time.',
+    background: 'Administrative Assistant to Director of Physiotherapy (Oyo State Hospital Management Board), Neuroscience & Ageing Research Unit (UCH Ibadan), and Video Editor at Punch Newspapers.',
+    education: 'Bachelor of Science degree in Biochemistry from the University of Ilorin; currently pursuing Master’s in Public Health at Lead City University, Ibadan.',
+    vision: 'Driven by faith and desire to serve, Priscilla believes that true impact begins with intentional service and a willingness to make a difference, one life at a time.',
+    quote: 'True impact begins with intentional service and a willingness to make a difference, one life at a time.',
+    expertise: ['Project Coordination', 'Public Health', 'Research & Administration', 'Content Creation & Video Editing'],
+    imageUrl: '/images/board/Priscilla.jpeg'
+  },
+  {
+    id: 'team-peace-ayeni',
+    name: 'Peace Ayeni',
+    title: 'Head of Media and Communications',
+    role: 'Head of Media and Communications',
+    category: 'Team Member',
+    badge: 'Head of Media',
+    biography: 'Peace Ayeni is a communications professional, storyteller, and creative media practitioner passionate about using communication to inform, inspire, and create meaningful impact. With a background in Mass Communication and hands-on experience in content production, digital storytelling, and media strategy, she brings a thoughtful and creative approach to communicating ideas, building narratives, and connecting people with purpose-driven initiatives.\n\nHer experience spans content development, scriptwriting, social media strategy, and audiovisual production, giving her a multifaceted understanding of how stories can shape perspectives, inspire action, and amplify important conversations. Beyond her professional work, Peace is passionate about social impact storytelling, particularly narratives that champion women and girls, affirm their potential, and create room for their voices to be heard.\n\nAs Head of Media and Communications at Devorah Global Women, she leads the organisation’s communication efforts, helping translate its vision into compelling narratives that reflect its commitment to women’s empowerment, education, and well-being. Through her work, she seeks to ensure that meaningful initiatives are not only carried out but also communicated in ways that resonate, inspire, and leave a lasting impression.\n\nPeace believes in the power of stories to help people see beyond limitations, recognise possibilities, and become more intentional about the impact they make.',
+    background: 'Extensive background across content development, scriptwriting, social media strategy, and audiovisual production for purpose-driven initiatives.',
+    education: 'Background in Mass Communication with hands-on experience in multimedia production and media strategy.',
+    vision: 'Believes in the power of stories to help people see beyond limitations, recognise possibilities, and become more intentional about the impact they make.',
+    quote: 'Stories help people see beyond limitations, recognise possibilities, and become more intentional about the impact they make.',
+    expertise: ['Media Strategy', 'Digital Storytelling', 'Audiovisual Production', 'Communications'],
+    imageUrl: '/images/board/Peace-Ayeni.jpeg'
   }
 ];
 

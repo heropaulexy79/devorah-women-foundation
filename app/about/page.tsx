@@ -123,7 +123,9 @@ export default async function AboutPage() {
   const boardMembers = allPeople.filter(
     (p) => p.category === 'Founder' || p.category === 'Board Member'
   );
-  const teamLeads = allPeople.filter((p) => p.category === 'Team Lead');
+  const teamLeads = allPeople.filter(
+    (p) => p.category === 'Team Lead' || p.category === 'Team Member'
+  );
 
   return (
     <div className="bg-[#FAF8F5] min-h-screen">

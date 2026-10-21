@@ -159,7 +159,17 @@ export async function saveArticles(articles: Article[]): Promise<boolean> {
 }
 
 export async function getBoardMembers(): Promise<Person[]> {
-  return getCmsItem<Person[]>('board_members', [...LEADERSHIP_PEOPLE]);
+  const stored = await getCmsItem<Person[]>('board_members', [...LEADERSHIP_PEOPLE]);
+  if (!Array.isArray(stored) || stored.length === 0) return [...LEADERSHIP_PEOPLE];
+
+  const storedIds = new Set(stored.map((p) => p.id));
+  const missing = LEADERSHIP_PEOPLE.filter((p) => !storedIds.has(p.id));
+  if (missing.length > 0) {
+    const merged = [...stored, ...missing];
+    setCmsItem('board_members', merged).catch(() => {});
+    return merged;
+  }
+  return stored;
 }
 
 export async function saveBoardMembers(members: Person[]): Promise<boolean> {

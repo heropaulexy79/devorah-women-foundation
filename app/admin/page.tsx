@@ -707,7 +707,7 @@ export default function AdminDashboardPage() {
               }`}
             >
               <Users className="w-4 h-4" />
-              Board Members ({boardList.length})
+              Board & Team ({boardList.length})
             </button>
 
             <button
@@ -996,9 +996,9 @@ export default function AdminDashboardPage() {
         {activeTab === 'board' && (
           <div className="space-y-6">
             <div>
-              <h1 className="text-2xl font-serif font-bold text-[#3B214F]">Board Members Manager</h1>
+              <h1 className="text-2xl font-serif font-bold text-[#3B214F]">Board & Team Members Manager</h1>
               <p className="text-xs text-[#716A73] mt-1">
-                Edit board member profiles shown on the About page. Changes are saved to the database and reflected on the website.
+                Edit profiles for the board of trustees and executive team shown on the About page. Changes are saved to the database and reflected on the website.
               </p>
             </div>
 
@@ -1017,6 +1017,8 @@ export default function AdminDashboardPage() {
                       <span className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
                         member.category === 'Founder'
                           ? 'bg-[#C5A880]/20 text-[#8B6A3E]'
+                          : member.category === 'Team Member' || member.category === 'Team Lead'
+                          ? 'bg-[#E8DDF0] text-[#6E3A82] border border-[#C5A8D8]/50'
                           : 'bg-[#E8DDF0] text-[#6E3A82]'
                       }`}>
                         {member.badge || member.category}

@@ -135,7 +135,7 @@ export default function BoardLeadershipSection({
                   : 'text-[#3B214F]/70 hover:text-[#3B214F]'
               }`}
             >
-              Executive Program Leads ({teamLeads.length})
+              Executive Team ({teamLeads.length})
             </button>
           </div>
         ) : (

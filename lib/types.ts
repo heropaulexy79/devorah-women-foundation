@@ -71,7 +71,7 @@ export interface Person {
   id: string;
   name: string;
   role: string;
-  category: 'Founder' | 'Team Lead' | 'Board Member';
+  category: 'Founder' | 'Team Lead' | 'Board Member' | 'Team Member';
   title?: string;
   biography: string;
   background?: string;
