@@ -42,10 +42,18 @@ export async function POST(req: Request) {
     const safeName = `devorah-cms/${Date.now()}-${cleanFileName}`;
 
     // 1. Production / Vercel Blob upload
-    if (process.env.BLOB_READ_WRITE_TOKEN) {
+    const blobToken =
+      process.env.BLOB_READ_WRITE_TOKEN ||
+      process.env.VERCEL_BLOB_READ_WRITE_TOKEN ||
+      process.env.STORAGE_BLOB_READ_WRITE_TOKEN ||
+      process.env.BLOB_TOKEN ||
+      process.env.NEXT_PUBLIC_BLOB_READ_WRITE_TOKEN;
+
+    if (blobToken) {
       const blob = await put(safeName, buffer, {
         access: 'public',
         contentType: file.type || 'image/jpeg',
+        token: blobToken,
       });
       return NextResponse.json({ success: true, url: blob.url });
     }

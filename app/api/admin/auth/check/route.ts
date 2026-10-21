@@ -18,7 +18,13 @@ export async function GET(req: Request) {
   }
 
   const dbStatus = await testDbConnection();
-  const blobConfigured = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+  const blobToken =
+    process.env.BLOB_READ_WRITE_TOKEN ||
+    process.env.VERCEL_BLOB_READ_WRITE_TOKEN ||
+    process.env.STORAGE_BLOB_READ_WRITE_TOKEN ||
+    process.env.BLOB_TOKEN ||
+    process.env.NEXT_PUBLIC_BLOB_READ_WRITE_TOKEN;
+  const blobConfigured = Boolean(blobToken);
 
   return NextResponse.json({
     authenticated: true,
