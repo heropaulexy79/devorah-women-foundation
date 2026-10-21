@@ -240,7 +240,7 @@ export async function POST(req: Request) {
         education: payload?.education,
         vision: payload?.vision,
         quote: payload?.quote,
-        imageUrl: payload?.imageUrl || '/images/board_trustee_1.jpg',
+        imageUrl: payload?.imageUrl || '/images/board/Faith-Akinola.jpeg',
         expertise: Array.isArray(payload?.expertise) ? payload.expertise : [],
       };
 

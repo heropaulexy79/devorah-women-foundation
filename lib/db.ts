@@ -151,7 +151,45 @@ export async function setCmsItem<T>(key: string, value: T): Promise<boolean> {
 // ── Strongly-typed accessor functions ──────────────────────────────────────
 
 export async function getArticles(): Promise<Article[]> {
-  return getCmsItem<Article[]>('articles', [...ARTICLES]);
+  const stored = await getCmsItem<Article[]>('articles', [...ARTICLES]);
+  if (!Array.isArray(stored) || stored.length === 0) return [...ARTICLES];
+
+  let updatedAny = false;
+  const cleaned = stored.map((art) => {
+    let changed = false;
+    let featuredImageUrl = art.featuredImageUrl;
+    let avatarUrl = art.author?.avatarUrl;
+
+    if (featuredImageUrl && (
+      featuredImageUrl.includes('story_beneficiary') ||
+      featuredImageUrl.includes('hero_portrait') ||
+      featuredImageUrl.includes('who_we_are')
+    )) {
+      featuredImageUrl = '/images/leadership development/SV2L9258.jpeg';
+      changed = true;
+    }
+
+    if (avatarUrl && (avatarUrl.includes('founder_portrait') || avatarUrl.includes('hero_portrait'))) {
+      avatarUrl = '/images/board/Faith-Akinola.jpeg';
+      changed = true;
+    }
+
+    if (changed) {
+      updatedAny = true;
+      return {
+        ...art,
+        featuredImageUrl,
+        author: { ...art.author, avatarUrl },
+      };
+    }
+    return art;
+  });
+
+  if (updatedAny) {
+    setCmsItem('articles', cleaned).catch(() => {});
+    return cleaned;
+  }
+  return stored;
 }
 
 export async function saveArticles(articles: Article[]): Promise<boolean> {
@@ -164,12 +202,30 @@ export async function getBoardMembers(): Promise<Person[]> {
 
   const storedIds = new Set(stored.map((p) => p.id));
   const missing = LEADERSHIP_PEOPLE.filter((p) => !storedIds.has(p.id));
+  let baseList = [...stored];
+  let needsSave = false;
+
   if (missing.length > 0) {
-    const merged = [...stored, ...missing];
-    setCmsItem('board_members', merged).catch(() => {});
-    return merged;
+    baseList = [...stored, ...missing];
+    needsSave = true;
   }
-  return stored;
+
+  // Sanitize any stale AI image paths in stored board members
+  const cleaned = baseList.map((member) => {
+    if (member.imageUrl && (member.imageUrl.includes('board_trustee') || member.imageUrl.includes('founder_portrait'))) {
+      needsSave = true;
+      return {
+        ...member,
+        imageUrl: member.id === 'founder' ? '/images/board/Faith-Akinola.jpeg' : '/logo.png',
+      };
+    }
+    return member;
+  });
+
+  if (needsSave) {
+    setCmsItem('board_members', cleaned).catch(() => {});
+  }
+  return cleaned;
 }
 
 export async function saveBoardMembers(members: Person[]): Promise<boolean> {
@@ -177,7 +233,41 @@ export async function saveBoardMembers(members: Person[]): Promise<boolean> {
 }
 
 export async function getPrograms(): Promise<Program[]> {
-  return getCmsItem<Program[]>('programs', [...PROGRAMS]);
+  const stored = await getCmsItem<Program[]>('programs', [...PROGRAMS]);
+  if (!Array.isArray(stored) || stored.length === 0) return [...PROGRAMS];
+
+  let updatedAny = false;
+  const cleaned = stored.map((p) => {
+    if (
+      Array.isArray(p.galleryImages) &&
+      p.galleryImages.some(
+        (img) =>
+          img.includes('who_we_are') ||
+          img.includes('story_beneficiary') ||
+          img.includes('hero_portrait') ||
+          img.includes('founder_portrait')
+      )
+    ) {
+      updatedAny = true;
+      return {
+        ...p,
+        galleryImages: (p.galleryImages || []).map((img) => {
+          if (img.includes('who_we_are')) return '/images/heroslider/women-empowerment.PNG';
+          if (img.includes('story_beneficiary')) return '/images/School Outreaches/IMG_5808.PNG';
+          if (img.includes('hero_portrait')) return '/images/leadership development/SV2L9258.jpeg';
+          if (img.includes('founder_portrait')) return '/images/board/Faith-Akinola.jpeg';
+          return img;
+        }),
+      };
+    }
+    return p;
+  });
+
+  if (updatedAny) {
+    setCmsItem('programs', cleaned).catch(() => {});
+    return cleaned;
+  }
+  return stored;
 }
 
 export async function savePrograms(programs: Program[]): Promise<boolean> {

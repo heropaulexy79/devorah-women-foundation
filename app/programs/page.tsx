@@ -27,13 +27,13 @@ export const metadata = {
     description: 'Our multi-disciplinary initiatives provide sustainable education, career leadership, vocational dignity, and spiritual resilience for women and girls.',
     url: '/programs',
     type: 'website',
-    images: [{ url: '/images/who_we_are.png', width: 1200, height: 630, alt: "Devorah Women's Leadership & Empowerment Initiative programs" }],
+    images: [{ url: '/images/heroslider/women-empowerment.PNG', width: 1200, height: 630, alt: "Devorah Women's Leadership & Empowerment Initiative programs" }],
   },
   twitter: {
     card: 'summary_large_image',
     title: "Our Programs | Devorah Women's Leadership & Empowerment Initiative",
     description: 'Explore our empowerment programs for women and girls across Lagos, Nigeria.',
-    images: ['/images/who_we_are.png'],
+    images: ['/images/heroslider/women-empowerment.PNG'],
   },
 };
 

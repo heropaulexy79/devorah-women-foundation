@@ -94,7 +94,7 @@ export default function LatestNews() {
                   <div className="flex items-center gap-3">
                     <div className="relative w-8 h-8 rounded-full overflow-hidden bg-[#E8DDF0] border border-[#E8DDF0]">
                       <Image
-                        src={article.author.avatarUrl || '/images/founder_portrait.png'}
+                        src={article.author.avatarUrl || '/images/board/Faith-Akinola.jpeg'}
                         alt={article.author.name}
                         fill
                         className="object-cover"

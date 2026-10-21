@@ -45,13 +45,13 @@ export const metadata = {
       'An institution built on strength, dignity, and purpose — dedicated to unlocking the potential of girls and women through holistic education, mentorship, and faith-anchored community action.',
     url: '/about',
     type: 'website',
-    images: [{ url: '/images/who_we_are.png', width: 1200, height: 630, alt: "Devorah Women's Leadership & Empowerment Initiative community gathering" }],
+    images: [{ url: '/images/leadership development/SV2L9258.jpeg', width: 1200, height: 630, alt: "Devorah Women's Leadership & Empowerment Initiative community gathering" }],
   },
   twitter: {
     card: 'summary_large_image',
     title: "About Us | Devorah Women's Leadership & Empowerment Initiative",
     description: "Learn about our mission, vision, values, and the team behind Devorah Women's Leadership & Empowerment Initiative.",
-    images: ['/images/who_we_are.png'],
+    images: ['/images/leadership development/SV2L9258.jpeg'],
   },
 };
 
@@ -173,7 +173,7 @@ export default async function AboutPage() {
           <div className="lg:col-span-6 relative">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
               <Image
-                src="/images/who_we_are.png"
+                src="/images/leadership development/SV2L9258.jpeg"
                 alt="Devorah Women's Leadership & Empowerment Initiative community outreach"
                 fill
                 className="object-cover"
@@ -181,7 +181,7 @@ export default async function AboutPage() {
             </div>
             <div className="absolute -bottom-6 -left-6 w-48 aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white hidden sm:block">
               <Image
-                src="/images/story_beneficiary.png"
+                src="/images/women empowerment/SV2L9490.jpeg"
                 alt="Empowering women through leadership"
                 fill
                 className="object-cover"
@@ -385,7 +385,7 @@ export default async function AboutPage() {
             <div className="lg:col-span-5 relative">
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 bg-[#291439] group">
                 <Image
-                  src="/images/founder_portrait.png"
+                  src="/images/board/Faith-Akinola.jpeg"
                   alt="Faith & Spiritual Development"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"

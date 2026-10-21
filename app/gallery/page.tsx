@@ -22,13 +22,13 @@ export const metadata: Metadata = {
     description: 'Moments from the work. Stories from the community.',
     url: '/gallery',
     type: 'website',
-    images: [{ url: '/images/gallery_conference.png', width: 1200, height: 630, alt: 'Devorah Initiative gallery' }],
+    images: [{ url: '/images/community outreach/IMG_5837.PNG', width: 1200, height: 630, alt: 'Devorah Initiative gallery' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: "Media Gallery | Devorah Women's Leadership & Empowerment Initiative",
     description: "Explore moments from Devorah Women's Leadership & Empowerment Initiative's programs, outreaches, and community events.",
-    images: ['/images/gallery_conference.png'],
+    images: ['/images/community outreach/IMG_5837.PNG'],
   },
 };
 

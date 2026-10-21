@@ -33,7 +33,7 @@ export default function AdminDashboardPage() {
     readingTime: '4 min read',
     authorName: 'Executive Director',
     authorRole: "Devorah Women's Leadership & Empowerment Initiative",
-    featuredImageUrl: '/images/story_beneficiary.png',
+    featuredImageUrl: '/images/leadership development/SV2L9258.jpeg',
   });
 
   // Board Members state
@@ -66,7 +66,7 @@ export default function AdminDashboardPage() {
     location: 'Lagos, Nigeria',
     caption: '',
     impactHighlight: '',
-    imageUrl: '/images/gallery_outreach.png',
+    imageUrl: '/images/community outreach/IMG_5837.PNG',
     photos: [] as { id: string; url: string; caption?: string }[],
   });
 
@@ -104,13 +104,13 @@ export default function AdminDashboardPage() {
   };
 
   const SAMPLE_IMAGES = [
-    { label: 'Beneficiary Story', url: '/images/story_beneficiary.png' },
-    { label: 'Hero Portrait', url: '/images/hero_portrait.png' },
-    { label: 'Founder Portrait', url: '/images/founder_portrait.png' },
-    { label: 'Community Outreach', url: '/images/who_we_are.png' },
-    { label: 'Conference / Summit', url: '/images/gallery_conference.png' },
-    { label: 'STEM & Digital', url: '/images/gallery_stem.png' },
-    { label: 'Spiritual Retreat', url: '/images/gallery_retreat.png' },
+    { label: 'Leadership Development', url: '/images/leadership development/SV2L9258.jpeg' },
+    { label: 'Community Outreach', url: '/images/community outreach/IMG_5837.PNG' },
+    { label: 'Faith & Spiritual', url: '/images/faith and spiritual development/IMG_5806.PNG' },
+    { label: 'School Outreach', url: '/images/School Outreaches/IMG_5808.PNG' },
+    { label: 'Women Empowerment', url: '/images/women empowerment/SV2L9490.jpeg' },
+    { label: 'Founder Portrait', url: '/images/board/Faith-Akinola.jpeg' },
+    { label: 'Hero Slide', url: '/images/heroslider/hero1.jpeg' },
   ];
 
   const openNewArticleModal = () => {
@@ -123,7 +123,7 @@ export default function AdminDashboardPage() {
       readingTime: '4 min read',
       authorName: 'Executive Director',
       authorRole: "Devorah Women's Leadership & Empowerment Initiative",
-      featuredImageUrl: '/images/story_beneficiary.png',
+      featuredImageUrl: '/images/leadership development/SV2L9258.jpeg',
     });
     setShowArticleModal(true);
   };
@@ -157,7 +157,7 @@ export default function AdminDashboardPage() {
           excerpt: articleForm.excerpt,
           content: articleForm.content || articleForm.excerpt,
           readingTime: articleForm.readingTime,
-          author: { name: articleForm.authorName, role: articleForm.authorRole, avatarUrl: '/images/founder_portrait.png' },
+          author: { name: articleForm.authorName, role: articleForm.authorRole, avatarUrl: '/images/board/Faith-Akinola.jpeg' },
           featuredImageUrl: articleForm.featuredImageUrl,
         };
 
@@ -189,7 +189,7 @@ export default function AdminDashboardPage() {
               excerpt: articleForm.excerpt,
               content: articleForm.content || articleForm.excerpt,
               readingTime: articleForm.readingTime,
-              author: { name: articleForm.authorName, role: articleForm.authorRole, avatarUrl: '/images/founder_portrait.png' },
+              author: { name: articleForm.authorName, role: articleForm.authorRole, avatarUrl: '/images/board/Faith-Akinola.jpeg' },
               featuredImageUrl: articleForm.featuredImageUrl,
               featured: true,
             }
@@ -315,7 +315,7 @@ export default function AdminDashboardPage() {
       location: 'Lagos, Nigeria',
       caption: '',
       impactHighlight: '',
-      imageUrl: '/images/gallery_outreach.png',
+      imageUrl: '/images/community outreach/IMG_5837.PNG',
       photos: [],
     });
     setShowGalleryModal(true);

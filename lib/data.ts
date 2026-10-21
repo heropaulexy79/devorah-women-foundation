@@ -64,7 +64,7 @@ export const PROGRAMS: Program[] = [
       author: "Amina Adeleke",
       role: "Leadership Program Graduate"
     },
-    galleryImages: ['/images/programs/Empowerment-leadership.PNG', '/images/who_we_are.png']
+    galleryImages: ['/images/programs/Empowerment-leadership.jpeg', '/images/heroslider/women-empowerment.PNG']
   },
   {
     id: 'educational-support',
@@ -97,7 +97,7 @@ export const PROGRAMS: Program[] = [
       author: "Grace Okon",
       role: "Educational Support Beneficiary"
     },
-    galleryImages: ['/images/programs/educational-support.PNG', '/images/story_beneficiary.png']
+    galleryImages: ['/images/programs/educational-support.PNG', '/images/School Outreaches/IMG_5808.PNG']
   },
   {
     id: 'mentorship-capacity-development',
@@ -130,7 +130,7 @@ export const PROGRAMS: Program[] = [
       author: "Tunde Balogun",
       role: "Mentorship Participant"
     },
-    galleryImages: ['/images/programs/mentorship-capacity.jpeg', '/images/hero_portrait.png']
+    galleryImages: ['/images/programs/mentorship-capacity.PNG', '/images/leadership development/SV2L9258.jpeg']
   },
   {
     id: 'community-outreach-support',
@@ -164,7 +164,7 @@ export const PROGRAMS: Program[] = [
       author: "Folake Adeleke",
       role: "Community Outreach Recipient"
     },
-    galleryImages: ['/images/programs/community-outreach.PNG', '/images/founder_portrait.png']
+    galleryImages: ['/images/programs/community-outreach.PNG', '/images/community outreach/IMG_5837.PNG']
   },
   {
     id: 'faith-spiritual-development',
@@ -197,7 +197,7 @@ export const PROGRAMS: Program[] = [
       author: "Hannah Babatunde",
       role: "Fellowship Member"
     },
-    galleryImages: ['/images/programs/faith-spiritual-development.PNG', '/images/hero_portrait.png']
+    galleryImages: ['/images/programs/faith-spiritual-development.PNG', '/images/faith and spiritual development/IMG_5806.PNG']
   }
 ];
 
@@ -209,7 +209,7 @@ export const FEATURED_STORY = {
   program: "Girls' Development & Leadership Academy",
   location: 'Lagos, Nigeria',
   date: 'October 13, 2026',
-  imageUrl: '/images/story_beneficiary.png'
+  imageUrl: '/images/women empowerment/SV2L9490.jpeg'
 };
 
 export const PROJECTS: Project[] = [
@@ -233,8 +233,8 @@ export const PROJECTS: Project[] = [
       '98% reported increased confidence in public speaking and decision-making.',
       '100% pledged active participation in school mentorship clubs.'
     ],
-    imageUrl: '/images/who_we_are.png',
-    galleryImages: ['/images/who_we_are.png', '/images/story_beneficiary.png']
+    imageUrl: '/images/leadership development/SV2L9258.jpeg',
+    galleryImages: ['/images/leadership development/SV2L9258.jpeg', '/images/School Outreaches/IMG_5808.PNG']
   },
   {
     id: 'project-2',
@@ -256,8 +256,8 @@ export const PROJECTS: Project[] = [
       '85% launched active revenue-generating micro-enterprises within 60 days.',
       'Average household monthly income increased by 40%.'
     ],
-    imageUrl: '/images/hero_portrait.png',
-    galleryImages: ['/images/hero_portrait.png', '/images/founder_portrait.png']
+    imageUrl: '/images/community outreach/IMG_5837.PNG',
+    galleryImages: ['/images/community outreach/IMG_5837.PNG', '/images/women empowerment/SV2L9490.jpeg']
   }
 ];
 
@@ -276,11 +276,11 @@ Through structured mentorship circles, we pair young girls with experienced fema
     author: {
       name: 'Executive Director',
       role: "Devorah Women's Leadership & Empowerment Initiative",
-      avatarUrl: '/images/founder_portrait.png'
+      avatarUrl: '/images/board/Faith-Akinola.jpeg'
     },
     publishedAt: 'September 14, 2025',
     readingTime: '5 min read',
-    featuredImageUrl: '/images/story_beneficiary.png',
+    featuredImageUrl: '/images/leadership development/SV2L9258.jpeg',
     featured: true
   },
   {
@@ -295,11 +295,11 @@ When we reflect on Deborah's leadership under the palm tree, we see a woman who 
     author: {
       name: 'Spiritual Mentorship Team',
       role: "Devorah Women's Leadership & Empowerment Initiative",
-      avatarUrl: '/images/founder_portrait.png'
+      avatarUrl: '/images/board/Faith-Akinola.jpeg'
     },
     publishedAt: 'August 28, 2025',
     readingTime: '4 min read',
-    featuredImageUrl: '/images/hero_portrait.png',
+    featuredImageUrl: '/images/faith and spiritual development/IMG_5806.PNG',
     featured: false
   }
 ];
@@ -323,7 +323,7 @@ export const RESOURCES: Resource[] = [
     type: 'Devotionals',
     author: 'Faith & Spiritual Development Team',
     shortDescription: 'Daily biblical reflections designed to build spiritual resilience, personal dignity, and sense of purpose.',
-    coverImageUrl: '/images/founder_portrait.png',
+    coverImageUrl: '/images/faith and spiritual development/IMG_5804.PNG',
     downloadUrl: '#',
     readOnlineUrl: '#'
   }
@@ -384,7 +384,7 @@ export const LEADERSHIP_PEOPLE: Person[] = [
     biography: 'Serves on the Board of Devorah Women Leadership and Empowerment Initiative, contributing strategic leadership, governance oversight, and community partnership expertise to advance the foundation\'s mission across Nigeria.',
     vision: 'Committed to strengthening the foundation\'s governance structure and expanding its reach to empower more women and girls across Nigeria and beyond.',
     expertise: ['Governance', 'Community Leadership', 'Strategic Partnerships'],
-    imageUrl: '/images/board_trustee_3.jpg'
+    imageUrl: '/logo.png'
   },
   {
     id: 'team-fawuyi-omotayo',

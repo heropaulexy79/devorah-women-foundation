@@ -72,7 +72,7 @@ export default function WhoWeAre() {
               {/* Primary Large Image — no white frame, photography as editorial object */}
               <div className="relative rounded-sm overflow-hidden aspect-[4/3] max-w-lg mx-auto lg:max-w-none">
                 <Image
-                  src="/images/who_we_are.png"
+                  src="/images/leadership development/SV2L9258.jpeg"
                   alt="Devorah Women's Leadership & Empowerment Initiative community gathering — women and girls coming together"
                   fill
                   className="object-cover"
@@ -82,7 +82,7 @@ export default function WhoWeAre() {
               {/* Secondary overlapping portrait — editorial composition */}
               <div className="absolute -bottom-10 -left-6 w-40 sm:w-48 aspect-square rounded-sm overflow-hidden shadow-xl border-2 border-[#FAF8F5] hidden sm:block">
                 <Image
-                  src="/images/story_beneficiary.png"
+                  src="/images/women empowerment/SV2L9490.jpeg"
                   alt="Young woman empowered through Devorah Women's Leadership & Empowerment Initiative programs"
                   fill
                   className="object-cover"
