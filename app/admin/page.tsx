@@ -87,9 +87,9 @@ export default function AdminDashboardPage() {
     try {
       const form = new FormData();
       form.append('file', file);
-      const res = await fetch('/api/upload', { method: 'POST', body: form });
+      const res = await fetch('/api/upload', { method: 'POST', credentials: 'include', body: form });
       const data = await res.json();
-      if (data.success) {
+      if (res.ok && data.success) {
         setArticleForm((prev) => ({ ...prev, featuredImageUrl: data.url }));
         showSuccessNotification('Image uploaded successfully!');
       } else {
@@ -163,19 +163,23 @@ export default function AdminDashboardPage() {
 
         const res = await fetch('/api/content', {
           method: 'POST',
+          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ action: 'update_article', payload }),
         });
         const data = await res.json();
-        if (data.success) {
+        if (res.ok && data.success) {
           setArticlesList(articlesList.map((a) => (a.id === editingArticleId ? data.article : a)));
           setShowArticleModal(false);
           showSuccessNotification('Article updated successfully!');
+        } else {
+          showSuccessNotification(data.message || 'Failed to update article');
         }
       } else {
         // Create new article
         const res = await fetch('/api/content', {
           method: 'POST',
+          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             action: 'add_article',
@@ -192,10 +196,12 @@ export default function AdminDashboardPage() {
           }),
         });
         const data = await res.json();
-        if (data.success) {
+        if (res.ok && data.success) {
           setArticlesList([data.article, ...articlesList]);
           setShowArticleModal(false);
           showSuccessNotification('Article created and published successfully!');
+        } else {
+          showSuccessNotification(data.message || 'Failed to create article');
         }
       }
     } catch {
@@ -208,13 +214,16 @@ export default function AdminDashboardPage() {
     try {
       const res = await fetch('/api/content', {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'delete_article', payload: { id } }),
       });
       const data = await res.json();
-      if (data.success) {
+      if (res.ok && data.success) {
         setArticlesList(articlesList.filter((a) => a.id !== id));
         showSuccessNotification('Article deleted successfully.');
+      } else {
+        showSuccessNotification(data.message || 'Failed to delete article');
       }
     } catch {
       showSuccessNotification('Failed to delete article');
@@ -245,9 +254,9 @@ export default function AdminDashboardPage() {
     try {
       const form = new FormData();
       form.append('file', file);
-      const res = await fetch('/api/upload', { method: 'POST', body: form });
+      const res = await fetch('/api/upload', { method: 'POST', credentials: 'include', body: form });
       const data = await res.json();
-      if (data.success) {
+      if (res.ok && data.success) {
         setBoardForm((prev) => ({ ...prev, imageUrl: data.url }));
         showSuccessNotification('Photo uploaded successfully!');
       } else {
@@ -279,11 +288,12 @@ export default function AdminDashboardPage() {
       };
       const res = await fetch('/api/content', {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'update_board_member', payload }),
       });
       const data = await res.json();
-      if (data.success) {
+      if (res.ok && data.success) {
         setBoardList(boardList.map((m) => (m.id === editingBoardId ? data.member : m)));
         setShowBoardModal(false);
         showSuccessNotification('Board member profile updated successfully!');
@@ -333,9 +343,9 @@ export default function AdminDashboardPage() {
     try {
       const form = new FormData();
       form.append('file', file);
-      const res = await fetch('/api/upload', { method: 'POST', body: form });
+      const res = await fetch('/api/upload', { method: 'POST', credentials: 'include', body: form });
       const data = await res.json();
-      if (data.success) {
+      if (res.ok && data.success) {
         setGalleryForm((prev) => {
           // If photos array is empty, seed it with the cover
           if (prev.photos.length === 0) {
@@ -375,9 +385,9 @@ export default function AdminDashboardPage() {
         const file = files[i];
         const form = new FormData();
         form.append('file', file);
-        const res = await fetch('/api/upload', { method: 'POST', body: form });
+        const res = await fetch('/api/upload', { method: 'POST', credentials: 'include', body: form });
         const data = await res.json();
-        if (data.success) {
+        if (res.ok && data.success) {
           uploadedCount++;
           newPhotos.push({
             id: `photo-${Date.now()}-${i}`,
@@ -429,11 +439,12 @@ export default function AdminDashboardPage() {
 
         const res = await fetch('/api/content', {
           method: 'POST',
+          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ action: 'update_gallery', payload }),
         });
         const data = await res.json();
-        if (data.success) {
+        if (res.ok && data.success) {
           setGalleryList(galleryList.map((g) => (g.id === editingGalleryId ? data.galleryItem : g)));
           setShowGalleryModal(false);
           showSuccessNotification('Gallery album updated successfully!');
@@ -444,6 +455,7 @@ export default function AdminDashboardPage() {
         // Create new album
         const res = await fetch('/api/content', {
           method: 'POST',
+          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             action: 'add_gallery',
@@ -462,7 +474,7 @@ export default function AdminDashboardPage() {
           }),
         });
         const data = await res.json();
-        if (data.success) {
+        if (res.ok && data.success) {
           setGalleryList([data.galleryItem, ...galleryList]);
           setShowGalleryModal(false);
           showSuccessNotification('New gallery album published successfully!');
@@ -480,11 +492,12 @@ export default function AdminDashboardPage() {
     try {
       const res = await fetch('/api/content', {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'delete_gallery', payload: { id } }),
       });
       const data = await res.json();
-      if (data.success) {
+      if (res.ok && data.success) {
         setGalleryList(galleryList.filter((g) => g.id !== id));
         showSuccessNotification('Gallery album deleted successfully.');
       } else {
@@ -498,16 +511,31 @@ export default function AdminDashboardPage() {
   // Metrics & notification state
   const [metricsList, setMetricsList] = useState(IMPACT_METRICS);
   const [notification, setNotification] = useState('');
+  const [systemStatus, setSystemStatus] = useState<{
+    dbConnected?: boolean;
+    dbError?: string;
+    blobConfigured?: boolean;
+  }>({});
 
-  useEffect(() => {
-    setIsMounted(true);
-    // Check server-side session cookie (HttpOnly — JS cannot read it directly)
+  const checkStatus = () => {
     fetch('/api/admin/auth/check', { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => {
-        if (data.authenticated) setIsAuthenticated(true);
+        if (data.authenticated) {
+          setIsAuthenticated(true);
+          setSystemStatus({
+            dbConnected: data.db?.connected,
+            dbError: data.db?.error,
+            blobConfigured: data.blob?.configured,
+          });
+        }
       })
       .catch(() => {});
+  };
+
+  useEffect(() => {
+    setIsMounted(true);
+    checkStatus();
     fetch('/api/content', { credentials: 'include' })
       .then((res) => res.json())
       .then((data) => {
@@ -533,6 +561,7 @@ export default function AdminDashboardPage() {
       if (data.success) {
         setIsAuthenticated(true);
         setPasskey('');
+        checkStatus();
       } else {
         setAuthError(data.message || 'Incorrect Admin Passkey');
       }
@@ -554,12 +583,18 @@ export default function AdminDashboardPage() {
 
   const saveMetrics = async () => {
     try {
-      await fetch('/api/content', {
+      const res = await fetch('/api/content', {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'update_metrics', payload: metricsList }),
       });
-      showSuccessNotification('Impact metrics saved successfully!');
+      const data = await res.json();
+      if (res.ok && data.success) {
+        showSuccessNotification('Impact metrics saved successfully!');
+      } else {
+        showSuccessNotification(data.message || 'Failed to save metrics');
+      }
     } catch {
       showSuccessNotification('Failed to save metrics');
     }
@@ -742,6 +777,45 @@ export default function AdminDashboardPage() {
               <p className="text-sm text-[#716A73] mt-1">
                 Manage website content, track AI assistant conversations, and review digital platform performance.
               </p>
+            </div>
+
+            {/* Live Database & Cloud Storage Status */}
+            <div className={`p-4 rounded-xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${
+              systemStatus.dbConnected 
+                ? 'bg-emerald-50/80 border-emerald-200 text-emerald-950' 
+                : 'bg-amber-50/90 border-amber-300 text-amber-950'
+            }`}>
+              <div className="flex items-start gap-3">
+                <div className={`w-3.5 h-3.5 rounded-full mt-1 shrink-0 ${
+                  systemStatus.dbConnected ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'
+                }`} />
+                <div>
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm font-bold">
+                      {systemStatus.dbConnected ? 'Neon PostgreSQL Database: Connected & Active' : 'Neon Database: Disconnected / Not Detected'}
+                    </p>
+                    <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                      systemStatus.dbConnected ? 'bg-emerald-200 text-emerald-800' : 'bg-amber-200 text-amber-900'
+                    }`}>
+                      {systemStatus.dbConnected ? 'Live' : 'Action Required'}
+                    </span>
+                  </div>
+                  <p className="text-xs opacity-90 mt-1 leading-relaxed">
+                    {systemStatus.dbConnected 
+                      ? 'All changes made in this CMS are automatically persisted and reflected immediately on the live website.'
+                      : (systemStatus.dbError || 'DATABASE_URL or POSTGRES_URL environment variable is missing on this deployment.') + ' Go to Vercel Dashboard → Project Settings → Environment Variables to ensure Neon credentials are added, then trigger a Redeploy.'}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-full border ${
+                  systemStatus.blobConfigured 
+                    ? 'bg-emerald-100 border-emerald-300 text-emerald-800' 
+                    : 'bg-amber-100 border-amber-300 text-amber-800'
+                }`}>
+                  {systemStatus.blobConfigured ? 'Vercel Blob: Ready' : 'Vercel Blob: Not configured'}
+                </span>
+              </div>
             </div>
 
             {/* Quick Stats Grid */}

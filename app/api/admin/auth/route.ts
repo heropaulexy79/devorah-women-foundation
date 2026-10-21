@@ -57,7 +57,7 @@ export async function POST(req: Request) {
       response.cookies.set('devorah_admin_session', sessionToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: 'lax',
         maxAge: 8 * 60 * 60,
         path: '/',
       });

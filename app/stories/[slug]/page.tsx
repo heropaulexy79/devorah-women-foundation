@@ -9,7 +9,8 @@ import { ArrowLeft, Clock, Calendar, User, Share2, Link as LinkIcon } from 'luci
 import CTASection from '@/components/sections/CTASection';
 import PageHero from '@/components/ui/PageHero';
 
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 export const dynamicParams = true;
 
 interface PageProps {

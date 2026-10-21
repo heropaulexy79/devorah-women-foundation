@@ -4,21 +4,27 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { PROGRAMS } from '@/lib/data';
+import { getPrograms } from '@/lib/db';
 import { ArrowLeft, CheckCircle2, MapPin, Target, Users, HeartHandshake, Award, Quote, Sparkles } from 'lucide-react';
 import CTASection from '@/components/sections/CTASection';
 import PageHero from '@/components/ui/PageHero';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return PROGRAMS.map((p) => ({ slug: p.slug }));
+  const programs = await getPrograms();
+  return programs.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const program = PROGRAMS.find((p) => p.slug === slug);
+  const programs = await getPrograms();
+  const program = programs.find((p) => p.slug === slug);
 
   if (!program) {
     return {
@@ -66,7 +72,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProgramDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const program = PROGRAMS.find((p) => p.slug === slug);
+  const programs = await getPrograms();
+  const program = programs.find((p) => p.slug === slug);
 
   if (!program) {
     notFound();

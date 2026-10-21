@@ -1,14 +1,28 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ProgramCard from '@/components/cards/ProgramCard';
 import { PROGRAMS } from '@/lib/data';
+import type { Program } from '@/lib/types';
 
 export default function ProgramsGrid() {
-  const featured = PROGRAMS[0]; // Women's Empowerment Initiative — first featured program
-  const supporting = PROGRAMS.slice(1); // Remaining programs
+  const [programsList, setProgramsList] = useState<Program[]>(PROGRAMS);
+
+  useEffect(() => {
+    fetch('/api/content?type=programs')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.programs && Array.isArray(data.programs) && data.programs.length > 0) {
+          setProgramsList(data.programs);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const featured = programsList[0] || PROGRAMS[0];
+  const supporting = programsList.slice(1);
 
   return (
     <section className="py-24 lg:py-32 bg-[#FAF8F5]">

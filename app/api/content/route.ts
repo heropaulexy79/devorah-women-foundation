@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { verifySessionToken } from '@/lib/sessions';
 import { 
   getArticles, 
@@ -28,6 +29,12 @@ function isAuthenticated(req: Request): boolean {
   return verifySessionToken(token);
 }
 
+const NO_CACHE_HEADERS = {
+  'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+  Pragma: 'no-cache',
+  Expires: '0',
+};
+
 // ── GET: Public reads ───────────────────────────────────────────────────────
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -36,27 +43,27 @@ export async function GET(req: Request) {
   try {
     if (type === 'articles') {
       const articles = await getArticles();
-      return NextResponse.json({ articles });
+      return NextResponse.json({ articles }, { headers: NO_CACHE_HEADERS });
     }
     if (type === 'board' || type === 'board_members') {
       const boardMembers = await getBoardMembers();
-      return NextResponse.json({ boardMembers });
+      return NextResponse.json({ boardMembers }, { headers: NO_CACHE_HEADERS });
     }
     if (type === 'programs') {
       const programs = await getPrograms();
-      return NextResponse.json({ programs });
+      return NextResponse.json({ programs }, { headers: NO_CACHE_HEADERS });
     }
     if (type === 'gallery') {
       const gallery = await getGallery();
-      return NextResponse.json({ gallery });
+      return NextResponse.json({ gallery }, { headers: NO_CACHE_HEADERS });
     }
     if (type === 'metrics') {
       const metrics = await getMetrics();
-      return NextResponse.json({ metrics });
+      return NextResponse.json({ metrics }, { headers: NO_CACHE_HEADERS });
     }
     if (type === 'settings') {
       const settings = await getSiteSettings();
-      return NextResponse.json({ settings });
+      return NextResponse.json({ settings }, { headers: NO_CACHE_HEADERS });
     }
 
     const [articles, boardMembers, programs, gallery, metrics, settings] = await Promise.all([
@@ -68,24 +75,27 @@ export async function GET(req: Request) {
       getSiteSettings(),
     ]);
 
-    return NextResponse.json({
-      articles,
-      boardMembers,
-      programs,
-      gallery,
-      metrics,
-      settings,
-    });
+    return NextResponse.json(
+      {
+        articles,
+        boardMembers,
+        programs,
+        gallery,
+        metrics,
+        settings,
+      },
+      { headers: NO_CACHE_HEADERS }
+    );
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : 'Error fetching content';
-    return NextResponse.json({ success: false, message }, { status: 500 });
+    return NextResponse.json({ success: false, message }, { status: 500, headers: NO_CACHE_HEADERS });
   }
 }
 
 // ── POST: Authenticated CMS mutations ──────────────────────────────────────
 export async function POST(req: Request) {
   if (!isAuthenticated(req)) {
-    return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
+    return NextResponse.json({ success: false, message: 'Unauthorized. Please sign in again.' }, { status: 401 });
   }
 
   try {
@@ -96,20 +106,27 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, message: 'Missing action' }, { status: 400 });
     }
 
+    const DB_FAIL_MSG = 'Database write failed. Please verify that your Neon DATABASE_URL environment variable is connected in Vercel.';
+
     // ── 1. Articles Actions ────────────────────────────────────────────────
     if (action === 'add_article') {
       const articles = await getArticles();
       const title = String(payload?.title || '').trim();
       if (!title) return NextResponse.json({ success: false, message: 'Title is required' }, { status: 400 });
 
+      const slug = title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)+/g, '') || `article-${Date.now()}`;
+
       const newArticle: Article = {
         id: `art-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-        slug: title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, ''),
-        publishedAt: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+        slug,
         title,
         category: payload?.category || 'Foundation News',
         excerpt: String(payload?.excerpt || ''),
         content: String(payload?.content || ''),
+        publishedAt: payload?.publishedAt || new Date().toISOString().split('T')[0],
         readingTime: String(payload?.readingTime || '4 min read'),
         author: {
           name: payload?.authorName || payload?.author?.name || 'Faith Akinola',
@@ -117,10 +134,16 @@ export async function POST(req: Request) {
           avatarUrl: payload?.author?.avatarUrl || '/images/board/Faith-Akinola.jpeg',
         },
         featuredImageUrl: payload?.featuredImageUrl || '/images/board/Faith-Akinola.jpeg',
+        featured: Boolean(payload?.featured),
       };
 
       articles.unshift(newArticle);
-      await saveArticles(articles);
+      const saved = await saveArticles(articles);
+      if (!saved) {
+        return NextResponse.json({ success: false, message: DB_FAIL_MSG }, { status: 500 });
+      }
+      revalidatePath('/stories');
+      revalidatePath('/', 'layout');
       return NextResponse.json({ success: true, article: newArticle });
     }
 
@@ -146,14 +169,25 @@ export async function POST(req: Request) {
         },
       };
 
-      await saveArticles(articles);
+      const saved = await saveArticles(articles);
+      if (!saved) {
+        return NextResponse.json({ success: false, message: DB_FAIL_MSG }, { status: 500 });
+      }
+      revalidatePath('/stories');
+      revalidatePath(`/stories/${articles[index].slug}`);
+      revalidatePath('/', 'layout');
       return NextResponse.json({ success: true, article: articles[index] });
     }
 
     if (action === 'delete_article') {
       const articles = await getArticles();
       const updated = articles.filter((a) => a.id !== payload?.id);
-      await saveArticles(updated);
+      const saved = await saveArticles(updated);
+      if (!saved) {
+        return NextResponse.json({ success: false, message: DB_FAIL_MSG }, { status: 500 });
+      }
+      revalidatePath('/stories');
+      revalidatePath('/', 'layout');
       return NextResponse.json({ success: true });
     }
 
@@ -180,7 +214,12 @@ export async function POST(req: Request) {
         expertise: Array.isArray(payload?.expertise) ? payload.expertise : members[index].expertise,
       };
 
-      await saveBoardMembers(members);
+      const saved = await saveBoardMembers(members);
+      if (!saved) {
+        return NextResponse.json({ success: false, message: DB_FAIL_MSG }, { status: 500 });
+      }
+      revalidatePath('/about');
+      revalidatePath('/', 'layout');
       return NextResponse.json({ success: true, member: members[index] });
     }
 
@@ -206,14 +245,24 @@ export async function POST(req: Request) {
       };
 
       members.push(newMember);
-      await saveBoardMembers(members);
+      const saved = await saveBoardMembers(members);
+      if (!saved) {
+        return NextResponse.json({ success: false, message: DB_FAIL_MSG }, { status: 500 });
+      }
+      revalidatePath('/about');
+      revalidatePath('/', 'layout');
       return NextResponse.json({ success: true, member: newMember });
     }
 
     if (action === 'delete_board_member') {
       const members = await getBoardMembers();
       const updated = members.filter((m) => m.id !== payload?.id);
-      await saveBoardMembers(updated);
+      const saved = await saveBoardMembers(updated);
+      if (!saved) {
+        return NextResponse.json({ success: false, message: DB_FAIL_MSG }, { status: 500 });
+      }
+      revalidatePath('/about');
+      revalidatePath('/', 'layout');
       return NextResponse.json({ success: true });
     }
 
@@ -236,7 +285,12 @@ export async function POST(req: Request) {
         activities: Array.isArray(payload?.activities) ? payload.activities : programs[index].activities,
       };
 
-      await savePrograms(programs);
+      const saved = await savePrograms(programs);
+      if (!saved) {
+        return NextResponse.json({ success: false, message: DB_FAIL_MSG }, { status: 500 });
+      }
+      revalidatePath('/programs');
+      revalidatePath('/', 'layout');
       return NextResponse.json({ success: true, program: programs[index] });
     }
 
@@ -264,7 +318,13 @@ export async function POST(req: Request) {
       };
 
       gallery.unshift(newAlbum);
-      await saveGallery(gallery);
+      const saved = await saveGallery(gallery);
+      if (!saved) {
+        return NextResponse.json({ success: false, message: DB_FAIL_MSG }, { status: 500 });
+      }
+      revalidatePath('/gallery');
+      revalidatePath(`/gallery/${newAlbum.slug}`);
+      revalidatePath('/', 'layout');
       return NextResponse.json({ success: true, galleryItem: newAlbum });
     }
 
@@ -288,14 +348,25 @@ export async function POST(req: Request) {
         photoCount: Array.isArray(payload?.photos) ? payload.photos.length : gallery[index].photoCount,
       };
 
-      await saveGallery(gallery);
+      const saved = await saveGallery(gallery);
+      if (!saved) {
+        return NextResponse.json({ success: false, message: DB_FAIL_MSG }, { status: 500 });
+      }
+      revalidatePath('/gallery');
+      revalidatePath(`/gallery/${gallery[index].slug}`);
+      revalidatePath('/', 'layout');
       return NextResponse.json({ success: true, galleryItem: gallery[index] });
     }
 
     if (action === 'delete_gallery') {
       const gallery = await getGallery();
       const updated = gallery.filter((g) => g.id !== payload?.id);
-      await saveGallery(updated);
+      const saved = await saveGallery(updated);
+      if (!saved) {
+        return NextResponse.json({ success: false, message: DB_FAIL_MSG }, { status: 500 });
+      }
+      revalidatePath('/gallery');
+      revalidatePath('/', 'layout');
       return NextResponse.json({ success: true });
     }
 
@@ -310,14 +381,23 @@ export async function POST(req: Request) {
         label: String(m.label || ''),
         description: String(m.description || ''),
       }));
-      await saveMetrics(metrics);
+      const saved = await saveMetrics(metrics);
+      if (!saved) {
+        return NextResponse.json({ success: false, message: DB_FAIL_MSG }, { status: 500 });
+      }
+      revalidatePath('/', 'layout');
+      revalidatePath('/about');
       return NextResponse.json({ success: true, metrics });
     }
 
     if (action === 'update_site_settings') {
       const current = await getSiteSettings();
       const updated = { ...current, ...(payload || {}) };
-      await saveSiteSettings(updated);
+      const saved = await saveSiteSettings(updated);
+      if (!saved) {
+        return NextResponse.json({ success: false, message: DB_FAIL_MSG }, { status: 500 });
+      }
+      revalidatePath('/', 'layout');
       return NextResponse.json({ success: true, settings: updated });
     }
 

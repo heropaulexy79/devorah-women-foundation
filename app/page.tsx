@@ -11,6 +11,9 @@ import PartnerWithUs from '@/components/sections/PartnerWithUs';
 import CTASection from '@/components/sections/CTASection';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default function Home() {
   return (
     <>
