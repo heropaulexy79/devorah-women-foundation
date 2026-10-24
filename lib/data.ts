@@ -375,16 +375,19 @@ export const LEADERSHIP_PEOPLE: Person[] = [
     imageUrl: '/images/board/Seun-Akinola.JPG'
   },
   {
-    id: 'board-3',
-    name: 'Board Member',
-    title: 'Board Member',
-    role: 'Board Member',
+    id: 'board-dr-olaitan-titilayo-akinola',
+    name: 'Dr. Olaitan Titilayo Akinola',
+    title: 'Board Director & Senior Lecturer, Federal University Oye-Ekiti',
+    role: 'Board Director',
     category: 'Board Member',
     badge: 'Board Member',
-    biography: 'Serves on the Board of Devorah Women Leadership and Empowerment Initiative, contributing strategic leadership, governance oversight, and community partnership expertise to advance the foundation\'s mission across Nigeria.',
-    vision: 'Committed to strengthening the foundation\'s governance structure and expanding its reach to empower more women and girls across Nigeria and beyond.',
-    expertise: ['Governance', 'Community Leadership', 'Strategic Partnerships'],
-    imageUrl: '/logo.png'
+    biography: 'Dr. Olaitan Titilayo Akinola is an experienced educator, researcher, and academic with a strong passion for education, community development, and social impact. She is a Senior Lecturer in Educational Foundations at the Federal University Oye-Ekiti, Nigeria.\n\nShe holds a Ph.D., M.Ed., and B.Ed. in Social Studies, alongside a Nigeria Certificate in Education (NCE) in Social Studies and Economics. With decades of teaching experience across secondary and tertiary institutions, including Veritas University, Abuja, she has contributed significantly to teacher education, academic research, and educational development.\n\nHer research interests span gender issues, child protection, national values, teacher education, and social development. She has authored and co-authored several academic publications and actively participates in professional and community development initiatives.\n\nBeyond academia, Dr. Akinola is committed to community service, women’s empowerment, and educational advancement. She is a member of several professional associations and has served in various civic and community leadership capacities, including INEC, SOSAN, ASSEREN, and NAWACS.\n\nAs a Board Director of Devorah Women’s Leadership and Empowerment Initiative, she brings her wealth of experience, academic expertise, and passion for social development to supporting the organisation’s vision of raising women of wisdom, courage, and global impact.',
+    background: 'Senior Lecturer in Educational Foundations at Federal University Oye-Ekiti, with decades of teaching and research experience across secondary and tertiary institutions, including Veritas University, Abuja. Active member and leader in civic and community development bodies including INEC, SOSAN, ASSEREN, and NAWACS.',
+    education: 'Ph.D., M.Ed., and B.Ed. in Social Studies; Nigeria Certificate in Education (NCE) in Social Studies and Economics.',
+    vision: 'Committed to supporting the organisation’s vision of raising women of wisdom, courage, and global impact through foundational education, research-driven social development, and grassroots community empowerment.',
+    quote: 'Raising women of wisdom, courage, and global impact begins with intentional education, sound values, and dedicated community service.',
+    expertise: ['Educational Foundations', 'Gender Issues & Child Protection', 'Teacher Education & Research', 'Community & Social Development'],
+    imageUrl: '/images/board/Dr-Olaitan-Akinola.jpeg'
   },
   {
     id: 'team-fawuyi-omotayo',

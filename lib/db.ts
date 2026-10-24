@@ -200,18 +200,30 @@ export async function getBoardMembers(): Promise<Person[]> {
   const stored = await getCmsItem<Person[]>('board_members', [...LEADERSHIP_PEOPLE]);
   if (!Array.isArray(stored) || stored.length === 0) return [...LEADERSHIP_PEOPLE];
 
-  const storedIds = new Set(stored.map((p) => p.id));
-  const missing = LEADERSHIP_PEOPLE.filter((p) => !storedIds.has(p.id));
-  let baseList = [...stored];
   let needsSave = false;
+  // Remove legacy placeholder 'board-3' if previously saved
+  let baseList = stored.filter((p) => p.id !== 'board-3');
+  if (baseList.length !== stored.length) {
+    needsSave = true;
+  }
+
+  const storedIds = new Set(baseList.map((p) => p.id));
+  const missing = LEADERSHIP_PEOPLE.filter((p) => !storedIds.has(p.id));
 
   if (missing.length > 0) {
-    baseList = [...stored, ...missing];
+    baseList = [...baseList, ...missing];
     needsSave = true;
   }
 
   // Sanitize any stale AI image paths in stored board members
   const cleaned = baseList.map((member) => {
+    if (member.id === 'board-dr-olaitan-titilayo-akinola' && (!member.imageUrl || member.imageUrl === '/logo.png')) {
+      needsSave = true;
+      return {
+        ...member,
+        imageUrl: '/images/board/Dr-Olaitan-Akinola.jpeg',
+      };
+    }
     if (member.imageUrl && (member.imageUrl.includes('board_trustee') || member.imageUrl.includes('founder_portrait'))) {
       needsSave = true;
       return {
