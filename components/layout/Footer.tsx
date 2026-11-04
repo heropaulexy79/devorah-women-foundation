@@ -53,38 +53,30 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#2a1638] text-[#FAF8F5] pt-20 pb-10 border-t border-[#6E3A82]/20">
+    <footer className="bg-[#2a1638] text-[#FCFCF7] pt-20 pb-10 border-t border-[#642B80]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 pb-12 border-b border-[#6E3A82]/20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 pb-12 border-b border-[#642B80]/20">
           
           {/* Col 1: Brand & Contact */}
           <div className="space-y-6">
-            <Link href="/" className="flex items-center gap-3 w-fit">
-              <div className="relative w-11 h-11">
+            <Link href="/" className="flex items-center w-fit group" aria-label="Devorah Women's Foundation Home">
+              <div className="relative w-48 h-16 sm:w-56 sm:h-20 transition-transform duration-300 group-hover:scale-105">
                 <Image
-                  src="/logo.png"
-                  alt="Devorah Women's Leadership & Empowerment Initiative Logo"
+                  src="/Logo-white.png"
+                  alt="Devorah Women's Leadership & Empowerment Initiative"
                   fill
-                  className="object-contain"
+                  className="object-contain object-left filter drop-shadow"
                 />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif text-xl font-bold tracking-wider text-white leading-none">
-                  DEVORAH
-                </span>
-                <span className="text-[9px] font-semibold tracking-[0.3em] text-[#A987C2] uppercase mt-1">
-                  WOMEN FOUNDATION
-                </span>
               </div>
             </Link>
             <p className="text-sm text-[#E8DDF0]/70 font-light leading-relaxed">
               Raising Women of Wisdom, Courage, and Global Impact. A faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women.
             </p>
             <div className="pt-2 space-y-2 text-xs text-[#E8DDF0]/60">
-              <p><strong className="text-[#C5A8D8] font-medium">Email:</strong> womendevorah@gmail.com</p>
-              <p><strong className="text-[#C5A8D8] font-medium">Phone:</strong> 08030526200</p>
-              <p><strong className="text-[#C5A8D8] font-medium">Address:</strong> No 14, Esubiyi Street, Mende, Maryland</p>
+              <p><strong className="text-[#BCA1CD] font-medium">Email:</strong> womendevorah@gmail.com</p>
+              <p><strong className="text-[#BCA1CD] font-medium">Phone:</strong> 08030526200</p>
+              <p><strong className="text-[#BCA1CD] font-medium">Address:</strong> No 14, Esubiyi Street, Mende, Maryland</p>
             </div>
           </div>
 
@@ -153,9 +145,9 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/admin" className="text-sm text-[#C5A8D8]/80 hover:text-white transition-colors flex items-center gap-1">
+                <Link href="/admin" className="text-sm text-[#BCA1CD]/80 hover:text-white transition-colors flex items-center gap-1">
                   <span>CMS Portal</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#6E3A82]/50 text-white font-mono">Admin</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#642B80]/50 text-white font-mono">Admin</span>
                 </Link>
               </li>
             </ul>
@@ -181,7 +173,7 @@ export default function Footer() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-[#6E3A82]/30 text-[#E8DDF0]/70 hover:bg-[#6E3A82] hover:text-white hover:border-[#6E3A82] transition-all duration-300 shadow-sm"
+                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-[#642B80]/30 text-[#E8DDF0]/70 hover:bg-[#642B80] hover:text-white hover:border-[#642B80] transition-all duration-300 shadow-sm"
                       aria-label={link.label}
                     >
                       <IconComp className="w-4 h-4" />
@@ -195,7 +187,7 @@ export default function Footer() {
               Newsletter
             </h3>
             {subscribed ? (
-              <div className="flex items-start gap-2 text-sm text-[#A987C2]">
+              <div className="flex items-start gap-2 text-sm text-[#BCA1CD]">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <span>Thank you for joining our community.</span>
               </div>
@@ -210,11 +202,11 @@ export default function Footer() {
                     placeholder="Your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-3.5 py-2.5 text-xs bg-white/5 text-white placeholder-[#E8DDF0]/40 border border-[#6E3A82]/50 rounded-l-md focus:outline-none focus:border-[#A987C2] transition-colors"
+                    className="w-full px-3.5 py-2.5 text-xs bg-white/5 text-white placeholder-[#E8DDF0]/40 border border-[#642B80]/50 rounded-l-md focus:outline-none focus:border-[#BCA1CD] transition-colors"
                   />
                   <button
                     type="submit"
-                    className="bg-[#6E3A82] hover:bg-[#8B4FA0] text-white px-3 py-2.5 rounded-r-md text-xs font-semibold transition-colors flex items-center justify-center border border-[#6E3A82]"
+                    className="bg-[#642B80] hover:bg-[#8B4FA0] text-white px-3 py-2.5 rounded-r-md text-xs font-semibold transition-colors flex items-center justify-center border border-[#642B80]"
                     aria-label="Subscribe"
                   >
                     <ArrowRight className="w-4 h-4" />

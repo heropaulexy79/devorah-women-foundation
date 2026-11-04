@@ -34,10 +34,10 @@ export default function Home() {
 
       {/* 6. Outreach & Conference Media Gallery */}
       <MediaGallery limit={2} />
-      <div className="bg-[#FAF8F5] pb-16 text-center">
+      <div className="bg-[#FCFCF7] pb-16 text-center">
         <Link
           href="/gallery"
-          className="inline-flex items-center gap-2 bg-[#6E3A82] hover:bg-[#3B214F] text-white px-8 py-3.5 rounded-sm font-semibold text-xs uppercase tracking-widest transition-all shadow-sm"
+          className="inline-flex items-center gap-2 bg-[#642B80] hover:bg-[#3B214F] text-white px-8 py-3.5 rounded-sm font-semibold text-xs uppercase tracking-widest transition-all shadow-sm"
         >
           <span>Explore Full Photo Gallery</span>
           <span>→</span>

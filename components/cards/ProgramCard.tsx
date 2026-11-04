@@ -15,7 +15,7 @@ export default function ProgramCard({ program, featured = false }: ProgramCardPr
     return (
       <Link
         href={`/programs/${program.slug}`}
-        className="group block relative overflow-hidden rounded-sm bg-[#1a0f22] focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAF8F5] focus-visible:outline-none"
+        className="group block relative overflow-hidden rounded-sm bg-[#1a0f22] focus-visible:ring-2 focus-visible:ring-[#BCA1CD] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FCFCF7] focus-visible:outline-none"
         aria-label={`${program.name} — ${program.tagline}`}
       >
         {/* Large featured image */}
@@ -31,7 +31,7 @@ export default function ProgramCard({ program, featured = false }: ProgramCardPr
 
         {/* Content — overlaid bottom-left */}
         <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 lg:p-10">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[#C5A8D8] block mb-1.5 sm:mb-3">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[#BCA1CD] block mb-1.5 sm:mb-3">
             {program.category}
           </span>
           <h3 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight max-w-2xl group-hover:text-[#E8DDF0] transition-colors duration-300">
@@ -40,7 +40,7 @@ export default function ProgramCard({ program, featured = false }: ProgramCardPr
           <p className="text-xs sm:text-sm text-white/85 font-light italic mt-1.5 sm:mt-2 max-w-xl line-clamp-2 sm:line-clamp-none">
             {program.tagline}
           </p>
-          <div className="mt-3.5 sm:mt-5 flex items-center gap-2 text-[#C5A8D8] text-xs sm:text-sm font-medium">
+          <div className="mt-3.5 sm:mt-5 flex items-center gap-2 text-[#BCA1CD] text-xs sm:text-sm font-medium">
             <span>Explore Program</span>
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </div>
@@ -52,7 +52,7 @@ export default function ProgramCard({ program, featured = false }: ProgramCardPr
   return (
     <Link
       href={`/programs/${program.slug}`}
-      className="group block overflow-hidden bg-white rounded-sm focus-visible:ring-2 focus-visible:ring-[#6E3A82] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAF8F5] focus-visible:outline-none"
+      className="group block overflow-hidden bg-white rounded-sm focus-visible:ring-2 focus-visible:ring-[#642B80] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FCFCF7] focus-visible:outline-none"
       aria-label={`${program.name} — ${program.tagline}`}
     >
       {/* Program Image */}
@@ -68,7 +68,7 @@ export default function ProgramCard({ program, featured = false }: ProgramCardPr
 
       {/* Card Content */}
       <div className="p-6 space-y-2.5 border border-t-0 border-[#E8DDF0]/70">
-        <h3 className="font-serif text-lg font-medium text-[#3B214F] group-hover:text-[#6E3A82] transition-colors leading-snug">
+        <h3 className="font-serif text-lg font-medium text-[#3B214F] group-hover:text-[#642B80] transition-colors leading-snug">
           {program.name}
         </h3>
 
@@ -76,7 +76,7 @@ export default function ProgramCard({ program, featured = false }: ProgramCardPr
           {program.tagline}
         </p>
 
-        <div className="pt-3 flex items-center gap-1.5 text-xs font-medium text-[#6E3A82]">
+        <div className="pt-3 flex items-center gap-1.5 text-xs font-medium text-[#642B80]">
           <span>View Program</span>
           <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
         </div>

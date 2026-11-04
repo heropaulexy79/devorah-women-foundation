@@ -8,7 +8,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 
 export default function WhoWeAre() {
   return (
-    <section className="py-24 lg:py-32 bg-[#FAF8F5] relative overflow-hidden">
+    <section className="py-24 lg:py-32 bg-[#FCFCF7] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
 
@@ -42,7 +42,7 @@ export default function WhoWeAre() {
               ].map((point, index) => (
                 <li
                   key={index}
-                  className="flex items-start gap-0 text-sm text-[#242024] border-l-2 border-[#A987C2] pl-4"
+                  className="flex items-start gap-0 text-sm text-[#242024] border-l-2 border-[#BCA1CD] pl-4"
                 >
                   <span className="font-medium leading-relaxed">{point}</span>
                 </li>
@@ -52,7 +52,7 @@ export default function WhoWeAre() {
             <div className="pt-3">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-1.5 text-[#6E3A82] font-semibold text-sm hover:text-[#3B214F] transition-colors tracking-wide group focus-visible:ring-2 focus-visible:ring-[#6E3A82] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAF8F5] focus-visible:outline-none rounded-sm"
+                className="inline-flex items-center gap-1.5 text-[#642B80] font-semibold text-sm hover:text-[#3B214F] transition-colors tracking-wide group focus-visible:ring-2 focus-visible:ring-[#642B80] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FCFCF7] focus-visible:outline-none rounded-sm"
               >
                 <span>Discover Our Story</span>
                 <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
@@ -80,7 +80,7 @@ export default function WhoWeAre() {
               </div>
 
               {/* Secondary overlapping portrait — editorial composition */}
-              <div className="absolute -bottom-10 -left-6 w-40 sm:w-48 aspect-square rounded-sm overflow-hidden shadow-xl border-2 border-[#FAF8F5] hidden sm:block">
+              <div className="absolute -bottom-10 -left-6 w-40 sm:w-48 aspect-square rounded-sm overflow-hidden shadow-xl border-2 border-[#FCFCF7] hidden sm:block">
                 <Image
                   src="/images/women empowerment/SV2L9490.jpeg"
                   alt="Young woman empowered through Devorah Women's Leadership & Empowerment Initiative programs"

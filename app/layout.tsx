@@ -141,7 +141,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
         <script
@@ -149,7 +149,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#FAF8F5] text-[#242024] selection:bg-[#E8DDF0] selection:text-[#3B214F]">
+      <body className="min-h-full flex flex-col bg-[#FCFCF7] text-[#242024] selection:bg-[#E8DDF0] selection:text-[#3B214F]">
         <Navbar />
         <main id="main-content" className="flex-grow pt-20">{children}</main>
         <Footer />

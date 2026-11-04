@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="bg-[#FAF8F5] min-h-screen">
+    <div className="bg-[#FCFCF7] min-h-screen">
       <PageHero
         eyebrow="LEGAL & TRANSPARENCY"
         title="Terms & Conditions"
@@ -22,7 +22,7 @@ export default function TermsPage() {
       <section className="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white p-8 sm:p-12 rounded-3xl border border-[#E8DDF0] shadow-sm space-y-8 text-[#524C55] leading-relaxed text-sm">
           <div>
-            <span className="text-xs uppercase tracking-wider text-[#6E3A82] font-bold">Effective Date</span>
+            <span className="text-xs uppercase tracking-wider text-[#642B80] font-bold">Effective Date</span>
             <p className="text-sm font-semibold text-[#3B214F] mt-1">January 1, 2026</p>
           </div>
 
@@ -68,7 +68,7 @@ export default function TermsPage() {
             <p>
               For legal inquiries or questions regarding our operational policies:
             </p>
-            <p className="text-xs bg-[#FAF8F5] p-4 rounded-xl border border-[#E8DDF0] text-[#3B214F]">
+            <p className="text-xs bg-[#FCFCF7] p-4 rounded-xl border border-[#E8DDF0] text-[#3B214F]">
               <strong>Email:</strong> womendevorah@gmail.com<br />
               <strong>Phone:</strong> 08030526200<br />
               <strong>Address:</strong> No 14, Esubiyi Street, Mende, Maryland, Lagos State, Nigeria

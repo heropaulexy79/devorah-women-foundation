@@ -40,7 +40,7 @@ export default function ContactClient() {
   };
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen">
+    <div className="bg-[#FCFCF7] min-h-screen">
       {/* Header Banner */}
       <PageHero
         eyebrow="CONTACT DEVORAH WOMEN'S LEADERSHIP & EMPOWERMENT INITIATIVE"
@@ -63,12 +63,12 @@ export default function ContactClient() {
 
             <div className="space-y-6">
               <div className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-[#E8DDF0] shadow-sm">
-                <div className="w-10 h-10 rounded-xl bg-[#E8DDF0] flex items-center justify-center text-[#6E3A82] shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[#E8DDF0] flex items-center justify-center text-[#642B80] shrink-0">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xs uppercase font-semibold text-[#6E3A82]">Email Inquiries</h3>
-                  <a href="mailto:womendevorah@gmail.com" className="text-sm font-bold text-[#3B214F] hover:text-[#6E3A82] transition-colors mt-0.5 block">
+                  <h3 className="text-xs uppercase font-semibold text-[#642B80]">Email Inquiries</h3>
+                  <a href="mailto:womendevorah@gmail.com" className="text-sm font-bold text-[#3B214F] hover:text-[#642B80] transition-colors mt-0.5 block">
                     womendevorah@gmail.com
                   </a>
                   <p className="text-xs text-[#716A73]">Official Support & Inquiries</p>
@@ -76,12 +76,12 @@ export default function ContactClient() {
               </div>
 
               <div className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-[#E8DDF0] shadow-sm">
-                <div className="w-10 h-10 rounded-xl bg-[#E8DDF0] flex items-center justify-center text-[#6E3A82] shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[#E8DDF0] flex items-center justify-center text-[#642B80] shrink-0">
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xs uppercase font-semibold text-[#6E3A82]">Telephone</h3>
-                  <a href="tel:08030526200" className="text-sm font-bold text-[#3B214F] hover:text-[#6E3A82] transition-colors mt-0.5 block">
+                  <h3 className="text-xs uppercase font-semibold text-[#642B80]">Telephone</h3>
+                  <a href="tel:08030526200" className="text-sm font-bold text-[#3B214F] hover:text-[#642B80] transition-colors mt-0.5 block">
                     08030526200
                   </a>
                   <p className="text-xs text-[#716A73]">Official Direct Contact</p>
@@ -89,22 +89,22 @@ export default function ContactClient() {
               </div>
 
               <div className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-[#E8DDF0] shadow-sm">
-                <div className="w-10 h-10 rounded-xl bg-[#E8DDF0] flex items-center justify-center text-[#6E3A82] shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[#E8DDF0] flex items-center justify-center text-[#642B80] shrink-0">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xs uppercase font-semibold text-[#6E3A82]">Office Hours</h3>
+                  <h3 className="text-xs uppercase font-semibold text-[#642B80]">Office Hours</h3>
                   <p className="text-sm font-bold text-[#3B214F] mt-0.5">Monday – Friday</p>
                   <p className="text-xs text-[#716A73]">9:00 AM – 5:00 PM</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-[#E8DDF0] shadow-sm">
-                <div className="w-10 h-10 rounded-xl bg-[#E8DDF0] flex items-center justify-center text-[#6E3A82] shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[#E8DDF0] flex items-center justify-center text-[#642B80] shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xs uppercase font-semibold text-[#6E3A82]">Headquarters Address</h3>
+                  <h3 className="text-xs uppercase font-semibold text-[#642B80]">Headquarters Address</h3>
                   <p className="text-sm font-bold text-[#3B214F] mt-0.5">No 14, Esubiyi Street, Mende, Maryland</p>
                   <p className="text-xs text-[#716A73]">Lagos State, Nigeria</p>
                 </div>
@@ -112,12 +112,12 @@ export default function ContactClient() {
 
               {/* Social Media Handles */}
               <div className="p-6 rounded-2xl bg-[#F7F3F8] border border-[#E8DDF0] space-y-3">
-                <h4 className="text-xs uppercase font-bold text-[#6E3A82] tracking-wider">Follow Our Social Handles</h4>
+                <h4 className="text-xs uppercase font-bold text-[#642B80] tracking-wider">Follow Our Social Handles</h4>
                 <div className="flex items-center gap-3">
-                  <a href="https://instagram.com/devorahwomen" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white border border-[#E8DDF0] flex items-center justify-center text-[#3B214F] hover:bg-[#6E3A82] hover:text-white transition-colors" title="Instagram (@devorahwomen)">
+                  <a href="https://instagram.com/devorahwomen" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white border border-[#E8DDF0] flex items-center justify-center text-[#3B214F] hover:bg-[#642B80] hover:text-white transition-colors" title="Instagram (@devorahwomen)">
                     <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                   </a>
-                  <span className="text-xs font-semibold text-[#3B214F]">Instagram: <a href="https://instagram.com/devorahwomen" target="_blank" rel="noopener noreferrer" className="text-[#6E3A82] hover:underline">@devorahwomen</a></span>
+                  <span className="text-xs font-semibold text-[#3B214F]">Instagram: <a href="https://instagram.com/devorahwomen" target="_blank" rel="noopener noreferrer" className="text-[#642B80] hover:underline">@devorahwomen</a></span>
                 </div>
               </div>
             </div>
@@ -126,8 +126,8 @@ export default function ContactClient() {
           {/* Right Column: Contact Form */}
           <div className="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl border border-[#E8DDF0] shadow-xl">
             {submitted ? (
-              <div className="p-8 rounded-2xl bg-[#E8DDF0]/60 border border-[#A987C2] text-center space-y-4">
-                <CheckCircle2 className="w-12 h-12 text-[#6E3A82] mx-auto" />
+              <div className="p-8 rounded-2xl bg-[#E8DDF0]/60 border border-[#BCA1CD] text-center space-y-4">
+                <CheckCircle2 className="w-12 h-12 text-[#642B80] mx-auto" />
                 <h3 className="font-serif text-2xl font-bold text-[#3B214F]">Message Sent Successfully</h3>
                 <p className="text-sm text-[#716A73] max-w-md mx-auto">
                   Thank you for reaching out to Devorah Women's Leadership & Empowerment Initiative. Our support team will review your inquiry and
@@ -135,7 +135,7 @@ export default function ContactClient() {
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="inline-block text-xs font-semibold text-[#6E3A82] underline pt-2"
+                  className="inline-block text-xs font-semibold text-[#642B80] underline pt-2"
                 >
                   Send another message
                 </button>
@@ -151,7 +151,7 @@ export default function ContactClient() {
                     required
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
+                    className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FCFCF7] text-sm focus:outline-none focus:border-[#642B80]"
                     placeholder="Your Full Name"
                   />
                 </div>
@@ -164,7 +164,7 @@ export default function ContactClient() {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
+                      className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FCFCF7] text-sm focus:outline-none focus:border-[#642B80]"
                       placeholder="your.email@domain.com"
                     />
                   </div>
@@ -174,7 +174,7 @@ export default function ContactClient() {
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
+                      className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FCFCF7] text-sm focus:outline-none focus:border-[#642B80]"
                       placeholder="+234 ..."
                     />
                   </div>
@@ -187,7 +187,7 @@ export default function ContactClient() {
                   <select
                     value={formData.reason}
                     onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
+                    className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FCFCF7] text-sm focus:outline-none focus:border-[#642B80]"
                   >
                     {REASON_CATEGORIES.map((cat) => (
                       <option key={cat} value={cat}>
@@ -204,14 +204,14 @@ export default function ContactClient() {
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
+                    className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FCFCF7] text-sm focus:outline-none focus:border-[#642B80]"
                     placeholder="How can we assist or collaborate with you?"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 bg-[#6E3A82] hover:bg-[#3B214F] text-white py-4 rounded-xl font-bold text-base shadow-md transition-colors"
+                  className="w-full flex items-center justify-center gap-2 bg-[#642B80] hover:bg-[#3B214F] text-white py-4 rounded-xl font-bold text-base shadow-md transition-colors"
                 >
                   <Send className="w-5 h-5" />
                   <span>Send Message</span>

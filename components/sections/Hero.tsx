@@ -153,14 +153,14 @@ export default function Hero() {
               className="space-y-4 sm:space-y-6 lg:space-y-7"
             >
               {/* Eyebrow — plain editorial label */}
-              <p className="text-[10px] sm:text-xs font-semibold tracking-[0.25em] sm:tracking-[0.35em] uppercase text-[#C5A8D8]">
+              <p className="text-[10px] sm:text-xs font-semibold tracking-[0.25em] sm:tracking-[0.35em] uppercase text-[#BCA1CD]">
                 {slide.eyebrow}
               </p>
 
               {/* Headline — selective italic for contrast */}
               <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.12] sm:leading-[1.08] tracking-tight">
                 <span className="block font-bold">{slide.titleLine1}</span>
-                <span className="block font-normal italic text-[#C5A8D8]">
+                <span className="block font-normal italic text-[#BCA1CD]">
                   {slide.titleLine2}
                 </span>
                 <span className="block font-bold">{slide.titleLine3}</span>
@@ -175,7 +175,7 @@ export default function Hero() {
               <div className="pt-1 sm:pt-2 flex flex-wrap items-center gap-3.5 sm:gap-5">
                 <Link
                   href={slide.primaryCtaLink}
-                  className="inline-flex items-center gap-2 bg-[#6E3A82] hover:bg-[#8B4FA0] text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-sm text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a0f22] focus-visible:outline-none shadow-lg shadow-black/20"
+                  className="inline-flex items-center gap-2 bg-[#642B80] hover:bg-[#8B4FA0] text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-sm text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[#BCA1CD] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a0f22] focus-visible:outline-none shadow-lg shadow-black/20"
                 >
                   {slide.primaryCtaLink.startsWith('/donate') && (
                     <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white/20 text-white" />
@@ -185,7 +185,7 @@ export default function Hero() {
 
                 <Link
                   href={slide.secondaryCtaLink}
-                  className="inline-flex items-center text-white/85 hover:text-white text-xs sm:text-sm font-medium tracking-wide border-b border-white/30 hover:border-white pb-0.5 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:outline-none"
+                  className="inline-flex items-center text-white/85 hover:text-white text-xs sm:text-sm font-medium tracking-wide border-b border-white/30 hover:border-white pb-0.5 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[#BCA1CD] focus-visible:outline-none"
                 >
                   {slide.secondaryCtaText}
                 </Link>
@@ -200,7 +200,7 @@ export default function Hero() {
         {/* Thin Progress Bar */}
         <div className="max-w-7xl mx-auto mb-3 sm:mb-5 w-full h-px bg-white/15 overflow-hidden">
           <div
-            className="h-full bg-[#A987C2] transition-all ease-linear"
+            className="h-full bg-[#BCA1CD] transition-all ease-linear"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -216,12 +216,12 @@ export default function Hero() {
                   setProgress(0);
                 }}
                 aria-label={`Go to slide ${idx + 1}`}
-                className="p-2 -m-2 focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:outline-none rounded-full"
+                className="p-2 -m-2 focus-visible:ring-2 focus-visible:ring-[#BCA1CD] focus-visible:outline-none rounded-full"
               >
                 <span
                   className={`block transition-all duration-300 rounded-full ${
                     currentSlide === idx
-                      ? 'w-6 h-1.5 bg-[#A987C2]'
+                      ? 'w-6 h-1.5 bg-[#BCA1CD]'
                       : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/60'
                   }`}
                 />
@@ -237,7 +237,7 @@ export default function Hero() {
 
             <button
               onClick={handlePrev}
-              className="p-2 text-white/70 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:outline-none rounded-md"
+              className="p-2 text-white/70 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-[#BCA1CD] focus-visible:outline-none rounded-md"
               aria-label="Previous slide"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -245,7 +245,7 @@ export default function Hero() {
 
             <button
               onClick={() => setIsPaused(!isPaused)}
-              className="p-2 text-white/70 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:outline-none rounded-md"
+              className="p-2 text-white/70 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-[#BCA1CD] focus-visible:outline-none rounded-md"
               aria-label={isPaused ? 'Play slideshow' : 'Pause slideshow'}
             >
               {isPaused ? (
@@ -257,7 +257,7 @@ export default function Hero() {
 
             <button
               onClick={handleNext}
-              className="p-2 text-white/70 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-[#C5A8D8] focus-visible:outline-none rounded-md"
+              className="p-2 text-white/70 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-[#BCA1CD] focus-visible:outline-none rounded-md"
               aria-label="Next slide"
             >
               <ChevronRight className="w-4 h-4" />

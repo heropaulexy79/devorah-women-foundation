@@ -69,17 +69,17 @@ export default function MediaGallery({ limit }: { limit?: number }) {
   };
 
   return (
-    <section className="py-20 lg:py-28 bg-[#FAF8F5] relative overflow-hidden">
+    <section className="py-20 lg:py-28 bg-[#FCFCF7] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* 1. Page / Section Introduction */}
         <div className="max-w-3xl mb-12">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#6E3A82] mb-3">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#642B80] mb-3">
             OUR GALLERY
           </p>
           <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#3B214F] leading-[1.1] tracking-tight">
             Moments from the work.<br />
-            <span className="italic font-normal text-[#6E3A82]">Stories from the community.</span>
+            <span className="italic font-normal text-[#642B80]">Stories from the community.</span>
           </h1>
           <p className="mt-5 text-base sm:text-lg text-[#524C55] leading-relaxed font-light">
             Explore moments from Devorah Women's Leadership & Empowerment Initiative's programs, outreaches, conferences, scholarships and faith-based initiatives.
@@ -106,7 +106,7 @@ export default function MediaGallery({ limit }: { limit?: number }) {
                     {isActive && (
                       <motion.div
                         layoutId="activeFilterUnderline"
-                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#6E3A82]"
+                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#642B80]"
                       />
                     )}
                   </button>
@@ -119,7 +119,7 @@ export default function MediaGallery({ limit }: { limit?: number }) {
         {/* 3. Empty State Handling */}
         {displayedItems.length === 0 ? (
           <div className="py-20 text-center bg-white rounded-sm border border-[#E8DDF0] my-8 p-8">
-            <Images className="w-10 h-10 text-[#A987C2] mx-auto mb-3 opacity-60" />
+            <Images className="w-10 h-10 text-[#BCA1CD] mx-auto mb-3 opacity-60" />
             <p className="font-serif text-xl font-medium text-[#3B214F]">
               No stories in this collection yet.
             </p>
@@ -163,7 +163,7 @@ export default function MediaGallery({ limit }: { limit?: number }) {
 
                     {/* Album Info Overlay Inside Image */}
                     <div className="absolute bottom-0 inset-x-0 p-6 sm:p-8 text-white flex flex-col justify-end">
-                      <div className="flex items-center gap-2 text-[11px] font-semibold text-[#C5A8D8] uppercase tracking-widest mb-2">
+                      <div className="flex items-center gap-2 text-[11px] font-semibold text-[#BCA1CD] uppercase tracking-widest mb-2">
                         <span>{item.location.split(' ')[0]}</span>
                         <span>&middot;</span>
                         <span>{item.date}</span>
@@ -173,9 +173,9 @@ export default function MediaGallery({ limit }: { limit?: number }) {
                         {item.title}
                       </h2>
 
-                      <div className="flex items-center justify-between text-xs text-[#C5A8D8] font-medium pt-2 border-t border-white/15">
+                      <div className="flex items-center justify-between text-xs text-[#BCA1CD] font-medium pt-2 border-t border-white/15">
                         <span className="flex items-center gap-1.5 text-xs text-[#E8DDF0]/80">
-                          <MapPin className="w-3.5 h-3.5 text-[#A987C2]" />
+                          <MapPin className="w-3.5 h-3.5 text-[#BCA1CD]" />
                           {item.location}
                         </span>
 
@@ -205,7 +205,7 @@ export default function MediaGallery({ limit }: { limit?: number }) {
               {/* Header Bar */}
               <div className="flex items-center justify-between z-50 max-w-7xl mx-auto w-full border-b border-white/10 pb-4" onClick={(e) => e.stopPropagation()}>
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#C5A8D8] block">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#BCA1CD] block">
                     {activeAlbum.category} &middot; PHOTO {activePhotoIndex + 1} OF {currentPhotos.length}
                   </span>
                   <h3 className="font-serif text-lg sm:text-xl font-bold text-white mt-0.5">
@@ -216,7 +216,7 @@ export default function MediaGallery({ limit }: { limit?: number }) {
                 <div className="flex items-center gap-3">
                   <Link
                     href={`/gallery/${activeAlbum.slug}`}
-                    className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#C5A8D8] hover:text-white border border-white/20 px-3.5 py-2 rounded-sm transition-colors"
+                    className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#BCA1CD] hover:text-white border border-white/20 px-3.5 py-2 rounded-sm transition-colors"
                   >
                     <span>Full Album Page</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -283,8 +283,8 @@ export default function MediaGallery({ limit }: { limit?: number }) {
                   </p>
                 )}
 
-                <div className="flex items-center justify-center gap-2 text-xs text-[#C5A8D8]">
-                  <MapPin className="w-3.5 h-3.5 text-[#A987C2]" />
+                <div className="flex items-center justify-center gap-2 text-xs text-[#BCA1CD]">
+                  <MapPin className="w-3.5 h-3.5 text-[#BCA1CD]" />
                   <span>{activeAlbum.location} &middot; {activeAlbum.date}</span>
                 </div>
 
@@ -297,7 +297,7 @@ export default function MediaGallery({ limit }: { limit?: number }) {
                         onClick={() => setActivePhotoIndex(pIdx)}
                         className={`relative w-12 h-9 rounded-sm overflow-hidden transition-all duration-300 border ${
                           activePhotoIndex === pIdx
-                            ? 'border-[#C5A8D8] scale-110 shadow-md ring-1 ring-[#C5A8D8]'
+                            ? 'border-[#BCA1CD] scale-110 shadow-md ring-1 ring-[#BCA1CD]'
                             : 'border-white/20 opacity-50 hover:opacity-100'
                         }`}
                       >

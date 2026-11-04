@@ -608,8 +608,8 @@ export default function AdminDashboardPage() {
   // Prevent SSR Hydration mismatches with client-side localStorage state
   if (!isMounted) {
     return (
-      <div className="min-h-screen bg-[#FAF8F5] flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-[#6E3A82] border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen bg-[#FCFCF7] flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-[#642B80] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -617,9 +617,9 @@ export default function AdminDashboardPage() {
   // Login View
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#FAF8F5] flex items-center justify-center p-4">
+      <div className="min-h-screen bg-[#FCFCF7] flex items-center justify-center p-4">
         <div className="max-w-md w-full bg-white rounded-3xl p-8 shadow-2xl border border-[#E8DDF0] text-center space-y-6">
-          <div className="w-16 h-16 bg-[#F4ECF7] rounded-full flex items-center justify-center mx-auto text-[#6E3A82]">
+          <div className="w-16 h-16 bg-[#F4ECF7] rounded-full flex items-center justify-center mx-auto text-[#642B80]">
             <ShieldCheck className="w-8 h-8" />
           </div>
           <div>
@@ -637,7 +637,7 @@ export default function AdminDashboardPage() {
                 value={passkey}
                 onChange={(e) => setPasskey(e.target.value)}
                 placeholder="Enter passkey (Default: devorah2026)"
-                className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6E3A82]"
+                className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#642B80]"
                 required
               />
             </div>
@@ -650,7 +650,7 @@ export default function AdminDashboardPage() {
 
             <button
               type="submit"
-              className="w-full bg-[#6E3A82] hover:bg-[#8B4FA0] text-white font-medium py-3 rounded-xl transition-all shadow-md text-sm"
+              className="w-full bg-[#642B80] hover:bg-[#8B4FA0] text-white font-medium py-3 rounded-xl transition-all shadow-md text-sm"
             >
               Sign In to CMS Console
             </button>
@@ -665,17 +665,17 @@ export default function AdminDashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] flex flex-col md:flex-row">
+    <div className="min-h-screen bg-[#FCFCF7] flex flex-col md:flex-row">
       {/* Sidebar Navigation */}
       <aside className="w-full md:w-64 bg-[#3B214F] text-white p-6 flex flex-col justify-between shrink-0">
         <div className="space-y-8">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#6E3A82] flex items-center justify-center">
-              <Sparkles className="w-5 h-5 text-[#C5A8D8]" />
+            <div className="w-10 h-10 rounded-full bg-[#642B80] flex items-center justify-center">
+              <Sparkles className="w-5 h-5 text-[#BCA1CD]" />
             </div>
             <div>
               <h2 className="font-serif font-bold text-lg leading-tight">Devorah CMS</h2>
-              <span className="text-[10px] text-[#C5A8D8] tracking-widest uppercase font-semibold">Admin Panel</span>
+              <span className="text-[10px] text-[#BCA1CD] tracking-widest uppercase font-semibold">Admin Panel</span>
             </div>
           </div>
 
@@ -683,7 +683,7 @@ export default function AdminDashboardPage() {
             <button
               onClick={() => setActiveTab('overview')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                activeTab === 'overview' ? 'bg-[#6E3A82] text-white' : 'text-[#C5A8D8] hover:bg-[#6E3A82]/30'
+                activeTab === 'overview' ? 'bg-[#642B80] text-white' : 'text-[#BCA1CD] hover:bg-[#642B80]/30'
               }`}
             >
               <LayoutDashboard className="w-4 h-4" />
@@ -693,7 +693,7 @@ export default function AdminDashboardPage() {
             <button
               onClick={() => setActiveTab('articles')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                activeTab === 'articles' ? 'bg-[#6E3A82] text-white' : 'text-[#C5A8D8] hover:bg-[#6E3A82]/30'
+                activeTab === 'articles' ? 'bg-[#642B80] text-white' : 'text-[#BCA1CD] hover:bg-[#642B80]/30'
               }`}
             >
               <FileText className="w-4 h-4" />
@@ -703,7 +703,7 @@ export default function AdminDashboardPage() {
             <button
               onClick={() => setActiveTab('board')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                activeTab === 'board' ? 'bg-[#6E3A82] text-white' : 'text-[#C5A8D8] hover:bg-[#6E3A82]/30'
+                activeTab === 'board' ? 'bg-[#642B80] text-white' : 'text-[#BCA1CD] hover:bg-[#642B80]/30'
               }`}
             >
               <Users className="w-4 h-4" />
@@ -713,7 +713,7 @@ export default function AdminDashboardPage() {
             <button
               onClick={() => setActiveTab('gallery')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                activeTab === 'gallery' ? 'bg-[#6E3A82] text-white' : 'text-[#C5A8D8] hover:bg-[#6E3A82]/30'
+                activeTab === 'gallery' ? 'bg-[#642B80] text-white' : 'text-[#BCA1CD] hover:bg-[#642B80]/30'
               }`}
             >
               <ImageIcon className="w-4 h-4" />
@@ -723,7 +723,7 @@ export default function AdminDashboardPage() {
             <button
               onClick={() => setActiveTab('metrics')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                activeTab === 'metrics' ? 'bg-[#6E3A82] text-white' : 'text-[#C5A8D8] hover:bg-[#6E3A82]/30'
+                activeTab === 'metrics' ? 'bg-[#642B80] text-white' : 'text-[#BCA1CD] hover:bg-[#642B80]/30'
               }`}
             >
               <Award className="w-4 h-4" />
@@ -733,7 +733,7 @@ export default function AdminDashboardPage() {
             <button
               onClick={() => setActiveTab('insights')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                activeTab === 'insights' ? 'bg-[#6E3A82] text-white' : 'text-[#C5A8D8] hover:bg-[#6E3A82]/30'
+                activeTab === 'insights' ? 'bg-[#642B80] text-white' : 'text-[#BCA1CD] hover:bg-[#642B80]/30'
               }`}
             >
               <BarChart3 className="w-4 h-4" />
@@ -742,11 +742,11 @@ export default function AdminDashboardPage() {
           </nav>
         </div>
 
-        <div className="pt-6 border-t border-[#6E3A82]/40 space-y-4">
+        <div className="pt-6 border-t border-[#642B80]/40 space-y-4">
           <Link
             href="/"
             target="_blank"
-            className="text-xs text-[#C5A8D8] hover:text-white flex items-center gap-2"
+            className="text-xs text-[#BCA1CD] hover:text-white flex items-center gap-2"
           >
             ← View Live Website
           </Link>
@@ -763,7 +763,7 @@ export default function AdminDashboardPage() {
       {/* Main Content Dashboard Area */}
       <main className="flex-1 p-6 md:p-10 max-w-6xl mx-auto space-y-8">
         {notification && (
-          <div className="bg-[#6E3A82] text-white p-4 rounded-xl flex items-center gap-3 shadow-lg animate-fade-in">
+          <div className="bg-[#642B80] text-white p-4 rounded-xl flex items-center gap-3 shadow-lg animate-fade-in">
             <CheckCircle className="w-5 h-5 text-green-300 shrink-0" />
             <p className="text-sm font-medium">{notification}</p>
           </div>
@@ -822,9 +822,9 @@ export default function AdminDashboardPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               <div
                 onClick={() => setActiveTab('articles')}
-                className="bg-white p-6 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-2 cursor-pointer hover:border-[#6E3A82] transition-colors"
+                className="bg-white p-6 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-2 cursor-pointer hover:border-[#642B80] transition-colors"
               >
-                <div className="flex justify-between items-center text-[#6E3A82]">
+                <div className="flex justify-between items-center text-[#642B80]">
                   <FileText className="w-6 h-6" />
                   <span className="text-xs font-semibold uppercase tracking-wider text-[#A088B0]">Articles</span>
                 </div>
@@ -833,7 +833,7 @@ export default function AdminDashboardPage() {
               </div>
 
               <div className="bg-white p-6 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-2">
-                <div className="flex justify-between items-center text-[#6E3A82]">
+                <div className="flex justify-between items-center text-[#642B80]">
                   <Award className="w-6 h-6" />
                   <span className="text-xs font-semibold uppercase tracking-wider text-[#A088B0]">Programs</span>
                 </div>
@@ -843,9 +843,9 @@ export default function AdminDashboardPage() {
 
               <div
                 onClick={() => setActiveTab('gallery')}
-                className="bg-white p-6 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-2 cursor-pointer hover:border-[#6E3A82] transition-colors"
+                className="bg-white p-6 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-2 cursor-pointer hover:border-[#642B80] transition-colors"
               >
-                <div className="flex justify-between items-center text-[#6E3A82]">
+                <div className="flex justify-between items-center text-[#642B80]">
                   <ImageIcon className="w-6 h-6" />
                   <span className="text-xs font-semibold uppercase tracking-wider text-[#A088B0]">Gallery</span>
                 </div>
@@ -854,7 +854,7 @@ export default function AdminDashboardPage() {
               </div>
 
               <div className="bg-white p-6 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-2">
-                <div className="flex justify-between items-center text-[#6E3A82]">
+                <div className="flex justify-between items-center text-[#642B80]">
                   <TrendingUp className="w-6 h-6" />
                   <span className="text-xs font-semibold uppercase tracking-wider text-[#A088B0]">AI Queries</span>
                 </div>
@@ -871,7 +871,7 @@ export default function AdminDashboardPage() {
                   <h3 className="text-lg font-serif font-bold text-[#3B214F]">Recent Articles</h3>
                   <button
                     onClick={() => { setActiveTab('articles'); setShowArticleModal(true); }}
-                    className="bg-[#6E3A82] text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 hover:bg-[#8B4FA0]"
+                    className="bg-[#642B80] text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 hover:bg-[#8B4FA0]"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     Add Story
@@ -885,7 +885,7 @@ export default function AdminDashboardPage() {
                         <p className="font-semibold text-[#3B214F]">{art.title}</p>
                         <span className="text-xs text-[#716A73]">{art.category} • {art.publishedAt}</span>
                       </div>
-                      <span className="text-xs font-medium px-3 py-1 bg-[#F4ECF7] text-[#6E3A82] rounded-full">
+                      <span className="text-xs font-medium px-3 py-1 bg-[#F4ECF7] text-[#642B80] rounded-full">
                         Published
                       </span>
                     </div>
@@ -899,7 +899,7 @@ export default function AdminDashboardPage() {
                   <h3 className="text-lg font-serif font-bold text-[#3B214F]">Media Gallery Albums</h3>
                   <button
                     onClick={() => { setActiveTab('gallery'); openNewGalleryModal(); }}
-                    className="bg-[#6E3A82] text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 hover:bg-[#8B4FA0]"
+                    className="bg-[#642B80] text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 hover:bg-[#8B4FA0]"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     Upload Album
@@ -918,7 +918,7 @@ export default function AdminDashboardPage() {
                           <span className="text-xs text-[#716A73]">{item.category} • {item.date}</span>
                         </div>
                       </div>
-                      <span className="text-[11px] font-semibold px-2.5 py-1 bg-[#F4ECF7] text-[#6E3A82] rounded-full shrink-0">
+                      <span className="text-[11px] font-semibold px-2.5 py-1 bg-[#F4ECF7] text-[#642B80] rounded-full shrink-0">
                         {item.photoCount || (item.photos?.length || 1)} Photos
                       </span>
                     </div>
@@ -939,7 +939,7 @@ export default function AdminDashboardPage() {
               </div>
               <button
                 onClick={openNewArticleModal}
-                className="bg-[#6E3A82] text-white text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2 hover:bg-[#8B4FA0]"
+                className="bg-[#642B80] text-white text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2 hover:bg-[#8B4FA0]"
               >
                 <Plus className="w-4 h-4" />
                 Create New Article
@@ -960,7 +960,7 @@ export default function AdminDashboardPage() {
                       </div>
                     )}
                     <div className="flex justify-between items-start">
-                      <span className="text-xs font-semibold px-3 py-1 bg-[#F4ECF7] text-[#6E3A82] rounded-full">
+                      <span className="text-xs font-semibold px-3 py-1 bg-[#F4ECF7] text-[#642B80] rounded-full">
                         {art.category}
                       </span>
                       <span className="text-[11px] text-[#A088B0]">{art.readingTime}</span>
@@ -974,7 +974,7 @@ export default function AdminDashboardPage() {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => openEditArticleModal(art)}
-                        className="px-3 py-1 bg-[#F4ECF7] text-[#6E3A82] hover:bg-[#6E3A82] hover:text-white rounded-lg font-semibold transition-colors"
+                        className="px-3 py-1 bg-[#F4ECF7] text-[#642B80] hover:bg-[#642B80] hover:text-white rounded-lg font-semibold transition-colors"
                       >
                         Edit Story & Image
                       </button>
@@ -1018,14 +1018,14 @@ export default function AdminDashboardPage() {
                         member.category === 'Founder'
                           ? 'bg-[#C5A880]/20 text-[#8B6A3E]'
                           : member.category === 'Team Member' || member.category === 'Team Lead'
-                          ? 'bg-[#E8DDF0] text-[#6E3A82] border border-[#C5A8D8]/50'
-                          : 'bg-[#E8DDF0] text-[#6E3A82]'
+                          ? 'bg-[#E8DDF0] text-[#642B80] border border-[#BCA1CD]/50'
+                          : 'bg-[#E8DDF0] text-[#642B80]'
                       }`}>
                         {member.badge || member.category}
                       </span>
                       <h3 className="font-serif font-bold text-base text-[#3B214F] leading-snug">{member.name}</h3>
                       {member.title && (
-                        <p className="text-xs font-semibold text-[#6E3A82] line-clamp-1">{member.title}</p>
+                        <p className="text-xs font-semibold text-[#642B80] line-clamp-1">{member.title}</p>
                       )}
                       <p className="text-xs text-[#716A73] line-clamp-2 leading-relaxed">{member.biography}</p>
                     </div>
@@ -1034,7 +1034,7 @@ export default function AdminDashboardPage() {
                   {member.expertise && member.expertise.length > 0 && (
                     <div className="px-5 pb-3 flex flex-wrap gap-1.5">
                       {member.expertise.slice(0, 3).map((skill, idx) => (
-                        <span key={idx} className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-[#FAF8F5] border border-[#E8DDF0] text-[#3B214F]">
+                        <span key={idx} className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-[#FCFCF7] border border-[#E8DDF0] text-[#3B214F]">
                           {skill}
                         </span>
                       ))}
@@ -1044,7 +1044,7 @@ export default function AdminDashboardPage() {
                   <div className="px-5 py-3 border-t border-[#E8DDF0] flex justify-end">
                     <button
                       onClick={() => openEditBoardModal(member)}
-                      className="px-4 py-1.5 bg-[#F4ECF7] text-[#6E3A82] hover:bg-[#6E3A82] hover:text-white rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5"
+                      className="px-4 py-1.5 bg-[#F4ECF7] text-[#642B80] hover:bg-[#642B80] hover:text-white rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5"
                     >
                       <Edit3 className="w-3.5 h-3.5" />
                       Edit Profile
@@ -1054,7 +1054,7 @@ export default function AdminDashboardPage() {
               ))}
             </div>
 
-            <p className="text-[11px] text-[#A088B0] bg-[#FAF8F5] rounded-xl px-4 py-3 border border-[#E8DDF0]">
+            <p className="text-[11px] text-[#A088B0] bg-[#FCFCF7] rounded-xl px-4 py-3 border border-[#E8DDF0]">
               ℹ️ To update a board member's photo, click "Edit Profile" and use the photo upload section. Images are stored securely via Vercel Blob.
             </p>
           </div>
@@ -1072,7 +1072,7 @@ export default function AdminDashboardPage() {
               </div>
               <button
                 onClick={openNewGalleryModal}
-                className="bg-[#6E3A82] text-white text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2 hover:bg-[#8B4FA0] self-start sm:self-auto shadow-md transition-all"
+                className="bg-[#642B80] text-white text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2 hover:bg-[#8B4FA0] self-start sm:self-auto shadow-md transition-all"
               >
                 <Plus className="w-4 h-4" />
                 Upload New Album
@@ -1085,8 +1085,8 @@ export default function AdminDashboardPage() {
                 onClick={() => setGalleryCategoryFilter('All')}
                 className={`px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all ${
                   galleryCategoryFilter === 'All'
-                    ? 'bg-[#6E3A82] text-white shadow-sm font-semibold'
-                    : 'bg-white border border-[#E8DDF0] text-[#3B214F] hover:border-[#6E3A82]'
+                    ? 'bg-[#642B80] text-white shadow-sm font-semibold'
+                    : 'bg-white border border-[#E8DDF0] text-[#3B214F] hover:border-[#642B80]'
                 }`}
               >
                 All Categories ({galleryList.length})
@@ -1099,8 +1099,8 @@ export default function AdminDashboardPage() {
                     onClick={() => setGalleryCategoryFilter(cat)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all ${
                       galleryCategoryFilter === cat
-                        ? 'bg-[#6E3A82] text-white shadow-sm font-semibold'
-                        : 'bg-white border border-[#E8DDF0] text-[#3B214F] hover:border-[#6E3A82]'
+                        ? 'bg-[#642B80] text-white shadow-sm font-semibold'
+                        : 'bg-white border border-[#E8DDF0] text-[#3B214F] hover:border-[#642B80]'
                     }`}
                   >
                     {cat} ({count})
@@ -1112,12 +1112,12 @@ export default function AdminDashboardPage() {
             {/* Gallery Albums Grid */}
             {galleryList.filter((g) => galleryCategoryFilter === 'All' || g.category === galleryCategoryFilter).length === 0 ? (
               <div className="bg-white rounded-2xl border border-[#E8DDF0] p-12 text-center space-y-3">
-                <ImageIcon className="w-10 h-10 text-[#C5A8D8] mx-auto" />
+                <ImageIcon className="w-10 h-10 text-[#BCA1CD] mx-auto" />
                 <h3 className="font-serif font-bold text-lg text-[#3B214F]">No albums in this category</h3>
                 <p className="text-xs text-[#716A73]">Click &quot;Upload New Album&quot; to add photos to {galleryCategoryFilter}.</p>
                 <button
                   onClick={openNewGalleryModal}
-                  className="bg-[#6E3A82] text-white text-xs font-semibold px-4 py-2 rounded-xl inline-flex items-center gap-1.5 hover:bg-[#8B4FA0]"
+                  className="bg-[#642B80] text-white text-xs font-semibold px-4 py-2 rounded-xl inline-flex items-center gap-1.5 hover:bg-[#8B4FA0]"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   Add First Album
@@ -1130,7 +1130,7 @@ export default function AdminDashboardPage() {
                   .map((item) => (
                     <div
                       key={item.id}
-                      className="bg-white rounded-2xl border border-[#E8DDF0] shadow-sm overflow-hidden flex flex-col justify-between hover:border-[#6E3A82]/50 transition-all group"
+                      className="bg-white rounded-2xl border border-[#E8DDF0] shadow-sm overflow-hidden flex flex-col justify-between hover:border-[#642B80]/50 transition-all group"
                     >
                       <div className="space-y-3">
                         {/* Cover Image & Count Badge */}
@@ -1157,12 +1157,12 @@ export default function AdminDashboardPage() {
                         <div className="p-4 space-y-2">
                           <div className="flex items-center gap-2 text-[11px] text-[#A088B0] font-medium">
                             <span className="flex items-center gap-1">
-                              <MapPin className="w-3 h-3 text-[#6E3A82]" />
+                              <MapPin className="w-3 h-3 text-[#642B80]" />
                               {item.location}
                             </span>
                             <span>•</span>
                             <span className="flex items-center gap-1">
-                              <Calendar className="w-3 h-3 text-[#6E3A82]" />
+                              <Calendar className="w-3 h-3 text-[#642B80]" />
                               {item.date}
                             </span>
                           </div>
@@ -1179,7 +1179,7 @@ export default function AdminDashboardPage() {
 
                           {item.impactHighlight && (
                             <div className="pt-1">
-                              <span className="text-[11px] font-semibold text-[#6E3A82] bg-[#F4ECF7] px-2.5 py-0.5 rounded-md inline-block">
+                              <span className="text-[11px] font-semibold text-[#642B80] bg-[#F4ECF7] px-2.5 py-0.5 rounded-md inline-block">
                                 ✨ {item.impactHighlight}
                               </span>
                             </div>
@@ -1192,14 +1192,14 @@ export default function AdminDashboardPage() {
                         <Link
                           href={`/gallery/${item.slug}`}
                           target="_blank"
-                          className="text-[#6E3A82] hover:text-[#3B214F] font-semibold flex items-center gap-1 text-[11px]"
+                          className="text-[#642B80] hover:text-[#3B214F] font-semibold flex items-center gap-1 text-[11px]"
                         >
                           View Live <ExternalLink className="w-3 h-3" />
                         </Link>
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => openEditGalleryModal(item)}
-                            className="px-2.5 py-1 bg-[#F4ECF7] text-[#6E3A82] hover:bg-[#6E3A82] hover:text-white rounded-lg font-semibold transition-colors flex items-center gap-1 text-[11px]"
+                            className="px-2.5 py-1 bg-[#F4ECF7] text-[#642B80] hover:bg-[#642B80] hover:text-white rounded-lg font-semibold transition-colors flex items-center gap-1 text-[11px]"
                           >
                             <Edit3 className="w-3 h-3" />
                             Edit
@@ -1239,7 +1239,7 @@ export default function AdminDashboardPage() {
                       type="text"
                       value={metric.number}
                       onChange={(e) => handleUpdateMetric(idx, 'number', e.target.value)}
-                      className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-4 py-2 text-lg font-serif font-bold text-[#3B214F]"
+                      className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-4 py-2 text-lg font-serif font-bold text-[#3B214F]"
                     />
                   </div>
                   <div>
@@ -1250,7 +1250,7 @@ export default function AdminDashboardPage() {
                       type="text"
                       value={metric.label}
                       onChange={(e) => handleUpdateMetric(idx, 'label', e.target.value)}
-                      className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-4 py-2 text-xs font-medium text-[#3B214F]"
+                      className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-4 py-2 text-xs font-medium text-[#3B214F]"
                     />
                   </div>
                   <div>
@@ -1261,7 +1261,7 @@ export default function AdminDashboardPage() {
                       value={metric.description}
                       onChange={(e) => handleUpdateMetric(idx, 'description', e.target.value)}
                       rows={2}
-                      className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-4 py-2 text-xs text-[#716A73]"
+                      className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-4 py-2 text-xs text-[#716A73]"
                     />
                   </div>
                 </div>
@@ -1270,7 +1270,7 @@ export default function AdminDashboardPage() {
 
             <button
               onClick={saveMetrics}
-              className="bg-[#6E3A82] text-white text-sm font-semibold px-6 py-3 rounded-xl hover:bg-[#8B4FA0] transition-all shadow-md"
+              className="bg-[#642B80] text-white text-sm font-semibold px-6 py-3 rounded-xl hover:bg-[#8B4FA0] transition-all shadow-md"
             >
               Save All Impact Metrics
             </button>
@@ -1288,7 +1288,7 @@ export default function AdminDashboardPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-4">
                 <h3 className="font-serif font-bold text-lg text-[#3B214F] flex items-center gap-2">
-                  <Search className="w-5 h-5 text-[#6E3A82]" />
+                  <Search className="w-5 h-5 text-[#642B80]" />
                   Top Visitor Interests (AI Assistant)
                 </h3>
                 <div className="space-y-3 text-xs">
@@ -1298,7 +1298,7 @@ export default function AdminDashboardPage() {
                       <span>42%</span>
                     </div>
                     <div className="w-full bg-[#F4ECF7] h-2 rounded-full overflow-hidden">
-                      <div className="bg-[#6E3A82] h-full w-[42%]" />
+                      <div className="bg-[#642B80] h-full w-[42%]" />
                     </div>
                   </div>
                   <div>
@@ -1307,7 +1307,7 @@ export default function AdminDashboardPage() {
                       <span>28%</span>
                     </div>
                     <div className="w-full bg-[#F4ECF7] h-2 rounded-full overflow-hidden">
-                      <div className="bg-[#6E3A82] h-full w-[28%]" />
+                      <div className="bg-[#642B80] h-full w-[28%]" />
                     </div>
                   </div>
                   <div>
@@ -1316,7 +1316,7 @@ export default function AdminDashboardPage() {
                       <span>18%</span>
                     </div>
                     <div className="w-full bg-[#F4ECF7] h-2 rounded-full overflow-hidden">
-                      <div className="bg-[#6E3A82] h-full w-[18%]" />
+                      <div className="bg-[#642B80] h-full w-[18%]" />
                     </div>
                   </div>
                 </div>
@@ -1324,19 +1324,19 @@ export default function AdminDashboardPage() {
 
               <div className="bg-white p-6 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-4">
                 <h3 className="font-serif font-bold text-lg text-[#3B214F] flex items-center gap-2">
-                  <Users className="w-5 h-5 text-[#6E3A82]" />
+                  <Users className="w-5 h-5 text-[#642B80]" />
                   User Engagement Summary
                 </h3>
                 <div className="space-y-3 text-xs text-[#716A73]">
-                  <div className="p-3 bg-[#FAF8F5] rounded-xl flex justify-between">
+                  <div className="p-3 bg-[#FCFCF7] rounded-xl flex justify-between">
                     <span>Average Session Duration</span>
                     <strong className="text-[#3B214F]">3m 42s</strong>
                   </div>
-                  <div className="p-3 bg-[#FAF8F5] rounded-xl flex justify-between">
+                  <div className="p-3 bg-[#FCFCF7] rounded-xl flex justify-between">
                     <span>Resource Downloads</span>
                     <strong className="text-[#3B214F]">84 downloads</strong>
                   </div>
-                  <div className="p-3 bg-[#FAF8F5] rounded-xl flex justify-between">
+                  <div className="p-3 bg-[#FCFCF7] rounded-xl flex justify-between">
                     <span>Donation Page Conversions</span>
                     <strong className="text-[#3B214F]">14.2% engagement</strong>
                   </div>
@@ -1360,7 +1360,7 @@ export default function AdminDashboardPage() {
 
               <form onSubmit={handleSaveBoardMember} className="space-y-4 text-xs">
                 {/* Photo Upload */}
-                <div className="space-y-3 bg-[#FAF8F5] p-4 rounded-2xl border border-[#E8DDF0]">
+                <div className="space-y-3 bg-[#FCFCF7] p-4 rounded-2xl border border-[#E8DDF0]">
                   <label className="block font-semibold text-[#3B214F]">Profile Photo</label>
                   <div className="flex items-center gap-4">
                     <div className="relative w-24 h-28 rounded-xl overflow-hidden bg-[#3B214F] border border-[#E8DDF0] shrink-0">
@@ -1381,12 +1381,12 @@ export default function AdminDashboardPage() {
                         onClick={() => boardPhotoInputRef.current?.click()}
                         className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border-2 border-dashed text-xs font-semibold transition-all ${
                           isBoardPhotoUploading
-                            ? 'border-[#6E3A82]/40 text-[#A088B0] cursor-not-allowed bg-[#F4ECF7]/50'
-                            : 'border-[#6E3A82]/50 text-[#6E3A82] hover:bg-[#F4ECF7] hover:border-[#6E3A82] cursor-pointer bg-white'
+                            ? 'border-[#642B80]/40 text-[#A088B0] cursor-not-allowed bg-[#F4ECF7]/50'
+                            : 'border-[#642B80]/50 text-[#642B80] hover:bg-[#F4ECF7] hover:border-[#642B80] cursor-pointer bg-white'
                         }`}
                       >
                         {isBoardPhotoUploading ? (
-                          <><span className="w-3.5 h-3.5 border-2 border-[#6E3A82] border-t-transparent rounded-full animate-spin" /> Uploading…</>
+                          <><span className="w-3.5 h-3.5 border-2 border-[#642B80] border-t-transparent rounded-full animate-spin" /> Uploading…</>
                         ) : (
                           <><Upload className="w-3.5 h-3.5" /> Upload New Photo (JPG, PNG, WebP)</>
                         )}
@@ -1414,7 +1414,7 @@ export default function AdminDashboardPage() {
                       required
                       value={boardForm.name}
                       onChange={(e) => setBoardForm({ ...boardForm, name: e.target.value })}
-                      className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                      className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
                       placeholder="Full name"
                     />
                   </div>
@@ -1424,7 +1424,7 @@ export default function AdminDashboardPage() {
                       type="text"
                       value={boardForm.title}
                       onChange={(e) => setBoardForm({ ...boardForm, title: e.target.value })}
-                      className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                      className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
                       placeholder="e.g. Founder, Board Member"
                     />
                   </div>
@@ -1438,7 +1438,7 @@ export default function AdminDashboardPage() {
                     rows={4}
                     value={boardForm.biography}
                     onChange={(e) => setBoardForm({ ...boardForm, biography: e.target.value })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
                     placeholder="Professional biography…"
                   />
                 </div>
@@ -1450,7 +1450,7 @@ export default function AdminDashboardPage() {
                     rows={2}
                     value={boardForm.background}
                     onChange={(e) => setBoardForm({ ...boardForm, background: e.target.value })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
                     placeholder="Career and professional experience…"
                   />
                 </div>
@@ -1462,7 +1462,7 @@ export default function AdminDashboardPage() {
                     rows={2}
                     value={boardForm.education}
                     onChange={(e) => setBoardForm({ ...boardForm, education: e.target.value })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
                     placeholder="Academic qualifications and professional certifications…"
                   />
                 </div>
@@ -1474,7 +1474,7 @@ export default function AdminDashboardPage() {
                     rows={2}
                     value={boardForm.vision}
                     onChange={(e) => setBoardForm({ ...boardForm, vision: e.target.value })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
                     placeholder="Vision and philosophy for governance…"
                   />
                 </div>
@@ -1486,7 +1486,7 @@ export default function AdminDashboardPage() {
                     type="text"
                     value={boardForm.quote}
                     onChange={(e) => setBoardForm({ ...boardForm, quote: e.target.value })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
                     placeholder="An inspiring quote from this board member…"
                   />
                 </div>
@@ -1498,7 +1498,7 @@ export default function AdminDashboardPage() {
                     type="text"
                     value={boardForm.expertise}
                     onChange={(e) => setBoardForm({ ...boardForm, expertise: e.target.value })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
                     placeholder="Separate with commas e.g. Leadership, Nonprofit Strategy, Aviation"
                   />
                   <p className="text-[10px] text-[#A088B0] mt-1">Separate each skill/area with a comma.</p>
@@ -1506,7 +1506,7 @@ export default function AdminDashboardPage() {
 
                 <div className="flex justify-end gap-3 pt-4 border-t border-[#E8DDF0]">
                   <button type="button" onClick={() => setShowBoardModal(false)} className="px-4 py-2 rounded-xl text-xs font-semibold text-[#716A73] hover:bg-gray-100">Cancel</button>
-                  <button type="submit" className="px-6 py-2.5 rounded-xl text-xs font-semibold bg-[#6E3A82] text-white hover:bg-[#8B4FA0] shadow-md transition-all flex items-center gap-1.5">
+                  <button type="submit" className="px-6 py-2.5 rounded-xl text-xs font-semibold bg-[#642B80] text-white hover:bg-[#8B4FA0] shadow-md transition-all flex items-center gap-1.5">
                     <CheckCircle className="w-4 h-4" />
                     Save Profile Changes
                   </button>
@@ -1540,7 +1540,7 @@ export default function AdminDashboardPage() {
                     required
                     value={articleForm.title}
                     onChange={(e) => setArticleForm({ ...articleForm, title: e.target.value })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
                     placeholder="Article title…"
                   />
                 </div>
@@ -1550,7 +1550,7 @@ export default function AdminDashboardPage() {
                   <select
                     value={articleForm.category}
                     onChange={(e) => setArticleForm({ ...articleForm, category: e.target.value as any })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
                   >
                     <option value="Girls' Development">Girls' Development</option>
                     <option value="Women's Issues">Women's Issues</option>
@@ -1561,7 +1561,7 @@ export default function AdminDashboardPage() {
                 </div>
 
                 {/* Featured Image Selection & Preview */}
-                <div className="space-y-2 bg-[#FAF8F5] p-3.5 rounded-2xl border border-[#E8DDF0]">
+                <div className="space-y-2 bg-[#FCFCF7] p-3.5 rounded-2xl border border-[#E8DDF0]">
                   <label className="block font-semibold text-[#3B214F]">Featured Image</label>
                   
                   {articleForm.featuredImageUrl && (
@@ -1589,8 +1589,8 @@ export default function AdminDashboardPage() {
                           onClick={() => setArticleForm({ ...articleForm, featuredImageUrl: img.url })}
                           className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all ${
                             articleForm.featuredImageUrl === img.url
-                              ? 'bg-[#6E3A82] text-white font-semibold'
-                              : 'bg-white border border-[#E8DDF0] text-[#3B214F] hover:border-[#6E3A82]'
+                              ? 'bg-[#642B80] text-white font-semibold'
+                              : 'bg-white border border-[#E8DDF0] text-[#3B214F] hover:border-[#642B80]'
                           }`}
                         >
                           {img.label}
@@ -1618,13 +1618,13 @@ export default function AdminDashboardPage() {
                       onClick={() => fileInputRef.current?.click()}
                       className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border-2 border-dashed text-[11px] font-semibold transition-all ${
                         isUploading
-                          ? 'border-[#6E3A82]/40 text-[#A088B0] cursor-not-allowed bg-[#F4ECF7]/50'
-                          : 'border-[#6E3A82]/50 text-[#6E3A82] hover:bg-[#F4ECF7] hover:border-[#6E3A82] cursor-pointer'
+                          ? 'border-[#642B80]/40 text-[#A088B0] cursor-not-allowed bg-[#F4ECF7]/50'
+                          : 'border-[#642B80]/50 text-[#642B80] hover:bg-[#F4ECF7] hover:border-[#642B80] cursor-pointer'
                       }`}
                     >
                       {isUploading ? (
                         <>
-                          <span className="w-3.5 h-3.5 border-2 border-[#6E3A82] border-t-transparent rounded-full animate-spin" />
+                          <span className="w-3.5 h-3.5 border-2 border-[#642B80] border-t-transparent rounded-full animate-spin" />
                           Uploading…
                         </>
                       ) : (
@@ -1659,7 +1659,7 @@ export default function AdminDashboardPage() {
                     rows={2}
                     value={articleForm.excerpt}
                     onChange={(e) => setArticleForm({ ...articleForm, excerpt: e.target.value })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
                     placeholder="Short summary excerpt…"
                   />
                 </div>
@@ -1670,7 +1670,7 @@ export default function AdminDashboardPage() {
                     rows={5}
                     value={articleForm.content}
                     onChange={(e) => setArticleForm({ ...articleForm, content: e.target.value })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
+                    className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3 py-2 text-xs text-[#3B214F]"
                     placeholder="Full article content text…"
                   />
                 </div>
@@ -1685,7 +1685,7 @@ export default function AdminDashboardPage() {
                   </button>
                   <button
                     type="submit"
-                    className="px-5 py-2 rounded-xl text-xs font-semibold bg-[#6E3A82] text-white hover:bg-[#8B4FA0] shadow-md"
+                    className="px-5 py-2 rounded-xl text-xs font-semibold bg-[#642B80] text-white hover:bg-[#8B4FA0] shadow-md"
                   >
                     {editingArticleId ? 'Save Changes' : 'Publish Article'}
                   </button>
@@ -1727,7 +1727,7 @@ export default function AdminDashboardPage() {
                     required
                     value={galleryForm.title}
                     onChange={(e) => setGalleryForm({ ...galleryForm, title: e.target.value })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F] focus:outline-none focus:ring-2 focus:ring-[#6E3A82]"
+                    className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F] focus:outline-none focus:ring-2 focus:ring-[#642B80]"
                     placeholder="e.g. Grassroots Digital Skills & STEM Bootcamp 2026…"
                   />
                 </div>
@@ -1740,7 +1740,7 @@ export default function AdminDashboardPage() {
                   <select
                     value={galleryForm.category}
                     onChange={(e) => setGalleryForm({ ...galleryForm, category: e.target.value as any })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F] font-medium focus:outline-none focus:ring-2 focus:ring-[#6E3A82]"
+                    className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F] font-medium focus:outline-none focus:ring-2 focus:ring-[#642B80]"
                   >
                     {GALLERY_CATEGORIES.map((cat, idx) => (
                       <option key={cat} value={cat}>
@@ -1761,7 +1761,7 @@ export default function AdminDashboardPage() {
                       type="text"
                       value={galleryForm.date}
                       onChange={(e) => setGalleryForm({ ...galleryForm, date: e.target.value })}
-                      className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F]"
+                      className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F]"
                       placeholder="e.g. October 2026 or October 12, 2026"
                     />
                   </div>
@@ -1771,7 +1771,7 @@ export default function AdminDashboardPage() {
                       type="text"
                       value={galleryForm.location}
                       onChange={(e) => setGalleryForm({ ...galleryForm, location: e.target.value })}
-                      className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F]"
+                      className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F]"
                       placeholder="e.g. Ikeja, Lagos State"
                     />
                   </div>
@@ -1786,7 +1786,7 @@ export default function AdminDashboardPage() {
                     type="text"
                     value={galleryForm.impactHighlight}
                     onChange={(e) => setGalleryForm({ ...galleryForm, impactHighlight: e.target.value })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F]"
+                    className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F]"
                     placeholder="e.g. 250+ Girls Mentored or 150 Seed Grants Distributed"
                   />
                 </div>
@@ -1800,13 +1800,13 @@ export default function AdminDashboardPage() {
                     rows={3}
                     value={galleryForm.caption}
                     onChange={(e) => setGalleryForm({ ...galleryForm, caption: e.target.value })}
-                    className="w-full bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F]"
+                    className="w-full bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl px-3.5 py-2.5 text-xs text-[#3B214F]"
                     placeholder="Provide context about what took place during this event or field mission…"
                   />
                 </div>
 
                 {/* Cover Photograph Section */}
-                <div className="space-y-3 bg-[#FAF8F5] p-4 rounded-2xl border border-[#E8DDF0]">
+                <div className="space-y-3 bg-[#FCFCF7] p-4 rounded-2xl border border-[#E8DDF0]">
                   <div className="flex justify-between items-center">
                     <label className="block font-semibold text-[#3B214F]">
                       Main Cover Photograph <span className="text-red-500">*</span>
@@ -1843,18 +1843,18 @@ export default function AdminDashboardPage() {
                       onClick={() => galleryCoverInputRef.current?.click()}
                       className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl border-2 border-dashed text-xs font-semibold transition-all ${
                         isGalleryCoverUploading
-                          ? 'border-[#6E3A82]/40 text-[#A088B0] cursor-not-allowed bg-[#F4ECF7]/50'
-                          : 'border-[#6E3A82]/50 text-[#6E3A82] hover:bg-[#F4ECF7] hover:border-[#6E3A82] cursor-pointer bg-white'
+                          ? 'border-[#642B80]/40 text-[#A088B0] cursor-not-allowed bg-[#F4ECF7]/50'
+                          : 'border-[#642B80]/50 text-[#642B80] hover:bg-[#F4ECF7] hover:border-[#642B80] cursor-pointer bg-white'
                       }`}
                     >
                       {isGalleryCoverUploading ? (
                         <>
-                          <span className="w-4 h-4 border-2 border-[#6E3A82] border-t-transparent rounded-full animate-spin" />
+                          <span className="w-4 h-4 border-2 border-[#642B80] border-t-transparent rounded-full animate-spin" />
                           Uploading Cover Photo…
                         </>
                       ) : (
                         <>
-                          <Upload className="w-4 h-4 text-[#6E3A82]" />
+                          <Upload className="w-4 h-4 text-[#642B80]" />
                           Upload Cover Image from Computer (JPG, PNG, WebP)
                         </>
                       )}
@@ -1874,8 +1874,8 @@ export default function AdminDashboardPage() {
                           onClick={() => setGalleryForm({ ...galleryForm, imageUrl: img.url })}
                           className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all ${
                             galleryForm.imageUrl === img.url
-                              ? 'bg-[#6E3A82] text-white font-semibold shadow-sm'
-                              : 'bg-white border border-[#E8DDF0] text-[#3B214F] hover:border-[#6E3A82]'
+                              ? 'bg-[#642B80] text-white font-semibold shadow-sm'
+                              : 'bg-white border border-[#E8DDF0] text-[#3B214F] hover:border-[#642B80]'
                           }`}
                         >
                           {img.label}
@@ -1899,7 +1899,7 @@ export default function AdminDashboardPage() {
                 </div>
 
                 {/* Additional Album Photos */}
-                <div className="space-y-3 bg-[#FAF8F5] p-4 rounded-2xl border border-[#E8DDF0]">
+                <div className="space-y-3 bg-[#FCFCF7] p-4 rounded-2xl border border-[#E8DDF0]">
                   <div className="flex justify-between items-center">
                     <div>
                       <label className="block font-semibold text-[#3B214F]">
@@ -1927,13 +1927,13 @@ export default function AdminDashboardPage() {
                     onClick={() => galleryExtraPhotosInputRef.current?.click()}
                     className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border text-xs font-semibold transition-all ${
                       isGalleryExtraUploading
-                        ? 'border-[#6E3A82]/20 text-[#A088B0] cursor-not-allowed bg-[#F4ECF7]/50'
-                        : 'border-[#6E3A82]/30 text-[#6E3A82] hover:bg-[#F4ECF7] bg-white'
+                        ? 'border-[#642B80]/20 text-[#A088B0] cursor-not-allowed bg-[#F4ECF7]/50'
+                        : 'border-[#642B80]/30 text-[#642B80] hover:bg-[#F4ECF7] bg-white'
                     }`}
                   >
                     {isGalleryExtraUploading ? (
                       <>
-                        <span className="w-4 h-4 border-2 border-[#6E3A82] border-t-transparent rounded-full animate-spin" />
+                        <span className="w-4 h-4 border-2 border-[#642B80] border-t-transparent rounded-full animate-spin" />
                         Uploading Photos…
                       </>
                     ) : (
@@ -1986,7 +1986,7 @@ export default function AdminDashboardPage() {
                   </button>
                   <button
                     type="submit"
-                    className="px-6 py-2.5 rounded-xl text-xs font-semibold bg-[#6E3A82] text-white hover:bg-[#8B4FA0] shadow-md transition-all flex items-center gap-1.5"
+                    className="px-6 py-2.5 rounded-xl text-xs font-semibold bg-[#642B80] text-white hover:bg-[#8B4FA0] shadow-md transition-all flex items-center gap-1.5"
                   >
                     <CheckCircle className="w-4 h-4" />
                     {editingGalleryId ? 'Save Album Changes' : 'Publish Gallery Album'}

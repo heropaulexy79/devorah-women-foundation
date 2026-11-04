@@ -21,7 +21,7 @@ export default function SectionHeader({
     <div className={`max-w-3xl ${centered ? 'mx-auto text-center' : ''} ${className}`}>
       <span
         className={`text-[10px] font-semibold uppercase tracking-[0.3em] mb-5 inline-block ${
-          dark ? 'text-[#A987C2]' : 'text-[#6E3A82]'
+          dark ? 'text-[#BCA1CD]' : 'text-[#642B80]'
         }`}
       >
         {eyebrow}

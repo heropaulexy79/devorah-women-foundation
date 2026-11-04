@@ -25,7 +25,7 @@ export default function FeaturedResource() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#6E3A82]">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#642B80]">
                 FEATURED PUBLICATION
               </p>
 
@@ -40,7 +40,7 @@ export default function FeaturedResource() {
               <div className="pt-4 flex flex-wrap items-center gap-4">
                 <Link
                   href="/resources"
-                  className="inline-flex items-center gap-2 bg-[#6E3A82] hover:bg-[#3B214F] text-white px-7 py-3.5 rounded-sm font-semibold text-sm transition-all duration-300 shadow-sm"
+                  className="inline-flex items-center gap-2 bg-[#642B80] hover:bg-[#3B214F] text-white px-7 py-3.5 rounded-sm font-semibold text-sm transition-all duration-300 shadow-sm"
                 >
                   <Download className="w-4 h-4" />
                   <span>Download Publication</span>
@@ -48,7 +48,7 @@ export default function FeaturedResource() {
 
                 <Link
                   href="/resources"
-                  className="inline-flex items-center gap-2 text-[#6E3A82] hover:text-[#3B214F] font-semibold text-sm px-6 py-3.5 rounded-sm border border-[#E8DDF0] hover:border-[#6E3A82]/40 transition-all duration-300 bg-white"
+                  className="inline-flex items-center gap-2 text-[#642B80] hover:text-[#3B214F] font-semibold text-sm px-6 py-3.5 rounded-sm border border-[#E8DDF0] hover:border-[#642B80]/40 transition-all duration-300 bg-white"
                 >
                   <span>Resource Center</span>
                   <ArrowRight className="w-4 h-4" />
@@ -74,7 +74,7 @@ export default function FeaturedResource() {
                 
                 {/* Journal cover overlay details */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#3B214F] via-[#3B214F]/40 to-transparent p-6 flex flex-col justify-between text-white">
-                  <span className="text-[10px] uppercase font-semibold tracking-widest text-[#C5A8D8]">
+                  <span className="text-[10px] uppercase font-semibold tracking-widest text-[#BCA1CD]">
                     DEVORAH INITIATIVE &middot; JOURNAL
                   </span>
                   

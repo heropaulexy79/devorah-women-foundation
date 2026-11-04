@@ -4,7 +4,7 @@
   "description": "A Christian, women-focused foundation committed to empowering girls and women through education, mentorship, leadership development, and faith-anchored support.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FAF8F5",
+  "background_color": "#FCFCF7",
   "theme_color": "#3B214F",
   "orientation": "portrait-primary",
   "categories": ["education", "nonprofit", "social"],

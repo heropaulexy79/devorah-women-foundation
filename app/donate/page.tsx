@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function DonatePage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#FAF8F5] pt-24 text-center">Loading donation system...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-[#FCFCF7] pt-24 text-center">Loading donation system...</div>}>
       <DonateClient />
     </Suspense>
   );

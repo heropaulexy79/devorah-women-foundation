@@ -52,7 +52,7 @@ export default function StoriesClient({ initialArticles }: StoriesClientProps) {
   const featuredArticle = articlesList.find((a) => a.featured) || articlesList[0];
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen">
+    <div className="bg-[#FCFCF7] min-h-screen">
       {/* Header Banner */}
       <div className="relative">
         <PageHero
@@ -63,13 +63,13 @@ export default function StoriesClient({ initialArticles }: StoriesClientProps) {
         />
         <div className="max-w-md mx-auto px-4 -mt-8 relative z-20 pb-8">
           <div className="relative shadow-lg rounded-full">
-            <Search className="w-5 h-5 absolute left-4 top-3.5 text-[#6E3A82]" />
+            <Search className="w-5 h-5 absolute left-4 top-3.5 text-[#642B80]" />
             <input
               type="text"
               placeholder="Search articles & stories..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3.5 rounded-full border border-[#E8DDF0] bg-white text-sm focus:outline-none focus:border-[#6E3A82] text-[#3B214F] placeholder-[#9B8CA6]"
+              className="w-full pl-12 pr-4 py-3.5 rounded-full border border-[#E8DDF0] bg-white text-sm focus:outline-none focus:border-[#642B80] text-[#3B214F] placeholder-[#9B8CA6]"
             />
           </div>
         </div>
@@ -92,11 +92,11 @@ export default function StoriesClient({ initialArticles }: StoriesClientProps) {
             </div>
 
             <div className="lg:col-span-5 space-y-4">
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#E8DDF0] text-[#6E3A82]">
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#E8DDF0] text-[#642B80]">
                 {featuredArticle.category}
               </span>
 
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#3B214F] group-hover:text-[#6E3A82] transition-colors leading-tight">
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#3B214F] group-hover:text-[#642B80] transition-colors leading-tight">
                 {featuredArticle.title}
               </h2>
 
@@ -106,16 +106,16 @@ export default function StoriesClient({ initialArticles }: StoriesClientProps) {
 
               <div className="pt-4 border-t border-[#E8DDF0] flex flex-wrap items-center justify-between gap-3 text-xs text-[#716A73]">
                 <div className="flex items-center gap-2">
-                  <User className="w-3.5 h-3.5 text-[#6E3A82]" />
+                  <User className="w-3.5 h-3.5 text-[#642B80]" />
                   <span>{featuredArticle.author.name}</span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-1.5 text-[#6E3A82] font-semibold">
+                  <div className="flex items-center gap-1.5 text-[#642B80] font-semibold">
                     <Calendar className="w-3.5 h-3.5" />
                     <span>{featuredArticle.publishedAt}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-[#6E3A82]" />
+                    <Clock className="w-3.5 h-3.5 text-[#642B80]" />
                     <span>{featuredArticle.readingTime}</span>
                   </div>
                 </div>
@@ -135,7 +135,7 @@ export default function StoriesClient({ initialArticles }: StoriesClientProps) {
               onClick={() => setSelectedCat(cat)}
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
                 selectedCat === cat
-                  ? 'bg-[#6E3A82] text-white shadow-sm'
+                  ? 'bg-[#642B80] text-white shadow-sm'
                   : 'bg-white border border-[#E8DDF0] text-[#716A73] hover:text-[#3B214F] hover:bg-[#E8DDF0]/40'
               }`}
             >
@@ -161,11 +161,11 @@ export default function StoriesClient({ initialArticles }: StoriesClientProps) {
               </div>
 
               <div className="p-6 space-y-3">
-                <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-[#E8DDF0] text-[#6E3A82]">
+                <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-[#E8DDF0] text-[#642B80]">
                   {article.category}
                 </span>
 
-                <h3 className="font-serif text-xl font-bold text-[#3B214F] group-hover:text-[#6E3A82] transition-colors leading-snug">
+                <h3 className="font-serif text-xl font-bold text-[#3B214F] group-hover:text-[#642B80] transition-colors leading-snug">
                   {article.title}
                 </h3>
 
@@ -174,12 +174,12 @@ export default function StoriesClient({ initialArticles }: StoriesClientProps) {
                 </p>
 
                 <div className="pt-3 border-t border-[#E8DDF0] flex items-center justify-between text-xs text-[#716A73]">
-                  <span className="flex items-center gap-1.5 font-medium text-[#6E3A82]">
+                  <span className="flex items-center gap-1.5 font-medium text-[#642B80]">
                     <Calendar className="w-3.5 h-3.5" />
                     {article.publishedAt}
                   </span>
                   <span className="flex items-center gap-1 text-[#716A73]">
-                    <Clock className="w-3 h-3 text-[#A987C2]" />
+                    <Clock className="w-3 h-3 text-[#BCA1CD]" />
                     {article.readingTime}
                   </span>
                 </div>

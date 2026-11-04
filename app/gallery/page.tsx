@@ -37,7 +37,7 @@ export const revalidate = 0;
 
 export default function GalleryPage() {
   return (
-    <div className="bg-[#FAF8F5] min-h-screen">
+    <div className="bg-[#FCFCF7] min-h-screen">
       {/* Page Hero Header */}
       <PageHero
         eyebrow="OUR GALLERY"

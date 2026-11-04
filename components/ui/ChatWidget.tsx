@@ -32,7 +32,7 @@ function renderMarkdown(text: string): React.ReactNode[] {
         const itemText = lines[i].trim().replace(/^[-]\s+/, '');
         items.push(
           <li key={i} className="flex gap-2">
-            <span className="text-[#6E3A82] mt-1 shrink-0">•</span>
+            <span className="text-[#642B80] mt-1 shrink-0">•</span>
             <span>{renderInline(itemText)}</span>
           </li>
         );
@@ -166,8 +166,8 @@ export default function ChatWidget() {
           onClick={() => setIsOpen(!isOpen)}
           className={`p-4 rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center ${
             isOpen
-              ? 'bg-white text-[#6E3A82] border border-[#E8DDF0]'
-              : 'bg-[#6E3A82] text-white hover:bg-[#8B4FA0] hover:scale-105'
+              ? 'bg-white text-[#642B80] border border-[#E8DDF0]'
+              : 'bg-[#642B80] text-white hover:bg-[#8B4FA0] hover:scale-105'
           }`}
           aria-label="Toggle AI Assistant"
         >
@@ -187,22 +187,22 @@ export default function ChatWidget() {
           >
             {/* Chat Header */}
             <div className="bg-[#3B214F] p-4 text-white flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#6E3A82] flex items-center justify-center shadow-inner">
-                <Sparkles className="w-5 h-5 text-[#C5A8D8]" />
+              <div className="w-10 h-10 rounded-full bg-[#642B80] flex items-center justify-center shadow-inner">
+                <Sparkles className="w-5 h-5 text-[#BCA1CD]" />
               </div>
               <div>
                 <h3 className="font-serif font-bold text-lg leading-tight">Devorah Assistant</h3>
-                <p className="text-[10px] text-[#C5A8D8] tracking-widest uppercase font-semibold">
+                <p className="text-[10px] text-[#BCA1CD] tracking-widest uppercase font-semibold">
                   Powered by AI
                 </p>
               </div>
             </div>
 
             {/* Chat Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#FAF8F5]">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#FCFCF7]">
               {messages.length === 0 && (
                 <div className="text-center text-[#716A73] text-sm mt-8 space-y-4">
-                  <div className="w-16 h-16 mx-auto bg-[#F4ECF7] rounded-full flex items-center justify-center text-[#6E3A82]">
+                  <div className="w-16 h-16 mx-auto bg-[#F4ECF7] rounded-full flex items-center justify-center text-[#642B80]">
                     <MessageCircle className="w-8 h-8" />
                   </div>
                   <p className="font-serif text-lg text-[#3B214F]">Hello! I&apos;m here to help.</p>
@@ -218,7 +218,7 @@ export default function ChatWidget() {
                   <div
                     className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm ${
                       m.role === 'user'
-                        ? 'bg-[#6E3A82] text-white rounded-tr-sm'
+                        ? 'bg-[#642B80] text-white rounded-tr-sm'
                         : 'bg-white text-[#3B214F] border border-[#E8DDF0] rounded-tl-sm'
                     }`}
                   >
@@ -247,13 +247,13 @@ export default function ChatWidget() {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Ask a question…"
-                  className="flex-1 bg-[#F4ECF7] text-[#3B214F] placeholder-[#A088B0] text-sm rounded-full px-5 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#6E3A82]/50 transition-all"
+                  className="flex-1 bg-[#F4ECF7] text-[#3B214F] placeholder-[#A088B0] text-sm rounded-full px-5 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#642B80]/50 transition-all"
                   disabled={isLoading}
                 />
                 <button
                   type="submit"
                   disabled={isLoading || !inputValue.trim()}
-                  className="w-10 h-10 rounded-full bg-[#6E3A82] text-white flex items-center justify-center hover:bg-[#8B4FA0] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+                  className="w-10 h-10 rounded-full bg-[#642B80] text-white flex items-center justify-center hover:bg-[#8B4FA0] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
                   aria-label="Send message"
                 >
                   <Send className="w-4 h-4 ml-0.5" />

@@ -65,7 +65,7 @@ export default function GetInvolvedPage() {
   ];
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen">
+    <div className="bg-[#FCFCF7] min-h-screen">
       
       {/* Hero Header */}
       <PageHero
@@ -85,7 +85,7 @@ export default function GetInvolvedPage() {
               className="p-8 rounded-3xl bg-white border border-[#E8DDF0] shadow-sm hover:shadow-xl transition-shadow flex flex-col justify-between space-y-6"
             >
               <div className="space-y-3">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#6E3A82]">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#642B80]">
                   {path.title}
                 </span>
                 <h3 className="font-serif text-2xl font-bold text-[#3B214F]">
@@ -96,7 +96,7 @@ export default function GetInvolvedPage() {
               <div className="pt-4 border-t border-[#E8DDF0]">
                 <Link
                   href={path.href}
-                  className="inline-flex items-center gap-2 bg-[#6E3A82] hover:bg-[#3B214F] text-white px-6 py-3 rounded-full text-sm font-semibold transition-colors"
+                  className="inline-flex items-center gap-2 bg-[#642B80] hover:bg-[#3B214F] text-white px-6 py-3 rounded-full text-sm font-semibold transition-colors"
                 >
                   <span>{path.cta}</span>
                   <ArrowRight className="w-4 h-4" />

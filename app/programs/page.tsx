@@ -40,7 +40,7 @@ export const metadata = {
 export default async function ProgramsPage() {
   const programs = await getPrograms();
   return (
-    <div className="bg-[#FAF8F5] min-h-screen">
+    <div className="bg-[#FCFCF7] min-h-screen">
       
       {/* Header Banner */}
       <PageHero

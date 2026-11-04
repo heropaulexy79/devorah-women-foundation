@@ -74,7 +74,7 @@ export default async function AlbumDetailPage({ params }: AlbumPageProps) {
     : [{ id: album.id, url: album.imageUrl, caption: album.caption }];
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen">
+    <div className="bg-[#FCFCF7] min-h-screen">
       {/* Header Banner */}
       <PageHero
         eyebrow={`${album.category} ARCHIVE`}
@@ -91,21 +91,21 @@ export default async function AlbumDetailPage({ params }: AlbumPageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
           
           <div className="space-y-2">
-            <div className="flex items-center gap-4 text-xs text-[#6E3A82] font-semibold uppercase tracking-wider">
+            <div className="flex items-center gap-4 text-xs text-[#642B80] font-semibold uppercase tracking-wider">
               <span className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-[#A987C2]" />
+                <MapPin className="w-4 h-4 text-[#BCA1CD]" />
                 {album.location}
               </span>
               <span>&middot;</span>
               <span className="flex items-center gap-1.5">
-                <Calendar className="w-4 h-4 text-[#A987C2]" />
+                <Calendar className="w-4 h-4 text-[#BCA1CD]" />
                 {album.date}
               </span>
             </div>
 
             {album.impactHighlight && (
               <div className="flex items-center gap-2 text-xs font-semibold text-[#3B214F] pt-1">
-                <Sparkles className="w-4 h-4 text-[#6E3A82]" />
+                <Sparkles className="w-4 h-4 text-[#642B80]" />
                 <span>{album.impactHighlight}</span>
               </div>
             )}
@@ -113,12 +113,12 @@ export default async function AlbumDetailPage({ params }: AlbumPageProps) {
 
           <div className="flex items-center gap-4">
             <span className="text-xs text-[#524C55] font-mono flex items-center gap-1.5">
-              <Images className="w-4 h-4 text-[#6E3A82]" />
+              <Images className="w-4 h-4 text-[#642B80]" />
               {photos.length} Photographs Documented
             </span>
             <Link
               href="/gallery"
-              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#6E3A82] hover:text-[#3B214F] border border-[#E8DDF0] hover:border-[#6E3A82]/40 px-4 py-2 rounded-sm transition-all"
+              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#642B80] hover:text-[#3B214F] border border-[#E8DDF0] hover:border-[#642B80]/40 px-4 py-2 rounded-sm transition-all"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Gallery</span>

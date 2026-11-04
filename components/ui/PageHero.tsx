@@ -41,8 +41,8 @@ export default function PageHero({
         <>
           {/* Fallback classy solid background with mesh and glow */}
           <div className="absolute inset-0 bg-[#1a0f22]" />
-          <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#6E3A82]/25 rounded-full blur-[100px] pointer-events-none" />
-          <div className="absolute -bottom-20 left-1/4 w-[400px] h-[400px] bg-[#A987C2]/15 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#642B80]/25 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute -bottom-20 left-1/4 w-[400px] h-[400px] bg-[#BCA1CD]/15 rounded-full blur-[100px] pointer-events-none" />
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
         </>
       )}
@@ -69,7 +69,7 @@ export default function PageHero({
                     {item.label}
                   </Link>
                 ) : (
-                  <span className="text-[#C5A8D8] font-semibold">{item.label}</span>
+                  <span className="text-[#BCA1CD] font-semibold">{item.label}</span>
                 )}
               </React.Fragment>
             ))}
@@ -83,7 +83,7 @@ export default function PageHero({
           transition={{ duration: 0.5, delay: 0.1 }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[#D8B4E2] text-[11px] font-semibold uppercase tracking-[0.25em] shadow-inner backdrop-blur-md mb-6"
         >
-          <Sparkles className="w-3.5 h-3.5 text-[#C5A8D8]" />
+          <Sparkles className="w-3.5 h-3.5 text-[#BCA1CD]" />
           <span>{eyebrow}</span>
         </motion.div>
 

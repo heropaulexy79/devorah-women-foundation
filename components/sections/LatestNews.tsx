@@ -23,7 +23,7 @@ export default function LatestNews() {
       .catch(() => {});
   }, []);
   return (
-    <section className="py-24 lg:py-32 bg-[#FAF8F5] relative overflow-hidden">
+    <section className="py-24 lg:py-32 bg-[#FCFCF7] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -34,7 +34,7 @@ export default function LatestNews() {
           />
           <Link
             href="/stories"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#6E3A82] hover:text-[#3B214F] shrink-0 transition-colors tracking-wide group"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#642B80] hover:text-[#3B214F] shrink-0 transition-colors tracking-wide group"
           >
             <span>View All Articles</span>
             <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
@@ -49,7 +49,7 @@ export default function LatestNews() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="group bg-white rounded-sm border border-[#E8DDF0] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#6E3A82]/40 transition-all duration-300 flex flex-col justify-between"
+              className="group bg-white rounded-sm border border-[#E8DDF0] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#642B80]/40 transition-all duration-300 flex flex-col justify-between"
             >
               <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#F4ECF7]">
                 <Image
@@ -67,7 +67,7 @@ export default function LatestNews() {
 
               <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-6">
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-xs text-[#6E3A82] font-semibold tracking-wider">
+                  <div className="flex items-center gap-3 text-xs text-[#642B80] font-semibold tracking-wider">
                     <span className="flex items-center gap-1.5">
                       <Calendar className="w-3.5 h-3.5" />
                       {article.publishedAt}
@@ -79,7 +79,7 @@ export default function LatestNews() {
                     </span>
                   </div>
 
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#3B214F] group-hover:text-[#6E3A82] transition-colors duration-200 leading-snug">
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#3B214F] group-hover:text-[#642B80] transition-colors duration-200 leading-snug">
                     <Link href={`/stories/${article.slug}`}>
                       {article.title}
                     </Link>
@@ -107,7 +107,7 @@ export default function LatestNews() {
 
                   <Link
                     href={`/stories/${article.slug}`}
-                    className="text-xs font-semibold text-[#6E3A82] group-hover:text-[#3B214F] inline-flex items-center gap-1 transition-colors"
+                    className="text-xs font-semibold text-[#642B80] group-hover:text-[#3B214F] inline-flex items-center gap-1 transition-colors"
                   >
                     <span>Read Article</span>
                     <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>

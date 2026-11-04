@@ -102,7 +102,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen">
+    <div className="bg-[#FCFCF7] min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(programJsonLd) }}
@@ -138,14 +138,14 @@ export default async function ProgramDetailPage({ params }: PageProps) {
 
             {/* Strategic Objectives */}
             <div className="p-8 rounded-3xl bg-white border border-[#E8DDF0] shadow-sm space-y-4">
-              <div className="flex items-center gap-2 text-[#6E3A82] font-semibold text-lg">
+              <div className="flex items-center gap-2 text-[#642B80] font-semibold text-lg">
                 <Target className="w-5 h-5" />
                 <h3>Strategic Objectives</h3>
               </div>
               <ul className="space-y-3 text-sm text-[#716A73]">
                 {program.objectives.map((obj, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-[#6E3A82] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#642B80] shrink-0 mt-0.5" />
                     <span>{obj}</span>
                   </li>
                 ))}
@@ -154,14 +154,14 @@ export default async function ProgramDetailPage({ params }: PageProps) {
 
             {/* Key Activities & Modules */}
             <div className="p-8 rounded-3xl bg-white border border-[#E8DDF0] shadow-sm space-y-4">
-              <div className="flex items-center gap-2 text-[#6E3A82] font-semibold text-lg">
+              <div className="flex items-center gap-2 text-[#642B80] font-semibold text-lg">
                 <Users className="w-5 h-5" />
                 <h3>Key Activities & Execution Modules</h3>
               </div>
               <ul className="space-y-3 text-sm text-[#716A73]">
                 {program.activities.map((act, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="w-2 h-2 rounded-full bg-[#6E3A82] shrink-0 mt-2" />
+                    <span className="w-2 h-2 rounded-full bg-[#642B80] shrink-0 mt-2" />
                     <span>{act}</span>
                   </li>
                 ))}
@@ -171,14 +171,14 @@ export default async function ProgramDetailPage({ params }: PageProps) {
             {/* Impact & Results */}
             {program.impactResults && program.impactResults.length > 0 && (
               <div className="p-8 rounded-3xl bg-[#3B214F] text-white shadow-xl space-y-4">
-                <div className="flex items-center gap-2 text-[#C5A8D8] font-semibold text-lg">
+                <div className="flex items-center gap-2 text-[#BCA1CD] font-semibold text-lg">
                   <Award className="w-5 h-5" />
                   <h3>Measurable Impact & Results</h3>
                 </div>
                 <ul className="space-y-3 text-sm text-[#E8DDF0]/90">
                   {program.impactResults.map((res, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#C5A8D8] shrink-0 mt-2" />
+                      <span className="w-2 h-2 rounded-full bg-[#BCA1CD] shrink-0 mt-2" />
                       <span>{res}</span>
                     </li>
                   ))}
@@ -189,8 +189,8 @@ export default async function ProgramDetailPage({ params }: PageProps) {
             {/* Program Testimonial */}
             {program.testimonial && (
               <div className="p-8 rounded-3xl bg-[#F7F3F8] border border-[#E8DDF0] space-y-4 relative overflow-hidden">
-                <Quote className="w-12 h-12 text-[#6E3A82]/15 absolute top-4 right-4" />
-                <span className="text-xs uppercase font-bold tracking-widest text-[#6E3A82]">
+                <Quote className="w-12 h-12 text-[#642B80]/15 absolute top-4 right-4" />
+                <span className="text-xs uppercase font-bold tracking-widest text-[#642B80]">
                   TESTIMONIAL
                 </span>
                 <p className="font-serif text-lg italic text-[#3B214F] leading-relaxed">
@@ -198,7 +198,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                 </p>
                 <div className="pt-2 border-t border-[#E8DDF0]/60">
                   <h4 className="font-semibold text-xs text-[#3B214F]">{program.testimonial.author}</h4>
-                  <p className="text-[11px] text-[#6E3A82]">{program.testimonial.role}</p>
+                  <p className="text-[11px] text-[#642B80]">{program.testimonial.role}</p>
                 </div>
               </div>
             )}
@@ -227,16 +227,16 @@ export default async function ProgramDetailPage({ params }: PageProps) {
               </h3>
 
               <div>
-                <h4 className="text-xs uppercase font-semibold text-[#6E3A82]">Target Audience</h4>
+                <h4 className="text-xs uppercase font-semibold text-[#642B80]">Target Audience</h4>
                 <p className="text-sm text-[#716A73] mt-1">{program.targetAudience}</p>
               </div>
 
               <div>
-                <h4 className="text-xs uppercase font-semibold text-[#6E3A82]">Primary Locations</h4>
+                <h4 className="text-xs uppercase font-semibold text-[#642B80]">Primary Locations</h4>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {program.locations.map((loc, idx) => (
                     <span key={idx} className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full bg-[#E8DDF0] text-[#3B214F]">
-                      <MapPin className="w-3 h-3 text-[#6E3A82]" />
+                      <MapPin className="w-3 h-3 text-[#642B80]" />
                       {loc}
                     </span>
                   ))}
@@ -253,7 +253,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                 </p>
                 <Link
                   href="/partnerships"
-                  className="w-full flex items-center justify-center gap-2 bg-[#6E3A82] hover:bg-[#3B214F] text-white py-3.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-colors shadow-sm"
+                  className="w-full flex items-center justify-center gap-2 bg-[#642B80] hover:bg-[#3B214F] text-white py-3.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-colors shadow-sm"
                 >
                   <HeartHandshake className="w-4 h-4" />
                   <span>Partner With Us</span>

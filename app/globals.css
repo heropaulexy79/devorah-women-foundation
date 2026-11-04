@@ -3,17 +3,17 @@
 @layer base {
   :root {
     --font-serif: 'Cormorant Garamond', Georgia, serif;
-    --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
     --brand-deep: #3B214F;
-    --brand-primary: #6E3A82;
-    --brand-lilac: #A987C2;
+    --brand-primary: #642B80;
+    --brand-lilac: #BCA1CD;
     --brand-soft-lilac: #E8DDF0;
-    --brand-ivory: #FAF8F5;
+    --brand-ivory: #FCFCF7;
     --brand-charcoal: #242024;
     --brand-muted: #716A73;
     --brand-light-bg: #F7F3F8;
     
-    --background: #FAF8F5;
+    --background: #FCFCF7;
     --foreground: #242024;
   }
 
@@ -64,20 +64,20 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #FAF8F5;
+  background: #FCFCF7;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #A987C2;
+  background: #BCA1CD;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6E3A82;
+  background: #642B80;
 }
 
 /* Focus Ring for WCAG Accessibility */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
-  outline: 2px solid #6E3A82;
+  outline: 2px solid #642B80;
   outline-offset: 2px;
 }

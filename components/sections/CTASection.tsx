@@ -12,13 +12,13 @@ export default function CTASection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto text-center space-y-8">
 
-          <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#A987C2]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-[#BCA1CD]">
             JOIN THE WORK
           </p>
 
           <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight">
             Every woman who rises,<br className="hidden sm:block" />
-            <span className="italic font-normal text-[#C5A8D8]"> lifts others with her.</span>
+            <span className="italic font-normal text-[#BCA1CD]"> lifts others with her.</span>
           </h2>
 
           <p className="text-base sm:text-lg text-[#E8DDF0]/90 max-w-xl mx-auto leading-relaxed">
@@ -29,7 +29,7 @@ export default function CTASection() {
           <div className="pt-4 flex flex-wrap items-center justify-center gap-5">
             <Link
               href="/partnerships"
-              className="inline-flex items-center bg-white hover:bg-[#FAF8F5] text-[#3B214F] px-8 py-3.5 rounded-sm text-sm font-semibold tracking-wide transition-all duration-300 shadow-md"
+              className="inline-flex items-center bg-white hover:bg-[#FCFCF7] text-[#3B214F] px-8 py-3.5 rounded-sm text-sm font-semibold tracking-wide transition-all duration-300 shadow-md"
             >
               Partner With Us
             </Link>

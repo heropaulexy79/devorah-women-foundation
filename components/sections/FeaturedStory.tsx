@@ -11,14 +11,14 @@ export default function FeaturedStory() {
   return (
     <section className="py-24 lg:py-32 bg-[#3B214F] text-white relative overflow-hidden">
       {/* Ambient light — very subtle */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#6E3A82]/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#A987C2]/08 rounded-full blur-2xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#642B80]/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#BCA1CD]/08 rounded-full blur-2xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Eyebrow */}
         <div className="mb-16 lg:mb-20">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#A987C2] mb-4">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#BCA1CD] mb-4">
             HER STORY
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white max-w-2xl leading-[1.15]">
@@ -52,27 +52,27 @@ export default function FeaturedStory() {
           <div className="lg:col-span-8 space-y-8">
             {/* Large decorative typographic quote mark */}
             <span
-              className="font-serif text-8xl text-[#A987C2]/25 leading-none select-none block -mb-4"
+              className="font-serif text-8xl text-[#BCA1CD]/25 leading-none select-none block -mb-4"
               aria-hidden="true"
             >
               &ldquo;
             </span>
 
-            <p className="font-serif text-2xl sm:text-3xl lg:text-4xl font-light italic leading-[1.4] text-[#FAF8F5]">
+            <p className="font-serif text-2xl sm:text-3xl lg:text-4xl font-light italic leading-[1.4] text-[#FCFCF7]">
               {FEATURED_STORY.quote.replace(/^"|"$/g, '')}
             </p>
 
-            <div className="pt-6 border-t border-[#A987C2]/20">
+            <div className="pt-6 border-t border-[#BCA1CD]/20">
               <h4 className="font-serif text-xl font-semibold text-white">
                 {FEATURED_STORY.authorName}
               </h4>
-              <div className="flex flex-wrap items-center gap-2.5 text-xs text-[#A987C2] mt-2 tracking-wide">
+              <div className="flex flex-wrap items-center gap-2.5 text-xs text-[#BCA1CD] mt-2 tracking-wide">
                 <span>{FEATURED_STORY.program}</span>
                 <span>&middot;</span>
                 <span>{FEATURED_STORY.location}</span>
                 <span>&middot;</span>
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/10 text-white/90 border border-white/15">
-                  <Calendar className="w-3 h-3 text-[#C5A8D8]" />
+                  <Calendar className="w-3 h-3 text-[#BCA1CD]" />
                   <span>Published {FEATURED_STORY.date}</span>
                 </span>
               </div>
@@ -80,7 +80,7 @@ export default function FeaturedStory() {
               <div className="mt-7">
                 <Link
                   href="/stories"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-[#A987C2] hover:text-white transition-colors tracking-wide group"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-[#BCA1CD] hover:text-white transition-colors tracking-wide group"
                 >
                   <span>Read Her Story</span>
                   <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>

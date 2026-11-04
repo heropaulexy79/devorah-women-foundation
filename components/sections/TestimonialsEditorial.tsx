@@ -68,20 +68,20 @@ export default function TestimonialsEditorial() {
               }}
               className="w-full flex flex-col items-center text-center px-6 sm:px-12 py-4"
             >
-              <Quote className="w-10 h-10 text-[#6E3A82]/30 mb-6 shrink-0" aria-hidden="true" />
+              <Quote className="w-10 h-10 text-[#642B80]/30 mb-6 shrink-0" aria-hidden="true" />
               
               <blockquote className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#3B214F] leading-relaxed mb-8 italic max-w-3xl">
                 "{currentTestimonial.quote}"
               </blockquote>
               
               <div className="flex flex-col items-center">
-                <div className="w-10 h-10 rounded-full bg-[#E8DDF0] text-[#6E3A82] flex items-center justify-center mb-3">
+                <div className="w-10 h-10 rounded-full bg-[#E8DDF0] text-[#642B80] flex items-center justify-center mb-3">
                   <UserCheck className="w-4 h-4" />
                 </div>
                 <h4 className="font-bold text-[#3B214F] text-xs sm:text-sm tracking-wider uppercase">
                   {currentTestimonial.authorName}
                 </h4>
-                <p className="text-xs text-[#6E3A82] font-semibold mt-1">
+                <p className="text-xs text-[#642B80] font-semibold mt-1">
                   {currentTestimonial.authorRelationship} &middot; {currentTestimonial.location}
                 </p>
               </div>
@@ -90,7 +90,7 @@ export default function TestimonialsEditorial() {
 
           {/* Navigation Controls — 44x44px touch targets */}
           <button
-            className="absolute top-1/2 -left-2 sm:-left-12 -translate-y-1/2 w-11 h-11 rounded-full bg-white border border-[#E8DDF0] text-[#6E3A82] flex items-center justify-center hover:bg-[#6E3A82] hover:text-white transition-all shadow-sm z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6E3A82]"
+            className="absolute top-1/2 -left-2 sm:-left-12 -translate-y-1/2 w-11 h-11 rounded-full bg-white border border-[#E8DDF0] text-[#642B80] flex items-center justify-center hover:bg-[#642B80] hover:text-white transition-all shadow-sm z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#642B80]"
             onClick={() => paginate(-1)}
             aria-label="Previous testimonial"
           >
@@ -98,7 +98,7 @@ export default function TestimonialsEditorial() {
           </button>
           
           <button
-            className="absolute top-1/2 -right-2 sm:-right-12 -translate-y-1/2 w-11 h-11 rounded-full bg-white border border-[#E8DDF0] text-[#6E3A82] flex items-center justify-center hover:bg-[#6E3A82] hover:text-white transition-all shadow-sm z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6E3A82]"
+            className="absolute top-1/2 -right-2 sm:-right-12 -translate-y-1/2 w-11 h-11 rounded-full bg-white border border-[#E8DDF0] text-[#642B80] flex items-center justify-center hover:bg-[#642B80] hover:text-white transition-all shadow-sm z-20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#642B80]"
             onClick={() => paginate(1)}
             aria-label="Next testimonial"
           >
@@ -117,8 +117,8 @@ export default function TestimonialsEditorial() {
               }}
               className={`transition-all duration-300 rounded-full ${
                 currentIndex === idx
-                  ? 'w-7 h-1.5 bg-[#6E3A82]'
-                  : 'w-1.5 h-1.5 bg-[#6E3A82]/30 hover:bg-[#6E3A82]/60'
+                  ? 'w-7 h-1.5 bg-[#642B80]'
+                  : 'w-1.5 h-1.5 bg-[#642B80]/30 hover:bg-[#642B80]/60'
               }`}
               aria-label={`Go to testimonial ${idx + 1}`}
             />

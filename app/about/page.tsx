@@ -128,7 +128,7 @@ export default async function AboutPage() {
   );
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen">
+    <div className="bg-[#FCFCF7] min-h-screen">
       
       {/* 1. Page Hero Header */}
       <PageHero
@@ -157,7 +157,7 @@ export default async function AboutPage() {
             </p>
 
             <div className="p-5 rounded-2xl bg-[#F7F3F8] border border-[#E8DDF0] space-y-2">
-              <h3 className="text-xs font-bold text-[#6E3A82] uppercase tracking-wider">
+              <h3 className="text-xs font-bold text-[#642B80] uppercase tracking-wider">
                 UN Sustainable Development Goals (SDGs 3 & 4)
               </h3>
               <p className="text-xs text-[#716A73] leading-relaxed">
@@ -198,8 +198,8 @@ export default async function AboutPage() {
           
           {/* Main Section Heading */}
           <div className="text-center max-w-3xl mx-auto">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8DDF0] text-[#6E3A82] text-[11px] font-bold tracking-[0.2em] uppercase mb-4 border border-[#C5A8D8]/50 shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-[#6E3A82]" />
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8DDF0] text-[#642B80] text-[11px] font-bold tracking-[0.2em] uppercase mb-4 border border-[#BCA1CD]/50 shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-[#642B80]" />
               GUIDING INSTITUTIONAL PILLARS
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#3B214F] tracking-tight leading-tight">
@@ -211,9 +211,9 @@ export default async function AboutPage() {
           </div>
 
           {/* Goal Hero Banner */}
-          <div className="relative bg-gradient-to-br from-[#3B214F] via-[#2A1638] to-[#512863] text-white rounded-2xl p-8 sm:p-12 shadow-2xl overflow-hidden border border-[#6E3A82]/30">
+          <div className="relative bg-gradient-to-br from-[#3B214F] via-[#2A1638] to-[#512863] text-white rounded-2xl p-8 sm:p-12 shadow-2xl overflow-hidden border border-[#642B80]/30">
             <div className="space-y-4">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.3em] text-[#C5A8D8]">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.3em] text-[#BCA1CD]">
                 <span>Our Overarching Goal</span>
               </div>
               <blockquote className="font-serif text-2xl sm:text-3xl lg:text-4xl text-white font-medium leading-relaxed">
@@ -228,7 +228,7 @@ export default async function AboutPage() {
             {/* Vision Card */}
             <div className="bg-white rounded-2xl p-8 sm:p-10 border border-[#E8DDF0] shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
               <div className="space-y-4">
-                <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#6E3A82] bg-[#F7F3F8] px-3 py-1 rounded-full border border-[#E8DDF0] inline-block">
+                <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#642B80] bg-[#F7F3F8] px-3 py-1 rounded-full border border-[#E8DDF0] inline-block">
                   OUR VISION
                 </span>
                 <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#3B214F] leading-snug">
@@ -240,7 +240,7 @@ export default async function AboutPage() {
             {/* Mission Card */}
             <div className="bg-white rounded-2xl p-8 sm:p-10 border border-[#E8DDF0] shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
               <div className="space-y-4">
-                <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#6E3A82] bg-[#F7F3F8] px-3 py-1 rounded-full border border-[#E8DDF0] inline-block">
+                <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#642B80] bg-[#F7F3F8] px-3 py-1 rounded-full border border-[#E8DDF0] inline-block">
                   OUR MISSION
                 </span>
                 <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#3B214F] leading-snug">
@@ -260,7 +260,7 @@ export default async function AboutPage() {
       <section className="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-12">
           <div>
-            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#6E3A82]">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#642B80]">
               FOUNDATION PILLARS
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-medium text-[#3B214F] mt-2">
@@ -278,13 +278,13 @@ export default async function AboutPage() {
             return (
               <div
                 key={idx}
-                className="bg-white rounded-2xl p-6 sm:p-8 border border-[#E8DDF0] shadow-md shadow-[#6E3A82]/5 hover:shadow-xl hover:border-[#6E3A82]/30 transition-all duration-300 flex flex-col justify-between group"
+                className="bg-white rounded-2xl p-6 sm:p-8 border border-[#E8DDF0] shadow-md shadow-[#642B80]/5 hover:shadow-xl hover:border-[#642B80]/30 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-[#F4ECF7] border border-[#E8DDF0] flex items-center justify-center text-[#6E3A82] mb-6 group-hover:bg-[#6E3A82] group-hover:text-white transition-all duration-300">
+                  <div className="w-12 h-12 rounded-xl bg-[#F4ECF7] border border-[#E8DDF0] flex items-center justify-center text-[#642B80] mb-6 group-hover:bg-[#642B80] group-hover:text-white transition-all duration-300">
                     <IconComp className="w-6 h-6" />
                   </div>
-                  <h3 className="font-serif text-lg font-semibold text-[#3B214F] mb-3 group-hover:text-[#6E3A82] transition-colors">
+                  <h3 className="font-serif text-lg font-semibold text-[#3B214F] mb-3 group-hover:text-[#642B80] transition-colors">
                     {val.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-[#716A73] leading-relaxed">
@@ -293,7 +293,7 @@ export default async function AboutPage() {
                 </div>
                 <div className="mt-6 pt-4 border-t border-[#F4ECF7] flex items-center justify-between text-[11px] font-semibold text-[#A088B0]">
                   <span>Pillar 0{idx + 1}</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#6E3A82]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#642B80]" />
                 </div>
               </div>
             );
@@ -322,7 +322,7 @@ export default async function AboutPage() {
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <div className="w-10 h-10 rounded-xl bg-[#F4ECF7] text-[#6E3A82] flex items-center justify-center font-bold text-sm">
+                      <div className="w-10 h-10 rounded-xl bg-[#F4ECF7] text-[#642B80] flex items-center justify-center font-bold text-sm">
                         <IconComp className="w-5 h-5" />
                       </div>
                       <span className="font-serif text-2xl font-bold text-[#E8DDF0]">
@@ -346,7 +346,7 @@ export default async function AboutPage() {
 
       {/* 7. Clearly Communicate Christian Identity */}
       <section className="py-20 lg:py-28 bg-[#3B214F] text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#6E3A82]/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#642B80]/20 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -367,14 +367,14 @@ export default async function AboutPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div className="p-4 rounded-xl bg-white/10 border border-white/15 backdrop-blur-md space-y-1">
-                  <h4 className="text-xs font-bold text-[#C5A8D8] uppercase">Biblical Integrity</h4>
+                  <h4 className="text-xs font-bold text-[#BCA1CD] uppercase">Biblical Integrity</h4>
                   <p className="text-xs text-[#E8DDF0]/70">
                     Operating with complete financial transparency, truth, and grace across all initiatives.
                   </p>
                 </div>
 
                 <div className="p-4 rounded-xl bg-white/10 border border-white/15 backdrop-blur-md space-y-1">
-                  <h4 className="text-xs font-bold text-[#C5A8D8] uppercase">Spiritual Renewal</h4>
+                  <h4 className="text-xs font-bold text-[#BCA1CD] uppercase">Spiritual Renewal</h4>
                   <p className="text-xs text-[#E8DDF0]/70">
                     Integrating prayer circles, devotional growth, and spiritual mentorship for lasting strength.
                   </p>
@@ -391,7 +391,7 @@ export default async function AboutPage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#3B214F] via-transparent to-transparent p-6 flex items-end">
-                  <p className="font-serif text-lg italic text-[#FAF8F5]">
+                  <p className="font-serif text-lg italic text-[#FCFCF7]">
                     "She arises as a mother and leader in her community, walking in wisdom and strength."
                   </p>
                 </div>

@@ -263,7 +263,7 @@ export default function DonateClient() {
   };
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen pb-24">
+    <div className="bg-[#FCFCF7] min-h-screen pb-24">
 
       {/* Hero Header */}
       <PageHero
@@ -290,18 +290,18 @@ export default function DonateClient() {
                     {finalAmount.toLocaleString()}
                   </strong>{' '}
                   was processed securely. A detailed confirmation receipt has been dispatched to{' '}
-                  <span className="font-semibold text-[#6E3A82]">{email}</span>.
+                  <span className="font-semibold text-[#642B80]">{email}</span>.
                 </p>
 
                 {/* Receipt Card */}
-                <div className="p-6 rounded-2xl bg-[#FAF8F5] border border-[#E8DDF0] max-w-lg mx-auto text-left text-xs space-y-3">
+                <div className="p-6 rounded-2xl bg-[#FCFCF7] border border-[#E8DDF0] max-w-lg mx-auto text-left text-xs space-y-3">
                   <div className="flex justify-between items-center pb-2 border-b border-[#E8DDF0]">
-                    <span className="font-bold text-[#6E3A82] uppercase tracking-wider text-[11px]">Official Donation Voucher</span>
+                    <span className="font-bold text-[#642B80] uppercase tracking-wider text-[11px]">Official Donation Voucher</span>
                     <span className="text-[10px] text-emerald-700 bg-emerald-100 font-bold px-2 py-0.5 rounded-full">PAID / VERIFIED</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[#716A73]">Reference ID:</span>
-                    <span className="font-mono font-bold text-[#6E3A82]">{successRef}</span>
+                    <span className="font-mono font-bold text-[#642B80]">{successRef}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[#716A73]">Donor Name:</span>
@@ -324,7 +324,7 @@ export default function DonateClient() {
                     <span className="font-medium text-[#3B214F]">Paystack (256-Bit SSL Encrypted)</span>
                   </div>
                   {isDemoMode && (
-                    <p className="pt-2 border-t border-[#E8DDF0] text-[11px] text-[#6E3A82] italic leading-relaxed">
+                    <p className="pt-2 border-t border-[#E8DDF0] text-[11px] text-[#642B80] italic leading-relaxed">
                       Notice: Running in Paystack test mode. To connect your live merchant account, update <code className="font-mono bg-white px-1 rounded">NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY</code> in <code className="font-mono bg-white px-1 rounded">.env.local</code>.
                     </p>
                   )}
@@ -333,7 +333,7 @@ export default function DonateClient() {
                 <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
                   <button
                     onClick={() => window.print()}
-                    className="inline-flex items-center gap-1.5 border border-[#E8DDF0] bg-white hover:bg-[#FAF8F5] text-[#3B214F] px-5 py-3 rounded-full text-xs font-semibold transition-colors shadow-sm"
+                    className="inline-flex items-center gap-1.5 border border-[#E8DDF0] bg-white hover:bg-[#FCFCF7] text-[#3B214F] px-5 py-3 rounded-full text-xs font-semibold transition-colors shadow-sm"
                   >
                     <Printer className="w-3.5 h-3.5" />
                     <span>Print Receipt</span>
@@ -344,13 +344,13 @@ export default function DonateClient() {
                       setCustomAmount('');
                       setIsDemoMode(false);
                     }}
-                    className="bg-[#6E3A82] hover:bg-[#3B214F] text-white px-7 py-3 rounded-full text-xs font-semibold transition-colors shadow-md"
+                    className="bg-[#642B80] hover:bg-[#3B214F] text-white px-7 py-3 rounded-full text-xs font-semibold transition-colors shadow-md"
                   >
                     Make Another Donation
                   </button>
                   <a
                     href="/"
-                    className="border border-[#E8DDF0] text-[#3B214F] hover:bg-[#FAF8F5] px-6 py-3 rounded-full text-xs font-semibold transition-colors"
+                    className="border border-[#E8DDF0] text-[#3B214F] hover:bg-[#FCFCF7] px-6 py-3 rounded-full text-xs font-semibold transition-colors"
                   >
                     Return Home
                   </a>
@@ -361,10 +361,10 @@ export default function DonateClient() {
                 <Script src="https://js.paystack.co/v1/inline.js" strategy="lazyOnload" />
                 {/* Notice if configured in demo / placeholder mode */}
                 {isPlaceholderKey && (
-                  <div className="p-3.5 rounded-xl bg-[#F7F3F8] border border-[#C5A8D8]/60 flex items-start gap-3 text-xs text-[#3B214F]">
-                    <Info className="w-4 h-4 text-[#6E3A82] shrink-0 mt-0.5" />
+                  <div className="p-3.5 rounded-xl bg-[#F7F3F8] border border-[#BCA1CD]/60 flex items-start gap-3 text-xs text-[#3B214F]">
+                    <Info className="w-4 h-4 text-[#642B80] shrink-0 mt-0.5" />
                     <p className="leading-relaxed">
-                      <strong>Paystack Ready:</strong> Submitting runs the interactive test verification flow. To collect real debit cards and mobile money payments, configure your live key in <code className="bg-white px-1.5 py-0.5 rounded font-mono text-[11px] text-[#6E3A82]">.env.local</code>.
+                      <strong>Paystack Ready:</strong> Submitting runs the interactive test verification flow. To collect real debit cards and mobile money payments, configure your live key in <code className="bg-white px-1.5 py-0.5 rounded font-mono text-[11px] text-[#642B80]">.env.local</code>.
                     </p>
                   </div>
                 )}
@@ -372,10 +372,10 @@ export default function DonateClient() {
                 {/* 1. Currency & Frequency Bar */}
                 <div className="space-y-4">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <label className="block text-xs font-bold uppercase tracking-widest text-[#6E3A82]">
+                    <label className="block text-xs font-bold uppercase tracking-widest text-[#642B80]">
                       1. Select Currency
                     </label>
-                    <div className="inline-flex rounded-xl p-1 bg-[#FAF8F5] border border-[#E8DDF0]">
+                    <div className="inline-flex rounded-xl p-1 bg-[#FCFCF7] border border-[#E8DDF0]">
                       {(Object.keys(CURRENCIES) as CurrencyCode[]).map((c) => (
                         <button
                           key={c}
@@ -383,7 +383,7 @@ export default function DonateClient() {
                           onClick={() => handleCurrencyChange(c)}
                           className={`px-3 py-1 text-xs font-bold rounded-lg transition-all ${
                             selectedCurrency === c
-                              ? 'bg-[#6E3A82] text-white shadow-sm'
+                              ? 'bg-[#642B80] text-white shadow-sm'
                               : 'text-[#716A73] hover:text-[#3B214F]'
                           }`}
                         >
@@ -394,16 +394,16 @@ export default function DonateClient() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-[#6E3A82] mb-2">
+                    <label className="block text-xs font-bold uppercase tracking-widest text-[#642B80] mb-2">
                       Donation Frequency
                     </label>
-                    <div className="grid grid-cols-2 gap-3 p-1.5 bg-[#FAF8F5] rounded-xl border border-[#E8DDF0]">
+                    <div className="grid grid-cols-2 gap-3 p-1.5 bg-[#FCFCF7] rounded-xl border border-[#E8DDF0]">
                       <button
                         type="button"
                         onClick={() => setDonationType('one-time')}
                         className={`py-3 px-2 sm:px-4 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 ${
                           donationType === 'one-time'
-                            ? 'bg-[#6E3A82] text-white shadow-md'
+                            ? 'bg-[#642B80] text-white shadow-md'
                             : 'text-[#3B214F]/70 hover:text-[#3B214F]'
                         }`}
                       >
@@ -415,7 +415,7 @@ export default function DonateClient() {
                         onClick={() => setDonationType('recurring')}
                         className={`py-3 px-2 sm:px-4 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 ${
                           donationType === 'recurring'
-                            ? 'bg-[#6E3A82] text-white shadow-md'
+                            ? 'bg-[#642B80] text-white shadow-md'
                             : 'text-[#3B214F]/70 hover:text-[#3B214F]'
                         }`}
                       >
@@ -428,7 +428,7 @@ export default function DonateClient() {
 
                 {/* 2. Amount Selection */}
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-[#6E3A82] mb-3">
+                  <label className="block text-xs font-bold uppercase tracking-widest text-[#642B80] mb-3">
                     2. Select Amount ({currentCurrency.code} {currentCurrency.symbol})
                   </label>
                   <div className="grid grid-cols-3 sm:grid-cols-5 gap-2.5 mb-4">
@@ -443,7 +443,7 @@ export default function DonateClient() {
                         className={`py-3 rounded-xl border text-sm font-bold transition-all cursor-pointer ${
                           selectedAmount === amt && !customAmount
                             ? 'bg-[#3B214F] text-white border-[#3B214F] shadow-sm'
-                            : 'bg-white text-[#3B214F] border-[#E8DDF0] hover:border-[#6E3A82] hover:bg-[#FAF8F5]'
+                            : 'bg-white text-[#3B214F] border-[#E8DDF0] hover:border-[#642B80] hover:bg-[#FCFCF7]'
                         }`}
                       >
                         {currentCurrency.symbol}
@@ -453,7 +453,7 @@ export default function DonateClient() {
                   </div>
 
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-[#6E3A82]">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-[#642B80]">
                       {currentCurrency.symbol}
                     </span>
                     <input
@@ -467,20 +467,20 @@ export default function DonateClient() {
                           setSelectedAmount(null);
                         }
                       }}
-                      className="w-full pl-10 pr-4 py-3 bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl text-sm font-medium focus:outline-none focus:border-[#6E3A82] text-[#3B214F] transition-colors"
+                      className="w-full pl-10 pr-4 py-3 bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl text-sm font-medium focus:outline-none focus:border-[#642B80] text-[#3B214F] transition-colors"
                     />
                   </div>
                 </div>
 
                 {/* 3. Designation/Pillar */}
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-[#6E3A82] mb-3">
+                  <label className="block text-xs font-bold uppercase tracking-widest text-[#642B80] mb-3">
                     3. Direct Your Impact
                   </label>
                   <select
                     value={pillar}
                     onChange={(e) => setPillar(e.target.value)}
-                    className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl text-sm font-medium focus:outline-none focus:border-[#6E3A82] transition-colors text-[#3B214F]"
+                    className="w-full px-4 py-3 bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl text-sm font-medium focus:outline-none focus:border-[#642B80] transition-colors text-[#3B214F]"
                   >
                     {PILLARS.map((p) => (
                       <option key={p.id} value={p.id}>
@@ -492,7 +492,7 @@ export default function DonateClient() {
 
                 {/* 4. Donor Information */}
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-[#6E3A82] mb-3">
+                  <label className="block text-xs font-bold uppercase tracking-widest text-[#642B80] mb-3">
                     4. Donor Details
                   </label>
                   <div className="space-y-3">
@@ -502,7 +502,7 @@ export default function DonateClient() {
                       required
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
-                      className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl text-sm font-medium focus:outline-none focus:border-[#6E3A82] transition-colors"
+                      className="w-full px-4 py-3 bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl text-sm font-medium focus:outline-none focus:border-[#642B80] transition-colors"
                     />
                     <input
                       type="email"
@@ -510,21 +510,21 @@ export default function DonateClient() {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl text-sm font-medium focus:outline-none focus:border-[#6E3A82] transition-colors"
+                      className="w-full px-4 py-3 bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl text-sm font-medium focus:outline-none focus:border-[#642B80] transition-colors"
                     />
                     <input
                       type="tel"
                       placeholder="Phone Number (Optional)"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E8DDF0] rounded-xl text-sm font-medium focus:outline-none focus:border-[#6E3A82] transition-colors"
+                      className="w-full px-4 py-3 bg-[#FCFCF7] border border-[#E8DDF0] rounded-xl text-sm font-medium focus:outline-none focus:border-[#642B80] transition-colors"
                     />
                     <label className="flex items-center gap-2.5 text-xs text-[#242024]/70 pt-1 cursor-pointer select-none">
                       <input
                         type="checkbox"
                         checked={isAnonymous}
                         onChange={(e) => setIsAnonymous(e.target.checked)}
-                        className="rounded text-[#6E3A82] focus:ring-[#6E3A82] w-4 h-4"
+                        className="rounded text-[#642B80] focus:ring-[#642B80] w-4 h-4"
                       />
                       Make this donation anonymous on public records
                     </label>
@@ -542,7 +542,7 @@ export default function DonateClient() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#6E3A82] hover:bg-[#3B214F] text-white py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 sm:gap-3 disabled:opacity-50 cursor-pointer"
+                  className="w-full bg-[#642B80] hover:bg-[#3B214F] text-white py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 sm:gap-3 disabled:opacity-50 cursor-pointer"
                 >
                   <CreditCard className="w-5 h-5" />
                   <span>
@@ -565,7 +565,7 @@ export default function DonateClient() {
           <div className="lg:col-span-5 space-y-6">
             {/* Direct Bank Transfer Card */}
             <div className="bg-white p-6 sm:p-8 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-4">
-              <div className="flex items-center gap-2 text-[#6E3A82]">
+              <div className="flex items-center gap-2 text-[#642B80]">
                 <Building2 className="w-5 h-5" />
                 <span className="text-[11px] font-bold uppercase tracking-widest">DIRECT BANK TRANSFER</span>
               </div>
@@ -576,7 +576,7 @@ export default function DonateClient() {
 
               <div className="space-y-3 pt-1">
                 {/* Account details box */}
-                <div className="p-4 rounded-xl bg-[#FAF8F5] border border-[#E8DDF0] space-y-2 text-xs">
+                <div className="p-4 rounded-xl bg-[#FCFCF7] border border-[#E8DDF0] space-y-2 text-xs">
                   <div className="flex justify-between items-center">
                     <span className="text-[#716A73]">Bank Name:</span>
                     <span className="font-semibold text-[#3B214F]">Wema</span>
@@ -588,11 +588,11 @@ export default function DonateClient() {
                   <div className="flex justify-between items-center pt-1 border-t border-[#E8DDF0]">
                     <span className="text-[#716A73]">Account Number:</span>
                     <div className="flex items-center gap-2">
-                      <span className="font-mono font-bold text-sm text-[#6E3A82]">0128102671</span>
+                      <span className="font-mono font-bold text-sm text-[#642B80]">0128102671</span>
                       <button
                         type="button"
                         onClick={() => copyAccountNumber('1441002345')}
-                        className="p-1 hover:bg-white rounded border border-[#E8DDF0] text-[#6E3A82] transition-colors"
+                        className="p-1 hover:bg-white rounded border border-[#E8DDF0] text-[#642B80] transition-colors"
                         title="Copy Account Number"
                       >
                         {copiedBank ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
@@ -618,7 +618,7 @@ export default function DonateClient() {
                   href="https://wa.me/2348030526200?text=Hello%20Devorah%20Foundation,%20I%20have%20made%20a%20donation%20transfer."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-semibold text-[#6E3A82] hover:underline inline-flex items-center gap-0.5"
+                  className="font-semibold text-[#642B80] hover:underline inline-flex items-center gap-0.5"
                 >
                   Finance WhatsApp <ExternalLink className="w-3 h-3 inline" />
                 </a>{' '}
@@ -628,9 +628,9 @@ export default function DonateClient() {
 
             {/* Commitment Box */}
             <div className="bg-[#3B214F] text-white p-8 rounded-2xl shadow-lg relative overflow-hidden">
-              <div className="absolute top-0 right-0 translate-x-4 -translate-y-4 w-40 h-40 bg-[#6E3A82]/40 rounded-full blur-2xl" />
+              <div className="absolute top-0 right-0 translate-x-4 -translate-y-4 w-40 h-40 bg-[#642B80]/40 rounded-full blur-2xl" />
               <div className="relative z-10 space-y-4">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#C5A8D8]">OUR COMMITMENT</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#BCA1CD]">OUR COMMITMENT</span>
                 <h3 className="font-serif text-2xl font-bold">Stewardship &amp; Excellence</h3>
                 <p className="text-sm text-[#E8DDF0]/80 leading-relaxed">
                   100% of public donations directly fund our local outreach centers, scholar stipends, and enterprise
@@ -638,11 +638,11 @@ export default function DonateClient() {
                 </p>
                 <ul className="space-y-3 pt-2 text-xs text-[#E8DDF0]/90">
                   <li className="flex items-center gap-2.5">
-                    <ShieldCheck className="w-4 h-4 text-[#C5A8D8]" />
+                    <ShieldCheck className="w-4 h-4 text-[#BCA1CD]" />
                     Audited financial reporting and governance
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <Sparkles className="w-4 h-4 text-[#C5A8D8]" />
+                    <Sparkles className="w-4 h-4 text-[#BCA1CD]" />
                     Direct mentorship tracking for every beneficiary
                   </li>
                 </ul>
@@ -659,7 +659,7 @@ export default function DonateClient() {
               <div className="pt-2">
                 <a
                   href="/partnerships"
-                  className="inline-flex items-center gap-2 text-xs font-bold text-[#6E3A82] hover:text-[#3B214F] transition-colors"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-[#642B80] hover:text-[#3B214F] transition-colors"
                 >
                   Explore Strategic Partnerships &rarr;
                 </a>

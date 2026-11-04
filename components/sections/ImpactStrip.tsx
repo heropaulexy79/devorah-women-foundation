@@ -22,7 +22,7 @@ export default function ImpactStrip() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Editorial headline */}
         <div className="mb-16 lg:mb-20">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#A987C2] mb-4">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#BCA1CD] mb-4">
             OUR IMPACT
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white max-w-lg leading-[1.2]">
@@ -59,7 +59,7 @@ export default function ImpactStrip() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
               >
-                <div className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-[#C5A8D8] tracking-tight leading-none">
+                <div className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-[#BCA1CD] tracking-tight leading-none">
                   {metric.number}
                 </div>
                 <h3 className="text-sm font-semibold text-white mt-4 leading-snug">

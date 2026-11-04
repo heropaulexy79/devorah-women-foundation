@@ -23,7 +23,7 @@ export default function ResourcesClient() {
   });
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen">
+    <div className="bg-[#FCFCF7] min-h-screen">
       {/* Header Banner */}
       <div className="relative">
         <PageHero
@@ -34,13 +34,13 @@ export default function ResourcesClient() {
         />
         <div className="max-w-md mx-auto px-4 -mt-8 relative z-20 pb-8">
           <div className="relative shadow-lg rounded-full">
-            <Search className="w-5 h-5 absolute left-4 top-3.5 text-[#6E3A82]" />
+            <Search className="w-5 h-5 absolute left-4 top-3.5 text-[#642B80]" />
             <input
               type="text"
               placeholder="Search library resources..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3.5 rounded-full border border-[#E8DDF0] bg-white text-sm focus:outline-none focus:border-[#6E3A82] text-[#3B214F] placeholder-[#9B8CA6]"
+              className="w-full pl-12 pr-4 py-3.5 rounded-full border border-[#E8DDF0] bg-white text-sm focus:outline-none focus:border-[#642B80] text-[#3B214F] placeholder-[#9B8CA6]"
             />
           </div>
         </div>
@@ -56,7 +56,7 @@ export default function ResourcesClient() {
               onClick={() => setSelectedCat(cat)}
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
                 selectedCat === cat
-                  ? 'bg-[#6E3A82] text-white shadow-sm'
+                  ? 'bg-[#642B80] text-white shadow-sm'
                   : 'bg-white border border-[#E8DDF0] text-[#716A73] hover:text-[#3B214F] hover:bg-[#E8DDF0]/40'
               }`}
             >
@@ -77,7 +77,7 @@ export default function ResourcesClient() {
               </div>
 
               <div className="space-y-3 flex-grow">
-                <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-[#E8DDF0] text-[#6E3A82]">
+                <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-[#E8DDF0] text-[#642B80]">
                   {res.type}
                 </span>
 
@@ -85,7 +85,7 @@ export default function ResourcesClient() {
                   {res.title}
                 </h3>
 
-                <p className="text-xs text-[#6E3A82] font-medium">By {res.author}</p>
+                <p className="text-xs text-[#642B80] font-medium">By {res.author}</p>
 
                 <p className="text-xs text-[#716A73] line-clamp-2 leading-relaxed">
                   {res.shortDescription}
@@ -98,7 +98,7 @@ export default function ResourcesClient() {
                       e.preventDefault();
                       alert('Reading mode active for ' + res.title);
                     }}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#6E3A82] hover:text-[#3B214F]"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#642B80] hover:text-[#3B214F]"
                   >
                     <Eye className="w-3.5 h-3.5" />
                     <span>Read Online</span>
@@ -109,7 +109,7 @@ export default function ResourcesClient() {
                       e.preventDefault();
                       alert('Downloading ' + res.title);
                     }}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold bg-[#6E3A82] hover:bg-[#3B214F] text-white px-3 py-1.5 rounded-full transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold bg-[#642B80] hover:bg-[#3B214F] text-white px-3 py-1.5 rounded-full transition-colors"
                   >
                     <Download className="w-3.5 h-3.5" />
                     <span>Download PDF</span>

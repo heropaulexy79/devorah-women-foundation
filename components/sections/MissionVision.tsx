@@ -39,17 +39,17 @@ const VALUES = [
 
 export default function MissionVision() {
   return (
-    <section className="py-24 lg:py-32 bg-[#FAF8F5] relative overflow-hidden">
+    <section className="py-24 lg:py-32 bg-[#FCFCF7] relative overflow-hidden">
       {/* Background Decorative Gradients */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#E8DDF0]/40 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-80 h-80 bg-[#6E3A82]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-80 h-80 bg-[#642B80]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* 1. Main Heading Section (Prominent Header) */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8DDF0] text-[#6E3A82] text-[11px] font-bold tracking-[0.2em] uppercase mb-4 border border-[#C5A8D8]/50 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-[#6E3A82]" />
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8DDF0] text-[#642B80] text-[11px] font-bold tracking-[0.2em] uppercase mb-4 border border-[#BCA1CD]/50 shadow-sm">
+            <Sparkles className="w-3.5 h-3.5 text-[#642B80]" />
             GUIDING INSTITUTIONAL PILLARS
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#3B214F] tracking-tight leading-tight">
@@ -62,15 +62,15 @@ export default function MissionVision() {
 
         {/* 2. Hero Overarching Goal Banner */}
         <motion.div
-          className="relative bg-gradient-to-br from-[#3B214F] via-[#2A1638] to-[#512863] text-white rounded-2xl p-8 sm:p-12 lg:p-14 shadow-2xl overflow-hidden mb-12 border border-[#6E3A82]/30"
+          className="relative bg-gradient-to-br from-[#3B214F] via-[#2A1638] to-[#512863] text-white rounded-2xl p-8 sm:p-12 lg:p-14 shadow-2xl overflow-hidden mb-12 border border-[#642B80]/30"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           {/* Subtle Background Glow & Pattern */}
-          <div className="absolute -top-24 -right-24 w-80 h-80 bg-[#A987C2]/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-[#6E3A82]/30 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-24 -right-24 w-80 h-80 bg-[#BCA1CD]/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-[#642B80]/30 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-12 space-y-4">
@@ -78,7 +78,7 @@ export default function MissionVision() {
                 <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-[#D8B4E2]">
                   <Quote className="w-5 h-5 fill-current" />
                 </div>
-                <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#C5A8D8]">
+                <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#BCA1CD]">
                   Our Overarching Goal
                 </span>
               </div>
@@ -101,21 +101,21 @@ export default function MissionVision() {
 
           {/* Vision Card */}
           <motion.div
-            className="group bg-white rounded-2xl p-8 sm:p-10 border border-[#E8DDF0] shadow-lg hover:shadow-2xl hover:border-[#6E3A82]/40 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+            className="group bg-white rounded-2xl p-8 sm:p-10 border border-[#E8DDF0] shadow-lg hover:shadow-2xl hover:border-[#642B80]/40 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             {/* Top Accent Gradient */}
-            <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#6E3A82] to-[#A987C2]" />
+            <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#642B80] to-[#BCA1CD]" />
 
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <div className="w-14 h-14 rounded-xl bg-[#F7F3F8] border border-[#E8DDF0] flex items-center justify-center text-[#6E3A82] group-hover:bg-[#6E3A82] group-hover:text-white transition-all duration-300 shadow-sm">
+                <div className="w-14 h-14 rounded-xl bg-[#F7F3F8] border border-[#E8DDF0] flex items-center justify-center text-[#642B80] group-hover:bg-[#642B80] group-hover:text-white transition-all duration-300 shadow-sm">
                   <Compass className="w-7 h-7" />
                 </div>
-                <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#6E3A82] bg-[#F7F3F8] px-3.5 py-1.5 rounded-full border border-[#E8DDF0]">
+                <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#642B80] bg-[#F7F3F8] px-3.5 py-1.5 rounded-full border border-[#E8DDF0]">
                   Our Vision
                 </span>
               </div>
@@ -130,31 +130,31 @@ export default function MissionVision() {
               </div>
             </div>
 
-            <div className="pt-8 mt-8 border-t border-[#F7F3F8] flex items-center justify-between text-xs text-[#6E3A82] font-semibold">
+            <div className="pt-8 mt-8 border-t border-[#F7F3F8] flex items-center justify-between text-xs text-[#642B80] font-semibold">
               <span className="flex items-center gap-1.5">
                 <Globe className="w-4 h-4" /> Global & Multi-Sector Impact
               </span>
-              <span className="w-2 h-2 rounded-full bg-[#6E3A82]" />
+              <span className="w-2 h-2 rounded-full bg-[#642B80]" />
             </div>
           </motion.div>
 
           {/* Mission Card */}
           <motion.div
-            className="group bg-white rounded-2xl p-8 sm:p-10 border border-[#E8DDF0] shadow-lg hover:shadow-2xl hover:border-[#6E3A82]/40 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+            className="group bg-white rounded-2xl p-8 sm:p-10 border border-[#E8DDF0] shadow-lg hover:shadow-2xl hover:border-[#642B80]/40 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             {/* Top Accent Gradient */}
-            <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#A987C2] to-[#3B214F]" />
+            <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#BCA1CD] to-[#3B214F]" />
 
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <div className="w-14 h-14 rounded-xl bg-[#F7F3F8] border border-[#E8DDF0] flex items-center justify-center text-[#6E3A82] group-hover:bg-[#6E3A82] group-hover:text-white transition-all duration-300 shadow-sm">
+                <div className="w-14 h-14 rounded-xl bg-[#F7F3F8] border border-[#E8DDF0] flex items-center justify-center text-[#642B80] group-hover:bg-[#642B80] group-hover:text-white transition-all duration-300 shadow-sm">
                   <Target className="w-7 h-7" />
                 </div>
-                <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#6E3A82] bg-[#F7F3F8] px-3.5 py-1.5 rounded-full border border-[#E8DDF0]">
+                <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#642B80] bg-[#F7F3F8] px-3.5 py-1.5 rounded-full border border-[#E8DDF0]">
                   Our Mission
                 </span>
               </div>
@@ -170,9 +170,9 @@ export default function MissionVision() {
             </div>
 
             <div className="pt-6 mt-8 border-t border-[#F7F3F8] flex flex-wrap items-center gap-2">
-              <span className="text-[10px] font-bold text-[#6E3A82] uppercase bg-[#E8DDF0] px-2.5 py-1 rounded-md">Healthcare</span>
-              <span className="text-[10px] font-bold text-[#6E3A82] uppercase bg-[#E8DDF0] px-2.5 py-1 rounded-md">Quality Education</span>
-              <span className="text-[10px] font-bold text-[#6E3A82] uppercase bg-[#E8DDF0] px-2.5 py-1 rounded-md">Food Security</span>
+              <span className="text-[10px] font-bold text-[#642B80] uppercase bg-[#E8DDF0] px-2.5 py-1 rounded-md">Healthcare</span>
+              <span className="text-[10px] font-bold text-[#642B80] uppercase bg-[#E8DDF0] px-2.5 py-1 rounded-md">Quality Education</span>
+              <span className="text-[10px] font-bold text-[#642B80] uppercase bg-[#E8DDF0] px-2.5 py-1 rounded-md">Food Security</span>
             </div>
           </motion.div>
 
@@ -213,7 +213,7 @@ function CoreValuesCarousel() {
       {/* Header & Slider Navigation */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="max-w-3xl space-y-2">
-          <span className="text-[10px] font-extrabold uppercase tracking-[0.3em] text-[#6E3A82] bg-[#E8DDF0] px-3 py-1 rounded-full border border-[#C5A8D8]/40 inline-block">
+          <span className="text-[10px] font-extrabold uppercase tracking-[0.3em] text-[#642B80] bg-[#E8DDF0] px-3 py-1 rounded-full border border-[#BCA1CD]/40 inline-block">
             CORE VALUES
           </span>
           <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#3B214F] leading-snug">
@@ -225,17 +225,17 @@ function CoreValuesCarousel() {
         <div className="flex items-center gap-3 shrink-0">
           <button
             onClick={handlePrev}
-            className="w-11 h-11 rounded-full bg-white border border-[#E8DDF0] flex items-center justify-center text-[#3B214F] hover:bg-[#6E3A82] hover:text-white hover:border-[#6E3A82] transition-all shadow-sm"
+            className="w-11 h-11 rounded-full bg-white border border-[#E8DDF0] flex items-center justify-center text-[#3B214F] hover:bg-[#642B80] hover:text-white hover:border-[#642B80] transition-all shadow-sm"
             aria-label="Previous core values"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
-          <span className="text-xs font-bold text-[#6E3A82] px-2 font-mono">
+          <span className="text-xs font-bold text-[#642B80] px-2 font-mono">
             0{activePageIndex + 1} / 0{totalPages}
           </span>
           <button
             onClick={handleNext}
-            className="w-11 h-11 rounded-full bg-white border border-[#E8DDF0] flex items-center justify-center text-[#3B214F] hover:bg-[#6E3A82] hover:text-white hover:border-[#6E3A82] transition-all shadow-sm"
+            className="w-11 h-11 rounded-full bg-white border border-[#E8DDF0] flex items-center justify-center text-[#3B214F] hover:bg-[#642B80] hover:text-white hover:border-[#642B80] transition-all shadow-sm"
             aria-label="Next core values"
           >
             <ChevronRight className="w-5 h-5" />
@@ -259,14 +259,14 @@ function CoreValuesCarousel() {
             return (
               <div
                 key={val.title}
-                className="group bg-white rounded-2xl p-7 sm:p-8 border border-[#E8DDF0] shadow-md hover:shadow-2xl hover:border-[#6E3A82]/40 transition-all duration-300 flex flex-col justify-between"
+                className="group bg-white rounded-2xl p-7 sm:p-8 border border-[#E8DDF0] shadow-md hover:shadow-2xl hover:border-[#642B80]/40 transition-all duration-300 flex flex-col justify-between"
               >
                 <div className="space-y-5">
-                  <div className="w-12 h-12 rounded-xl bg-[#F7F3F8] border border-[#E8DDF0] flex items-center justify-center text-[#6E3A82] group-hover:bg-[#6E3A82] group-hover:text-white transition-all duration-300 shadow-sm">
+                  <div className="w-12 h-12 rounded-xl bg-[#F7F3F8] border border-[#E8DDF0] flex items-center justify-center text-[#642B80] group-hover:bg-[#642B80] group-hover:text-white transition-all duration-300 shadow-sm">
                     <IconComp className="w-6 h-6" aria-hidden="true" />
                   </div>
 
-                  <h4 className="font-serif text-2xl font-bold text-[#3B214F] group-hover:text-[#6E3A82] transition-colors duration-200">
+                  <h4 className="font-serif text-2xl font-bold text-[#3B214F] group-hover:text-[#642B80] transition-colors duration-200">
                     {val.title}
                   </h4>
 
@@ -275,9 +275,9 @@ function CoreValuesCarousel() {
                   </p>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-[#F7F3F8] flex items-center justify-between text-[11px] font-bold tracking-wider text-[#A987C2] group-hover:text-[#6E3A82] transition-colors duration-200">
+                <div className="mt-8 pt-4 border-t border-[#F7F3F8] flex items-center justify-between text-[11px] font-bold tracking-wider text-[#BCA1CD] group-hover:text-[#642B80] transition-colors duration-200">
                   <span>CORE VALUE 0{actualIndex + 1}</span>
-                  <span className="w-2 h-2 rounded-full bg-[#6E3A82]/30 group-hover:bg-[#6E3A82] transition-all duration-300" />
+                  <span className="w-2 h-2 rounded-full bg-[#642B80]/30 group-hover:bg-[#642B80] transition-all duration-300" />
                 </div>
               </div>
             );
@@ -293,8 +293,8 @@ function CoreValuesCarousel() {
             onClick={() => setActivePageIndex(pageIdx)}
             className={`transition-all duration-300 rounded-full ${
               activePageIndex === pageIdx
-                ? 'w-8 h-2 bg-[#6E3A82]'
-                : 'w-2 h-2 bg-[#E8DDF0] hover:bg-[#C5A8D8]'
+                ? 'w-8 h-2 bg-[#642B80]'
+                : 'w-2 h-2 bg-[#E8DDF0] hover:bg-[#BCA1CD]'
             }`}
             aria-label={`Go to page ${pageIdx + 1}`}
           />

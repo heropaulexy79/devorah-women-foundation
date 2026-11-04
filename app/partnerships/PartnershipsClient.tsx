@@ -59,7 +59,7 @@ export default function PartnershipsClient() {
   };
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen">
+    <div className="bg-[#FCFCF7] min-h-screen">
       {/* Header Banner */}
       <PageHero
         eyebrow="INSTITUTIONAL PARTNERSHIPS"
@@ -83,9 +83,9 @@ export default function PartnershipsClient() {
             return (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-white border border-[#E8DDF0] shadow-sm hover:border-[#6E3A82] transition-colors space-y-3"
+                className="p-6 rounded-2xl bg-white border border-[#E8DDF0] shadow-sm hover:border-[#642B80] transition-colors space-y-3"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#F4ECF7] text-[#6E3A82] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-[#F4ECF7] text-[#642B80] flex items-center justify-center">
                   <IconComp className="w-5 h-5" />
                 </div>
                 <h3 className="font-serif text-lg font-bold text-[#3B214F]">{partner.name}</h3>
@@ -112,7 +112,7 @@ export default function PartnershipsClient() {
                 className="p-6 rounded-2xl bg-white border border-[#E8DDF0] shadow-sm space-y-3 flex flex-col justify-between"
               >
                 <div className="space-y-2">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#6E3A82]">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#642B80]">
                     OPPORTUNITY 0{idx + 1}
                   </span>
                   <h4 className="font-serif text-base font-bold text-[#3B214F]">{type}</h4>
@@ -125,7 +125,7 @@ export default function PartnershipsClient() {
 
       {/* Partner Logos Showcase */}
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-        <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-[#6E3A82]">
+        <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-[#642B80]">
           OUR INSTITUTIONAL ALLIANCES & PARTNER LOGOS
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
@@ -144,7 +144,7 @@ export default function PartnershipsClient() {
       <section className="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white p-8 sm:p-12 rounded-3xl border border-[#E8DDF0] shadow-xl space-y-8">
           <div className="text-center space-y-2">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#6E3A82]">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#642B80]">
               PARTNERSHIP ENQUIRY FORM
             </span>
             <h2 className="font-serif text-3xl font-bold text-[#3B214F]">Together, We Can Create Greater Impact.</h2>
@@ -154,8 +154,8 @@ export default function PartnershipsClient() {
           </div>
 
           {submitted ? (
-            <div className="p-8 rounded-2xl bg-[#E8DDF0]/60 border border-[#A987C2] text-center space-y-4">
-              <CheckCircle2 className="w-12 h-12 text-[#6E3A82] mx-auto" />
+            <div className="p-8 rounded-2xl bg-[#E8DDF0]/60 border border-[#BCA1CD] text-center space-y-4">
+              <CheckCircle2 className="w-12 h-12 text-[#642B80] mx-auto" />
               <h3 className="font-serif text-2xl font-bold text-[#3B214F]">Partnership Inquiry Received</h3>
               <p className="text-sm text-[#716A73] max-w-md mx-auto">
                 Thank you for reaching out. A senior representative from Devorah Women's Leadership & Empowerment Initiative will review your
@@ -163,7 +163,7 @@ export default function PartnershipsClient() {
               </p>
               <button
                 onClick={() => setSubmitted(false)}
-                className="inline-block text-xs font-semibold text-[#6E3A82] underline pt-2"
+                className="inline-block text-xs font-semibold text-[#642B80] underline pt-2"
               >
                 Submit another inquiry
               </button>
@@ -178,7 +178,7 @@ export default function PartnershipsClient() {
                     required
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
+                    className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FCFCF7] text-sm focus:outline-none focus:border-[#642B80]"
                     placeholder="Your Name"
                   />
                 </div>
@@ -191,7 +191,7 @@ export default function PartnershipsClient() {
                     required
                     value={formData.organization}
                     onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
+                    className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FCFCF7] text-sm focus:outline-none focus:border-[#642B80]"
                     placeholder="Organisation Name"
                   />
                 </div>
@@ -205,7 +205,7 @@ export default function PartnershipsClient() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
+                    className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FCFCF7] text-sm focus:outline-none focus:border-[#642B80]"
                     placeholder="office@organisation.org"
                   />
                 </div>
@@ -215,7 +215,7 @@ export default function PartnershipsClient() {
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
+                    className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FCFCF7] text-sm focus:outline-none focus:border-[#642B80]"
                     placeholder="+234 ..."
                   />
                 </div>
@@ -228,7 +228,7 @@ export default function PartnershipsClient() {
                 <select
                   value={formData.partnershipType}
                   onChange={(e) => setFormData({ ...formData, partnershipType: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
+                  className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FCFCF7] text-sm focus:outline-none focus:border-[#642B80]"
                 >
                   {PARTNERSHIP_OPPORTUNITIES.map((type) => (
                     <option key={type} value={type}>
@@ -247,14 +247,14 @@ export default function PartnershipsClient() {
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FAF8F5] text-sm focus:outline-none focus:border-[#6E3A82]"
+                  className="w-full px-4 py-3 rounded-xl border border-[#E8DDF0] bg-[#FCFCF7] text-sm focus:outline-none focus:border-[#642B80]"
                   placeholder="Outline your proposal or strategic area of collaboration..."
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-[#6E3A82] hover:bg-[#3B214F] text-white py-4 rounded-xl font-bold text-base shadow-md transition-colors"
+                className="w-full flex items-center justify-center gap-2 bg-[#642B80] hover:bg-[#3B214F] text-white py-4 rounded-xl font-bold text-base shadow-md transition-colors"
               >
                 <Send className="w-5 h-5" />
                 <span>Submit Partnership Proposal</span>

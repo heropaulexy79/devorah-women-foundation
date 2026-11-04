@@ -25,7 +25,7 @@ export default function ProgramsGrid() {
   const supporting = programsList.slice(1);
 
   return (
-    <section className="py-24 lg:py-32 bg-[#FAF8F5]">
+    <section className="py-24 lg:py-32 bg-[#FCFCF7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -36,7 +36,7 @@ export default function ProgramsGrid() {
           />
           <Link
             href="/programs"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-[#6E3A82] hover:text-[#3B214F] shrink-0 transition-colors tracking-wide group"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-[#642B80] hover:text-[#3B214F] shrink-0 transition-colors tracking-wide group"
           >
             <span>View All Programs</span>
             <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>

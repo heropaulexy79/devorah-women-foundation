@@ -73,7 +73,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   }
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen">
+    <div className="bg-[#FCFCF7] min-h-screen">
       
       <PageHero
         eyebrow={project.category}
@@ -103,7 +103,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               <ul className="space-y-2 text-sm text-[#716A73]">
                 {project.whatWeDid.map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-[#6E3A82] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#642B80] shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -111,11 +111,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </div>
 
             <div className="p-8 rounded-2xl bg-[#3B214F] text-white shadow-xl space-y-4">
-              <h3 className="font-serif text-xl font-bold text-[#A987C2]">Measurable Results & Impact</h3>
+              <h3 className="font-serif text-xl font-bold text-[#BCA1CD]">Measurable Results & Impact</h3>
               <ul className="space-y-2 text-sm text-[#E8DDF0]/90">
                 {project.impactResults.map((res, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="w-2 h-2 rounded-full bg-[#A987C2] shrink-0 mt-2" />
+                    <span className="w-2 h-2 rounded-full bg-[#BCA1CD] shrink-0 mt-2" />
                     <span>{res}</span>
                   </li>
                 ))}
@@ -129,7 +129,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 Field Reach
               </h3>
               <div>
-                <div className="flex items-center gap-2 text-xs uppercase font-semibold text-[#6E3A82]">
+                <div className="flex items-center gap-2 text-xs uppercase font-semibold text-[#642B80]">
                   <Users className="w-4 h-4" />
                   <span>Beneficiaries Reached</span>
                 </div>
@@ -139,7 +139,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               <div className="pt-4 border-t border-[#E8DDF0]">
                 <Link
                   href="/partnerships"
-                  className="w-full flex items-center justify-center gap-2 bg-[#6E3A82] hover:bg-[#3B214F] text-white py-3 rounded-full text-sm font-semibold transition-colors"
+                  className="w-full flex items-center justify-center gap-2 bg-[#642B80] hover:bg-[#3B214F] text-white py-3 rounded-full text-sm font-semibold transition-colors"
                 >
                   <HeartHandshake className="w-4 h-4" />
                   <span>Support Future Field Projects</span>
