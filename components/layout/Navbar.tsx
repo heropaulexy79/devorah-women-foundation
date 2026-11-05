@@ -49,7 +49,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center group focus-visible:ring-2 focus-visible:ring-[#BCA1CD] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a0f22] focus-visible:outline-none rounded-sm" aria-label="Devorah Women's Foundation Home">
-          <div className="relative w-36 h-12 sm:w-44 sm:h-14 lg:w-48 lg:h-16 transition-transform duration-300 group-hover:scale-105">
+          <div className="relative w-28 h-9 sm:w-36 sm:h-11 lg:w-40 lg:h-12 transition-transform duration-300 group-hover:scale-105">
             <Image
               src={scrolled ? '/Logo-Purple.png' : '/Logo-white.png'}
               alt="Devorah Women's Leadership & Empowerment Initiative"

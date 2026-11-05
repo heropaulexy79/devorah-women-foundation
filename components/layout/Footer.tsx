@@ -61,7 +61,7 @@ export default function Footer() {
           {/* Col 1: Brand & Contact */}
           <div className="space-y-6">
             <Link href="/" className="flex items-center w-fit group" aria-label="Devorah Women's Foundation Home">
-              <div className="relative w-48 h-16 sm:w-56 sm:h-20 transition-transform duration-300 group-hover:scale-105">
+              <div className="relative w-36 h-12 sm:w-44 sm:h-14 transition-transform duration-300 group-hover:scale-105">
                 <Image
                   src="/Logo-white.png"
                   alt="Devorah Women's Leadership & Empowerment Initiative"

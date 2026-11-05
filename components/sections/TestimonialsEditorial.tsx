@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Quote, ChevronLeft, ChevronRight, UserCheck } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
+import BeneficiaryVideoSpotlight from '@/components/ui/BeneficiaryVideoSpotlight';
 import { TESTIMONIALS } from '@/lib/data';
 
 export default function TestimonialsEditorial() {
@@ -107,7 +108,7 @@ export default function TestimonialsEditorial() {
         </div>
 
         {/* Slide indicator dots */}
-        <div className="flex items-center justify-center gap-2 mt-8">
+        <div className="flex items-center justify-center gap-2 mt-8 mb-16">
           {TESTIMONIALS.map((_, idx) => (
             <button
               key={idx}
@@ -123,6 +124,11 @@ export default function TestimonialsEditorial() {
               aria-label={`Go to testimonial ${idx + 1}`}
             />
           ))}
+        </div>
+
+        {/* Featured Video Beneficiary Testimonial Spotlight */}
+        <div className="max-w-4xl mx-auto">
+          <BeneficiaryVideoSpotlight />
         </div>
       </div>
     </section>

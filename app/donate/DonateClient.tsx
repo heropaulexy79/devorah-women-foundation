@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import PageHero from '@/components/ui/PageHero';
+import BeneficiaryVideoSpotlight from '@/components/ui/BeneficiaryVideoSpotlight';
 import {
   Heart,
   ShieldCheck,
@@ -563,6 +564,12 @@ export default function DonateClient() {
 
           {/* Sidebar / Trust, Transparency & Direct Wire Transfer */}
           <div className="lg:col-span-5 space-y-6">
+            {/* Beneficiary Video Testimonial Spotlight */}
+            <BeneficiaryVideoSpotlight
+              title="Impact in Action"
+              subtitle="Watch how your contributions and grants directly transform beneficiaries' lives and businesses."
+            />
+
             {/* Direct Bank Transfer Card */}
             <div className="bg-white p-6 sm:p-8 rounded-2xl border border-[#E8DDF0] shadow-sm space-y-4">
               <div className="flex items-center gap-2 text-[#642B80]">
