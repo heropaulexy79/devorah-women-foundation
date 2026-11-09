@@ -1,22 +1,23 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Play, X, Award, Sparkles, Volume2 } from 'lucide-react';
+import { Play, X, Award, Sparkles } from 'lucide-react';
 
 interface VideoBeneficiaryModalProps {
   title?: string;
   subtitle?: string;
-  videoDriveId?: string;
+  vimeoId?: string;
 }
 
 export default function VideoBeneficiaryCard({
   title = "Grant Beneficiary Spotlight",
   subtitle = "Watch how the Devorah Women Foundation grant empowered this recipient to build, thrive, and transform her livelihood.",
-  videoDriveId = "1utKwJcaQ46zMr_M6R3XhTaNf9GuuHdyF",
+  vimeoId = "1244967658",
 }: VideoBeneficiaryModalProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const previewEmbedUrl = `https://drive.google.com/file/d/${videoDriveId}/preview`;
+  // Vimeo player embed with responsive support, autoplay when modal opens, and clean UI
+  const vimeoEmbedUrl = `https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479`;
 
   return (
     <>
@@ -59,7 +60,7 @@ export default function VideoBeneficiaryCard({
           role="dialog"
           aria-modal="true"
         >
-          <div className="relative w-full max-w-3xl bg-[#2A1638] rounded-2xl overflow-hidden border border-[#BCA1CD]/30 shadow-2xl">
+          <div className="relative w-full max-w-4xl bg-[#2A1638] rounded-2xl overflow-hidden border border-[#BCA1CD]/30 shadow-2xl">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-[#BCA1CD]/20 bg-[#3B214F]">
               <div className="flex items-center gap-2">
@@ -71,25 +72,25 @@ export default function VideoBeneficiaryCard({
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                className="p-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
                 aria-label="Close video player"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Video Iframe Embed */}
+            {/* Vimeo Video Iframe Embed */}
             <div className="relative w-full aspect-video bg-black flex items-center justify-center">
               <iframe
-                src={previewEmbedUrl}
-                title="Beneficiary Video Testimonial"
+                src={vimeoEmbedUrl}
+                title="Devorah Women Foundation Beneficiary Video Testimonial"
                 className="w-full h-full border-0"
-                allow="autoplay; encrypted-media"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
                 allowFullScreen
               />
             </div>
 
-            {/* Footer with note */}
+            {/* Footer */}
             <div className="p-4 bg-[#2A1638] text-center border-t border-[#BCA1CD]/10">
               <p className="text-xs text-[#E8DDF0]/70 font-light">
                 Devorah Women Foundation &middot; Community Impact &amp; Grant Beneficiary Testimony
@@ -101,4 +102,3 @@ export default function VideoBeneficiaryCard({
     </>
   );
 }
-
