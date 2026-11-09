@@ -158,10 +158,10 @@ export default async function AboutPage() {
 
             <div className="p-5 rounded-2xl bg-[#F7F3F8] border border-[#E8DDF0] space-y-2">
               <h3 className="text-xs font-bold text-[#642B80] uppercase tracking-wider">
-                UN Sustainable Development Goals (SDGs 3 & 4)
+                UN Sustainable Development Goals (SDGs 3, 4 & 5)
               </h3>
               <p className="text-xs text-[#716A73] leading-relaxed">
-                Our work directly aligns with SDG 3 (Good Health and Well-Being) & SDG 4 (Quality Education) by providing practical support while inspiring women to lead lives of faith, excellence, and service.
+                Our work directly aligns with SDG 3 (Good Health and Well-Being) , SDG 4 (Quality Education) & SDG 5 (Gender equality) by providing practical support while inspiring women to lead lives of faith, excellence, and service.
               </p>
             </div>
 
