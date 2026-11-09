@@ -30,14 +30,14 @@ export default function WhoWeAre() {
             </p>
 
             <p className="text-sm text-[#524C55] leading-relaxed font-normal">
-              Our work aligns with the United Nations Sustainable Development Goals (SDGs 3 & 4) by promoting good health and well-being, as well as quality education. Through leadership training, mentorship programs, community outreach initiatives, podcasts, and educational campaigns, Devorah Women's Leadership & Empowerment Initiative provides practical support while inspiring women to lead lives of faith, excellence, and service.
+              Our work aligns with the United Nations Sustainable Development Goals (SDGs 3, 4 & 5) by promoting good health and well-being, as well as quality education. Through leadership training, mentorship programs, community outreach initiatives, podcasts, and educational campaigns, Devorah Women's Leadership & Empowerment Initiative provides practical support while inspiring women to lead lives of faith, excellence, and service.
             </p>
 
             <ul className="space-y-3 pt-1">
               {[
                 'Spiritually Grounded & Faith-Driven Approach',
                 'Leadership Training & Mentorship Programs',
-                'UN Sustainable Development Goals Alignment (SDGs 3 & 4)',
+                'UN Sustainable Development Goals Alignment (SDGs 3, 4 & 5)',
                 'Community Outreach, Health & Educational Campaigns',
               ].map((point, index) => (
                 <li
