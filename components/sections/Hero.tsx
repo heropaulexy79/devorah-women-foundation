@@ -19,7 +19,7 @@ const SLIDES = [
     primaryCtaLink: '/donate',
     secondaryCtaText: 'Explore Our Work',
     secondaryCtaLink: '/programs',
-    image: '/images/heroslider/hero1.jpeg',
+    image: '/images/heroslider/hero5.jpeg',
   },
   {
     id: 'slide-2',

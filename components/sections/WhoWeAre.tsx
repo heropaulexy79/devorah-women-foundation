@@ -60,7 +60,7 @@ export default function WhoWeAre() {
             </div>
           </motion.div>
 
-          {/* Right Photographic Column */}
+          {/* Right Video Column */}
           <motion.div
             className="lg:col-span-6 relative"
             initial={{ opacity: 0, x: 24 }}
@@ -69,28 +69,30 @@ export default function WhoWeAre() {
             transition={{ duration: 0.7 }}
           >
             <div className="relative">
-              {/* Primary Large Image — no white frame, photography as editorial object */}
-              <div className="relative rounded-sm overflow-hidden aspect-[4/3] max-w-lg mx-auto lg:max-w-none">
-                <Image
-                  src="/images/leadership development/SV2L9258.jpeg"
-                  alt="Devorah Women's Leadership & Empowerment Initiative community gathering — women and girls coming together"
-                  fill
-                  className="object-cover"
+              {/* Geometric brand glow accent */}
+              <div className="absolute -top-5 -right-5 w-28 h-28 bg-[#BCA1CD]/30 rounded-2xl blur-xl hidden lg:block" />
+              <div className="absolute -bottom-6 -left-6 w-36 h-36 bg-[#642B80]/20 rounded-full blur-2xl pointer-events-none" />
+
+              {/* Primary Responsive Vimeo Video Container */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-[#BCA1CD]/30 bg-black aspect-video max-w-lg mx-auto lg:max-w-none group">
+                <iframe
+                  src="https://player.vimeo.com/video/1245152346?autoplay=0&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
+                  title="Devorah Women's Leadership & Empowerment Initiative - Who We Are"
+                  className="w-full h-full border-0"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                  allowFullScreen
                 />
               </div>
 
-              {/* Secondary overlapping portrait — editorial composition */}
-              <div className="absolute -bottom-10 -left-6 w-40 sm:w-48 aspect-square rounded-sm overflow-hidden shadow-xl border-2 border-[#FCFCF7] hidden sm:block">
-                <Image
-                  src="/images/women empowerment/SV2L9490.jpeg"
-                  alt="Young woman empowered through Devorah Women's Leadership & Empowerment Initiative programs"
-                  fill
-                  className="object-cover"
-                />
+              {/* Editorial Caption Tag */}
+              <div className="mt-4 flex items-center justify-between text-xs text-[#716A73] px-1">
+                <span className="font-semibold text-[#642B80] uppercase tracking-wider text-[11px]">
+                  Featured Video Overview
+                </span>
+                <span className="font-light">
+                  Devorah Women's Initiative
+                </span>
               </div>
-
-              {/* Subtle lilac accent square — geometric, not decorative text */}
-              <div className="absolute -top-5 -right-5 w-24 h-24 bg-[#E8DDF0] rounded-sm hidden lg:block opacity-60" />
             </div>
           </motion.div>
 
