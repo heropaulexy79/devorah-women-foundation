@@ -119,7 +119,7 @@ export default function DonateClient() {
   const [successRef, setSuccessRef] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [isDemoMode, setIsDemoMode] = useState(false);
-  const [copiedBank, setCopiedBank] = useState(false);
+  const [copiedBank, setCopiedBank] = useState<string | null>(null);
 
   const currentCurrency = CURRENCIES[selectedCurrency];
   const finalAmount = customAmount ? parseFloat(customAmount) : selectedAmount || 0;
@@ -136,10 +136,10 @@ export default function DonateClient() {
     setCustomAmount('');
   };
 
-  const copyAccountNumber = (accNo: string) => {
+  const copyAccountNumber = (accNo: string, label: string = 'Account number') => {
     navigator.clipboard.writeText(accNo);
-    setCopiedBank(true);
-    setTimeout(() => setCopiedBank(false), 2500);
+    setCopiedBank(label);
+    setTimeout(() => setCopiedBank(null), 2500);
   };
 
   const recordDonation = async (ref: string, isDemo: boolean) => {
@@ -581,16 +581,20 @@ export default function DonateClient() {
                 Prefer direct bank deposits, institutional wire transfers, or mobile banking? Use the verified credentials below:
               </p>
 
-              <div className="space-y-3 pt-1">
-                {/* Account details box */}
+              <div className="space-y-4 pt-1">
+                {/* Naira Account details box */}
                 <div className="p-4 rounded-xl bg-[#FCFCF7] border border-[#E8DDF0] space-y-2 text-xs">
+                  <div className="flex justify-between items-center pb-1 border-b border-[#E8DDF0]">
+                    <span className="font-bold text-[#642B80] uppercase tracking-wider text-[10px]">Naira (NGN) Account</span>
+                    <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">Local Transfers</span>
+                  </div>
                   <div className="flex justify-between items-center">
                     <span className="text-[#716A73]">Bank Name:</span>
-                    <span className="font-semibold text-[#3B214F]">Wema</span>
+                    <span className="font-semibold text-[#3B214F]">Wema Bank</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-[#716A73]">Account Name:</span>
-                    <span className="font-semibold text-[#3B214F]">Devorah Women's Leadership & Empowerment Initiative</span>
+                    <span className="font-semibold text-[#3B214F] text-right">DEVORAH WOMEN'S LEADERSHIP & EMPOWERMENT</span>
                   </div>
                   <div className="flex justify-between items-center pt-1 border-t border-[#E8DDF0]">
                     <span className="text-[#716A73]">Account Number:</span>
@@ -598,23 +602,55 @@ export default function DonateClient() {
                       <span className="font-mono font-bold text-sm text-[#642B80]">0128102671</span>
                       <button
                         type="button"
-                        onClick={() => copyAccountNumber('1441002345')}
+                        onClick={() => copyAccountNumber('0128102671', 'Naira Account Number')}
                         className="p-1 hover:bg-white rounded border border-[#E8DDF0] text-[#642B80] transition-colors"
-                        title="Copy Account Number"
+                        title="Copy Naira Account Number"
+                        aria-label="Copy Naira Account Number"
                       >
-                        {copiedBank ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                        {copiedBank === 'Naira Account Number' ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* USD Domiciliary Account details box */}
+                <div className="p-4 rounded-xl bg-[#FCFCF7] border border-[#E8DDF0] space-y-2 text-xs">
+                  <div className="flex justify-between items-center pb-1 border-b border-[#E8DDF0]">
+                    <span className="font-bold text-[#642B80] uppercase tracking-wider text-[10px]">Dollar (USD) Domiciliary Account</span>
+                    <span className="text-[10px] font-semibold text-[#642B80] bg-[#BCA1CD]/20 px-2 py-0.5 rounded-full border border-[#BCA1CD]/40">International Transfers</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#716A73]">Bank Name:</span>
+                    <span className="font-semibold text-[#3B214F]">Wema Bank</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#716A73]">Account Name:</span>
+                    <span className="font-semibold text-[#3B214F] text-right">DEVORAH WOMEN'S LEADERSHIP & EMPOWERMENT</span>
+                  </div>
+                  <div className="flex justify-between items-center pt-1 border-t border-[#E8DDF0]">
+                    <span className="text-[#716A73]">Account Number:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono font-bold text-sm text-[#642B80]">0622229072</span>
+                      <button
+                        type="button"
+                        onClick={() => copyAccountNumber('0622229072', 'USD Account Number')}
+                        className="p-1 hover:bg-white rounded border border-[#E8DDF0] text-[#642B80] transition-colors"
+                        title="Copy USD Account Number"
+                        aria-label="Copy USD Account Number"
+                      >
+                        {copiedBank === 'USD Account Number' ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                       </button>
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-[#716A73]">Location / Currency:</span>
-                    <span className="font-mono font-medium text-[#3B214F]">Lagos, Nigeria (NGN)</span>
+                    <span className="text-[#716A73]">Currency:</span>
+                    <span className="font-mono font-medium text-[#3B214F]">US Dollars (USD)</span>
                   </div>
                 </div>
 
                 {copiedBank && (
                   <p className="text-[11px] text-emerald-600 font-semibold text-center flex items-center justify-center gap-1">
-                    <Check className="w-3 h-3" /> Account Number copied to clipboard!
+                    <Check className="w-3 h-3" /> {copiedBank} copied to clipboard!
                   </p>
                 )}
               </div>
