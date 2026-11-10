@@ -190,18 +190,37 @@ export default function MissionVision() {
 
 function CoreValuesCarousel() {
   const [activePageIndex, setActivePageIndex] = React.useState(0);
+  const [direction, setDirection] = React.useState(1);
+  const [isPaused, setIsPaused] = React.useState(false);
 
   // 6 values divided into 2 slides of 3 cards each (or responsive sliding)
   const itemsPerPage = 3;
   const totalPages = Math.ceil(VALUES.length / itemsPerPage);
 
-  const handleNext = () => {
+  const handleNext = React.useCallback(() => {
+    setDirection(1);
     setActivePageIndex((prev) => (prev + 1) % totalPages);
+  }, [totalPages]);
+
+  const handlePrev = React.useCallback(() => {
+    setDirection(-1);
+    setActivePageIndex((prev) => (prev - 1 + totalPages) % totalPages);
+  }, [totalPages]);
+
+  const handleSelectPage = (pageIdx: number) => {
+    setDirection(pageIdx > activePageIndex ? 1 : -1);
+    setActivePageIndex(pageIdx);
   };
 
-  const handlePrev = () => {
-    setActivePageIndex((prev) => (prev - 1 + totalPages) % totalPages);
-  };
+  // Automatically scroll every 4.5 seconds, paused when hovered/touched
+  React.useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      handleNext();
+    }, 4500);
+
+    return () => clearInterval(interval);
+  }, [isPaused, handleNext, activePageIndex]);
 
   const currentValues = VALUES.slice(
     activePageIndex * itemsPerPage,
@@ -209,7 +228,13 @@ function CoreValuesCarousel() {
   );
 
   return (
-    <div className="space-y-8">
+    <div
+      className="space-y-8"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
+    >
       {/* Header & Slider Navigation */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="max-w-3xl space-y-2">
@@ -247,10 +272,10 @@ function CoreValuesCarousel() {
       <div className="relative">
         <motion.div
           key={activePageIndex}
-          initial={{ opacity: 0, x: 20 }}
+          initial={{ opacity: 0, x: direction > 0 ? 30 : -30 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.45, ease: 'easeOut' }}
+          exit={{ opacity: 0, x: direction > 0 ? -30 : 30 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
         >
           {currentValues.map((val, idx) => {
@@ -290,7 +315,7 @@ function CoreValuesCarousel() {
         {Array.from({ length: totalPages }).map((_, pageIdx) => (
           <button
             key={pageIdx}
-            onClick={() => setActivePageIndex(pageIdx)}
+            onClick={() => handleSelectPage(pageIdx)}
             className={`transition-all duration-300 rounded-full ${
               activePageIndex === pageIdx
                 ? 'w-8 h-2 bg-[#642B80]'
