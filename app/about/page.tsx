@@ -173,7 +173,7 @@ export default async function AboutPage() {
           <div className="lg:col-span-6 relative">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
               <Image
-                src="/images/leadership development/SV2L9258.jpeg"
+                src="/images/about-us-img.jpeg"
                 alt="Devorah Women's Leadership & Empowerment Initiative community outreach"
                 fill
                 className="object-cover"

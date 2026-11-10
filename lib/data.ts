@@ -280,7 +280,7 @@ Through structured mentorship circles, we pair young girls with experienced fema
     },
     publishedAt: 'September 14, 2025',
     readingTime: '5 min read',
-    featuredImageUrl: '/images/leadership development/SV2L9258.jpeg',
+    featuredImageUrl: '/images/stories/1.jpeg',
     featured: true
   },
   {
@@ -372,7 +372,7 @@ export const LEADERSHIP_PEOPLE: Person[] = [
     vision: 'At the heart of her work and personal philosophy is a belief in continuous growth, purposeful living, and the responsibility to contribute positively to the lives of others, creating spaces where people feel encouraged to learn, reflect, and realise their potential.',
     quote: 'We become more of ourselves through what we learn, what we create, and what we give to others.',
     expertise: ['Education & Mentorship', 'Logistics & Systems', 'Communication & Storytelling', 'Community Development'],
-    imageUrl: '/images/board/Seun-Akinola.JPG'
+    imageUrl: '/images/board/Seun-Akinola2.JPG'
   },
   {
     id: 'board-dr-olaitan-titilayo-akinola',
