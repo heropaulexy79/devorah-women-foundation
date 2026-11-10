@@ -372,7 +372,7 @@ export const LEADERSHIP_PEOPLE: Person[] = [
     vision: 'At the heart of her work and personal philosophy is a belief in continuous growth, purposeful living, and the responsibility to contribute positively to the lives of others, creating spaces where people feel encouraged to learn, reflect, and realise their potential.',
     quote: 'We become more of ourselves through what we learn, what we create, and what we give to others.',
     expertise: ['Education & Mentorship', 'Logistics & Systems', 'Communication & Storytelling', 'Community Development'],
-    imageUrl: '/images/board/Seun-Akinola2.JPG'
+    imageUrl: '/images/board/Seun-Akinola2.JPEG'
   },
   {
     id: 'board-dr-olaitan-titilayo-akinola',

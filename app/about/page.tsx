@@ -181,7 +181,7 @@ export default async function AboutPage() {
             </div>
             <div className="absolute -bottom-6 -left-6 w-48 aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white hidden sm:block">
               <Image
-                src="/images/women empowerment/SV2L9490.jpeg"
+                src="/images/about-us-img2.jpeg"
                 alt="Empowering women through leadership"
                 fill
                 className="object-cover"
