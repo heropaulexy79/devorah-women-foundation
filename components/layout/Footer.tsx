@@ -74,8 +74,24 @@ export default function Footer() {
               Raising Women of Wisdom, Courage, and Global Impact. A faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women.
             </p>
             <div className="pt-2 space-y-2 text-xs text-[#E8DDF0]/60">
-              <p><strong className="text-[#BCA1CD] font-medium">Email:</strong> womendevorah@gmail.com</p>
-              <p><strong className="text-[#BCA1CD] font-medium">Phone:</strong> +2348030526200</p>
+              <p>
+                <strong className="text-[#BCA1CD] font-medium">Email:</strong>{' '}
+                <a
+                  href="mailto:womendevorah@gmail.com"
+                  className="hover:text-white transition-colors underline decoration-[#BCA1CD]/30 underline-offset-2"
+                >
+                  womendevorah@gmail.com
+                </a>
+              </p>
+              <p>
+                <strong className="text-[#BCA1CD] font-medium">Phone:</strong>{' '}
+                <a
+                  href="tel:+2348030526200"
+                  className="hover:text-white transition-colors underline decoration-[#BCA1CD]/30 underline-offset-2"
+                >
+                  +2348030526200
+                </a>
+              </p>
               <p><strong className="text-[#BCA1CD] font-medium">Address:</strong> No 14, Esubiyi Street, Mende, Maryland</p>
             </div>
           </div>
