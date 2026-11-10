@@ -233,8 +233,8 @@ export const PROJECTS: Project[] = [
       '98% reported increased confidence in public speaking and decision-making.',
       '100% pledged active participation in school mentorship clubs.'
     ],
-    imageUrl: '/images/leadership development/SV2L9258.jpeg',
-    galleryImages: ['/images/leadership development/SV2L9258.jpeg', '/images/School Outreaches/IMG_5808.PNG']
+    imageUrl: '/images/community outreach/IMG_6184.jpg',
+    galleryImages: ['/images/community outreach/IMG_6184.jpg', '/images/School Outreaches/IMG_5808.PNG']
   },
   {
     id: 'project-2',
