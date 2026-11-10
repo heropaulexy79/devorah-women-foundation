@@ -9,7 +9,7 @@ const BASE_URL = 'https://devorahwomen.org';
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Devorah Women's Leadership & Empowerment Initiative | Empowering Women, Shaping Girls",
+    default: "Devorah Women's Leadership & Empowerment Initiative",
     template: "%s | Devorah Women's Leadership & Empowerment Initiative",
   },
   description:
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     locale: 'en_NG',
     url: BASE_URL,
     siteName: "Devorah Women's Leadership & Empowerment Initiative",
-    title: "Devorah Women's Leadership & Empowerment Initiative | Empowering Women, Shaping Girls",
+    title: "Devorah Women's Leadership & Empowerment Initiative",
     description:
       'Empowering Women. Shaping Girls. Transforming Communities. A faith-anchored foundation dedicated to holistic development across Lagos, Nigeria.',
     images: [
@@ -56,13 +56,13 @@ export const metadata: Metadata = {
         url: '/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: "Devorah Women's Leadership & Empowerment Initiative – Empowering Women, Shaping Girls",
+        alt: "Devorah Women's Leadership & Empowerment Initiative",
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Devorah Women's Leadership & Empowerment Initiative | Empowering Women, Shaping Girls",
+    title: "Devorah Women's Leadership & Empowerment Initiative",
     description:
       'A Christian foundation dedicated to empowering girls and women through education, mentorship, leadership, and faith-anchored community action.',
     images: ['/images/og-image.png'],

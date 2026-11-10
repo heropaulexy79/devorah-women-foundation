@@ -75,7 +75,7 @@ export default function Footer() {
             </p>
             <div className="pt-2 space-y-2 text-xs text-[#E8DDF0]/60">
               <p><strong className="text-[#BCA1CD] font-medium">Email:</strong> womendevorah@gmail.com</p>
-              <p><strong className="text-[#BCA1CD] font-medium">Phone:</strong> 08030526200</p>
+              <p><strong className="text-[#BCA1CD] font-medium">Phone:</strong> +2348030526200</p>
               <p><strong className="text-[#BCA1CD] font-medium">Address:</strong> No 14, Esubiyi Street, Mende, Maryland</p>
             </div>
           </div>
@@ -142,12 +142,6 @@ export default function Footer() {
               <li>
                 <Link href="/terms" className="text-sm text-[#E8DDF0]/70 hover:text-white transition-colors">
                   Terms & Conditions
-                </Link>
-              </li>
-              <li>
-                <Link href="/admin" className="text-sm text-[#BCA1CD]/80 hover:text-white transition-colors flex items-center gap-1">
-                  <span>CMS Portal</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#642B80]/50 text-white font-mono">Admin</span>
                 </Link>
               </li>
             </ul>
