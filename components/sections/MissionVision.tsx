@@ -189,12 +189,78 @@ export default function MissionVision() {
 }
 
 function CoreValuesCarousel() {
-  // Duplicate values twice to create a seamless infinite loop
-  const marqueeValues = [...VALUES, ...VALUES];
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const [isPaused, setIsPaused] = React.useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  const totalValues = VALUES.length;
+
+  const scrollToCard = React.useCallback((index: number) => {
+    if (!containerRef.current) return;
+    const container = containerRef.current;
+    const cards = container.querySelectorAll<HTMLElement>('.core-value-card');
+    if (cards[index]) {
+      const card = cards[index];
+      const scrollPosition = card.offsetLeft - container.offsetLeft;
+      container.scrollTo({
+        left: scrollPosition,
+        behavior: 'smooth',
+      });
+      setActiveIndex(index);
+    }
+  }, []);
+
+  const handleNext = React.useCallback(() => {
+    const nextIndex = (activeIndex + 1) % totalValues;
+    scrollToCard(nextIndex);
+  }, [activeIndex, totalValues, scrollToCard]);
+
+  const handlePrev = React.useCallback(() => {
+    const prevIndex = (activeIndex - 1 + totalValues) % totalValues;
+    scrollToCard(prevIndex);
+  }, [activeIndex, totalValues, scrollToCard]);
+
+  // Auto-slide 1 card at a time every 4 seconds, paused when hovered/touched
+  React.useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      handleNext();
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [isPaused, handleNext]);
+
+  // Track user manual scrolling / swiping to update active index
+  const handleScroll = () => {
+    if (!containerRef.current) return;
+    const container = containerRef.current;
+    const cards = container.querySelectorAll<HTMLElement>('.core-value-card');
+    const scrollLeft = container.scrollLeft;
+
+    let closestIdx = 0;
+    let minDistance = Infinity;
+    cards.forEach((card, idx) => {
+      const distance = Math.abs(card.offsetLeft - container.offsetLeft - scrollLeft);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIdx = idx;
+      }
+    });
+
+    if (closestIdx !== activeIndex) {
+      setActiveIndex(closestIdx);
+    }
+  };
 
   return (
-    <div className="space-y-8">
-      {/* Header & Status Indicator */}
+    <div
+      className="space-y-8"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
+    >
+      {/* Header & Controls */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="max-w-3xl space-y-2">
           <span className="text-[10px] font-extrabold uppercase tracking-[0.3em] text-[#642B80] bg-[#E8DDF0] px-3 py-1 rounded-full border border-[#BCA1CD]/40 inline-block">
@@ -205,25 +271,55 @@ function CoreValuesCarousel() {
           </h3>
         </div>
 
-        <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F7F3F8] border border-[#E8DDF0] text-xs font-medium text-[#716A73]">
-          <span className="w-2 h-2 rounded-full bg-[#642B80] animate-pulse" />
-          <span>Continuous flow • Hover to pause</span>
+        {/* Carousel Controls (1 card at a time) */}
+        <div className="flex items-center gap-3 shrink-0">
+          <button
+            onClick={handlePrev}
+            className="w-11 h-11 rounded-full bg-white border border-[#E8DDF0] flex items-center justify-center text-[#3B214F] hover:bg-[#642B80] hover:text-white hover:border-[#642B80] transition-all shadow-sm"
+            aria-label="Previous core value"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <span className="text-xs font-bold text-[#642B80] px-2 font-mono">
+            0{activeIndex + 1} / 0{totalValues}
+          </span>
+          <button
+            onClick={handleNext}
+            className="w-11 h-11 rounded-full bg-white border border-[#E8DDF0] flex items-center justify-center text-[#3B214F] hover:bg-[#642B80] hover:text-white hover:border-[#642B80] transition-all shadow-sm"
+            aria-label="Next core value"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
       </div>
 
-      {/* Infinite Continuous Scrolling Track */}
-      <div className="relative w-full overflow-hidden py-4 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
-        <div className="animate-marquee-continuous flex gap-6 sm:gap-8">
-          {marqueeValues.map((val, idx) => {
-            const actualIndex = (idx % VALUES.length) + 1;
+      {/* 1-Card-at-a-time Horizontal Scroll Track */}
+      <div className="relative">
+        <div
+          ref={containerRef}
+          onScroll={handleScroll}
+          className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {VALUES.map((val, idx) => {
             const IconComp = val.icon;
+            const isActive = activeIndex === idx;
             return (
               <div
-                key={`${val.title}-${idx}`}
-                className="w-[300px] sm:w-[360px] shrink-0 group bg-white rounded-2xl p-7 sm:p-8 border border-[#E8DDF0] shadow-md hover:shadow-2xl hover:border-[#642B80]/40 transition-all duration-300 flex flex-col justify-between"
+                key={val.title}
+                className={`core-value-card snap-start shrink-0 w-[88vw] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] group bg-white rounded-2xl p-7 sm:p-8 border transition-all duration-300 flex flex-col justify-between ${
+                  isActive
+                    ? 'border-[#642B80]/50 shadow-xl ring-1 ring-[#642B80]/20'
+                    : 'border-[#E8DDF0] shadow-md hover:shadow-xl hover:border-[#642B80]/30'
+                }`}
               >
                 <div className="space-y-5">
-                  <div className="w-12 h-12 rounded-xl bg-[#F7F3F8] border border-[#E8DDF0] flex items-center justify-center text-[#642B80] group-hover:bg-[#642B80] group-hover:text-white transition-all duration-300 shadow-sm">
+                  <div
+                    className={`w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 shadow-sm ${
+                      isActive
+                        ? 'bg-[#642B80] text-white border-[#642B80]'
+                        : 'bg-[#F7F3F8] border-[#E8DDF0] text-[#642B80] group-hover:bg-[#642B80] group-hover:text-white'
+                    }`}
+                  >
                     <IconComp className="w-6 h-6" aria-hidden="true" />
                   </div>
 
@@ -237,13 +333,33 @@ function CoreValuesCarousel() {
                 </div>
 
                 <div className="mt-8 pt-4 border-t border-[#F7F3F8] flex items-center justify-between text-[11px] font-bold tracking-wider text-[#BCA1CD] group-hover:text-[#642B80] transition-colors duration-200">
-                  <span>CORE VALUE 0{actualIndex}</span>
-                  <span className="w-2 h-2 rounded-full bg-[#642B80]/30 group-hover:bg-[#642B80] transition-all duration-300" />
+                  <span>CORE VALUE 0{idx + 1}</span>
+                  <span
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      isActive ? 'bg-[#642B80] scale-125' : 'bg-[#642B80]/30 group-hover:bg-[#642B80]'
+                    }`}
+                  />
                 </div>
               </div>
             );
           })}
         </div>
+      </div>
+
+      {/* Pagination Dot Indicators (1 for each value) */}
+      <div className="flex items-center justify-center gap-2 pt-2">
+        {VALUES.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => scrollToCard(idx)}
+            className={`transition-all duration-300 rounded-full ${
+              activeIndex === idx
+                ? 'w-8 h-2 bg-[#642B80]'
+                : 'w-2 h-2 bg-[#E8DDF0] hover:bg-[#BCA1CD]'
+            }`}
+            aria-label={`Go to core value 0${idx + 1}`}
+          />
+        ))}
       </div>
     </div>
   );
