@@ -76,7 +76,7 @@ export default function WhoWeAre() {
               {/* Primary Responsive Vimeo Video Container */}
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-[#BCA1CD]/30 bg-black aspect-video max-w-lg mx-auto lg:max-w-none group">
                 <iframe
-                  src="https://player.vimeo.com/video/1245152346?autoplay=0&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
+                  src="https://player.vimeo.com/video/1245586089?h=496db21bbb&autoplay=1&muted=1&loop=1&autopause=0&title=0&byline=0&portrait=0&badge=0"
                   title="Devorah Women's Leadership & Empowerment Initiative - Who We Are"
                   className="w-full h-full border-0"
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
