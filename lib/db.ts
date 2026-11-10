@@ -156,7 +156,14 @@ export async function saveGallery(gallery: GalleryItem[]): Promise<boolean> {
 export async function getBoardMembers(): Promise<Person[]> {
   const stored = await getCmsItem<Person[]>('board_members', [...LEADERSHIP_PEOPLE]);
   if (!Array.isArray(stored) || stored.length === 0) return [...LEADERSHIP_PEOPLE];
-  return stored;
+  return stored.map((person) => {
+    const defaultPerson = LEADERSHIP_PEOPLE.find((p) => p.id === person.id || p.name === person.name);
+    if (!defaultPerson) return person;
+    return {
+      ...person,
+      imageUrl: defaultPerson.imageUrl || person.imageUrl,
+    };
+  });
 }
 
 export async function saveBoardMembers(people: Person[]): Promise<boolean> {
