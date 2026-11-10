@@ -189,53 +189,12 @@ export default function MissionVision() {
 }
 
 function CoreValuesCarousel() {
-  const [activePageIndex, setActivePageIndex] = React.useState(0);
-  const [direction, setDirection] = React.useState(1);
-  const [isPaused, setIsPaused] = React.useState(false);
-
-  // 6 values divided into 2 slides of 3 cards each (or responsive sliding)
-  const itemsPerPage = 3;
-  const totalPages = Math.ceil(VALUES.length / itemsPerPage);
-
-  const handleNext = React.useCallback(() => {
-    setDirection(1);
-    setActivePageIndex((prev) => (prev + 1) % totalPages);
-  }, [totalPages]);
-
-  const handlePrev = React.useCallback(() => {
-    setDirection(-1);
-    setActivePageIndex((prev) => (prev - 1 + totalPages) % totalPages);
-  }, [totalPages]);
-
-  const handleSelectPage = (pageIdx: number) => {
-    setDirection(pageIdx > activePageIndex ? 1 : -1);
-    setActivePageIndex(pageIdx);
-  };
-
-  // Automatically scroll every 4.5 seconds, paused when hovered/touched
-  React.useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(() => {
-      handleNext();
-    }, 4500);
-
-    return () => clearInterval(interval);
-  }, [isPaused, handleNext, activePageIndex]);
-
-  const currentValues = VALUES.slice(
-    activePageIndex * itemsPerPage,
-    (activePageIndex + 1) * itemsPerPage
-  );
+  // Duplicate values twice to create a seamless infinite loop
+  const marqueeValues = [...VALUES, ...VALUES];
 
   return (
-    <div
-      className="space-y-8"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={() => setIsPaused(true)}
-      onTouchEnd={() => setIsPaused(false)}
-    >
-      {/* Header & Slider Navigation */}
+    <div className="space-y-8">
+      {/* Header & Status Indicator */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="max-w-3xl space-y-2">
           <span className="text-[10px] font-extrabold uppercase tracking-[0.3em] text-[#642B80] bg-[#E8DDF0] px-3 py-1 rounded-full border border-[#BCA1CD]/40 inline-block">
@@ -246,45 +205,22 @@ function CoreValuesCarousel() {
           </h3>
         </div>
 
-        {/* Carousel Controls */}
-        <div className="flex items-center gap-3 shrink-0">
-          <button
-            onClick={handlePrev}
-            className="w-11 h-11 rounded-full bg-white border border-[#E8DDF0] flex items-center justify-center text-[#3B214F] hover:bg-[#642B80] hover:text-white hover:border-[#642B80] transition-all shadow-sm"
-            aria-label="Previous core values"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <span className="text-xs font-bold text-[#642B80] px-2 font-mono">
-            0{activePageIndex + 1} / 0{totalPages}
-          </span>
-          <button
-            onClick={handleNext}
-            className="w-11 h-11 rounded-full bg-white border border-[#E8DDF0] flex items-center justify-center text-[#3B214F] hover:bg-[#642B80] hover:text-white hover:border-[#642B80] transition-all shadow-sm"
-            aria-label="Next core values"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+        <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F7F3F8] border border-[#E8DDF0] text-xs font-medium text-[#716A73]">
+          <span className="w-2 h-2 rounded-full bg-[#642B80] animate-pulse" />
+          <span>Continuous flow • Hover to pause</span>
         </div>
       </div>
 
-      {/* 3 Visible Cards Display with Motion Animation */}
-      <div className="relative">
-        <motion.div
-          key={activePageIndex}
-          initial={{ opacity: 0, x: direction > 0 ? 30 : -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: direction > 0 ? -30 : 30 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
-        >
-          {currentValues.map((val, idx) => {
-            const actualIndex = activePageIndex * itemsPerPage + idx;
+      {/* Infinite Continuous Scrolling Track */}
+      <div className="relative w-full overflow-hidden py-4 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
+        <div className="animate-marquee-continuous flex gap-6 sm:gap-8">
+          {marqueeValues.map((val, idx) => {
+            const actualIndex = (idx % VALUES.length) + 1;
             const IconComp = val.icon;
             return (
               <div
-                key={val.title}
-                className="group bg-white rounded-2xl p-7 sm:p-8 border border-[#E8DDF0] shadow-md hover:shadow-2xl hover:border-[#642B80]/40 transition-all duration-300 flex flex-col justify-between"
+                key={`${val.title}-${idx}`}
+                className="w-[300px] sm:w-[360px] shrink-0 group bg-white rounded-2xl p-7 sm:p-8 border border-[#E8DDF0] shadow-md hover:shadow-2xl hover:border-[#642B80]/40 transition-all duration-300 flex flex-col justify-between"
               >
                 <div className="space-y-5">
                   <div className="w-12 h-12 rounded-xl bg-[#F7F3F8] border border-[#E8DDF0] flex items-center justify-center text-[#642B80] group-hover:bg-[#642B80] group-hover:text-white transition-all duration-300 shadow-sm">
@@ -301,29 +237,13 @@ function CoreValuesCarousel() {
                 </div>
 
                 <div className="mt-8 pt-4 border-t border-[#F7F3F8] flex items-center justify-between text-[11px] font-bold tracking-wider text-[#BCA1CD] group-hover:text-[#642B80] transition-colors duration-200">
-                  <span>CORE VALUE 0{actualIndex + 1}</span>
+                  <span>CORE VALUE 0{actualIndex}</span>
                   <span className="w-2 h-2 rounded-full bg-[#642B80]/30 group-hover:bg-[#642B80] transition-all duration-300" />
                 </div>
               </div>
             );
           })}
-        </motion.div>
-      </div>
-
-      {/* Pagination Dot Indicators */}
-      <div className="flex items-center justify-center gap-2 pt-2">
-        {Array.from({ length: totalPages }).map((_, pageIdx) => (
-          <button
-            key={pageIdx}
-            onClick={() => handleSelectPage(pageIdx)}
-            className={`transition-all duration-300 rounded-full ${
-              activePageIndex === pageIdx
-                ? 'w-8 h-2 bg-[#642B80]'
-                : 'w-2 h-2 bg-[#E8DDF0] hover:bg-[#BCA1CD]'
-            }`}
-            aria-label={`Go to page ${pageIdx + 1}`}
-          />
-        ))}
+        </div>
       </div>
     </div>
   );
