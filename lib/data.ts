@@ -64,7 +64,7 @@ export const PROGRAMS: Program[] = [
       author: "Amina Adeleke",
       role: "Leadership Program Graduate"
     },
-    galleryImages: ['/images/programs/Empowerment-leadership.jpeg', '/images/heroslider/women-empowerment.PNG']
+    galleryImages: ['/images/programs/Empowerment-leadership.jpeg', '/images/programs/Empowerment-leadership2.PNG']
   },
   {
     id: 'educational-support',
@@ -372,7 +372,7 @@ export const LEADERSHIP_PEOPLE: Person[] = [
     vision: 'At the heart of her work and personal philosophy is a belief in continuous growth, purposeful living, and the responsibility to contribute positively to the lives of others, creating spaces where people feel encouraged to learn, reflect, and realise their potential.',
     quote: 'We become more of ourselves through what we learn, what we create, and what we give to others.',
     expertise: ['Education & Mentorship', 'Logistics & Systems', 'Communication & Storytelling', 'Community Development'],
-    imageUrl: '/images/board/Seun-Akinola2.JPEG'
+    imageUrl: '/images/board/Seun-Akinola2.jpeg'
   },
   {
     id: 'board-dr-olaitan-titilayo-akinola',
@@ -490,7 +490,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     imageUrl: '/images/community outreach/IMG_5837.PNG',
     caption: 'Delivering essential care, compassionate relief packages, and direct household assistance to vulnerable mothers and families.',
     impactHighlight: '500+ Households Reached',
-    photoCount: 6,
+    photoCount: 17,
     photos: [
       { id: 'co-1', url: '/images/community outreach/IMG_5837.PNG', caption: 'Community outreach distribution of relief supplies and essential food provisions.' },
       { id: 'co-2', url: '/images/community outreach/IMG_5842.PNG', caption: 'Field outreach team engaging warmly with local community members.' },
@@ -498,6 +498,17 @@ export const GALLERY_ITEMS: GalleryItem[] = [
       { id: 'co-4', url: '/images/community outreach/IMG_5844.PNG', caption: 'Providing direct family welfare support and compassionate assistance.' },
       { id: 'co-5', url: '/images/community outreach/IMG_5852.PNG', caption: 'Empowerment dialogue and dignity restoration in grassroots neighborhoods.' },
       { id: 'co-6', url: '/images/community outreach/IMG_5854.PNG', caption: 'Smiles of hope as women and children receive support and encouragement.' },
+      { id: 'co-7', url: '/images/community outreach/IMG_0123.JPG', caption: 'Community gathering and direct interaction with grassroots families during outreach.' },
+      { id: 'co-8', url: '/images/community outreach/IMG_0147.JPG', caption: 'Providing compassionate care, encouragement, and practical support to local mothers.' },
+      { id: 'co-9', url: '/images/community outreach/IMG_0210.JPG', caption: 'Grassroots welfare engagement and compassionate listening session.' },
+      { id: 'co-10', url: '/images/community outreach/IMG_0234.JPG', caption: 'Distributing vital resources and supporting household dignity in vulnerable communities.' },
+      { id: 'co-11', url: '/images/community outreach/IMG_0708.JPG', caption: 'Hands-on community field assistance and youth encouragement.' },
+      { id: 'co-12', url: '/images/community outreach/IMG_5915.JPG', caption: 'Empowerment support and community fellowship with local families.' },
+      { id: 'co-13', url: '/images/community outreach/IMG_6184.JPG', caption: 'Volunteers and community champions delivering essential relief packages.' },
+      { id: 'co-14', url: '/images/community outreach/IMG_6206.JPG', caption: 'Connecting warmly with beneficiaries and listening to community needs.' },
+      { id: 'co-15', url: '/images/community outreach/IMG_6238.jpg', caption: 'Field relief distribution and family care packages in Lagos communities.' },
+      { id: 'co-16', url: '/images/community outreach/WhatsApp Image 2026-11-10 at 12.01.20 PM.jpeg', caption: 'Restoring dignity, hope, and smiles through community humanitarian relief.' },
+      { id: 'co-17', url: '/images/community outreach/WhatsApp Image 2026-11-10 at 12.01.20 PM (1).jpeg', caption: 'Active community welfare drive delivering practical food and household relief.' },
     ]
   },
   {

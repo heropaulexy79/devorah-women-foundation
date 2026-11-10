@@ -118,7 +118,14 @@ export async function saveArticles(articles: Article[]): Promise<boolean> {
 export async function getPrograms(): Promise<Program[]> {
   const stored = await getCmsItem<Program[]>('programs', [...PROGRAMS]);
   if (!Array.isArray(stored) || stored.length === 0) return [...PROGRAMS];
-  return stored;
+  return stored.map((prog) => {
+    const defaultProg = PROGRAMS.find((d) => d.slug === prog.slug || d.id === prog.id);
+    if (!defaultProg) return prog;
+    if (defaultProg.galleryImages && (!prog.galleryImages || prog.galleryImages.length < defaultProg.galleryImages.length)) {
+      return { ...prog, galleryImages: defaultProg.galleryImages };
+    }
+    return prog;
+  });
 }
 
 export async function savePrograms(programs: Program[]): Promise<boolean> {
@@ -128,7 +135,18 @@ export async function savePrograms(programs: Program[]): Promise<boolean> {
 export async function getGallery(): Promise<GalleryItem[]> {
   const stored = await getCmsItem<GalleryItem[]>('gallery', [...GALLERY_ITEMS]);
   if (!Array.isArray(stored) || stored.length === 0) return [...GALLERY_ITEMS];
-  return stored;
+  return stored.map((item) => {
+    const defaultItem = GALLERY_ITEMS.find((d) => d.id === item.id || d.slug === item.slug);
+    if (!defaultItem) return item;
+    if (defaultItem.photos && defaultItem.photos.length > (item.photos?.length || 0)) {
+      return {
+        ...item,
+        photoCount: defaultItem.photos.length,
+        photos: defaultItem.photos,
+      };
+    }
+    return item;
+  });
 }
 
 export async function saveGallery(gallery: GalleryItem[]): Promise<boolean> {
