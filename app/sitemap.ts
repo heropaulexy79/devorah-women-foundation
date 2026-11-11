@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { PROGRAMS, ARTICLES, PROJECTS } from '@/lib/data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://devorahwomen.org';
+  const baseUrl = 'https://www.devorahwomenfoundation.com';
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },

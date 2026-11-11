@@ -87,7 +87,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
     provider: {
       '@type': 'NGO',
       name: "Devorah Women's Leadership & Empowerment Initiative",
-      url: 'https://devorahwomen.org',
+      url: 'https://www.devorahwomenfoundation.com',
     },
     occupationalCategory: program.category,
     applicationStartDate: '2025-01-01',
@@ -97,8 +97,8 @@ export default async function ProgramDetailPage({ params }: PageProps) {
       priceCurrency: 'NGN',
       description: 'Free community program',
     },
-    url: `https://devorahwomen.org/programs/${program.slug}`,
-    image: `https://devorahwomen.org${program.imageUrl}`,
+    url: `https://www.devorahwomenfoundation.com/programs/${program.slug}`,
+    image: `https://www.devorahwomenfoundation.com${program.imageUrl}`,
   };
 
   return (

@@ -4,7 +4,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ChatWidget from '@/components/ui/ChatWidget';
 
-const BASE_URL = 'https://devorahwomen.org';
+const BASE_URL = 'https://www.devorahwomenfoundation.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -50,10 +50,10 @@ export const metadata: Metadata = {
     siteName: "Devorah Women's Leadership & Empowerment Initiative",
     title: "Devorah Women's Leadership & Empowerment Initiative",
     description:
-      'Empowering Women. Shaping Girls. Transforming Communities. A faith-anchored foundation dedicated to holistic development across Lagos, Nigeria.',
+      'A Christian foundation dedicated to empowering girls and women through education, mentorship, leadership development, and faith-anchored community initiatives across Nigeria.',
     images: [
       {
-        url: '/images/og-image.png',
+        url: '/images/og-logo.png',
         width: 1200,
         height: 630,
         alt: "Devorah Women's Leadership & Empowerment Initiative",
@@ -65,14 +65,14 @@ export const metadata: Metadata = {
     title: "Devorah Women's Leadership & Empowerment Initiative",
     description:
       'A Christian foundation dedicated to empowering girls and women through education, mentorship, leadership, and faith-anchored community action.',
-    images: ['/images/og-image.png'],
+    images: ['/images/og-logo.png'],
   },
   icons: {
     icon: [
-      { url: '/icon.png', type: 'image/png' },
+      { url: '/Logo-Purple.png', type: 'image/png' },
       { url: '/favicon.ico' },
     ],
-    apple: '/apple-touch-icon.png',
+    apple: '/Logo-Purple.png',
   },
   manifest: '/manifest.json',
   category: 'non-profit',
@@ -88,11 +88,11 @@ const organizationJsonLd = {
       url: BASE_URL,
       logo: {
         '@type': 'ImageObject',
-        url: `${BASE_URL}/Logo.png`,
+        url: `${BASE_URL}/Logo-Purple.png`,
         width: 400,
         height: 400,
       },
-      image: `${BASE_URL}/images/og-image.png`,
+      image: `${BASE_URL}/images/og-logo.png`,
       description:
         "Devorah Women's Leadership & Empowerment Initiative is a faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women.",
       address: {

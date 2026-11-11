@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/admin', '/api/admin/'],
       },
     ],
-    sitemap: 'https://devorahwomen.org/sitemap.xml',
+    sitemap: 'https://www.devorahwomenfoundation.com/sitemap.xml',
   };
 }

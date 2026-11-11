@@ -88,7 +88,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     '@type': 'Article',
     headline: article.title,
     description: article.excerpt,
-    image: `https://devorahwomen.org${article.featuredImageUrl}`,
+    image: `https://www.devorahwomenfoundation.com${article.featuredImageUrl}`,
     author: {
       '@type': 'Person',
       name: article.author.name,
@@ -97,12 +97,12 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     publisher: {
       '@type': 'NGO',
       name: "Devorah Women's Leadership & Empowerment Initiative",
-      url: 'https://devorahwomen.org',
+      url: 'https://www.devorahwomenfoundation.com',
     },
     datePublished: article.publishedAt,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://devorahwomen.org/stories/${article.slug}`,
+      '@id': `https://www.devorahwomenfoundation.com/stories/${article.slug}`,
     },
   };
 
