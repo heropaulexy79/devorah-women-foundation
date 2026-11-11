@@ -105,10 +105,28 @@ export async function setCmsItem<T>(key: string, value: T): Promise<boolean> {
 
 // ── Strongly-typed accessor functions ──────────────────────────────────────
 
+export function normalizeMediaUrl(url?: string): string {
+  if (!url) return '';
+  // Convert any direct Cloudflare R2 URL (including fallback https://devorah-media.r2.dev/uploads/...)
+  // into our same-origin /api/media/... proxy route so it always loads in all browsers/networks
+  const r2Match = url.match(/^https?:\/\/[^/]+\.r2\.dev\/(.+)$/i);
+  if (r2Match) {
+    return `/api/media/${r2Match[1]}`;
+  }
+  return url;
+}
+
 export async function getArticles(): Promise<Article[]> {
   const stored = await getCmsItem<Article[]>('articles', [...ARTICLES]);
   if (!Array.isArray(stored) || stored.length === 0) return [...ARTICLES];
-  return stored;
+  return stored.map((art) => ({
+    ...art,
+    featuredImageUrl: normalizeMediaUrl(art.featuredImageUrl) || art.featuredImageUrl,
+    author: {
+      ...art.author,
+      avatarUrl: normalizeMediaUrl(art.author?.avatarUrl) || art.author?.avatarUrl,
+    },
+  }));
 }
 
 export async function saveArticles(articles: Article[]): Promise<boolean> {
@@ -119,12 +137,24 @@ export async function getPrograms(): Promise<Program[]> {
   const stored = await getCmsItem<Program[]>('programs', [...PROGRAMS]);
   if (!Array.isArray(stored) || stored.length === 0) return [...PROGRAMS];
   return stored.map((prog) => {
+    const normalizedProg: Program = {
+      ...prog,
+      imageUrl: normalizeMediaUrl(prog.imageUrl) || prog.imageUrl,
+      galleryImages: prog.galleryImages?.map((u) => normalizeMediaUrl(u) || u),
+    };
     const defaultProg = PROGRAMS.find((d) => d.slug === prog.slug || d.id === prog.id);
-    if (!defaultProg) return prog;
-    if (defaultProg.galleryImages && (!prog.galleryImages || prog.galleryImages.length < defaultProg.galleryImages.length)) {
-      return { ...prog, galleryImages: defaultProg.galleryImages };
+    if (!defaultProg) return normalizedProg;
+    if (defaultProg.galleryImages && defaultProg.galleryImages.length > 0) {
+      const existing = normalizedProg.galleryImages || [];
+      const merged = [...existing];
+      for (const img of defaultProg.galleryImages) {
+        if (!merged.includes(img)) {
+          merged.push(img);
+        }
+      }
+      return { ...normalizedProg, galleryImages: merged };
     }
-    return prog;
+    return normalizedProg;
   });
 }
 
@@ -136,16 +166,35 @@ export async function getGallery(): Promise<GalleryItem[]> {
   const stored = await getCmsItem<GalleryItem[]>('gallery', [...GALLERY_ITEMS]);
   if (!Array.isArray(stored) || stored.length === 0) return [...GALLERY_ITEMS];
   return stored.map((item) => {
+    const normalizedPhotos = (item.photos || []).map((p) => ({
+      ...p,
+      url: normalizeMediaUrl(p.url) || p.url,
+    }));
+    const normalizedItem: GalleryItem = {
+      ...item,
+      imageUrl: normalizeMediaUrl(item.imageUrl) || item.imageUrl,
+      photos: normalizedPhotos,
+      photoCount: normalizedPhotos.length || item.photoCount || 1,
+    };
+
     const defaultItem = GALLERY_ITEMS.find((d) => d.id === item.id || d.slug === item.slug);
-    if (!defaultItem) return item;
-    if (defaultItem.photos && defaultItem.photos.length > (item.photos?.length || 0)) {
-      return {
-        ...item,
-        photoCount: defaultItem.photos.length,
-        photos: defaultItem.photos,
-      };
+    if (!defaultItem || !defaultItem.photos) return normalizedItem;
+
+    // Merge default photos with stored photos without losing user-uploaded photos
+    const existingUrls = new Set(normalizedPhotos.map((p) => p.url));
+    const mergedPhotos = [...normalizedPhotos];
+    for (const defPhoto of defaultItem.photos) {
+      if (!existingUrls.has(defPhoto.url)) {
+        mergedPhotos.push(defPhoto);
+        existingUrls.add(defPhoto.url);
+      }
     }
-    return item;
+
+    return {
+      ...normalizedItem,
+      photoCount: mergedPhotos.length,
+      photos: mergedPhotos,
+    };
   });
 }
 
@@ -157,11 +206,17 @@ export async function getBoardMembers(): Promise<Person[]> {
   const stored = await getCmsItem<Person[]>('board_members', [...LEADERSHIP_PEOPLE]);
   if (!Array.isArray(stored) || stored.length === 0) return [...LEADERSHIP_PEOPLE];
   return stored.map((person) => {
+    const normalizedUrl = normalizeMediaUrl(person.imageUrl) || person.imageUrl;
     const defaultPerson = LEADERSHIP_PEOPLE.find((p) => p.id === person.id || p.name === person.name);
-    if (!defaultPerson) return person;
+    if (!defaultPerson) {
+      return { ...person, imageUrl: normalizedUrl };
+    }
+    const isLegacyBrokenPath =
+      !normalizedUrl ||
+      normalizedUrl.toLowerCase() === '/images/board/seun-akinola2.jpeg';
     return {
       ...person,
-      imageUrl: defaultPerson.imageUrl || person.imageUrl,
+      imageUrl: isLegacyBrokenPath ? defaultPerson.imageUrl : normalizedUrl,
     };
   });
 }

@@ -792,7 +792,7 @@ export default function AdminDashboardPage() {
                 <div>
                   <div className="flex items-center gap-2">
                     <p className="text-sm font-bold">
-                      {systemStatus.dbConnected ? 'Neon PostgreSQL Database: Connected & Active' : 'Neon Database: Disconnected / Not Detected'}
+                      {systemStatus.dbConnected ? 'Firebase Cloud Database: Connected & Active' : 'Cloud Database: Disconnected / Action Required'}
                     </p>
                     <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
                       systemStatus.dbConnected ? 'bg-emerald-200 text-emerald-800' : 'bg-amber-200 text-amber-900'
@@ -803,7 +803,7 @@ export default function AdminDashboardPage() {
                   <p className="text-xs opacity-90 mt-1 leading-relaxed">
                     {systemStatus.dbConnected 
                       ? 'All changes made in this CMS are automatically persisted and reflected immediately on the live website.'
-                      : (systemStatus.dbError || 'DATABASE_URL or POSTGRES_URL environment variable is missing on this deployment.') + ' Go to Vercel Dashboard → Project Settings → Environment Variables to ensure Neon credentials are added, then trigger a Redeploy.'}
+                      : (systemStatus.dbError || 'Firebase environment variables are missing on this deployment.') + ' Ensure your Firebase and Cloudflare R2 environment variables are added in Vercel Project Settings → Environment Variables.'}
                   </p>
                 </div>
               </div>
@@ -813,7 +813,7 @@ export default function AdminDashboardPage() {
                     ? 'bg-emerald-100 border-emerald-300 text-emerald-800' 
                     : 'bg-amber-100 border-amber-300 text-amber-800'
                 }`}>
-                  {systemStatus.blobConfigured ? 'Vercel Blob: Ready' : 'Vercel Blob: Not configured'}
+                  {systemStatus.blobConfigured ? 'Cloudflare R2: Ready' : 'Cloudflare R2: Not configured'}
                 </span>
               </div>
             </div>

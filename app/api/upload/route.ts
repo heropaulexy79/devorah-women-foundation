@@ -42,6 +42,19 @@ export async function POST(req: Request) {
     const cleanFileName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
     const safeKey = `uploads/${Date.now()}-${cleanFileName}`;
 
+    // Determine reliable MIME type
+    const lowerName = cleanFileName.toLowerCase();
+    const contentType =
+      file.type && file.type.startsWith('image/')
+        ? file.type
+        : lowerName.endsWith('.png')
+        ? 'image/png'
+        : lowerName.endsWith('.webp')
+        ? 'image/webp'
+        : lowerName.endsWith('.gif')
+        ? 'image/gif'
+        : 'image/jpeg';
+
     // 1. Cloudflare R2 Upload
     if (isR2Configured()) {
       try {
@@ -49,18 +62,20 @@ export async function POST(req: Request) {
           Bucket: R2_BUCKET_NAME,
           Key: safeKey,
           Body: buffer,
-          ContentType: file.type || 'image/jpeg',
+          ContentType: contentType,
         });
 
         await r2Client.send(command);
 
-        // Format the public URL
+        // Serve via same-origin /api/media/... proxy route so images always render
+        // even if *.r2.dev is blocked by ISP DNS or CLOUDFLARE_R2_PUBLIC_URL is unset
+        const proxyUrl = `/api/media/${safeKey}`;
         const publicBase = R2_PUBLIC_URL.replace(/\/+$/, '');
-        const fileUrl = publicBase 
-          ? `${publicBase}/${safeKey}` 
-          : `https://${R2_BUCKET_NAME}.r2.dev/${safeKey}`;
+        const publicUrl = publicBase
+          ? `${publicBase}/${safeKey}`
+          : `https://pub-f377fcca5af74b0aba10a5c94a73ac6a.r2.dev/${safeKey}`;
 
-        return NextResponse.json({ success: true, url: fileUrl });
+        return NextResponse.json({ success: true, url: proxyUrl, publicUrl });
       } catch (r2Err) {
         console.error('[UPLOAD] Cloudflare R2 error:', r2Err);
         return NextResponse.json(

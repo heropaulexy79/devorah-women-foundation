@@ -18,7 +18,7 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://paystack.com https://*.paystack.co https://*.paystack.com",
       "font-src 'self' https://fonts.gstatic.com data:",
       "img-src 'self' data: blob: https:",
-      "connect-src 'self' https://api.groq.com https://js.paystack.co https://api.paystack.co https://*.paystack.co https://paystack.com https://*.paystack.com https://*.vimeo.com https://*.vimeocdn.com",
+      "connect-src 'self' https://api.groq.com https://js.paystack.co https://api.paystack.co https://*.paystack.co https://paystack.com https://*.paystack.com https://*.vimeo.com https://*.vimeocdn.com https://*.googleapis.com https://*.firebaseio.com https://*.r2.dev",
       "frame-src https://checkout.paystack.com https://*.paystack.co https://*.paystack.com https://www.google.com https://player.vimeo.com https://*.vimeo.com https://drive.google.com",
       "object-src 'none'",
       "base-uri 'self'",
@@ -28,6 +28,22 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.r2.dev',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.cloudflarestorage.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+  },
   async headers() {
     return [
       {

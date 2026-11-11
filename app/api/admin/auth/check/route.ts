@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { verifySessionToken } from '@/lib/sessions';
 import { testDbConnection } from '@/lib/db';
+import { isR2Configured } from '@/lib/r2';
 
 export const dynamic = 'force-dynamic';
 
@@ -24,7 +25,7 @@ export async function GET(req: Request) {
     process.env.STORAGE_BLOB_READ_WRITE_TOKEN ||
     process.env.BLOB_TOKEN ||
     process.env.NEXT_PUBLIC_BLOB_READ_WRITE_TOKEN;
-  const blobConfigured = Boolean(blobToken);
+  const blobConfigured = isR2Configured() || Boolean(blobToken);
 
   return NextResponse.json({
     authenticated: true,
