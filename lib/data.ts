@@ -377,8 +377,8 @@ export const LEADERSHIP_PEOPLE: Person[] = [
   {
     id: 'board-dr-olaitan-titilayo-akinola',
     name: 'Dr. Olaitan Titilayo Akinola',
-    title: 'Board Director & Senior Lecturer, Federal University Oye-Ekiti',
-    role: 'Board Director',
+    title: 'Board Member ',
+    role: 'Board Member',
     category: 'Board Member',
     badge: 'Board Member',
     biography: 'Dr. Olaitan Titilayo Akinola is an experienced educator, researcher, and academic with a strong passion for education, community development, and social impact. She is a Senior Lecturer in Educational Foundations at the Federal University Oye-Ekiti, Nigeria.\n\nShe holds a Ph.D., M.Ed., and B.Ed. in Social Studies, alongside a Nigeria Certificate in Education (NCE) in Social Studies and Economics. With decades of teaching experience across secondary and tertiary institutions, including Veritas University, Abuja, she has contributed significantly to teacher education, academic research, and educational development.\n\nHer research interests span gender issues, child protection, national values, teacher education, and social development. She has authored and co-authored several academic publications and actively participates in professional and community development initiatives.\n\nBeyond academia, Dr. Akinola is committed to community service, women’s empowerment, and educational advancement. She is a member of several professional associations and has served in various civic and community leadership capacities, including INEC, SOSAN, ASSEREN, and NAWACS.\n\nAs a Board Director of Devorah Women’s Leadership and Empowerment Initiative, she brings her wealth of experience, academic expertise, and passion for social development to supporting the organisation’s vision of raising women of wisdom, courage, and global impact.',
