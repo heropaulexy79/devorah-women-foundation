@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     siteName: "Devorah Women's Leadership & Empowerment Initiative",
     title: "Devorah Women's Leadership & Empowerment Initiative",
     description:
-      'A Christian foundation dedicated to empowering girls and women through education, mentorship, leadership development, and faith-anchored community initiatives across Nigeria.',
+      'A faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women',
     images: [
       {
         url: '/images/og-logo.png',
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Devorah Women's Leadership & Empowerment Initiative",
     description:
-      'A Christian foundation dedicated to empowering girls and women through education, mentorship, leadership, and faith-anchored community action.',
+      'A faith-driven nonprofit organization committed to raising spiritually grounded, purpose-driven, and socially impactful women',
     images: ['/images/og-logo.png'],
   },
   icons: {
