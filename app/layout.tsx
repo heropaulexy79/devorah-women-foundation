@@ -88,7 +88,7 @@ const organizationJsonLd = {
       url: BASE_URL,
       logo: {
         '@type': 'ImageObject',
-        url: `${BASE_URL}/Logo-Purple.png`,
+        url: `${BASE_URL}/Devorah%20logo%20adj.%20Purple.png`,
         width: 400,
         height: 400,
       },

@@ -63,7 +63,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center w-fit group" aria-label="Devorah Women's Foundation Home">
               <div className="relative w-36 h-12 sm:w-44 sm:h-14 transition-transform duration-300 group-hover:scale-105">
                 <Image
-                  src="/Logo-white.png"
+                  src="/Devorah logo adj. white_1.png"
                   alt="Devorah Women's Leadership & Empowerment Initiative"
                   fill
                   className="object-contain object-left filter drop-shadow"

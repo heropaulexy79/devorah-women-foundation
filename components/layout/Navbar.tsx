@@ -51,7 +51,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center group focus-visible:ring-2 focus-visible:ring-[#BCA1CD] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a0f22] focus-visible:outline-none rounded-sm" aria-label="Devorah Women's Foundation Home">
           <div className="relative w-28 h-9 sm:w-36 sm:h-11 lg:w-40 lg:h-12 transition-transform duration-300 group-hover:scale-105">
             <Image
-              src={scrolled ? '/Logo-Purple.png' : '/Logo-white.png'}
+              src={scrolled ? '/Devorah logo adj. Purple.png' : '/Devorah logo adj. white_1.png'}
               alt="Devorah Women's Leadership & Empowerment Initiative"
               fill
               className="object-contain object-left filter drop-shadow"
