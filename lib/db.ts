@@ -64,6 +64,24 @@ export async function testDbConnection(): Promise<{ connected: boolean; error?: 
 
 // ── Generic Firestore document store with local data fallback ────────────────
 
+// Retry helper: Firestore's client SDK can fail the first request on a cold
+// serverless instance (e.g. "client is offline" / transient network errors).
+// Retrying makes admin saves succeed on the first click.
+async function withRetry<T>(fn: () => Promise<T>, attempts = 3): Promise<T> {
+  let lastErr: unknown;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastErr = err;
+      if (i < attempts - 1) {
+        await new Promise((r) => setTimeout(r, 300 * (i + 1)));
+      }
+    }
+  }
+  throw lastErr;
+}
+
 export async function getCmsItem<T>(key: string, defaultValue: T): Promise<T> {
   if (!isFirebaseConfigured()) {
     return defaultValue;
@@ -71,7 +89,7 @@ export async function getCmsItem<T>(key: string, defaultValue: T): Promise<T> {
 
   try {
     const docRef = doc(db, 'cms_store', key);
-    const docSnap = await getDoc(docRef);
+    const docSnap = await withRetry(() => getDoc(docRef));
 
     if (docSnap.exists()) {
       const data = docSnap.data();
@@ -79,7 +97,7 @@ export async function getCmsItem<T>(key: string, defaultValue: T): Promise<T> {
     }
 
     // Seed initial default value into Firestore if not present yet
-    await setDoc(docRef, { data: defaultValue, updatedAt: new Date().toISOString() });
+    await withRetry(() => setDoc(docRef, { data: defaultValue, updatedAt: new Date().toISOString() }));
     return defaultValue;
   } catch (err) {
     console.error(`[Firebase] getCmsItem error for key "${key}":`, err);
@@ -95,7 +113,7 @@ export async function setCmsItem<T>(key: string, value: T): Promise<boolean> {
 
   try {
     const docRef = doc(db, 'cms_store', key);
-    await setDoc(docRef, { data: value, updatedAt: new Date().toISOString() });
+    await withRetry(() => setDoc(docRef, { data: value, updatedAt: new Date().toISOString() }));
     return true;
   } catch (err) {
     console.error(`[Firebase] setCmsItem error for key "${key}":`, err);

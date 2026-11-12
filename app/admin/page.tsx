@@ -74,6 +74,21 @@ export default function AdminDashboardPage() {
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Saving state — shows a spinner and blocks double submissions while a save is in flight
+  const [isSaving, setIsSaving] = useState(false);
+  const savingRef = useRef(false);
+  const runSave = async (fn: () => Promise<void>) => {
+    if (savingRef.current) return;
+    savingRef.current = true;
+    setIsSaving(true);
+    try {
+      await fn();
+    } finally {
+      savingRef.current = false;
+      setIsSaving(false);
+    }
+  };
+
   // Upload state (Gallery Cover & Additional Photos — split so they don't block each other)
   const [isGalleryCoverUploading, setIsGalleryCoverUploading] = useState(false);
   const [isGalleryExtraUploading, setIsGalleryExtraUploading] = useState(false);
@@ -147,6 +162,7 @@ export default function AdminDashboardPage() {
     e.preventDefault();
     if (!articleForm.title || !articleForm.excerpt) return;
 
+    await runSave(async () => {
     try {
       if (editingArticleId) {
         // Edit existing article
@@ -207,6 +223,7 @@ export default function AdminDashboardPage() {
     } catch {
       showSuccessNotification('Failed to save article');
     }
+    });
   };
 
   const handleDeleteArticle = async (id: string) => {
@@ -273,6 +290,7 @@ export default function AdminDashboardPage() {
   const handleSaveBoardMember = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!editingBoardId) return;
+    await runSave(async () => {
     try {
       const payload = {
         id: editingBoardId,
@@ -303,6 +321,7 @@ export default function AdminDashboardPage() {
     } catch {
       showSuccessNotification('Failed to save board member');
     }
+    });
   };
 
   // Gallery CRUD functions
@@ -420,6 +439,7 @@ export default function AdminDashboardPage() {
     e.preventDefault();
     if (!galleryForm.title || !galleryForm.imageUrl) return;
 
+    await runSave(async () => {
     try {
       if (editingGalleryId) {
         // Edit existing album
@@ -485,6 +505,7 @@ export default function AdminDashboardPage() {
     } catch {
       showSuccessNotification('Failed to save gallery album');
     }
+    });
   };
 
   const handleDeleteGallery = async (id: string) => {
@@ -582,6 +603,7 @@ export default function AdminDashboardPage() {
   };
 
   const saveMetrics = async () => {
+    await runSave(async () => {
     try {
       const res = await fetch('/api/content', {
         method: 'POST',
@@ -598,6 +620,7 @@ export default function AdminDashboardPage() {
     } catch {
       showSuccessNotification('Failed to save metrics');
     }
+    });
   };
 
   const showSuccessNotification = (msg: string) => {
@@ -763,7 +786,7 @@ export default function AdminDashboardPage() {
       {/* Main Content Dashboard Area */}
       <main className="flex-1 p-6 md:p-10 max-w-6xl mx-auto space-y-8">
         {notification && (
-          <div className="bg-[#642B80] text-white p-4 rounded-xl flex items-center gap-3 shadow-lg animate-fade-in">
+          <div className="fixed top-6 right-6 z-[100] max-w-sm bg-[#642B80] text-white p-4 rounded-xl flex items-center gap-3 shadow-2xl animate-fade-in">
             <CheckCircle className="w-5 h-5 text-green-300 shrink-0" />
             <p className="text-sm font-medium">{notification}</p>
           </div>
@@ -1270,9 +1293,10 @@ export default function AdminDashboardPage() {
 
             <button
               onClick={saveMetrics}
-              className="bg-[#642B80] text-white text-sm font-semibold px-6 py-3 rounded-xl hover:bg-[#8B4FA0] transition-all shadow-md"
+              disabled={isSaving}
+              className="bg-[#642B80] text-white text-sm font-semibold px-6 py-3 rounded-xl hover:bg-[#8B4FA0] transition-all shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Save All Impact Metrics
+              {isSaving ? 'Saving…' : 'Save All Impact Metrics'}
             </button>
           </div>
         )}
@@ -1506,9 +1530,13 @@ export default function AdminDashboardPage() {
 
                 <div className="flex justify-end gap-3 pt-4 border-t border-[#E8DDF0]">
                   <button type="button" onClick={() => setShowBoardModal(false)} className="px-4 py-2 rounded-xl text-xs font-semibold text-[#716A73] hover:bg-gray-100">Cancel</button>
-                  <button type="submit" className="px-6 py-2.5 rounded-xl text-xs font-semibold bg-[#642B80] text-white hover:bg-[#8B4FA0] shadow-md transition-all flex items-center gap-1.5">
-                    <CheckCircle className="w-4 h-4" />
-                    Save Profile Changes
+                  <button type="submit" disabled={isSaving || isBoardPhotoUploading} className="px-6 py-2.5 rounded-xl text-xs font-semibold bg-[#642B80] text-white hover:bg-[#8B4FA0] shadow-md transition-all flex items-center gap-1.5 disabled:opacity-60 disabled:cursor-not-allowed">
+                    {isSaving ? (
+                      <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    ) : (
+                      <CheckCircle className="w-4 h-4" />
+                    )}
+                    {isSaving ? 'Saving…' : 'Save Profile Changes'}
                   </button>
                 </div>
               </form>
@@ -1685,9 +1713,13 @@ export default function AdminDashboardPage() {
                   </button>
                   <button
                     type="submit"
-                    className="px-5 py-2 rounded-xl text-xs font-semibold bg-[#642B80] text-white hover:bg-[#8B4FA0] shadow-md"
+                    disabled={isSaving || isUploading}
+                    className="px-5 py-2 rounded-xl text-xs font-semibold bg-[#642B80] text-white hover:bg-[#8B4FA0] shadow-md flex items-center gap-1.5 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    {editingArticleId ? 'Save Changes' : 'Publish Article'}
+                    {isSaving && (
+                      <span className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    )}
+                    {isSaving ? 'Saving…' : editingArticleId ? 'Save Changes' : 'Publish Article'}
                   </button>
                 </div>
               </form>
@@ -1986,10 +2018,15 @@ export default function AdminDashboardPage() {
                   </button>
                   <button
                     type="submit"
-                    className="px-6 py-2.5 rounded-xl text-xs font-semibold bg-[#642B80] text-white hover:bg-[#8B4FA0] shadow-md transition-all flex items-center gap-1.5"
+                    disabled={isSaving || isGalleryCoverUploading || isGalleryExtraUploading}
+                    className="px-6 py-2.5 rounded-xl text-xs font-semibold bg-[#642B80] text-white hover:bg-[#8B4FA0] shadow-md transition-all flex items-center gap-1.5 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <CheckCircle className="w-4 h-4" />
-                    {editingGalleryId ? 'Save Album Changes' : 'Publish Gallery Album'}
+                    {isSaving ? (
+                      <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    ) : (
+                      <CheckCircle className="w-4 h-4" />
+                    )}
+                    {isSaving ? 'Saving…' : editingGalleryId ? 'Save Album Changes' : 'Publish Gallery Album'}
                   </button>
                 </div>
               </form>

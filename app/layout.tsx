@@ -69,10 +69,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/Logo-Purple.png', type: 'image/png' },
-      { url: '/favicon.ico' },
+      { url: '/favicon.ico', type: 'image/x-icon' },
     ],
-    apple: '/Logo-Purple.png',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
   manifest: '/manifest.json',
   category: 'non-profit',
