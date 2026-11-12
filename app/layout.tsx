@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | Devorah Women's Leadership & Empowerment Initiative",
   },
   description:
-    'A Christian, women-focused foundation committed to empowering girls and women through education, mentorship, leadership development, community initiatives, and faith-anchored support across Lagos, Nigeria.',
+    '',
   keywords: [
     "Devorah Women's Leadership & Empowerment Initiative",
     'women empowerment',
