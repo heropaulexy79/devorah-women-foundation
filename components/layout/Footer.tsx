@@ -77,10 +77,10 @@ export default function Footer() {
               <p>
                 <strong className="text-[#BCA1CD] font-medium">Email:</strong>{' '}
                 <a
-                  href="mailto:womendevorah@gmail.com"
+                  href="mailto:info@devorahwomenfoundation.org"
                   className="hover:text-white transition-colors underline decoration-[#BCA1CD]/30 underline-offset-2"
                 >
-                  womendevorah@gmail.com
+                  info@devorahwomenfoundation.org
                 </a>
               </p>
               <p>

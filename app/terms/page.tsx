@@ -45,7 +45,7 @@ export default function TermsPage() {
             <ul className="list-disc pl-5 space-y-1.5">
               <li>All donations made to Devorah Women's Leadership & Empowerment Initiative are voluntary contributions supporting our charitable objectives and designated program pillars.</li>
               <li>Donations are processed securely through accredited payment partners including Paystack.</li>
-              <li>While donations are generally non-refundable once deployed to field initiatives, inquiries regarding mistaken or duplicate transactions can be directed to womendevorah@gmail.com within 7 days of the transaction.</li>
+              <li>While donations are generally non-refundable once deployed to field initiatives, inquiries regarding mistaken or duplicate transactions can be directed to info@devorahwomenfoundation.org within 7 days of the transaction.</li>
             </ul>
           </div>
 
@@ -69,7 +69,7 @@ export default function TermsPage() {
               For legal inquiries or questions regarding our operational policies:
             </p>
             <p className="text-xs bg-[#FCFCF7] p-4 rounded-xl border border-[#E8DDF0] text-[#3B214F]">
-              <strong>Email:</strong> womendevorah@gmail.com<br />
+              <strong>Email:</strong> info@devorahwomenfoundation.org<br />
               <strong>Phone:</strong> 08030526200<br />
               <strong>Address:</strong> No 14, Esubiyi Street, Mende, Maryland, Lagos State, Nigeria
             </p>

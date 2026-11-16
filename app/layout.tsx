@@ -107,7 +107,7 @@ const organizationJsonLd = {
           '@type': 'ContactPoint',
           contactType: 'general enquiry',
           telephone: '08030526200',
-          email: 'womendevorah@gmail.com',
+          email: 'info@devorahwomenfoundation.org',
           availableLanguage: 'English',
         },
       ],

@@ -68,8 +68,8 @@ export default function ContactClient() {
                 </div>
                 <div>
                   <h3 className="text-xs uppercase font-semibold text-[#642B80]">Email Inquiries</h3>
-                  <a href="mailto:womendevorah@gmail.com" className="text-sm font-bold text-[#3B214F] hover:text-[#642B80] transition-colors mt-0.5 block">
-                    womendevorah@gmail.com
+                  <a href="mailto:info@devorahwomenfoundation.org" className="text-sm font-bold text-[#3B214F] hover:text-[#642B80] transition-colors mt-0.5 block">
+                    info@devorahwomenfoundation.org
                   </a>
                   <p className="text-xs text-[#716A73]">Official Support & Inquiries</p>
                 </div>

@@ -2,6 +2,7 @@ import Hero from '@/components/sections/Hero';
 import WhoWeAre from '@/components/sections/WhoWeAre';
 import MissionVision from '@/components/sections/MissionVision';
 import ProgramsGrid from '@/components/sections/ProgramsGrid';
+import UpcomingEvents from '@/components/sections/UpcomingEvents';
 import ImpactStrip from '@/components/sections/ImpactStrip';
 import MediaGallery from '@/components/sections/MediaGallery';
 import TestimonialsEditorial from '@/components/sections/TestimonialsEditorial';
@@ -29,10 +30,13 @@ export default function Home() {
       {/* 4. Our Programs */}
       <ProgramsGrid />
 
-      {/* 5. Our Impact */}
+      {/* 5. Upcoming Events & Outreaches */}
+      <UpcomingEvents />
+
+      {/* 6. Our Impact */}
       <ImpactStrip />
 
-      {/* 6. Outreach & Conference Media Gallery */}
+      {/* 7. Outreach & Conference Media Gallery */}
       <MediaGallery limit={2} />
       <div className="bg-[#FCFCF7] pb-16 text-center">
         <Link
@@ -44,19 +48,19 @@ export default function Home() {
         </Link>
       </div>
 
-      {/* 7. Testimonials */}
+      {/* 8. Testimonials */}
       <TestimonialsEditorial />
 
-      {/* 8. Latest News & Articles */}
+      {/* 9. Latest News & Articles */}
       <LatestNews />
 
-      {/* 9. Featured Resource */}
+      {/* 10. Featured Resource */}
       <FeaturedResource />
 
-      {/* 10. Partner With Us */}
+      {/* 11. Partner With Us */}
       <PartnerWithUs />
 
-      {/* 11. Final Call to Action */}
+      {/* 12. Final Call to Action */}
       <CTASection />
     </>
   );

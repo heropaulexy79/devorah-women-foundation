@@ -69,7 +69,7 @@ export default function PrivacyPage() {
               If you have any questions or requests regarding your personal information, please contact our administration team:
             </p>
             <p className="text-xs bg-[#FCFCF7] p-4 rounded-xl border border-[#E8DDF0] text-[#3B214F]">
-              <strong>Email:</strong> womendevorah@gmail.com<br />
+              <strong>Email:</strong> info@devorahwomenfoundation.org<br />
               <strong>Phone:</strong> 08030526200<br />
               <strong>Address:</strong> No 14, Esubiyi Street, Mende, Maryland, Lagos State, Nigeria
             </p>

@@ -26,7 +26,7 @@ export interface SiteSettings {
 }
 
 const DEFAULT_SETTINGS: SiteSettings = {
-  contactEmail: 'womendevorah@gmail.com',
+  contactEmail: 'info@devorahwomenfoundation.org',
   contactPhone: '08030526200',
   officeAddress: 'Lagos, Nigeria',
   bankName: 'Devorah Women Foundation',
