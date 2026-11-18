@@ -52,10 +52,32 @@ export default function PartnershipsClient() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setErrorMessage('');
+
+    try {
+      const res = await fetch('/api/partnerships', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMessage(data.message || 'Failed to submit proposal. Please try again.');
+      }
+    } catch {
+      setErrorMessage('Network error. Please try again or reach out directly.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -252,12 +274,28 @@ export default function PartnershipsClient() {
                 />
               </div>
 
+              {errorMessage && (
+                <p className="text-xs text-red-600 bg-red-50 border border-red-200 p-3 rounded-xl font-medium">
+                  {errorMessage}
+                </p>
+              )}
+
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-[#642B80] hover:bg-[#3B214F] text-white py-4 rounded-xl font-bold text-base shadow-md transition-colors"
+                disabled={loading}
+                className="w-full flex items-center justify-center gap-2 bg-[#642B80] hover:bg-[#3B214F] text-white py-4 rounded-xl font-bold text-base shadow-md transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                <Send className="w-5 h-5" />
-                <span>Submit Partnership Proposal</span>
+                {loading ? (
+                  <>
+                    <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <span>Submitting Proposal…</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    <span>Submit Partnership Proposal</span>
+                  </>
+                )}
               </button>
             </form>
           )}
